@@ -1,0 +1,76 @@
+{
+  "actualizado": "2026-11-03",
+  "semanas": {
+    "S01": "Semana reorganizada por el golf del martes: el test de 5 km pasa al viernes 6 a las 7:30 y esta semana no hay Z2. El resto, como en el plan."
+  },
+  "dias": {
+    "2026-11-03": {
+      "titulo": "Golf + F45 a las 20:00",
+      "tipo": "doble",
+      "nota": "El golf andando son 10.000-14.000 pasos y unas 600-900 kcal: hoy comes como día doble. En F45 ve a RPE 7, sin llegar al fallo, porque las piernas vienen del campo. El test de 5 km pasa al viernes.",
+      "ocultarNotaSemana": true,
+      "sesiones": [
+        {"h": "07:30", "d": "Báscula", "t": "Peso en ayunas tras ir al baño y 500 ml de agua. Apúntalo aunque esté alto por la retención"},
+        {"h": "08:00", "d": "Desayuno", "t": "Desayuno A (tortilla). Café"},
+        {"h": "Golf", "d": "En el campo", "t": "Andando si puedes. 1,5 L de agua con una pastilla de electrolitos. A mitad de recorrido, bocadillo de pavo y plátano. Crema solar"},
+        {"h": "14:30", "d": "Comida", "t": "Comida A. Si el golf se alarga, que no pase de las 15:30"},
+        {"h": "17:30", "d": "Pre-entreno", "t": "Merienda A (skyr, plátano y miel). Último café del día. Después de comer, 20 min tumbado o sentado con las piernas en alto"},
+        {"h": "19:45", "d": "Llegada", "t": "Llega con 15 min: 5 min de movilidad de cadera y tobillo, y 2 × 10 sentadillas sin peso"},
+        {"h": "20:00", "d": "F45", "t": "Clase del día a RPE 7. Si toca mucho salto o sprint, baja un escalón: step-ups en lugar de saltos al cajón. Apunta qué tocaba y el RPE"},
+        {"h": "20:50", "d": "Post", "t": "Batido: 40 g de Evolate con agua + plátano, nada más salir"},
+        {"h": "21:30", "d": "Cena ligera", "t": "Cena B (queso fresco batido con nueces), o sáltatela si no tienes hambre: ya vas por encima de 200 g de proteína"},
+        {"h": "23:15", "d": "Dormir", "t": "Pantallas fuera a las 23:00. Antes, 5 min de estiramiento de gemelo y flexor de cadera"}
+      ],
+      "comidas": [
+        {"h": "08:00", "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan, fruta", "kcal": 505, "p": 42, "c": 42, "g": 18},
+        {"h": "Golf", "n": "Bocadillo 60 g pan + 100 g pavo y fruta", "kcal": 345, "p": 26, "c": 55, "g": 3},
+        {"h": "Golf", "n": "Plátano extra", "kcal": 105, "p": 1, "c": 27, "g": 0},
+        {"h": "14:30", "n": "Comida A · 250 g pollo, 70 g arroz, verdura, 15 g AOVE", "kcal": 735, "p": 66, "c": 67, "g": 20},
+        {"h": "17:30", "n": "Merienda A · 250 g skyr, plátano, 10 g miel", "kcal": 295, "p": 29, "c": 45, "g": 1},
+        {"h": "20:50", "n": "Post A · 40 g Evolate con agua + plátano", "kcal": 255, "p": 37, "c": 27, "g": 1},
+        {"h": "21:30", "n": "Cena B · 350 g queso fresco batido 0 %, 20 g nueces", "kcal": 290, "p": 31, "c": 16, "g": 13}
+      ]
+    },
+    "2026-11-04": {
+      "titulo": "UFC: fuerza y estaciones",
+      "tipo": "calidad",
+      "sesiones": [
+        {"h": "Tarde", "d": "UFC · fuerza", "t": "Sentadilla goblet o frontal 4 × 8 (RPE 7). Apunta el peso: es tu referencia de fuerza. Peso muerto rumano 3 × 10 · Zancada atrás 3 × 8/pierna · Remo con mancuerna 3 × 10"},
+        {"h": "Tarde", "d": "UFC · estaciones", "t": "3 rondas: 500 m cinta a 6:10-6:25 /km + 250 m SkiErg + 2 × 12,5 m sled push (100 kg) + 15 wall balls · 2 min de descanso"}
+      ]
+    },
+    "2026-11-05": {
+      "titulo": "F45 HYROX",
+      "tipo": "hyrox",
+      "sesiones": [
+        {"h": "Tarde", "d": "F45", "t": "Clase HYROX. Apunta qué estaciones tocaron y con qué cargas"}
+      ]
+    },
+    "2026-11-06": {
+      "titulo": "Test de 5 km",
+      "tipo": "calidad",
+      "nota": "El test que no hiciste el martes. De su tiempo salen todos tus ritmos.",
+      "sesiones": [
+        {"h": "07:10", "d": "Antes", "t": "Plátano o 2 tortitas con miel y café"},
+        {"h": "07:30", "d": "Retiro", "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"},
+        {"h": "07:50", "d": "Test", "t": "5 km a tope sostenible, en terreno llano (Paseo de Coches o perimetral). Apunta tiempo, FC media y sensaciones"},
+        {"h": "Después", "d": "Vuelta a la calma", "t": "10 min andando o trote muy suave"}
+      ]
+    },
+    "2026-11-07": {
+      "titulo": "F45 sábado",
+      "tipo": "calidad",
+      "sesiones": [
+        {"h": "", "d": "F45", "t": "Clase de sábado"}
+      ]
+    },
+    "2026-11-08": {
+      "titulo": "Descanso y check-in",
+      "tipo": "descanso",
+      "sesiones": [
+        {"h": "Mañana", "d": "Paseo", "t": "60 min andando y 15 min de movilidad"},
+        {"h": "Tarde", "d": "Casa", "t": "Batch cooking, cintura y fotos, y pulsa 'Copiar mi semana para Claude' en Semana"}
+      ]
+    }
+  }
+}

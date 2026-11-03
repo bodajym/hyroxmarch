@@ -346,7 +346,13 @@ const todayStr=()=>ds(new Date());
 let toastT;function toast(m,err){const el=$("#toast");el.textContent=m;el.classList.toggle("err",!!err);el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),2600)}
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 
+let COACH=null;
 function dayPlan(s){
+  const b=basePlan(s),c=COACH&&COACH.dias&&COACH.dias[s];
+  if(!c)return b;
+  return {...b,items:(c.sesiones||[]).map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:c};
+}
+function basePlan(s){
   const w=weekOf(s),dow=pd(s).getDay();
   if(w<1||w>20)return {w,f:0,items:[{d:"Libre",t:"Fuera de las 20 semanas de preparación"}],type:"descanso"};
   const f=phaseOf(w);let items=[],type="calidad";
@@ -488,13 +494,13 @@ function render(){
 
 /* =============== DÍA =============== */
 function totals(d){return (d.comidas||[]).reduce((a,c)=>({kcal:a.kcal+(+c.kcal||0),p:a.p+(+c.p||0),c:a.c+(+c.c||0),g:a.g+(+c.g||0)}),{kcal:0,p:0,c:0,g:0})}
-function meter(val,rng){
+function meter(val,rng,noHigh){
   const max=rng[1]*1.35,pct=Math.min(100,val/max*100),lo=rng[0]/max*100,hi=rng[1]/max*100;
-  const cls=val===0?"":val<rng[0]?"low":val>rng[1]*1.05?"high":"ok";
+  const cls=val===0?"":val<rng[0]?"low":(!noHigh&&val>rng[1]*1.05)?"high":"ok";
   return `<div class="meter"><div class="band" style="left:${lo}%;width:${hi-lo}%"></div><div class="fill ${cls}" data-w="${pct}"></div></div>`;
 }
 function macroBlock(label,val,rng,unit,big){
-  return `<div class="mac ${big?"hero-m":""}"><div class="mac-top"><span class="eyebrow">${label}</span><span class="t">${fmt0(rng[0])}-${fmt0(rng[1])} ${unit}</span></div><span class="v">${fmt0(val)}<small>${unit}</small></span>${meter(val,rng)}</div>`;
+  return `<div class="mac ${big?"hero-m":""}"><div class="mac-top"><span class="eyebrow">${label}</span><span class="t">${fmt0(rng[0])}-${fmt0(rng[1])} ${unit}</span></div><span class="v">${fmt0(val)}<small>${unit}</small></span>${meter(val,rng,big)}</div>`;
 }
 function renderDay(){
   const s=state.date,day=getDay(s),plan=dayPlan(s),w=plan.w,tipo=day.tipo||plan.type,tg=TARGETS[tipo],tot=totals(day),note=WEEKNOTE[w];
@@ -503,7 +509,7 @@ function renderDay(){
     <div class="col">
       <section class="panel today rv" aria-labelledby="hoy">
         <div class="view-head">
-          <div><div class="eyebrow">${w>=1&&w<=20?"Semana "+w+" · Fase "+plan.f+(DELOAD[w]?" · descarga":""):"Fuera del plan"}${s===todayStr()?" · hoy":""}</div><h2 class="date" id="hoy">${esc(nice(s))}</h2></div>
+          <div><div class="eyebrow">${w>=1&&w<=20?"Semana "+w+" · Fase "+plan.f+(DELOAD[w]?" · descarga":""):"Fuera del plan"}${s===todayStr()?" · hoy":""}</div><h2 class="date" id="hoy">${esc(nice(s))}</h2>${plan.coach&&plan.coach.titulo?`<div class="hero-sub" style="margin-top:8px;font-size:22px"><b>${esc(plan.coach.titulo)}</b></div>`:""}</div>
           <div class="datenav">
             <button class="btn sq" type="button" id="prev" aria-label="Día anterior">←</button>
             <input type="date" id="date" value="${s}" min="2026-11-02" max="2027-03-31" aria-label="Elegir día">
@@ -511,7 +517,9 @@ function renderDay(){
           </div>
         </div>
         <div class="steps">${plan.items.map(i=>`<div class="s"><b>${esc(i.d)}</b><span>${esc(i.t)}</span></div>`).join("")}</div>
-        ${note?`<div class="note"><span class="tag">S${w}</span><span>${esc(note)}</span></div>`:""}
+        ${plan.coach&&plan.coach.nota?`<div class="note"><span class="tag" style="border-color:var(--accent);color:var(--accent)">Coach</span><span>${esc(plan.coach.nota)}</span></div>`:""}
+        ${note&&!(plan.coach&&plan.coach.ocultarNotaSemana)?`<div class="note"><span class="tag">S${w}</span><span>${esc(note)}</span></div>`:""}
+        <div class="row" style="justify-content:space-between"><span class="eyebrow">${plan.coach?"Plan de tu coach"+(COACH.actualizado?" · actualizado "+esc(short(COACH.actualizado)):""):"Plan base"}</span><button class="btn" type="button" id="copyday">Copiar mi día para Claude</button></div>
       </section>
 
       <section class="panel rv" aria-labelledby="regt">
@@ -541,6 +549,7 @@ function renderDay(){
           ${macroBlock("Proteína",tot.p,tg.p,"g",true)}
           <div class="mac-grid">${macroBlock("Kcal",tot.kcal,tg.kcal,"")}${macroBlock("Hidratos",tot.c,tg.c,"g")}${macroBlock("Grasa",tot.g,tg.g,"g")}</div>
         </div>
+        ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"-"+i);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" ${done?"disabled":""} aria-label="${done?"Ya apuntada":"Apuntar"} ${esc(m.n)}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
         <div class="row"><select id="preset" aria-label="Comida del plan" style="flex:1 1 220px">${PRESETS.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join("")}</select><button class="btn pri" type="button" id="addpreset">Añadir</button></div>
         <div class="items" id="comidas">${day.comidas.length?day.comidas.map(c=>`<div class="item"><span class="n">${esc(c.nombre)}</span><span class="m">${fmt0(c.kcal)} kcal · ${fmt0(c.p)} P · ${fmt0(c.c)} C · ${fmt0(c.g)} G</span><button class="btn ghost" type="button" data-delc="${c.id}" aria-label="Quitar ${esc(c.nombre)}">✕</button></div>`).join(""):`<div class="empty" style="margin-top:12px">Aún no has apuntado comidas. Elige una del plan o escribe la tuya.</div>`}</div>
         <details><summary>Otra comida con tus cantidades</summary>
@@ -588,7 +597,7 @@ function defaultEnt(s){
   return e;
 }
 function bindDay(s){
-  const day=getDay(s);
+  const day=getDay(s),plan0=dayPlan(s);
   $("#prev").onclick=()=>{state.date=addDays(s,-1);render()};
   $("#next").onclick=()=>{state.date=addDays(s,1);render()};
   $("#date").onchange=e=>{if(e.target.value){state.date=e.target.value;render()}};
@@ -598,6 +607,11 @@ function bindDay(s){
   $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4]});touch(day);render();toast("Añadido · "+p[0].split(" · ")[0])};
   $("#addcustom").onclick=()=>{const n=$("#cn").value.trim();if(!n){$("#cn").setAttribute("aria-invalid","true");$("#cn").focus();toast("Escribe qué has comido",true);return}
     day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0});touch(day);render();toast("Comida añadida")};
+  const menu=$("#menu");
+  const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"-"+i;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});return true};
+  if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day);render();toast("Apuntado")}};
+    $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
+  $("#copyday").onclick=()=>copyText(daySummary(s),"Día copiado. Pégamelo en el chat");
   $("#comidas").onclick=e=>{const b=e.target.closest("[data-delc]");if(!b)return;day.comidas=day.comidas.filter(c=>c.id!==b.dataset.delc);touch(day);render()};
   $("#addent").onclick=()=>{day.entrenos.push(defaultEnt(s));touch(day);render()};
   const ents=$("#ents");
@@ -638,6 +652,8 @@ function renderWeek(){
     <div class="datenav"><button class="btn sq" type="button" id="wprev" aria-label="Semana anterior" ${w<=1?"disabled":""}>←</button><select id="wsel" aria-label="Elegir semana" style="width:auto">${Array.from({length:20},(_,i)=>`<option value="${i+1}" ${i+1===w?"selected":""}>S${i+1}</option>`).join("")}</select><button class="btn sq" type="button" id="wnext" aria-label="Semana siguiente" ${w>=20?"disabled":""}>→</button></div>
   </div>
   ${WEEKNOTE[w]?`<div class="note rv"><span class="tag">S${w}</span><span>${esc(WEEKNOTE[w])}</span></div>`:""}
+  ${COACH&&COACH.semanas&&COACH.semanas[wkId(w)]?`<div class="note rv"><span class="tag" style="border-color:var(--accent);color:var(--accent)">Coach</span><span>${esc(COACH.semanas[wkId(w)])}</span></div>`:""}
+  <div class="row rv"><button class="btn pri" type="button" id="copyweek">Copiar mi semana para Claude</button><span class="muted" style="font-size:13px">Pégamelo el domingo con "revisa mi semana"</span></div>
   <section class="stats rv" aria-label="Resumen de la semana">
     <div class="stat"><span class="eyebrow">Peso medio</span><span class="v">${fmt1(st.peso)}<small>kg</small></span><span class="t">${delta==null?st.n+" pesajes":(delta>0?"+":"")+fmt1(delta)+" kg frente a S"+(w-1)}</span></div>
     <div class="stat"><span class="eyebrow">Proteína media</span><span class="v">${fmt0(st.prot)}<small>g</small></span><span class="t">${st.prot190} de 7 días por encima de 190 g</span></div>
@@ -668,6 +684,7 @@ function renderWeek(){
     </aside>
   </div></div>`;
   $("#wprev").onclick=()=>{state.week=clampW(w-1);render()};
+  $("#copyweek").onclick=()=>copyText(weekSummary(w),"Semana copiada. Pégamela en el chat");
   $("#wnext").onclick=()=>{state.week=clampW(w+1);render()};
   $("#wsel").onchange=e=>{state.week=+e.target.value;render()};
   document.querySelectorAll("[data-goday]").forEach(a=>a.onclick=e=>{e.preventDefault();state.date=a.dataset.goday;go("dia")});
@@ -818,7 +835,34 @@ const Motion={
   }
 };
 
+/* =============== RESÚMENES PARA CLAUDE =============== */
+function daySummary(s){
+  const d=data.days[s]||blankDay(s),t=totals(d),L=[];
+  L.push("RX27 · "+nice(s)+" ("+s+") · S"+weekOf(s));
+  L.push("Peso "+(d.peso??"—")+" kg · pasos "+(d.pasos??"—")+" · sueño "+(d.sueno??"—")+" h · agua "+(d.agua??"—")+" L · energía "+(d.energia??"—")+" · hambre "+(d.hambre??"—"));
+  L.push("Comidas: "+fmt0(t.kcal)+" kcal · "+fmt0(t.p)+" P · "+fmt0(t.c)+" C · "+fmt0(t.g)+" G");
+  (d.comidas||[]).forEach(c=>L.push("  - "+c.nombre+" ("+fmt0(c.kcal)+" kcal, "+fmt0(c.p)+" P)"));
+  (d.entrenos||[]).forEach(e=>{L.push("Entreno: "+e.tipo+" · "+e.centro+" · "+(e.dur??"—")+" min · RPE "+(e.rpe??"—")+(e.km?" · "+e.km+" km en "+(e.tiempo||"—")+" · ritmo "+(pace(num(e.km),e.tiempo)||"—")+" · FC "+(e.fc??"—"):""));
+    (e.ej||[]).filter(x=>x.n).forEach(x=>L.push("  - "+x.n+": "+(x.s??"—")+" × "+(x.r||"—")+(x.kg!=null?" @ "+x.kg+" kg":"")));if(e.notas)L.push("  Notas: "+e.notas)});
+  if(!(d.entrenos||[]).length)L.push("Entreno: ninguno apuntado");
+  if(d.notas)L.push("Notas del día: "+d.notas);
+  return L.join("\n");
+}
+function weekSummary(w){
+  const st=weekStats(w),wk=data.weeks[wkId(w)]||blankWeek(w),L=["RX27 · SEMANA "+w+" ("+weekDays(w)[0]+" a "+weekDays(w)[6]+")",
+    "Peso medio "+fmt1(st.peso)+" kg ("+st.n+" pesajes) · cintura "+(wk.cintura??"—")+" cm · proteína media "+fmt0(st.prot)+" g ("+st.prot190+" días ≥190) · km "+fmt1(st.km)+" · RPE medio "+fmt1(st.rpe)+" · sueño "+fmt1(st.sueno)+" h · pasos "+fmt0(st.pasos)];
+  (wk.tests||[]).filter(t=>t.r).forEach(t=>L.push("Test "+t.n+": "+t.r));
+  QUESTIONS.forEach((q,i)=>{const a=(wk.q||{})[i];if(a)L.push(q+" "+a)});
+  L.push("");weekDays(w).forEach(s=>{if(data.days[s])L.push(daySummary(s),"")});
+  return L.join("\n");
+}
+async function copyText(txt,msg){
+  try{await navigator.clipboard.writeText(txt);toast(msg)}
+  catch(e){const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast(msg)}catch(_){toast("No se ha podido copiar",true)}ta.remove()}
+}
+
 /* =============== ARRANQUE =============== */
+fetch("coach.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.dias){COACH=j;if(!editing())render()}}).catch(()=>{});
 const th=LS.get("rx27-theme");if(th)setTheme(th);
 {const h=location.hash.slice(1);if(VIEWS.includes(h))state.view=h}
 renderHero();
