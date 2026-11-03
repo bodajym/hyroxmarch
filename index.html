@@ -450,12 +450,16 @@ const Sync={
     this.busy=false;if(this.again){this.again=false;this.push()}
   },
   async connect(token,gist){
-    this.cfg={token:token.trim(),gist:(gist||"").trim()};
-    if(!this.cfg.gist){
+    const prev=this.cfg;
+    this.cfg={token:token.replace(/\s+/g,""),gist:(gist||"").replace(/\s+/g,"")};
+    try{
+    if(this.cfg.gist){this.meta=await this.api("/gists/"+this.cfg.gist)}
+    else{
       const g=await fetch("https://api.github.com/gists",{method:"POST",headers:{...this.h(),"Content-Type":"application/json"},body:JSON.stringify({description:"RX/27 · datos de preparación HYROX",public:false,files:{[FILE]:{content:JSON.stringify(data)}}})});
       if(!g.ok){const e=new Error("http "+g.status);e.status=g.status;throw e}
       const j=await g.json();this.cfg.gist=j.id;this.meta=j;
     }
+    }catch(e){this.cfg=prev;throw e}
     LS.set(CFG,JSON.stringify(this.cfg));
     await this.pull(true);
   },
@@ -772,6 +776,7 @@ function renderSettings(){
       <h3 id="synct">Sincronizar entre dispositivos</h3>
       <p style="margin:0">Tus datos se guardan en este navegador. Para verlos en el móvil y en el ordenador, se copian en un <b>Gist privado</b> de tu cuenta de GitHub.</p>
       ${on?`<div class="note"><span class="tag" style="border-color:var(--ok);color:var(--ok)">Activo</span><span>Sincronizando con el Gist <span class="kbd">${esc(Sync.cfg.gist.slice(0,8))}…</span>. En otro dispositivo, pega el mismo token y este ID: <span class="kbd" id="gid">${esc(Sync.cfg.gist)}</span></span></div>
+        <p style="margin:0;font-size:13px" class="muted">¿Sale "Token no válido"? Pulsa <b>Desconectar este dispositivo</b> y vuelve a conectar con el token nuevo y este mismo ID. Tus datos no se borran.</p>
         <div class="row"><button class="btn pri" type="button" id="pull">Sincronizar ahora</button><button class="btn" type="button" id="copygid">Copiar ID del Gist</button><button class="btn ghost" type="button" id="disc">Desconectar este dispositivo</button></div>`
       :`<ol class="steps-list">
           <li>En GitHub: Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> → Generate new token.</li>
@@ -797,7 +802,7 @@ function renderSettings(){
   </div></div>`;
   const c=$("#connect");if(c)c.onclick=async()=>{const t=$("#tok").value;if(!t.trim()){$("#tok").setAttribute("aria-invalid","true");toast("Pega tu token de GitHub",true);return}
     c.classList.add("loading");c.textContent="Conectando…";
-    try{await Sync.connect(t,$("#gist").value);toast("Sincronización activada");render()}catch(e){Sync.cfg={};Sync.err(e);toast(e&&e.status===401?"El token no es válido":e&&e.status===404?"No encuentro ese Gist con este token":"No se ha podido conectar",true);c.classList.remove("loading");c.textContent="Conectar"}};
+    try{await Sync.connect(t,$("#gist").value);toast("Sincronización activada");render()}catch(e){Sync.err(e);toast(e&&e.status===401?"El token no es válido":e&&e.status===404?"No encuentro ese Gist con este token":"No se ha podido conectar",true);c.classList.remove("loading");c.textContent="Conectar"}};
   const p=$("#pull");if(p)p.onclick=async()=>{p.classList.add("loading");await Sync.pull();p.classList.remove("loading")};
   const cg=$("#copygid");if(cg)cg.onclick=async()=>{try{await navigator.clipboard.writeText(Sync.cfg.gist);toast("ID copiado")}catch(e){const r=document.createRange();r.selectNodeContents($("#gid"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selecciona y copia el ID")}};
   const d=$("#disc");if(d)d.onclick=()=>{if(d.dataset.armed){Sync.disconnect();render();toast("Dispositivo desconectado. Tus datos siguen aquí")}else{d.dataset.armed="1";d.textContent="Toca otra vez para desconectar";setTimeout(()=>{if(d.isConnected){delete d.dataset.armed;d.textContent="Desconectar este dispositivo"}},3000)}};
