@@ -343,7 +343,7 @@ const uid=()=>Math.random().toString(36).slice(2,10);
 const parseTime=t=>{if(!t)return null;const p=String(t).trim().split(":").map(Number);if(p.some(isNaN))return null;return p.length===3?p[0]*3600+p[1]*60+p[2]:p.length===2?p[0]*60+p[1]:p[0]*60};
 const pace=(km,t)=>{const s=parseTime(t);if(!km||!s)return null;const sp=s/km;let m=Math.floor(sp/60),r=Math.round(sp%60);if(r===60){m++;r=0}return m+":"+pad(r)};
 const todayStr=()=>ds(new Date());
-let toastT;function toast(m,err){const el=$("#toast");el.textContent=m;el.classList.toggle("err",!!err);el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),2600)}
+let toastT;function toast(m,err){const el=$("#toast");el.textContent=m;el.classList.toggle("err",!!err);el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),err?6000:2600)}
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 
 let COACH=null;
@@ -869,8 +869,11 @@ function importFromURL(){
   const peso=pn(q.get("peso"));let grasa=pn(q.get("grasa"));if(grasa!=null&&grasa>0&&grasa<1)grasa=Math.round(grasa*1000)/10;
   const f=q.get("fecha"),s=f&&/^\d{4}-\d{2}-\d{2}$/.test(f)?f:todayStr();
   history.replaceState(null,"",location.pathname+(location.hash||"#dia"));
-  if(peso==null||peso<30||peso>250){toast("No he entendido el peso que llegó de la báscula",true);return}
-  const d=getDay(s);d.peso=Math.round(peso*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
+  const raw=(q.get("peso")||"").trim();
+  let kg=peso;if(kg!=null&&kg>1000)kg=kg/1000;
+  if(!raw){setTimeout(()=>toast("Llegó vacío: Salud no tiene ningún peso todavía. Revisa los permisos de Xiaomi Home en Salud",true),400);return}
+  if(kg==null||kg<30||kg>250){setTimeout(()=>toast('No he entendido el peso. Llegó: "'+raw.slice(0,40)+'"',true),400);return}
+  const d=getDay(s);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
   state.date=s;state.view="dia";
   setTimeout(()=>toast("Báscula guardada · "+fmt1(d.peso)+" kg"+(d.grasa!=null?" · "+fmt1(d.grasa)+" %":"")),400);
 }
