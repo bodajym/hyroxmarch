@@ -871,7 +871,7 @@ function importFromURL(){
   history.replaceState(null,"",location.pathname+(location.hash||"#dia"));
   const raw=(q.get("peso")||"").trim();
   let kg=peso;if(kg!=null&&kg>1000)kg=kg/1000;
-  if(!raw){setTimeout(()=>toast("Llegó vacío: Salud no tiene ningún peso todavía. Revisa los permisos de Xiaomi Home en Salud",true),400);return}
+  if(!raw){setTimeout(()=>toast("El atajo envió el peso vacío. Da permiso a Atajos en Ajustes → Salud → Acceso a datos y dispositivos → Atajos",true),400);return}
   if(kg==null||kg<30||kg>250){setTimeout(()=>toast('No he entendido el peso. Llegó: "'+raw.slice(0,40)+'"',true),400);return}
   const d=getDay(s);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
   state.date=s;state.view="dia";
