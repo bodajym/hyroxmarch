@@ -343,7 +343,7 @@ const SERIES=[null,"Test 5 km a tope sostenible. Apunta tiempo, pulso medio y se
 const UFC=[null,"3 rondas: 500 m cinta a Ritmo HYROX + 250 m SkiErg + 2 × 12,5 m sled push (100 kg) + 15 wall balls · 2 min","3 rondas: 500 m cinta + 250 m remo + 2 × 12,5 m sled pull (70 kg) + 20 m sandbag lunges (15 kg) · 2 min","3 rondas: 500 m cinta + 10 burpee broad jumps + 50 m farmers (2 × 24 kg) + 15 wall balls · 2 min","4 rondas: 500 m cinta + 250 m SkiErg + 2 × 12,5 m sled push (120 kg) + 2 × 12,5 m sled pull (80 kg) · 2 min","2 rondas suaves de S4 + tests: 1.000 m SkiErg y 1.000 m remo","4 rondas: 1 km cinta a Ritmo HYROX + 25 m sled push (152 kg) · 90 s","4 rondas: 1 km cinta + 25 m sled pull (103 kg) + 20 wall balls · 90 s","3 rondas: 500 m SkiErg + 20 m burpee broad jumps + 25 wall balls · 2 min","3 rondas: 500 m remo + 100 m farmers (2 × 28 kg) + 30 m sandbag lunges (20 kg) · 2 min","4 rondas: 1 km cinta + 500 m SkiErg + 25 m sled push (152 kg) · 90 s","4 rondas: 1 km cinta + 500 m remo + 50 m sandbag lunges (20 kg) + 25 wall balls · 90 s","Tests: 50 m sled push (152 kg), 50 m sled pull (103 kg), 100 wall balls","4 rondas: 1 km cinta + 50 m sled push (152 kg) · 2 min","Media simulación A: 4 × (1 km cinta + farmers 200 m / lunges 100 m / remo 1.000 m / 100 wall balls)","Media simulación B: 4 × (1 km cinta + SkiErg 1.000 m / push 50 m / pull 50 m / burpees 80 m)","3 rondas suaves: 500 m cinta + 250 m SkiErg + 20 wall balls","Suave: 3 rondas de 500 m cinta + 2 × 12,5 m sled push","4 rondas: 1 km cinta + 500 m SkiErg / 25 m push / 25 m pull / 50 wall balls · 2 min","3 rondas: 500 m cinta + 250 m remo + 12,5 m sled push. Fresco","Nada en UFC. Activación de 15 min el día antes de competir"];
 const FUERZA=[null,"Sentadilla goblet o frontal 4 × 8 (RPE 7) · Peso muerto rumano 3 × 10 · Zancada atrás 3 × 8/pierna · Remo con mancuerna 3 × 10","Sentadilla trasera 5 × 5 (RPE 7-8) · Hip thrust 4 × 8 · Búlgara 3 × 8/pierna · Remo con barra 4 × 8 · Farmer pesado 3 × 40 m (2 × 32 kg)","Sentadilla trasera 3 × 5 (mismo peso que en fase 2) · Peso muerto rumano 3 × 6 · Búlgara 2 × 8/pierna","Solo 2 × 5 de sentadilla al 70 %"];
 const Z2=[null,"35 min","40 min","45 min","50 min","35 min","50 min","55 min","45 min","60 min","60 min","65 min","45 min","Progresivo 60 min, últimos 10 a Ritmo HYROX","Progresivo 65 min, últimos 15 a Ritmo HYROX","Progresivo 60 min, últimos 15 a Ritmo HYROX","45 min","40 min (simulación al día siguiente)","Progresivo 50 min, últimos 10 a Ritmo HYROX","30 min","Nada o 20 min muy suaves"];
-const WEEKNOTE={1:"Arranque: test de 5 km (martes) y de sentadilla (miércoles). El peso bajará rápido por la retención: no cuenta como grasa.",2:"Boda el fin de semana: Z2 el viernes temprano, sin F45 el sábado. Proteína en desayuno y comida, agua entre copas. El lunes vuelves al plan sin compensar.",3:"Partidos de fútbol: cada partido cuenta como sesión intensa. En sábado sustituye a F45; entre semana, ese día sin series ni estaciones y el Z2 baja a 30 min.",5:"Descarga: F45 al 70 %, menos volumen. Tests de 1 km, SkiErg y remo.",8:"Navidad: mantenimiento flexible, proteína igual. Bioimpedancia.",9:"Navidad. Decidir división: Open individual o Doubles.",10:"Vuelta al déficit.",12:"Descarga y tests: 5 km, trineos, 100 wall balls, sentadilla.",16:"Descarga antes de la simulación completa.",17:"Simulación completa el sábado 27 de febrero en UFC (8 km + 8 estaciones, cargas Open).",19:"Puesta a punto: F45 solo lunes y jueves y en suave. Calorías a mantenimiento.",20:"Semana de competición. Nada nuevo: ni comida, ni gel, ni zapatillas."};
+const WEEKNOTE={1:"Arranque: test de 5 km (martes) y de sentadilla (miércoles). El peso bajará rápido por la retención: no cuenta como grasa.",2:"Boda el fin de semana: sin F45 el sábado y domingo de descanso. Proteína en desayuno y comida, agua entre copas. El lunes vuelves al plan sin compensar.",3:"Partidos de fútbol: cada partido cuenta como un F45. El día del partido no hay F45, y si cae en viernes, no hay series.",5:"Descarga: F45 al 70 %, menos volumen. Viernes, series cortas.",8:"Navidad: mantenimiento flexible, proteína igual. Bioimpedancia.",9:"Navidad. Decidir división: Open individual o Doubles.",10:"Vuelta al déficit.",12:"Descarga y test de 5 km el viernes (compáralo con el de noviembre).",16:"Descarga antes de la simulación completa.",17:"Simulación completa el domingo 28 de febrero por la mañana en UFC (8 km + 8 estaciones, cargas Open). El sábado, F45 suave.",19:"Puesta a punto: F45 lunes, miércoles y jueves en suave, series cortas el viernes y fin de semana libre. Calorías a mantenimiento.",20:"Semana de competición. Nada nuevo: ni comida, ni gel, ni zapatillas."};
 const TESTS={1:["5 km (tiempo)","5 km (FC media)","Sentadilla 5 reps RPE 8 (kg)"],5:["1 km a tope","SkiErg 1.000 m","Remo 1.000 m"],12:["5 km (tiempo)","Sled push 50 m","Sled pull 50 m","100 wall balls","Sentadilla 5 reps (kg)"],14:["Media simulación A (total)"],15:["Media simulación B (total)"],17:["Simulación completa (total)"]};
 const TARGETS={descanso:{n:"Descanso",kcal:[2100,2250],p:[180,200],c:[140,170],g:[75,85]},z2:{n:"Carrera Z2",kcal:[2100,2300],p:[190,210],c:[170,200],g:[60,75]},calidad:{n:"F45 · series · UFC",kcal:[2250,2450],p:[190,210],c:[190,230],g:[65,80]},hyrox:{n:"Jueves HYROX",kcal:[2350,2550],p:[190,210],c:[220,260],g:[65,80]},doble:{n:"Doble o simulación",kcal:[2550,2750],p:[190,210],c:[270,310],g:[65,80]},mant:{n:"Mantenimiento",kcal:[2850,3050],p:[180,200],c:[300,380],g:[70,90]}};
 const PRESETS=[["Desayuno A · tortilla 3 huevos + 150 g claras, 40 g pan, fruta",505,42,42,18],["Desayuno B · 250 g skyr, 25 g Evolate, 40 g avena, frutos rojos, nueces",550,56,46,15],["Comida A · 250 g pollo, 70 g arroz, verdura, 15 g AOVE",735,66,67,20],["Comida B · 220 g picada 5 %, 250 g patata, verdura, 10 g AOVE",635,55,55,22],["Merienda A · 250 g skyr o queso batido, plátano, 10 g miel",295,29,45,1],["Merienda B · bocadillo 60 g pan + 100 g pavo, fruta",345,26,55,3],["Post A · 40 g Evolate con agua + plátano",255,37,27,1],["Post B · 40 g Evolate + 300 ml leche semidesnatada",287,46,14,5],["Cena A · 2 huevos + 150 g claras, ensalada, 5 g AOVE",310,32,7,16],["Cena B · 350 g queso fresco batido 0 %, 20 g nueces",290,31,16,13],["Evolate · 1 cacito 30 g",112,27,0,0],["Snack · lata de atún + 2 tortitas de arroz",180,21,16,2],["Snack · 2 huevos cocidos + fruta",220,14,20,10],["Snack · 20 g nueces",130,3,1,13],["Extra · 50 g arroz crudo",175,4,39,0],["Extra · 500 ml isotónica",120,0,30,0]];
@@ -381,23 +381,27 @@ function dayPlan(s){
   if(!c)return b;
   return {...b,items:(c.sesiones||[]).map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:c};
 }
+const Z2CORTO=[null,"30 min","35 min","35 min","40 min","30 min","40 min","45 min","40 min","45 min","45 min","45 min","35 min","45 min","45 min","45 min","35 min","30 min","40 min","30 min","20 min suaves"];
+const SIM={14:"Media simulación A en UFC: 4 × (1 km de cinta + estación completa): farmers 200 m, sandbag lunges 100 m, remo 1.000 m y 100 wall balls. Sin parar, con tiempos",15:"Media simulación B en UFC: 4 × (1 km de cinta + estación completa): SkiErg 1.000 m, sled push 50 m, sled pull 50 m y burpee broad jumps 80 m. Sin parar, con tiempos",17:"Simulación completa en UFC: 8 × (1 km + estación) con cargas Open y tiempos por tramo"};
 function basePlan(s){
   const w=weekOf(s),dow=pd(s).getDay();
   if(w<1||w>20)return {w,f:0,items:[{d:"Libre",t:"Fuera de las 20 semanas de preparación"}],type:"descanso"};
-  const f=phaseOf(w);let items=[],type="calidad";
-  if(dow===1)items=[{d:"F45 · tarde",t:"Clase del día (fuerza o HIIT)"+(DELOAD[w]?" al 70 %":"")}];
-  if(dow===2)items=[{d:"Retiro · 7:30",t:"Series: "+SERIES[w]},{d:"Antes",t:"10 min trote + movilidad + 4 progresivos de 80 m. Plátano y café 20-30 min antes"}];
-  if(dow===3)items=[{d:"UFC · fuerza",t:FUERZA[f]},{d:"UFC · estaciones",t:UFC[w]}];
-  if(dow===4){items=[{d:"F45 · tarde",t:"Clase HYROX"+(w===20?" (suave o descanso, según el día de carrera)":"")}];type="hyrox"}
-  if(dow===5){items=[{d:"Retiro · 7:30",t:"Z2: "+Z2[w]+". Pulso por debajo de 145, conversando"}];type="z2"}
-  if(dow===6){if(w===17){items=[{d:"UFC",t:"Simulación completa: 8 × (1 km + estación), cargas Open, tiempos por tramo"}];type="doble"}
-    else if(w===2){items=[{d:"Boda",t:"Sin F45. Disfruta y prioriza proteína en desayuno y comida"}];type="descanso"}
-    else if(w>=19){items=[{d:"Libre",t:"Paseo y movilidad"}];type="descanso"}
-    else items=[{d:"F45",t:"Clase de sábado"}]}
-  if(dow===0){items=[{d:"Descanso",t:"Paseo de 60 min, 15 min de movilidad, batch cooking y check-in semanal"}];type="descanso"}
-  if(w>=19&&dow!==0&&dow!==6)type="mant";
+  const f=phaseOf(w),dl=DELOAD[w]?" al 70 %":"",taper=w>=19;let items=[],type="calidad";
+  const f45=(t,extra)=>({d:"F45 · tarde",t:t+dl+(extra||"")});
+  if(dow===1)items=[f45("Clase del día a RPE 7-8")];
+  if(dow===2){items=[{d:"UFC · 6:45",t:"Z2 en cinta (o Retiro a las 7:30): "+Z2CORTO[w]+", pulso por debajo de 145, inclinación 1 %. En ayunas vale, con agua y café"},taper?{d:"Libre",t:"Sin F45: descanso o movilidad"}:f45("Clase del día a RPE 7")];if(taper)type="mant"}
+  if(dow===3)items=[taper?{d:"F45 · tarde",t:"Clase suave a RPE 6"}:f45("Clase del día a RPE 7-8")];
+  if(dow===4){items=[f45("Clase HYROX a RPE 7-8",w===20?". Semana de carrera: suave o descanso según el día que compitas":"")];type="hyrox"}
+  if(dow===5){items=[{d:"Retiro · 7:00",t:"Series: "+SERIES[w]+(taper?"":". Si llueve, en la cinta de UFC")},{d:"Antes",t:"10 min de trote + movilidad + 4 progresivos de 80 m. Plátano y café 20-30 min antes"},taper?{d:"Libre",t:"Sin F45"}:{d:"F45 · tarde",t:"Clase a RPE 6: hoy ya has hecho series"}]}
+  if(dow===6){if(w===2){items=[{d:"Boda",t:"Sin F45. Disfruta y prioriza la proteína en desayuno y comida"}];type="descanso"}
+    else if(taper){items=[{d:"Libre",t:"Paseo y movilidad"}];type="descanso"}
+    else items=[{d:"F45",t:"Clase de sábado a RPE "+(w===17?"6: mañana tienes la simulación completa":"7-8")+dl}]}
+  if(dow===0){
+    if(SIM[w]){items=[{d:"UFC · mañana",t:SIM[w]},{d:"Tarde",t:"Paseo, batch cooking y check-in semanal"}];type="doble"}
+    else if(w===2||w===20){items=[{d:"Descanso",t:"Paseo de 60 min y movilidad. Batch cooking y check-in semanal"}];type="descanso"}
+    else{items=[{d:"Retiro · mañana",t:"Rodaje Z2 largo: "+Z2[w]+". Pulso por debajo de 145; vuelta perimetral de unos 4,5 km. Si llueve, en la cinta de UFC (abre hasta las 15:00)"},{d:"Tarde",t:"Batch cooking, cintura, fotos y check-in semanal"}];type="z2"}}
   if(w===8||w===9)items.push({d:"Navidad",t:"Proteína igual, resto flexible"});
-  return {w,f,items,type};
+  return {w,f,items:items.filter(Boolean),type};
 }
 
 /* =============== DATOS =============== */
@@ -626,10 +630,9 @@ function entHTML(e){
 }
 function defaultEnt(s){
   const dow=pd(s).getDay(),w=clampW(weekOf(s));
-  const m={1:["F45 Barrio Salamanca","F45 clase",45],2:["Retiro","Series",50],3:["UFC Gym","Fuerza + estaciones",70],4:["F45 Barrio Salamanca","F45 HYROX",45],5:["Retiro","Z2",parseInt(Z2[w])||45],6:["F45 Barrio Salamanca","F45 clase",50],0:["Otro","Paseo / movilidad",60]}[dow];
+  const m={1:["F45 Barrio Salamanca","F45 clase",45],2:["F45 Barrio Salamanca","F45 clase",45],3:["F45 Barrio Salamanca","F45 clase",45],4:["F45 Barrio Salamanca","F45 HYROX",45],5:["Retiro","Series",50],6:["F45 Barrio Salamanca","F45 clase",50],0:["Retiro","Z2",parseInt(Z2[w])||45]}[dow];
   const e={id:uid(),centro:m[0],tipo:m[1],dur:m[2],rpe:null,km:null,tiempo:"",fc:null,ej:[],notas:""};
-  if(dow===3){const f=phaseOf(w),l=f===1?["Sentadilla goblet",4,8]:["Sentadilla trasera",f===2?5:3,5];e.ej=[{id:uid(),n:l[0],s:l[1],r:l[2],kg:null},{id:uid(),n:"Sled push",s:null,r:"",kg:null},{id:uid(),n:"Wall balls",s:null,r:"",kg:6}]}
-  if(dow===6&&w===17){e.centro="UFC Gym";e.tipo="Simulación";e.dur=100}
+  if(dow===0&&SIM[w]){e.centro="UFC Gym";e.tipo="Simulación";e.dur=w===17?100:55}
   return e;
 }
 function bindDay(s){

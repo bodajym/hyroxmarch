@@ -264,23 +264,23 @@
         {
           "h": "",
           "d": "F45",
-          "t": "Clase de sábado"
+          "t": "Clase de sábado a RPE 7-8. Haz una captura del entreno en la app"
         }
       ]
     },
     "2026-11-08": {
-      "titulo": "Descanso y check-in",
-      "tipo": "descanso",
+      "titulo": "Rodaje Z2 y check-in",
+      "tipo": "z2",
       "sesiones": [
         {
-          "h": "Mañana",
-          "d": "Paseo",
-          "t": "60 min andando y 15 min de movilidad"
+          "h": "10:00",
+          "d": "Retiro",
+          "t": "Rodaje Z2 de 35 min a pulso por debajo de 145, conversando. Si llueve, en la cinta de UFC (abre hasta las 15:00)"
         },
         {
           "h": "Tarde",
           "d": "Casa",
-          "t": "Batch cooking, cintura y fotos, y pulsa 'Copiar mi semana para Claude' en Semana"
+          "t": "Batch cooking, cintura y fotos. Después pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
         }
       ]
     }

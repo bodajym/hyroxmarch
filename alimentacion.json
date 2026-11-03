@@ -454,7 +454,7 @@
     },
     {
       "dia": "Martes",
-      "tipo": "Series",
+      "tipo": "Z2 + F45",
       "desayuno": "des-a",
       "comida": "com-a",
       "merienda": "mer-b",
@@ -463,7 +463,7 @@
     },
     {
       "dia": "Miércoles",
-      "tipo": "UFC",
+      "tipo": "F45",
       "desayuno": "des-b",
       "comida": "com-a",
       "merienda": "mer-a",
@@ -481,7 +481,7 @@
     },
     {
       "dia": "Viernes",
-      "tipo": "Z2",
+      "tipo": "Series + F45 suave",
       "desayuno": "des-b",
       "comida": "com-h",
       "merienda": "mer-a",
@@ -499,7 +499,7 @@
     },
     {
       "dia": "Domingo",
-      "tipo": "Descanso",
+      "tipo": "Z2 largo",
       "desayuno": "des-a",
       "comida": "com-h",
       "merienda": "mer-a",
