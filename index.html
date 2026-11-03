@@ -550,6 +550,7 @@ function renderDay(){
           </div>
         </div>
         <div class="steps">${plan.items.map(i=>`<div class="s"><b>${esc(i.d)}</b><span>${esc(i.t)}</span></div>`).join("")}</div>
+        ${plan.coach&&plan.coach.compra?`<div class="note" style="align-items:center;justify-content:space-between;flex-wrap:wrap"><span style="display:flex;gap:10px;align-items:flex-start"><span class="tag" style="border-color:var(--ok);color:var(--ok)">Compra</span><span>Hoy toca compra en Mercadona: lista de la semana, unos 49 €.</span></span><button class="btn pri" type="button" id="goshop">Ver la lista</button></div>`:""}
         ${plan.coach&&plan.coach.nota?`<div class="note"><span class="tag" style="border-color:var(--accent);color:var(--accent)">Coach</span><span>${esc(plan.coach.nota)}</span></div>`:""}
         ${note&&!(plan.coach&&plan.coach.ocultarNotaSemana)?`<div class="note"><span class="tag">S${w}</span><span>${esc(note)}</span></div>`:""}
         <div class="row" style="justify-content:space-between"><span class="eyebrow">${plan.coach?"Plan de tu coach"+(COACH.actualizado?" · actualizado "+esc(short(COACH.actualizado)):""):"Plan base"}</span><button class="btn" type="button" id="copyday">Copiar mi día para Claude</button></div>
@@ -645,6 +646,7 @@ function bindDay(s){
   const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"-"+i;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});return true};
   if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day);render();toast("Apuntado")}};
     $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
+  const gs=$("#goshop");if(gs)gs.onclick=()=>{state.scrollTo="f-compra";go("comida")};
   $("#copyday").onclick=()=>copyText(daySummary(s),"Día copiado. Pégamelo en el chat");
   $("#comidas").onclick=e=>{const b=e.target.closest("[data-delc]");if(!b)return;day.comidas=day.comidas.filter(c=>c.id!==b.dataset.delc);touch(day);render()};
   $("#addent").onclick=()=>{day.entrenos.push(defaultEnt(s));touch(day);render()};
@@ -784,7 +786,8 @@ function renderFood(){
 
   <div class="split">
     <section class="panel rv" id="f-compra" style="scroll-margin-top:96px">
-      <div class="panel-h"><h3 style="font-size:30px">Compra · Mercadona</h3><span class="num muted" style="font-size:13px">Quedan ${left.toFixed(2).replace(".",",")} € de ${total.toFixed(2).replace(".",",")} €</span></div>
+      <div class="panel-h"><div><div class="eyebrow">${esc(FOOD.compraTitulo||"Lista semanal")}</div><h3 style="font-size:30px">Compra · Mercadona</h3></div><span class="num muted" style="font-size:13px">Quedan ${left.toFixed(2).replace(".",",")} € de ${total.toFixed(2).replace(".",",")} €</span></div>
+      ${FOOD.casa?`<div class="note"><span class="tag" style="border-color:var(--accent);color:var(--accent)">Casa</span><span>${esc(FOOD.casa)}</span></div>`:""}
       <div class="shop" id="shop">${FOOD.compra.map((sec,si)=>`<div class="shop-sec"><div class="eyebrow" style="padding-bottom:6px">${esc(sec.seccion)}</div>${sec.items.map((it,ii)=>{const k=si+"-"+ii,d=!!chk[k];return `<label class="shop-row ${d?"done":""}"><input type="checkbox" data-buy="${k}" ${d?"checked":""}><span class="n">${esc(it[0])}</span><span class="q">${esc(it[1])}</span><span class="e">${it[2].toFixed(2).replace(".",",")} €</span></label>`}).join("")}</div>`).join("")}</div>
       <p class="muted" style="margin:0;font-size:12px">${esc(FOOD.compraNota)} La lista se vacía sola cada semana.</p>
       <div class="row"><button class="btn ghost" type="button" id="shopreset" style="color:var(--muted)">Desmarcar todo</button></div>
@@ -795,6 +798,7 @@ function renderFood(){
     </aside>
   </div></div>`;
   const smooth=matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth";
+  if(state.scrollTo){const id=state.scrollTo;state.scrollTo=null;setTimeout(()=>{const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+scrollY-112,behavior:smooth})},120)}
   v.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.go).scrollIntoView({behavior:smooth}));
   v.querySelectorAll("[data-mom]").forEach(b=>b.onclick=()=>{state.mom=b.dataset.mom;render();document.getElementById("f-rec").scrollIntoView({behavior:"auto"})});
   v.querySelectorAll("[data-rec]").forEach(a=>a.onclick=e=>{e.preventDefault();if(state.mom!=="Todas"){state.mom="Todas";render()}const el=document.getElementById("r-"+a.dataset.rec);if(!el)return;el.scrollIntoView({behavior:smooth,block:"center"});el.classList.add("hl");setTimeout(()=>el.classList.remove("hl"),1600)});
