@@ -412,7 +412,8 @@ function getDay(s){return data.days[s]||(data.days[s]=blankDay(s))}
 function blankWeek(w){return {semana:w,cintura:null,tests:(TESTS[w]||[]).map(n=>({n,r:""})),q:{},fotos:[],_t:0}}
 function getWeek(w){const k=wkId(w);return data.weeks[k]||(data.weeks[k]=blankWeek(w))}
 let saveT,dirty=false;
-function touch(obj){obj._t=Date.now();dirty=true;clearTimeout(saveT);saveT=setTimeout(persist,350)}
+function touch(obj,now){obj._t=Math.max(Date.now(),(obj._t||0)+1);dirty=true;clearTimeout(saveT);if(now)persist();else saveT=setTimeout(persist,350)}
+window.addEventListener("pagehide",()=>{clearTimeout(saveT);persist();if(Sync.t&&Sync.on()){clearTimeout(Sync.t);Sync.t=null;try{fetch("https://api.github.com/gists/"+Sync.cfg.gist,{method:"PATCH",keepalive:true,headers:{...Sync.h(),"Content-Type":"application/json"},body:JSON.stringify({files:{[FILE]:{content:JSON.stringify(data)}}})})}catch(e){}}});
 function persist(){
   if(!dirty)return;dirty=false;
   if(!LS.set(KEY,JSON.stringify(data))){toast("No se ha podido guardar en este navegador. Exporta una copia en Ajustes",true);return}
@@ -442,7 +443,7 @@ const Sync={
     let changedLocal=false,localNewer=false;
     for(const col of ["days","weeks"]){
       const R=(remote&&remote[col])||{},L=data[col];
-      for(const k of Object.keys(R)){if(!L[k]||(R[k]._t||0)>(L[k]._t||0)){L[k]=R[k];changedLocal=true}}
+      for(const k of Object.keys(R)){if(!L[k]||(R[k]._t||0)>(L[k]._t||0)){if(L[k]){for(const x of Object.keys(L[k]))delete L[k][x];Object.assign(L[k],R[k])}else L[k]=R[k];changedLocal=true}}
       for(const k of Object.keys(L)){if(!R[k]||(L[k]._t||0)>(R[k]._t||0))localNewer=true}
     }
     return {changedLocal,localNewer};
@@ -638,18 +639,18 @@ function bindDay(s){
   $("#date").onchange=e=>{if(e.target.value){state.date=e.target.value;render()}};
   ["peso","grasa","pasos","sueno","agua","energia","hambre"].forEach(k=>$("#"+k).addEventListener("input",e=>{const n=num(e.target.value);e.target.setAttribute("aria-invalid",e.target.value!==""&&n==null?"true":"false");day[k]=n;touch(day)}));
   $("#notas").addEventListener("input",e=>{day.notas=e.target.value;touch(day)});
-  $("#tipo").onchange=e=>{day.tipo=e.target.value===dayPlan(s).type?null:e.target.value;touch(day);render()};
-  $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4]});touch(day);render();toast("Añadido · "+p[0].split(" · ")[0])};
+  $("#tipo").onchange=e=>{day.tipo=e.target.value===dayPlan(s).type?null:e.target.value;touch(day,true);render()};
+  $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4]});touch(day,true);render();toast("Añadido · "+p[0].split(" · ")[0])};
   $("#addcustom").onclick=()=>{const n=$("#cn").value.trim();if(!n){$("#cn").setAttribute("aria-invalid","true");$("#cn").focus();toast("Escribe qué has comido",true);return}
-    day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0});touch(day);render();toast("Comida añadida")};
+    day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0});touch(day,true);render();toast("Comida añadida")};
   const menu=$("#menu");
   const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"-"+i;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});return true};
-  if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day);render();toast("Apuntado")}};
-    $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
+  if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day,true);render();toast("Apuntado")}};
+    $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day,true);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
   const gs=$("#goshop");if(gs)gs.onclick=()=>{state.scrollTo="f-compra";go("comida")};
   $("#copyday").onclick=()=>copyText(daySummary(s),"Día copiado. Pégamelo en el chat");
-  $("#comidas").onclick=e=>{const b=e.target.closest("[data-delc]");if(!b)return;day.comidas=day.comidas.filter(c=>c.id!==b.dataset.delc);touch(day);render()};
-  $("#addent").onclick=()=>{day.entrenos.push(defaultEnt(s));touch(day);render()};
+  $("#comidas").onclick=e=>{const b=e.target.closest("[data-delc]");if(!b)return;day.comidas=day.comidas.filter(c=>c.id!==b.dataset.delc);touch(day,true);render()};
+  $("#addent").onclick=()=>{day.entrenos.push(defaultEnt(s));touch(day,true);render()};
   const ents=$("#ents");
   ents.addEventListener("input",e=>{
     const card=e.target.closest("[data-ent]");if(!card)return;const en=day.entrenos.find(x=>x.id===card.dataset.ent);if(!en)return;
@@ -662,9 +663,9 @@ function bindDay(s){
   ents.addEventListener("change",e=>{if(e.target.tagName!=="SELECT")return;const card=e.target.closest("[data-ent]");const en=day.entrenos.find(x=>x.id===card.dataset.ent);en[e.target.dataset.k]=e.target.value;if(e.target.dataset.k==="tipo")card.querySelector(".k").textContent=e.target.value;touch(day)});
   ents.addEventListener("click",e=>{
     const card=e.target.closest("[data-ent]");if(!card)return;const en=day.entrenos.find(x=>x.id===card.dataset.ent);if(!en)return;
-    if(e.target.closest("[data-addx]")){en.ej=en.ej||[];en.ej.push({id:uid(),n:"",s:null,r:"",kg:null});touch(day);render();const r=document.querySelectorAll(`[data-ent="${en.id}"] [data-ex] input[data-x="n"]`);r[r.length-1]&&r[r.length-1].focus()}
-    const dx=e.target.closest("[data-delx]");if(dx){en.ej=en.ej.filter(z=>z.id!==dx.dataset.delx);touch(day);render()}
-    const b=e.target.closest("[data-dele]");if(b){if(b.dataset.armed){day.entrenos=day.entrenos.filter(x=>x.id!==en.id);touch(day);render();toast("Entreno borrado")}else{b.dataset.armed="1";b.textContent="Toca otra vez para borrar";b.style.color="var(--bad)";setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent="Borrar entreno";b.style.color=""}},3000)}}
+    if(e.target.closest("[data-addx]")){en.ej=en.ej||[];en.ej.push({id:uid(),n:"",s:null,r:"",kg:null});touch(day,true);render();const r=document.querySelectorAll(`[data-ent="${en.id}"] [data-ex] input[data-x="n"]`);r[r.length-1]&&r[r.length-1].focus()}
+    const dx=e.target.closest("[data-delx]");if(dx){en.ej=en.ej.filter(z=>z.id!==dx.dataset.delx);touch(day,true);render()}
+    const b=e.target.closest("[data-dele]");if(b){if(b.dataset.armed){day.entrenos=day.entrenos.filter(x=>x.id!==en.id);touch(day,true);render();toast("Entreno borrado")}else{b.dataset.armed="1";b.textContent="Toca otra vez para borrar";b.style.color="var(--bad)";setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent="Borrar entreno";b.style.color=""}},3000)}}
   });
 }
 
@@ -727,8 +728,8 @@ function renderWeek(){
   $("#cint").addEventListener("input",e=>{wk.cintura=num(e.target.value);touch(wk)});
   document.querySelectorAll("[data-q]").forEach(t=>t.addEventListener("input",e=>{wk.q=wk.q||{};wk.q[t.dataset.q]=e.target.value;touch(wk)}));
   $("#tests").addEventListener("input",e=>{const i=e.target.dataset.i;if(i==null)return;wk.tests[i][e.target.dataset.t]=e.target.value;touch(wk)});
-  $("#tests").addEventListener("click",e=>{const b=e.target.closest("[data-delt]");if(!b)return;wk.tests.splice(+b.dataset.delt,1);touch(wk);render()});
-  $("#addtest").onclick=()=>{wk.tests=wk.tests||[];wk.tests.push({n:"",r:""});touch(wk);render()};
+  $("#tests").addEventListener("click",e=>{const b=e.target.closest("[data-delt]");if(!b)return;wk.tests.splice(+b.dataset.delt,1);touch(wk,true);render()});
+  $("#addtest").onclick=()=>{wk.tests=wk.tests||[];wk.tests.push({n:"",r:""});touch(wk,true);render()};
   const ph=$("#photo");
   if(ph){$("#photobtn").onclick=()=>ph.click();ph.onchange=async e=>{
     const files=[...e.target.files];if(!files.length)return;const btn=$("#photobtn");btn.classList.add("loading");btn.textContent="Subiendo…";
@@ -757,6 +758,7 @@ function renderFood(){
   const R={};FOOD.recetas.forEach(r=>R[r.id]=r);
   const w=clampW(weekOf(t)),wk=getWeek(w),chk=wk.compra||{};
   const list=FOOD.recetas.filter(r=>state.mom==="Todas"||r.momento===state.mom);
+  const todayRec=new Set(((data.days[t]||{}).comidas||[]).map(c=>c.rec).filter(Boolean));
   let total=0,left=0;FOOD.compra.forEach((sec,si)=>sec.items.forEach((it,ii)=>{total+=it[2];if(!chk[si+"-"+ii])left+=it[2]}));
   const dow=(pd(t).getDay()+6)%7;
   const cell=id=>id&&R[id]?`<a class="link" href="#comida" data-rec="${id}">${esc(R[id].nombre)}</a><br><span class="num muted" style="font-size:11px">${R[id].kcal} kcal · ${R[id].p} P</span>`:`<span class="muted">—</span>`;
@@ -773,7 +775,7 @@ function renderFood(){
       <ul>${r.ingredientes.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
       <details><summary>Cómo se hace</summary><ol style="margin-top:8px">${r.pasos.map(i=>`<li>${esc(i)}</li>`).join("")}</ol></details>
       ${r.variantes?`<p class="var" style="margin:0">${esc(r.variantes)}</p>`:""}
-      <div class="row"><button class="btn" type="button" data-log="${r.id}">+ Apuntar hoy</button></div>
+      <div class="row">${todayRec.has(r.id)?`<button class="btn pri" type="button" data-unlog="${r.id}">✓ Apuntada hoy · quitar</button>`:`<button class="btn" type="button" data-log="${r.id}">+ Apuntar hoy</button>`}</div>
     </article>`).join("")}</div>
   </section>
 
@@ -802,10 +804,11 @@ function renderFood(){
   v.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.go).scrollIntoView({behavior:smooth}));
   v.querySelectorAll("[data-mom]").forEach(b=>b.onclick=()=>{state.mom=b.dataset.mom;render();document.getElementById("f-rec").scrollIntoView({behavior:"auto"})});
   v.querySelectorAll("[data-rec]").forEach(a=>a.onclick=e=>{e.preventDefault();if(state.mom!=="Todas"){state.mom="Todas";render()}const el=document.getElementById("r-"+a.dataset.rec);if(!el)return;el.scrollIntoView({behavior:smooth,block:"center"});el.classList.add("hl");setTimeout(()=>el.classList.remove("hl"),1600)});
-  v.querySelectorAll("[data-log]").forEach(b=>b.onclick=()=>{const r=R[b.dataset.log],d=getDay(todayStr());d.comidas.push({id:uid(),nombre:r.momento+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g});touch(d);const tt=totals(d);b.textContent="✓ Apuntada";b.disabled=true;toast("Apuntada · hoy llevas "+fmt0(tt.p)+" g de proteína")});
-  $("#shop").addEventListener("change",e=>{const k=e.target.dataset.buy;if(!k)return;wk.compra=wk.compra||{};if(e.target.checked)wk.compra[k]=true;else delete wk.compra[k];touch(wk);e.target.closest(".shop-row").classList.toggle("done",e.target.checked);
+  v.querySelectorAll("[data-log]").forEach(b=>b.onclick=()=>{const r=R[b.dataset.log],d=getDay(todayStr());d.comidas.push({id:uid(),rec:r.id,nombre:r.momento+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g});touch(d,true);const y=scrollY;render();scrollTo(0,y);toast("Apuntada · hoy llevas "+fmt0(totals(d).p)+" g de proteína")});
+  v.querySelectorAll("[data-unlog]").forEach(b=>b.onclick=()=>{const d=getDay(todayStr()),i=d.comidas.map(c=>c.rec).lastIndexOf(b.dataset.unlog);if(i>=0)d.comidas.splice(i,1);touch(d,true);const y=scrollY;render();scrollTo(0,y);toast("Quitada de hoy")});
+  $("#shop").addEventListener("change",e=>{const k=e.target.dataset.buy;if(!k)return;wk.compra=wk.compra||{};if(e.target.checked)wk.compra[k]=true;else delete wk.compra[k];touch(wk,true);e.target.closest(".shop-row").classList.toggle("done",e.target.checked);
     let l=0;FOOD.compra.forEach((sec,si)=>sec.items.forEach((it,ii)=>{if(!wk.compra[si+"-"+ii])l+=it[2]}));v.querySelector("#f-compra .panel-h .num").textContent="Quedan "+l.toFixed(2).replace(".",",")+" € de "+total.toFixed(2).replace(".",",")+" €"});
-  $("#shopreset").onclick=()=>{wk.compra={};touch(wk);render()};
+  $("#shopreset").onclick=()=>{wk.compra={};touch(wk,true);render()};
 }
 
 /* =============== PROGRESO =============== */
