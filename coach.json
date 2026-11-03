@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-03",
+  "actualizado": "2026-11-04",
   "semanas": {
     "S01": "Semana reorganizada por el golf del martes: el test de 5 km pasa al viernes 6 a las 7:30 y esta semana no hay Z2. El resto, como en el plan."
   },
@@ -106,21 +106,121 @@
           "g": 13
         }
       ],
-      "compra": true
+      "compra": true,
+      "notaF45": "F45: HIIT de cardio alternando fuerza"
     },
     "2026-11-04": {
-      "titulo": "UFC: fuerza y estaciones",
+      "titulo": "UFC: fuerza de pierna y estaciones",
       "tipo": "calidad",
+      "ocultarNotaSemana": true,
+      "nota": "Ayer F45 fue HIIT de cardio con fuerza, más el golf: hoy fuerza controlada (RPE 7) y estaciones a ritmo, sin vaciarte. Si las piernas llegan pesadas, el trineo a 80 kg en lugar de 100. Por la mañana, 25 minutos de cocina te dejan resueltas las comidas hasta el viernes.",
       "sesiones": [
         {
-          "h": "Tarde",
-          "d": "UFC · fuerza",
-          "t": "Sentadilla goblet o frontal 4 × 8 (RPE 7). Apunta el peso: es tu referencia de fuerza. Peso muerto rumano 3 × 10 · Zancada atrás 3 × 8/pierna · Remo con mancuerna 3 × 10"
+          "h": "07:30",
+          "d": "Báscula",
+          "t": "Pésate en ayunas tras el baño. El atajo de las 8:00 lo sube solo; si te pesas más tarde, tócalo a mano"
         },
         {
-          "h": "Tarde",
-          "d": "UFC · estaciones",
-          "t": "3 rondas: 500 m cinta a 6:10-6:25 /km + 250 m SkiErg + 2 × 12,5 m sled push (100 kg) + 15 wall balls · 2 min de descanso"
+          "h": "07:35",
+          "d": "Cocina 25 min",
+          "t": "Horno a 200 °C: 1 kg de pollo con sal, pimentón y ajo, 22 min. A la vez, 300 g de arroz 15 min y 6 huevos 10 min. Brócoli al microondas 5 min. Sale comida para hoy, jueves y sábado, y huevos para las cenas"
+        },
+        {
+          "h": "08:00",
+          "d": "Desayuno",
+          "t": "Bol de queso batido con Evolate, avena y plátano (receta en Comida)"
+        },
+        {
+          "h": "08:15",
+          "d": "Mochila",
+          "t": "Táper de pollo con arroz y brócoli, el queso batido con el plátano para la merienda y la bolsa de UFC: zapatillas de correr, toalla y coctelera con 40 g de Evolate en seco"
+        },
+        {
+          "h": "14:00",
+          "d": "Comida",
+          "t": "Pollo al limón con 100 g de arroz y brócoli"
+        },
+        {
+          "h": "17:00",
+          "d": "Merienda",
+          "t": "Queso batido con plátano y miel, 2 h antes de entrenar. Último café"
+        },
+        {
+          "h": "19:00",
+          "d": "UFC · calentamiento 10 min",
+          "t": "5 min de remo suave + movilidad de cadera, tobillo y hombro + 2 × 10 sentadillas goblet ligeras"
+        },
+        {
+          "h": "19:10",
+          "d": "UFC · fuerza 25 min",
+          "t": "Sentadilla goblet 4 × 8 a RPE 7 (te sobran 3 reps), 2 min de descanso: apunta el peso, es tu referencia · Peso muerto rumano con mancuernas 3 × 10, 2 min · Zancada atrás con mancuernas 3 × 8 por pierna, 75 s · Remo con mancuerna 3 × 10 por brazo, 75 s"
+        },
+        {
+          "h": "19:35",
+          "d": "UFC · estaciones 25 min",
+          "t": "3 rondas, 2 min de descanso entre rondas: 500 m de cinta a 6:10-6:25 /km (inclinación 1 %) + 250 m SkiErg + 2 × 12,5 m de sled push (100 kg con trineo) + 15 wall balls de 6 kg. Apunta el tiempo de cada ronda"
+        },
+        {
+          "h": "20:00",
+          "d": "Vuelta a la calma",
+          "t": "5 min andando en la cinta y estiramiento de cuádriceps, gemelo y flexor de cadera"
+        },
+        {
+          "h": "20:30",
+          "d": "Post",
+          "t": "Batido de 40 g de Evolate con 300 ml de leche al llegar a casa (con agua si vas a tardar)"
+        },
+        {
+          "h": "21:30",
+          "d": "Cena ligera",
+          "t": "Ensalada de atún con 2 huevos cocidos y 10 g de AOVE"
+        },
+        {
+          "h": "23:00",
+          "d": "Dormir",
+          "t": "El viernes a las 7:30 tienes el test de 5 km: estas dos noches el sueño cuenta"
+        }
+      ],
+      "comidas": [
+        {
+          "h": "08:00",
+          "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
+          "kcal": 525,
+          "p": 55,
+          "c": 64,
+          "g": 5
+        },
+        {
+          "h": "14:00",
+          "n": "Comida · 250 g pollo al limón, 100 g arroz, 300 g brócoli, 15 g AOVE",
+          "kcal": 840,
+          "p": 68,
+          "c": 90,
+          "g": 20
+        },
+        {
+          "h": "17:00",
+          "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
+          "kcal": 295,
+          "p": 29,
+          "c": 45,
+          "g": 1
+        },
+        {
+          "h": "20:30",
+          "n": "Post · 40 g Evolate + 300 ml leche semidesnatada",
+          "kcal": 287,
+          "p": 46,
+          "c": 14,
+          "g": 5
+        },
+        {
+          "h": "21:30",
+          "n": "Cena · ensalada con 1 lata de atún, 2 huevos cocidos, 10 g AOVE",
+          "kcal": 365,
+          "p": 27,
+          "c": 5,
+          "g": 25
         }
       ]
     },
