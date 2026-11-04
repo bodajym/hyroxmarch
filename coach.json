@@ -113,7 +113,7 @@
       "titulo": "F45 + cocina de la mañana",
       "tipo": "calidad",
       "ocultarNotaSemana": true,
-      "nota": "Ayer hiciste HIIT de cardio con fuerza, además del golf. Hoy en F45 vas a RPE 7, sin llegar al fallo: el viernes tienes el test de 5 km. Por la mañana, 25 minutos de cocina te dejan resueltas las comidas hasta el viernes.",
+      "nota": "Comida en Honest Greens: mucha proteína y pocos hidratos. Por eso la merienda lleva avena y el post-entreno plátano: así llegas con energía al F45 de las 20:00 (RPE 7). El táper de pollo con arroz, para mañana.",
       "sesiones": [
         {
           "h": "07:30",
@@ -133,17 +133,17 @@
         {
           "h": "08:15",
           "d": "Mochila",
-          "t": "Táper de pollo con arroz y brócoli, el queso batido y el plátano para la merienda, y la coctelera con 40 g de Evolate en seco"
+          "t": "La merienda (queso batido, plátano y avena) y la coctelera con 40 g de Evolate en seco. El táper de pollo, a la nevera para mañana"
         },
         {
           "h": "14:00",
           "d": "Comida",
-          "t": "Pollo al limón con 100 g de arroz y brócoli"
+          "t": "Honest Greens: pollo al limón con doble de pollo, verduras y ensalada"
         },
         {
           "h": "17:30",
           "d": "Merienda",
-          "t": "Queso batido con plátano y miel, unas 2,5 h antes de F45. Último café del día"
+          "t": "Queso batido con plátano, miel y 30 g de avena, unas 2,5 h antes de F45. Último café del día"
         },
         {
           "h": "19:45",
@@ -158,7 +158,7 @@
         {
           "h": "20:50",
           "d": "Post",
-          "t": "Batido con 40 g de Evolate y 300 ml de leche al llegar a casa (con agua si vas a tardar)"
+          "t": "Batido de 40 g de Evolate con agua y un plátano al salir: hoy toca hidrato después de entrenar"
         },
         {
           "h": "21:30",
@@ -182,27 +182,27 @@
         },
         {
           "h": "14:00",
-          "n": "Comida · 250 g pollo al limón, 100 g arroz, 300 g brócoli, 15 g AOVE",
-          "kcal": 840,
-          "p": 68,
-          "c": 90,
-          "g": 20
+          "n": "Honest Greens · pollo al limón con doble de pollo, verduras y ensalada (estimado)",
+          "kcal": 800,
+          "p": 85,
+          "c": 25,
+          "g": 38
         },
         {
           "h": "17:30",
-          "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
-          "kcal": 295,
-          "p": 29,
-          "c": 45,
-          "g": 1
+          "n": "Merienda · 250 g queso batido, plátano, 10 g miel, 30 g avena",
+          "kcal": 408,
+          "p": 33,
+          "c": 64,
+          "g": 3
         },
         {
           "h": "20:50",
-          "n": "Post · 40 g Evolate + 300 ml leche semidesnatada",
-          "kcal": 287,
-          "p": 46,
-          "c": 14,
-          "g": 5
+          "n": "Post · 40 g Evolate con agua + plátano",
+          "kcal": 255,
+          "p": 37,
+          "c": 27,
+          "g": 1
         },
         {
           "h": "21:30",
