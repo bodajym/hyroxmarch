@@ -247,6 +247,11 @@
           "t": "Un plátano: la clase dura 75 min"
         },
         {
+          "h": "19:10",
+          "d": "Creatina",
+          "t": "Tomada: 1 cacito (3,4 g, 3 g de creatina) con 250 ml de agua. Márcala con el botón Creatina"
+        },
+        {
           "h": "19:15",
           "d": "Llegada",
           "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
@@ -259,7 +264,7 @@
         {
           "h": "20:50",
           "d": "Post",
-          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y 5 g de creatina al llegar. Si no tienes la leche fría a mano, con agua"
+          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano al llegar. Hoy, sin creatina: ya te la has tomado antes de la clase"
         },
         {
           "h": "21:30",
@@ -306,8 +311,16 @@
           "g": 0
         },
         {
+          "h": "19:10",
+          "n": "Creatina · 1 cacito pequeño (3,4 g) con 250 ml de agua",
+          "kcal": 0,
+          "p": 0,
+          "c": 0,
+          "g": 0
+        },
+        {
           "h": "20:50",
-          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano + 5 g creatina",
+          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
           "kcal": 366,
           "p": 57,
           "c": 39,
