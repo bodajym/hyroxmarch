@@ -1,7 +1,7 @@
 {
   "actualizado": "2026-11-05",
   "semanas": {
-    "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. El test de 5 km pasa al domingo por la mañana."
+    "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
   },
   "dias": {
     "2026-11-03": {
@@ -324,14 +324,19 @@
       ]
     },
     "2026-11-06": {
-      "titulo": "F45 · sin carrera por la mañana",
+      "titulo": "Z2 suave por la mañana + F45",
       "tipo": "calidad",
-      "nota": "Hoy no hay test: pasa al domingo, para hacerlo descansado. Por la mañana, a dormir y a recuperar del HYROX de ayer.",
+      "nota": "El test pasa al domingo para hacerlo descansado. Hoy, cardio suave: el Z2 es el que construye la base aeróbica para los 8 km de HYROX y quema grasa sin cargar las piernas. Tiene que ser suave de verdad, porque ayer hiciste 75 min de HYROX.",
       "sesiones": [
         {
-          "h": "Mañana",
-          "d": "Recuperación",
-          "t": "Sin carrera. 10 min de movilidad y, si puedes, 20-30 min andando"
+          "h": "06:45",
+          "d": "UFC · cinta",
+          "t": "Z2 de 30 min: inclinación 1 %, ritmo de 7:00-7:30 /km o andando rápido en cuesta (6 km/h al 6-8 %) si las piernas están cargadas. Pulso por debajo de 140, tienes que poder hablar. En ayunas vale, con agua y café"
+        },
+        {
+          "h": "07:20",
+          "d": "Después",
+          "t": "5 min de estiramiento de gemelo, cuádriceps y flexor de cadera. Desayuno al llegar a casa"
         },
         {
           "h": "Tarde",
