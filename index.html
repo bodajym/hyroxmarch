@@ -541,7 +541,22 @@ function meter(val,rng,noHigh){
 function macroBlock(label,val,rng,unit,big){
   return `<div class="mac ${big?"hero-m":""}"><div class="mac-top"><span class="eyebrow">${label}</span><span class="t">${fmt0(rng[0])}-${fmt0(rng[1])} ${unit}</span></div><span class="v">${fmt0(val)}<small>${unit}</small></span>${meter(val,rng,big)}</div>`;
 }
+// Si el coach cambia una comida del menú que ya estaba apuntada, se actualiza sola
+function reconcileMenu(s,day,plan){
+  const menu=plan.coach&&plan.coach.comidas;if(!menu||!day.comidas.length)return false;
+  const names=new Set(menu.map(m=>s+"|"+m.n));let changed=false;
+  const tag=n=>String(n).split(" · ")[0].replace(/^Comida tardía$/,"Comida").trim();
+  day.comidas.forEach(c=>{
+    if(!c.menu||!String(c.menu).startsWith(s)||names.has(c.menu))return;
+    const m=menu.find(x=>tag(x.n)===tag(c.nombre)&&!day.comidas.some(o=>o.menu===s+"|"+x.n));
+    if(!m)return;
+    Object.assign(c,{menu:s+"|"+m.n,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});changed=true;
+  });
+  if(changed){touch(day,true);setTimeout(()=>toast("He actualizado tus comidas con el menú nuevo"),300)}
+  return changed;
+}
 function renderDay(){
+  const s0=state.date,d0=getDay(s0);reconcileMenu(s0,d0,dayPlan(s0));
   const s=state.date,day=getDay(s),plan=dayPlan(s),w=plan.w,tipo=day.tipo||plan.type,tg=TARGETS[tipo],tot=totals(day),note=WEEKNOTE[w];
   $("#view").innerHTML=`<div class="view">
   <div class="split">
