@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-04",
+  "actualizado": "2026-11-05",
   "semanas": {
     "S01": "F45 de lunes a sábado es tu base. Carrera por la mañana y nunca series el mismo día de un F45 fuerte. Esta semana: test de 5 km el viernes a las 7:30 y ese día F45 suave."
   },
@@ -216,12 +216,96 @@
     },
     "2026-11-05": {
       "titulo": "F45 HYROX",
-      "tipo": "hyrox",
+      "tipo": "calidad",
+      "ocultarNotaSemana": true,
+      "nota": "Hoy 98,3 kg: la retención del viaje ya se está yendo. Día de HYROX en F45, pero con las calorías en la parte baja, porque la prioridad es perder grasa: proteína alta y los hidratos alrededor del entreno. Mañana a las 7:00 tienes el test de 5 km: esta noche, a la cama antes de las 23:00.",
       "sesiones": [
         {
+          "h": "07:30",
+          "d": "Desayuno",
+          "t": "Tortilla de 3 huevos + claras con pan integral y fruta"
+        },
+        {
+          "h": "08:00",
+          "d": "Mochila",
+          "t": "Táper de pollo con arroz y brócoli de ayer, bocadillo de pavo y fruta para la merienda, y la coctelera con 40 g de Evolate en seco"
+        },
+        {
+          "h": "14:00",
+          "d": "Comida",
+          "t": "El táper de pollo con arroz y brócoli. Si quieres variar, mézclalo con una cucharada de curry y 2 cucharadas de queso batido"
+        },
+        {
+          "h": "17:30",
+          "d": "Merienda",
+          "t": "Bocadillo de pan de molde integral con 100 g de pavo y una pieza de fruta. Último café"
+        },
+        {
+          "h": "19:45",
+          "d": "Llegada",
+          "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
+        },
+        {
           "h": "20:00",
-          "d": "F45",
-          "t": "Clase HYROX a RPE 7-8. Apunta las estaciones y las cargas. Mañana hay test: no hagas nada extra"
+          "d": "F45 HYROX",
+          "t": "RPE 7-8, pero sin vaciarte: mañana hay test. Apunta las estaciones y las cargas, y haz una captura en la app de F45"
+        },
+        {
+          "h": "20:50",
+          "d": "Post",
+          "t": "40 g de Evolate con agua y un plátano al salir"
+        },
+        {
+          "h": "21:30",
+          "d": "Cena ligera",
+          "t": "Queso batido con 20 g de avena, canela y un poco de miel"
+        },
+        {
+          "h": "22:45",
+          "d": "Preparar mañana",
+          "t": "Deja preparados ropa y zapatillas de correr, el plátano y el café. A dormir antes de las 23:00"
+        }
+      ],
+      "comidas": [
+        {
+          "h": "07:30",
+          "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
+          "kcal": 505,
+          "p": 42,
+          "c": 42,
+          "g": 18
+        },
+        {
+          "h": "14:00",
+          "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
+          "kcal": 840,
+          "p": 68,
+          "c": 90,
+          "g": 20
+        },
+        {
+          "h": "17:30",
+          "n": "Merienda · 2 rebanadas pan de molde + 100 g pavo + fruta",
+          "kcal": 345,
+          "p": 26,
+          "c": 55,
+          "g": 3
+        },
+        {
+          "h": "20:50",
+          "n": "Post · 40 g Evolate con agua + plátano",
+          "kcal": 255,
+          "p": 37,
+          "c": 27,
+          "g": 1
+        },
+        {
+          "h": "21:30",
+          "n": "Cena · 350 g queso batido 0 %, 20 g avena, canela, 10 g miel",
+          "kcal": 266,
+          "p": 31,
+          "c": 34,
+          "g": 1
         }
       ]
     },
@@ -231,17 +315,17 @@
       "nota": "El test que no hiciste el martes: de su tiempo salen todos tus ritmos. Por la tarde, F45 a RPE 6 o, si las piernas no responden, cinta suave en UFC.",
       "sesiones": [
         {
-          "h": "07:10",
+          "h": "06:40",
           "d": "Antes",
-          "t": "Plátano o 2 tortitas con miel, y café"
+          "t": "Plátano y café, 20-30 min antes de salir"
         },
         {
-          "h": "07:30",
+          "h": "07:00",
           "d": "Retiro",
           "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
         },
         {
-          "h": "07:50",
+          "h": "07:20",
           "d": "Test",
           "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones"
         },
