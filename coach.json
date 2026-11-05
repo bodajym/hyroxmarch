@@ -1,7 +1,7 @@
 {
   "actualizado": "2026-11-05",
   "semanas": {
-    "S01": "F45 de lunes a sábado es tu base. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX. Viernes, test de 5 km a las 7:00 y F45 suave por la tarde."
+    "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. El test de 5 km pasa al domingo por la mañana."
   },
   "dias": {
     "2026-11-03": {
@@ -216,45 +216,50 @@
       "notaF45": "F45 Special Ops: HIIT con peso corporal (mountain climbers, plyo lunges, squat jumps, burpee + 180, frog squats) y core. Sin carga externa."
     },
     "2026-11-05": {
-      "titulo": "F45 HYROX",
-      "tipo": "calidad",
+      "titulo": "F45 HYROX Signature · 19:30",
+      "tipo": "hyrox",
       "ocultarNotaSemana": true,
-      "nota": "Ayer Special Ops fue HIIT con peso corporal y mucha pliometría, y el martes también cardio: llevas dos días de saltos y nada de carga. Hoy HYROX sí trabaja fuerza con material: aprovéchalo en trineos y wall balls, pero sin vaciarte, porque mañana a las 7:00 tienes el test de 5 km. Calorías en la parte baja: la prioridad es perder grasa.",
+      "nota": "Hoy toca HYROX Signature: 75 min a las 19:30, con movimientos de HYROX y seguramente carrera. Es tu sesión de fuerza y de estaciones de la semana: dale a RPE 7-8. Por eso el test de 5 km pasa al domingo por la mañana. Con un HYROX largo la noche antes, el viernes a las 7:00 saldría un tiempo peor de lo que eres, y tus ritmos quedarían mal calculados.",
       "sesiones": [
         {
           "h": "07:30",
           "d": "Desayuno",
-          "t": "Tortilla de 3 huevos + claras con pan integral y fruta"
+          "t": "Tortilla de 3 huevos + claras, pan integral y fruta"
         },
         {
           "h": "08:00",
           "d": "Mochila",
-          "t": "Táper de pollo con arroz y brócoli de ayer, bocadillo de pavo y fruta para la merienda, y la coctelera con 40 g de Evolate en seco"
+          "t": "El táper de pollo con arroz, el bocadillo de pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco y una botella con electrolitos para la clase"
         },
         {
           "h": "14:00",
           "d": "Comida",
-          "t": "El táper de pollo con arroz y brócoli. Si quieres variar, mézclalo con una cucharada de curry y 2 cucharadas de queso batido"
+          "t": "El táper de pollo con arroz y brócoli. Para variar, añade una cucharada de curry y 2 de queso batido"
         },
         {
-          "h": "17:30",
+          "h": "17:00",
           "d": "Merienda",
-          "t": "Bocadillo de pan de molde integral con 100 g de pavo y una pieza de fruta. Último café"
+          "t": "Bocadillo de pan de molde con 100 g de pavo y una fruta. Último café"
         },
         {
-          "h": "19:45",
+          "h": "18:45",
+          "d": "Pre-entreno",
+          "t": "Un plátano: la clase dura 75 min"
+        },
+        {
+          "h": "19:15",
           "d": "Llegada",
           "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
         },
         {
-          "h": "20:00",
-          "d": "F45 HYROX",
-          "t": "RPE 7-8, pero sin vaciarte: mañana hay test. Apunta las estaciones y las cargas, y haz una captura en la app de F45"
+          "h": "19:30",
+          "d": "F45 HYROX Signature",
+          "t": "RPE 7-8. Bebe agua con electrolitos durante la clase. Apunta las estaciones, las cargas y los tiempos, y haz una captura del entreno en la app"
         },
         {
           "h": "20:50",
           "d": "Post",
-          "t": "40 g de Evolate con agua y un plátano al salir"
+          "t": "40 g de Evolate con agua y un plátano nada más salir"
         },
         {
           "h": "21:30",
@@ -262,9 +267,9 @@
           "t": "Queso batido con 20 g de avena, canela y un poco de miel"
         },
         {
-          "h": "22:45",
-          "d": "Preparar mañana",
-          "t": "Deja preparados ropa y zapatillas de correr, el plátano y el café. A dormir antes de las 23:00"
+          "h": "23:00",
+          "d": "Dormir",
+          "t": "Mañana no madrugas para correr: duerme 7,5-8 h"
         }
       ],
       "comidas": [
@@ -285,12 +290,20 @@
           "g": 20
         },
         {
-          "h": "17:30",
+          "h": "17:00",
           "n": "Merienda · 2 rebanadas pan de molde + 100 g pavo + fruta",
           "kcal": 345,
           "p": 26,
           "c": 55,
           "g": 3
+        },
+        {
+          "h": "18:45",
+          "n": "Pre-entreno · 1 plátano",
+          "kcal": 105,
+          "p": 1,
+          "c": 27,
+          "g": 0
         },
         {
           "h": "20:50",
@@ -311,34 +324,19 @@
       ]
     },
     "2026-11-06": {
-      "titulo": "Test de 5 km + F45 suave",
+      "titulo": "F45 · sin carrera por la mañana",
       "tipo": "calidad",
-      "nota": "El test que no hiciste el martes: de su tiempo salen todos tus ritmos. Por la tarde, F45 a RPE 6 o, si las piernas no responden, cinta suave en UFC.",
+      "nota": "Hoy no hay test: pasa al domingo, para hacerlo descansado. Por la mañana, a dormir y a recuperar del HYROX de ayer.",
       "sesiones": [
         {
-          "h": "06:40",
-          "d": "Antes",
-          "t": "Plátano y café, 20-30 min antes de salir"
+          "h": "Mañana",
+          "d": "Recuperación",
+          "t": "Sin carrera. 10 min de movilidad y, si puedes, 20-30 min andando"
         },
         {
-          "h": "07:00",
-          "d": "Retiro",
-          "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
-        },
-        {
-          "h": "07:20",
-          "d": "Test",
-          "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones"
-        },
-        {
-          "h": "Después",
-          "d": "Vuelta a la calma",
-          "t": "10 min andando o trotando muy suave"
-        },
-        {
-          "h": "20:00",
-          "d": "F45 suave",
-          "t": "Clase a RPE 6, sin saltos máximos. Si llegas fundido, cámbiala por 30 min de cinta muy suave en UFC"
+          "h": "Tarde",
+          "d": "F45",
+          "t": "Clase del día a RPE 7. Mándame la captura"
         }
       ]
     },
@@ -349,23 +347,39 @@
         {
           "h": "",
           "d": "F45",
-          "t": "Clase de sábado a RPE 7-8. Haz una captura del entreno en la app"
+          "t": "Clase de sábado a RPE 6-7: mañana tienes el test. Mándame la captura"
         }
       ]
     },
     "2026-11-08": {
-      "titulo": "Rodaje Z2 y check-in",
+      "titulo": "Test de 5 km y check-in",
       "tipo": "z2",
+      "nota": "De este tiempo salen todos tus ritmos de series, Z2 y carrera HYROX.",
       "sesiones": [
         {
-          "h": "10:00",
+          "h": "09:30",
+          "d": "Antes",
+          "t": "Desayuno ligero 1-1,5 h antes: pan con miel y plátano, y café"
+        },
+        {
+          "h": "10:30",
           "d": "Retiro",
-          "t": "Rodaje Z2 de 35 min a pulso por debajo de 145, conversando. Si llueve, en la cinta de UFC (abre hasta las 15:00)"
+          "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
+        },
+        {
+          "h": "10:50",
+          "d": "Test",
+          "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones en Día → Entrenamientos (sesión Series, 5 km)"
+        },
+        {
+          "h": "Después",
+          "d": "Vuelta a la calma",
+          "t": "10 min andando"
         },
         {
           "h": "Tarde",
           "d": "Casa",
-          "t": "Batch cooking, cintura y fotos. Después pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
+          "t": "Batch cooking, cintura y fotos. Luego pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
         }
       ]
     }
