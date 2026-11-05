@@ -1,7 +1,7 @@
 {
   "actualizado": "2026-11-05",
   "semanas": {
-    "S01": "F45 de lunes a sábado es tu base. Carrera por la mañana y nunca series el mismo día de un F45 fuerte. Esta semana: test de 5 km el viernes a las 7:30 y ese día F45 suave."
+    "S01": "F45 de lunes a sábado es tu base. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX. Viernes, test de 5 km a las 7:00 y F45 suave por la tarde."
   },
   "dias": {
     "2026-11-03": {
@@ -212,13 +212,14 @@
           "c": 5,
           "g": 25
         }
-      ]
+      ],
+      "notaF45": "F45 Special Ops: HIIT con peso corporal (mountain climbers, plyo lunges, squat jumps, burpee + 180, frog squats) y core. Sin carga externa."
     },
     "2026-11-05": {
       "titulo": "F45 HYROX",
       "tipo": "calidad",
       "ocultarNotaSemana": true,
-      "nota": "Hoy 98,3 kg: la retención del viaje ya se está yendo. Día de HYROX en F45, pero con las calorías en la parte baja, porque la prioridad es perder grasa: proteína alta y los hidratos alrededor del entreno. Mañana a las 7:00 tienes el test de 5 km: esta noche, a la cama antes de las 23:00.",
+      "nota": "Ayer Special Ops fue HIIT con peso corporal y mucha pliometría, y el martes también cardio: llevas dos días de saltos y nada de carga. Hoy HYROX sí trabaja fuerza con material: aprovéchalo en trineos y wall balls, pero sin vaciarte, porque mañana a las 7:00 tienes el test de 5 km. Calorías en la parte baja: la prioridad es perder grasa.",
       "sesiones": [
         {
           "h": "07:30",
