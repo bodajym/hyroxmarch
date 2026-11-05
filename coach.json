@@ -337,7 +337,7 @@
       ]
     },
     "2026-11-06": {
-      "titulo": "Z2 por la mañana + F45 MKATZ (fuerza)",
+      "titulo": "Z2 por la mañana + F45 MKATZ a las 18:00",
       "tipo": "calidad",
       "ocultarNotaSemana": true,
       "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. Por la mañana, Z2 suave. El test de 5 km es el domingo.",
@@ -358,32 +358,32 @@
           "t": "Táper de patata con huevo y atún, las tostadas Santiveri con el pavo y una fruta, y la coctelera con 40 g de Evolate y la creatina en seco"
         },
         {
-          "h": "14:00",
+          "h": "13:30",
           "d": "Comida",
           "t": "Patata, huevo y atún con ensalada (receta en Comida)"
         },
         {
-          "h": "17:30",
+          "h": "15:45",
           "d": "Merienda",
-          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta. Último café"
+          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta, unas 2 h antes de F45. Último café"
         },
         {
-          "h": "19:45",
+          "h": "17:45",
           "d": "Llegada",
           "t": "5 min de movilidad de cadera, hombro y dorsal, y 2 × 10 sentadillas sin peso"
         },
         {
-          "h": "20:00",
+          "h": "18:00",
           "d": "F45 MKATZ",
           "t": "Fuerza: elevaciones frontales y laterales, zancada atrás con kettlebell, aperturas con mancuernas, peso muerto rumano, sentadilla abrazando el deadball, remo en TRX, press militar con barra, hip thrust con disco y curl con barra. Apunta los kilos de peso muerto rumano, press militar y hip thrust: son tu referencia"
         },
         {
-          "h": "21:00",
+          "h": "19:00",
           "d": "Post + creatina",
           "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y la creatina: un cacito y medio (5 g) dentro del batido. Marca el botón Creatina"
         },
         {
-          "h": "21:45",
+          "h": "20:30",
           "d": "Cena ligera",
           "t": "Tortilla de 2 huevos + 150 g de claras con ensalada"
         },
@@ -403,7 +403,7 @@
           "g": 5
         },
         {
-          "h": "14:00",
+          "h": "13:30",
           "n": "Comida · 400 g patata, 2 huevos, 2 latas de atún, ensalada, 10 g AOVE",
           "kcal": 687,
           "p": 48,
@@ -411,7 +411,7 @@
           "g": 22
         },
         {
-          "h": "17:30",
+          "h": "15:45",
           "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
           "kcal": 295,
           "p": 30,
@@ -419,7 +419,7 @@
           "g": 2
         },
         {
-          "h": "21:00",
+          "h": "19:00",
           "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
           "kcal": 366,
           "p": 57,
@@ -427,7 +427,7 @@
           "g": 1
         },
         {
-          "h": "21:00",
+          "h": "19:00",
           "n": "Creatina · 1 cacito y medio (5 g) en el batido",
           "kcal": 0,
           "p": 0,
@@ -435,7 +435,7 @@
           "g": 0
         },
         {
-          "h": "21:45",
+          "h": "20:30",
           "n": "Cena · tortilla de 2 huevos + 150 g claras, ensalada, 5 g AOVE",
           "kcal": 310,
           "p": 32,
