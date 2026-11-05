@@ -272,21 +272,21 @@
     {
       "id": "mer-b",
       "momento": "Merienda",
-      "nombre": "Bocadillo de pavo y fruta",
+      "nombre": "Tostadas proteicas con pavo y fruta",
       "min": 3,
-      "kcal": 345,
-      "p": 26,
-      "c": 55,
-      "g": 3,
+      "kcal": 295,
+      "p": 30,
+      "c": 39,
+      "g": 2,
       "ingredientes": [
-        "2 rebanadas de pan de molde integral (o 60 g de pan de barra)",
+        "6 tostadas proteicas Santiveri (2 raciones de 3, 36 g)",
         "100 g de pechuga de pavo en lonchas (más del 90 % de carne)",
         "1 pieza de fruta"
       ],
       "pasos": [
-        "Abre el pan, mete el pavo y listo. Con tomate en rodajas si quieres."
+        "Pon el pavo sobre las tostadas. Con tomate en rodajas, si quieres."
       ],
-      "variantes": "Ideal para llevar al golf o al trabajo."
+      "variantes": "Con 2 rebanadas de pan de molde integral en lugar de las tostadas: 345 kcal y 26 g de proteína. Para llevar al golf o al trabajo, en un táper para que no se rompan."
     },
     {
       "id": "post-a",

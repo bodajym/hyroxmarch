@@ -229,7 +229,7 @@
         {
           "h": "08:00",
           "d": "Mochila",
-          "t": "El táper de pollo con arroz, el bocadillo de pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco (la leche la añades al llegar a casa) y una botella con electrolitos para la clase"
+          "t": "El táper de pollo con arroz, las tostadas Santiveri con el pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco (la leche la añades al llegar a casa) y una botella con electrolitos para la clase"
         },
         {
           "h": "14:00",
@@ -239,7 +239,7 @@
         {
           "h": "17:00",
           "d": "Merienda",
-          "t": "Bocadillo de pan de molde con 100 g de pavo y una fruta. Último café"
+          "t": "6 tostadas proteicas Santiveri (2 raciones) con 100 g de pavo y una pieza de fruta. Último café"
         },
         {
           "h": "18:45",
@@ -291,11 +291,11 @@
         },
         {
           "h": "17:00",
-          "n": "Merienda · 2 rebanadas pan de molde + 100 g pavo + fruta",
-          "kcal": 345,
-          "p": 26,
-          "c": 55,
-          "g": 3
+          "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
+          "kcal": 295,
+          "p": 30,
+          "c": 39,
+          "g": 2
         },
         {
           "h": "18:45",
