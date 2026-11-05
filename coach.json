@@ -337,24 +337,110 @@
       ]
     },
     "2026-11-06": {
-      "titulo": "Z2 suave por la mañana + F45",
+      "titulo": "Z2 por la mañana + F45 MKATZ (fuerza)",
       "tipo": "calidad",
-      "nota": "El test pasa al domingo para hacerlo descansado. Hoy, cardio suave: el Z2 es el que construye la base aeróbica para los 8 km de HYROX y quema grasa sin cargar las piernas. Tiene que ser suave de verdad, porque ayer hiciste 75 min de HYROX.",
+      "ocultarNotaSemana": true,
+      "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. Por la mañana, Z2 suave. El test de 5 km es el domingo.",
       "sesiones": [
         {
           "h": "06:45",
           "d": "UFC · cinta",
-          "t": "Z2 de 30 min: inclinación 1 %, ritmo de 7:00-7:30 /km o andando rápido en cuesta (6 km/h al 6-8 %) si las piernas están cargadas. Pulso por debajo de 140, tienes que poder hablar. En ayunas vale, con agua y café"
+          "t": "Z2 de 30 min: inclinación 1 %, 7:00-7:30 /km, o andando rápido en cuesta (6 km/h al 6-8 %) si las piernas van cargadas del HYROX. Pulso por debajo de 140. En ayunas, con agua y café"
         },
         {
-          "h": "07:20",
-          "d": "Después",
-          "t": "5 min de estiramiento de gemelo, cuádriceps y flexor de cadera. Desayuno al llegar a casa"
+          "h": "07:30",
+          "d": "Desayuno",
+          "t": "Bol de queso batido con Evolate, avena y plátano"
         },
         {
-          "h": "Tarde",
-          "d": "F45",
-          "t": "Clase del día a RPE 7. Mándame la captura"
+          "h": "08:00",
+          "d": "Mochila",
+          "t": "Táper de patata con huevo y atún, las tostadas Santiveri con el pavo y una fruta, y la coctelera con 40 g de Evolate y la creatina en seco"
+        },
+        {
+          "h": "14:00",
+          "d": "Comida",
+          "t": "Patata, huevo y atún con ensalada (receta en Comida)"
+        },
+        {
+          "h": "17:30",
+          "d": "Merienda",
+          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta. Último café"
+        },
+        {
+          "h": "19:45",
+          "d": "Llegada",
+          "t": "5 min de movilidad de cadera, hombro y dorsal, y 2 × 10 sentadillas sin peso"
+        },
+        {
+          "h": "20:00",
+          "d": "F45 MKATZ",
+          "t": "Fuerza: elevaciones frontales y laterales, zancada atrás con kettlebell, aperturas con mancuernas, peso muerto rumano, sentadilla abrazando el deadball, remo en TRX, press militar con barra, hip thrust con disco y curl con barra. Apunta los kilos de peso muerto rumano, press militar y hip thrust: son tu referencia"
+        },
+        {
+          "h": "21:00",
+          "d": "Post + creatina",
+          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y la creatina: un cacito y medio (5 g) dentro del batido. Marca el botón Creatina"
+        },
+        {
+          "h": "21:45",
+          "d": "Cena ligera",
+          "t": "Tortilla de 2 huevos + 150 g de claras con ensalada"
+        },
+        {
+          "h": "23:00",
+          "d": "Dormir",
+          "t": "El sábado, F45 suave y el domingo, test de 5 km: descansa"
+        }
+      ],
+      "comidas": [
+        {
+          "h": "07:30",
+          "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
+          "kcal": 525,
+          "p": 55,
+          "c": 64,
+          "g": 5
+        },
+        {
+          "h": "14:00",
+          "n": "Comida · 400 g patata, 2 huevos, 2 latas de atún, ensalada, 10 g AOVE",
+          "kcal": 687,
+          "p": 48,
+          "c": 73,
+          "g": 22
+        },
+        {
+          "h": "17:30",
+          "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
+          "kcal": 295,
+          "p": 30,
+          "c": 39,
+          "g": 2
+        },
+        {
+          "h": "21:00",
+          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
+          "kcal": 366,
+          "p": 57,
+          "c": 39,
+          "g": 1
+        },
+        {
+          "h": "21:00",
+          "n": "Creatina · 1 cacito y medio (5 g) en el batido",
+          "kcal": 0,
+          "p": 0,
+          "c": 0,
+          "g": 0
+        },
+        {
+          "h": "21:45",
+          "n": "Cena · tortilla de 2 huevos + 150 g claras, ensalada, 5 g AOVE",
+          "kcal": 310,
+          "p": 32,
+          "c": 7,
+          "g": 16
         }
       ]
     },
