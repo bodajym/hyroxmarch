@@ -306,25 +306,25 @@
         "Agita el Evolate con el agua en la coctelera 15 s.",
         "Tómalo nada más salir y el plátano al lado."
       ],
-      "variantes": "El cacito del bote es de 70 ml, unos 30 g. 40 g es un cacito y un tercio."
+      "variantes": "Para después de entrenos largos, que piden hidrato. Con 250 ml de leche proteica en lugar de agua: 366 kcal y 57 g de proteína."
     },
     {
       "id": "post-b",
       "momento": "Post-entreno",
-      "nombre": "Batido de Evolate con leche",
+      "nombre": "Batido de Evolate con leche proteica",
       "min": 1,
-      "kcal": 287,
-      "p": 46,
-      "c": 14,
-      "g": 5,
+      "kcal": 261,
+      "p": 56,
+      "c": 12,
+      "g": 1,
       "ingredientes": [
-        "40 g de HSN Evolate vainilla",
-        "300 ml de leche semidesnatada"
+        "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
+        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)"
       ],
       "pasos": [
-        "Agita en la coctelera 15 s."
+        "Agita en la coctelera 15 s con la leche fría."
       ],
-      "variantes": "Para días con menos hidratos (descanso o Z2)."
+      "variantes": "Es la opción por defecto: 56 g de proteína por 261 kcal. Con agua (149 kcal, 36 g) solo si ese día vas sobrado de proteína o justo de calorías."
     },
     {
       "id": "cen-a",
@@ -555,9 +555,9 @@
           6.9
         ],
         [
-          "Leche semidesnatada",
-          "1 L",
-          0.95
+          "Leche desnatada +Proteínas Hacendado (o la de Dia)",
+          "2 L",
+          2.4
         ]
       ]
     },

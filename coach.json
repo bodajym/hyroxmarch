@@ -229,7 +229,7 @@
         {
           "h": "08:00",
           "d": "Mochila",
-          "t": "El táper de pollo con arroz, el bocadillo de pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco y una botella con electrolitos para la clase"
+          "t": "El táper de pollo con arroz, el bocadillo de pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco (la leche la añades al llegar a casa) y una botella con electrolitos para la clase"
         },
         {
           "h": "14:00",
@@ -259,7 +259,7 @@
         {
           "h": "20:50",
           "d": "Post",
-          "t": "40 g de Evolate con agua y un plátano nada más salir"
+          "t": "40 g de Evolate con 250 ml de leche proteica de Dia y un plátano nada más salir (si no tienes la leche fría a mano, con agua)"
         },
         {
           "h": "21:30",
@@ -307,10 +307,10 @@
         },
         {
           "h": "20:50",
-          "n": "Post · 40 g Evolate con agua + plátano",
-          "kcal": 255,
-          "p": 37,
-          "c": 27,
+          "n": "Post · 40 g Evolate + 250 ml leche proteica Dia + plátano",
+          "kcal": 366,
+          "p": 57,
+          "c": 39,
           "g": 1
         },
         {
