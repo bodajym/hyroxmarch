@@ -291,22 +291,23 @@
     {
       "id": "post-a",
       "momento": "Post-entreno",
-      "nombre": "Batido de Evolate con plátano",
+      "nombre": "Batido de Evolate, leche y plátano",
       "min": 1,
-      "kcal": 255,
-      "p": 37,
-      "c": 27,
+      "kcal": 366,
+      "p": 57,
+      "c": 39,
       "g": 1,
       "ingredientes": [
         "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
-        "300 ml de agua fría",
-        "1 plátano"
+        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)",
+        "1 plátano",
+        "5 g de creatina monohidrato"
       ],
       "pasos": [
-        "Agita el Evolate con el agua en la coctelera 15 s.",
-        "Tómalo nada más salir y el plátano al lado."
+        "Agita el Evolate, la creatina y la leche fría en la coctelera 15 s.",
+        "Tómalo nada más llegar, con el plátano al lado."
       ],
-      "variantes": "Para después de entrenos largos, que piden hidrato. Con 250 ml de leche proteica en lugar de agua: 366 kcal y 57 g de proteína."
+      "variantes": "El batido de después de entrenar. Si estás fuera y no tienes leche, con 300 ml de agua: 255 kcal y 37 g de proteína."
     },
     {
       "id": "post-b",
@@ -319,12 +320,13 @@
       "g": 1,
       "ingredientes": [
         "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
-        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)"
+        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)",
+        "5 g de creatina monohidrato"
       ],
       "pasos": [
-        "Agita en la coctelera 15 s con la leche fría."
+        "Agita el Evolate, la creatina y la leche fría en la coctelera 15 s."
       ],
-      "variantes": "Es la opción por defecto: 56 g de proteína por 261 kcal. Con agua (149 kcal, 36 g) solo si ese día vas sobrado de proteína o justo de calorías."
+      "variantes": "Sin plátano, para días de descanso o Z2. 56 g de proteína por 261 kcal."
     },
     {
       "id": "cen-a",
@@ -434,7 +436,7 @@
       "g": 0,
       "ingredientes": [
         "30 g de HSN Evolate (1 cacito)",
-        "250 ml de agua"
+        "250 ml de agua o leche proteica"
       ],
       "pasos": [
         "Agita y listo. Para cuando vas corto de proteína a última hora."
@@ -617,6 +619,10 @@
     [
       "Proteína",
       "190-210 g todos los días. Es la cifra que no se negocia: si vas corto, cacito de Evolate."
+    ],
+    [
+      "Creatina",
+      "5 g al día, todos los días, en el batido o con el desayuno. Las primeras 2-3 semanas puede subir 1-2 kg de agua en el músculo: no es grasa."
     ],
     [
       "Hidratos",

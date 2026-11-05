@@ -259,7 +259,7 @@
         {
           "h": "20:50",
           "d": "Post",
-          "t": "40 g de Evolate con 250 ml de leche proteica de Dia y un plátano nada más salir (si no tienes la leche fría a mano, con agua)"
+          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y 5 g de creatina al llegar. Si no tienes la leche fría a mano, con agua"
         },
         {
           "h": "21:30",
@@ -307,7 +307,7 @@
         },
         {
           "h": "20:50",
-          "n": "Post · 40 g Evolate + 250 ml leche proteica Dia + plátano",
+          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano + 5 g creatina",
           "kcal": 366,
           "p": 57,
           "c": 39,
@@ -388,5 +388,15 @@
         }
       ]
     }
+  },
+  "diario": {
+    "desde": "2026-11-05",
+    "items": [
+      {
+        "h": "Con el batido",
+        "d": "Creatina",
+        "t": "5 g de creatina monohidrato (una cucharadita colmada) dentro del batido de Evolate. Los días sin batido, con el desayuno en el bol de queso batido o en un vaso de agua. Todos los días, también los de descanso"
+      }
+    ]
   }
 }
