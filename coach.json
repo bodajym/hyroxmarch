@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-05",
+  "actualizado": "2026-11-06",
   "semanas": {
     "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
   },
@@ -337,15 +337,15 @@
       ]
     },
     "2026-11-06": {
-      "titulo": "Z2 por la mañana + F45 MKATZ a las 18:00",
+      "titulo": "F45 MKATZ a las 18:00",
       "tipo": "calidad",
       "ocultarNotaSemana": true,
-      "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. Por la mañana, Z2 suave. El test de 5 km es el domingo.",
+      "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. El Z2 de esta mañana pasa al sábado. El test de 5 km es el domingo.",
       "sesiones": [
         {
-          "h": "06:45",
-          "d": "UFC · cinta",
-          "t": "Z2 de 30 min: inclinación 1 %, 7:00-7:30 /km, o andando rápido en cuesta (6 km/h al 6-8 %) si las piernas van cargadas del HYROX. Pulso por debajo de 140. En ayunas, con agua y café"
+          "h": "Mañana",
+          "d": "Z2",
+          "t": "No se ha hecho: pasa al sábado, después del F45"
         },
         {
           "h": "07:30",
@@ -445,13 +445,113 @@
       ]
     },
     "2026-11-07": {
-      "titulo": "F45 sábado",
-      "tipo": "calidad",
+      "titulo": "F45 a las 11:00 + Z2 en el Retiro",
+      "tipo": "doble",
+      "ocultarNotaSemana": true,
+      "nota": "El Z2 que no hiciste el viernes va justo después del F45. Que sea suave de verdad: 25-30 min a ritmo de conversación, porque el domingo tienes el test de 5 km. El Retiro te queda al lado del F45.",
       "sesiones": [
         {
-          "h": "",
+          "h": "08:30",
+          "d": "Desayuno",
+          "t": "Tortilla de 3 huevos + claras con pan integral y fruta, unas 2,5 h antes de la clase"
+        },
+        {
+          "h": "10:30",
+          "d": "Pre-entreno",
+          "t": "Un plátano y café"
+        },
+        {
+          "h": "11:00",
           "d": "F45",
-          "t": "Clase de sábado a RPE 6-7: mañana tienes el test. Mándame la captura"
+          "t": "Clase de 1 h a RPE 6-7: mañana hay test. Mándame la captura"
+        },
+        {
+          "h": "12:10",
+          "d": "Retiro · Z2",
+          "t": "25-30 min de trote muy suave (7:00-7:30 /km), con el pulso por debajo de 140. Si las piernas no van, camina rápido 30 min. Lleva agua"
+        },
+        {
+          "h": "12:45",
+          "d": "Post + creatina",
+          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y un cacito y medio de creatina (5 g). Marca el botón Creatina"
+        },
+        {
+          "h": "14:30",
+          "d": "Comida",
+          "t": "El último táper de pollo con arroz y brócoli"
+        },
+        {
+          "h": "17:30",
+          "d": "Merienda",
+          "t": "Queso batido con plátano y miel"
+        },
+        {
+          "h": "21:00",
+          "d": "Cena",
+          "t": "Ensalada de atún y huevo con 150 g de patata cocida: un poco de hidrato para el test de mañana. Si sales, plancha, ensalada y patata, sin alcohol"
+        },
+        {
+          "h": "23:00",
+          "d": "Dormir",
+          "t": "Deja preparadas la ropa y las zapatillas para el test"
+        }
+      ],
+      "comidas": [
+        {
+          "h": "08:30",
+          "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
+          "kcal": 505,
+          "p": 42,
+          "c": 42,
+          "g": 18
+        },
+        {
+          "h": "10:30",
+          "n": "Pre-entreno · 1 plátano",
+          "kcal": 105,
+          "p": 1,
+          "c": 27,
+          "g": 0
+        },
+        {
+          "h": "12:45",
+          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
+          "kcal": 366,
+          "p": 57,
+          "c": 39,
+          "g": 1
+        },
+        {
+          "h": "12:45",
+          "n": "Creatina · 1 cacito y medio (5 g) en el batido",
+          "kcal": 0,
+          "p": 0,
+          "c": 0,
+          "g": 0
+        },
+        {
+          "h": "14:30",
+          "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
+          "kcal": 840,
+          "p": 68,
+          "c": 90,
+          "g": 20
+        },
+        {
+          "h": "17:30",
+          "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
+          "kcal": 295,
+          "p": 29,
+          "c": 45,
+          "g": 1
+        },
+        {
+          "h": "21:00",
+          "n": "Cena · ensalada con 1 lata de atún, 2 huevos, 150 g patata, 5 g AOVE",
+          "kcal": 390,
+          "p": 30,
+          "c": 31,
+          "g": 15
         }
       ]
     },
