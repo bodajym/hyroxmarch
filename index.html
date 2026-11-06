@@ -993,6 +993,8 @@ function importFromURL(){
   const raw=(q.get("peso")||"").trim();
   // el atajo a veces quita la coma decimal: 983 -> 98,3 · 9830 -> 98,30 · 98300 g -> 98,3
   let kg=fix(peso,30,250);
+  // si llega solo con dígitos y sin separador (p. ej. "96900000000000000" = 96,9000…), coloca la coma tras 2 o 3 cifras
+  if(kg==null||kg<30||kg>250){const dg=(raw.match(/\d+/)||[""])[0];if(!/[.,]/.test(raw)&&dg.length>=3){for(const n of [2,3]){const v=Number(dg.slice(0,n)+"."+dg.slice(n,n+2));if(v>=30&&v<=250){kg=v;break}}}}
   if(!raw){setTimeout(()=>toast("El atajo envió el peso vacío. Da permiso a Atajos en Ajustes → Salud → Acceso a datos y dispositivos → Atajos",true),400);return}
   if(kg==null||kg<30||kg>250){setTimeout(()=>toast('No he entendido el peso. Llegó: "'+raw.slice(0,40)+'"',true),400);return}
   const d=getDay(s);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
