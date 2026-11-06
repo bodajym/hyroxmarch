@@ -365,7 +365,7 @@
         {
           "h": "15:45",
           "d": "Merienda",
-          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta, unas 2 h antes de F45. Último café"
+          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta, unas 2 h antes de F45, y la creatina: un cacito y medio (5 g) en un vaso de agua. Último café"
         },
         {
           "h": "17:45",
@@ -379,8 +379,8 @@
         },
         {
           "h": "19:00",
-          "d": "Post + creatina",
-          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y la creatina: un cacito y medio (5 g) dentro del batido. Marca el botón Creatina"
+          "d": "Post",
+          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
         },
         {
           "h": "20:30",
@@ -419,20 +419,20 @@
           "g": 2
         },
         {
+          "h": "15:45",
+          "n": "Creatina · 1 cacito y medio (5 g) con agua en la merienda",
+          "kcal": 0,
+          "p": 0,
+          "c": 0,
+          "g": 0
+        },
+        {
           "h": "19:00",
           "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
           "kcal": 366,
           "p": 57,
           "c": 39,
           "g": 1
-        },
-        {
-          "h": "19:00",
-          "n": "Creatina · 1 cacito y medio (5 g) en el batido",
-          "kcal": 0,
-          "p": 0,
-          "c": 0,
-          "g": 0
         },
         {
           "h": "20:30",
@@ -458,7 +458,7 @@
         {
           "h": "10:30",
           "d": "Pre-entreno",
-          "t": "Un plátano y café"
+          "t": "Un plátano, café y la creatina: un cacito y medio (5 g) en un vaso de agua. Marca el botón Creatina"
         },
         {
           "h": "11:00",
@@ -472,8 +472,8 @@
         },
         {
           "h": "12:45",
-          "d": "Post + creatina",
-          "t": "40 g de Evolate con 250 ml de leche proteica, un plátano y un cacito y medio de creatina (5 g). Marca el botón Creatina"
+          "d": "Post",
+          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
         },
         {
           "h": "14:30",
@@ -514,20 +514,20 @@
           "g": 0
         },
         {
+          "h": "10:30",
+          "n": "Creatina · 1 cacito y medio (5 g) con agua antes de F45",
+          "kcal": 0,
+          "p": 0,
+          "c": 0,
+          "g": 0
+        },
+        {
           "h": "12:45",
           "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
           "kcal": 366,
           "p": 57,
           "c": 39,
           "g": 1
-        },
-        {
-          "h": "12:45",
-          "n": "Creatina · 1 cacito y medio (5 g) en el batido",
-          "kcal": 0,
-          "p": 0,
-          "c": 0,
-          "g": 0
         },
         {
           "h": "14:30",
@@ -592,9 +592,9 @@
     "desde": "2026-11-05",
     "items": [
       {
-        "h": "Con el batido",
+        "h": "Antes de entrenar",
         "d": "Creatina",
-        "t": "5 g de creatina monohidrato (Optimum Nutrition: un cacito y medio de su cacito de 3,4 g) dentro del batido de Evolate. Los días sin batido, con el desayuno en el bol de queso batido o en un vaso de agua. Todos los días, también los de descanso"
+        "t": "5 g (un cacito y medio de Optimum Nutrition) con la merienda o el pre-entreno: en el queso batido o en un vaso de agua. Los días sin entreno, con el desayuno. Todos los días"
       }
     ]
   }
