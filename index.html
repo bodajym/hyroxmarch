@@ -441,7 +441,15 @@ body.viewer .tama-view{padding-top:12px}
 .live-frame::after{content:"";position:absolute;inset:10px;border-radius:14px;pointer-events:none;box-shadow:inset 0 0 40px rgba(0,0,0,.45)}
 .live-demo{justify-content:center}
 .loc{display:grid;gap:12px}.loc-h{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}
-.loc-now{font-size:14px}.loc-sites .btn{min-width:0}
+.loc-now{font-size:14px}
+.loc-list{display:grid;gap:8px}
+.loc-row{display:grid;grid-template-columns:150px 1fr auto auto;gap:8px;align-items:center}
+.loc-row .loc-n{font-size:13.5px;font-weight:600}
+.loc-row input{min-width:0;height:42px;border-radius:12px;border:1px solid var(--line2);background:var(--bg3);color:var(--ink);padding:0 12px;font:inherit;font-size:16px}
+.loc-row input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.loc-row.ok .loc-n::before{content:"✓ ";color:var(--ok)}
+@media (max-width:560px){.loc-row{grid-template-columns:1fr auto auto;gap:6px 8px}.loc-row .loc-n{grid-column:1/-1}.loc-row .btn{padding-left:12px;padding-right:12px}}
+
 @media (max-width:560px){.live-frame{padding:6px;border-radius:16px}.live-frame canvas{border-radius:10px}.live-frame::after{inset:6px}}
 
 
@@ -705,6 +713,7 @@ function basePlan(s){
 const KEY="rx27-data-v1", CFG="rx27-sync-v1", FILE="rx27-datos.json";
 let data={days:{},weeks:{}};
 try{const r=LS.get(KEY);if(r){const p=JSON.parse(r);if(p&&p.days)data=p}}catch(e){}
+if(!data.lugares)data.lugares={};
 const state={date:todayStr(),week:null,view:"dia",range:"data"};
 if(state.date<"2026-11-02")state.date="2026-11-02";
 state.week=clampW(weekOf(todayStr()));
@@ -742,8 +751,8 @@ const Sync={
   },
   merge(remote){
     let changedLocal=false,localNewer=false;
-    for(const col of ["days","weeks"]){
-      const R=(remote&&remote[col])||{},L=data[col];
+    for(const col of ["days","weeks","lugares"]){
+      if(!data[col])data[col]={};const R=(remote&&remote[col])||{},L=data[col];
       for(const k of Object.keys(R)){if(!L[k]||(R[k]._t||0)>(L[k]._t||0)){if(L[k]){for(const x of Object.keys(L[k]))delete L[k][x];Object.assign(L[k],R[k])}else L[k]=R[k];changedLocal=true}}
       for(const k of Object.keys(L)){if(!R[k]||(L[k]._t||0)>(R[k]._t||0))localNewer=true}
     }
@@ -1643,9 +1652,14 @@ window.RX27Game=Game;
 /* =============== UBICACIÓN · sitios de Javi =============== */
 const Loc={
   KEY:"rx27-lugares",ON:"rx27-loc",FILE:"rx27-lugar.json",last:null,busy:false,
-  NAMES:{casa:"Casa",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
-  get sites(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}return Object.assign({retiro:{lat:40.4148,lon:-3.6842,r:520}},o)},
-  save(k,lat,lon){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}o[k]={lat,lon,r:k==="retiro"?520:140};LS.set(this.KEY,JSON.stringify(o))},
+  NAMES:{casa:"Casa",padres:"Casa de sus padres",suegros:"Casa de sus suegros",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
+  SITES:[["casa","Casa"],["padres","Casa de mis padres"],["suegros","Padres de María"],["f45","F45"],["amazon","Amazon Ads"]],
+  raw(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}const d=data.lugares||{};Object.keys(d).forEach(k=>{if(d[k]&&d[k].lat!=null)o[k]=d[k]});return o},
+  get sites(){return Object.assign({retiro:{lat:40.4148,lon:-3.6842,r:520}},this.raw())},
+  save(k,lat,lon,dir){if(!data.lugares)data.lugares={};const o={lat:+lat.toFixed(6),lon:+lon.toFixed(6),r:k==="retiro"?520:120,dir:dir||""};data.lugares[k]=o;touch(o,true)},
+  async geocode(q){const u="https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=es&viewbox=-3.80,40.52,-3.58,40.36&bounded=1&q="+encodeURIComponent(q+", Madrid");
+    const r=await fetch(u,{headers:{"Accept-Language":"es"}});if(!r.ok)throw new Error("geo "+r.status);const j=await r.json();if(!j.length)throw new Error("no");return {lat:+j[0].lat,lon:+j[0].lon,name:j[0].display_name}},
+  async saveAddr(k,q){if(!q.trim())return;try{const g=await this.geocode(q);this.save(k,g.lat,g.lon,q.trim());toast(this.NAMES[k]+": "+g.name.split(",").slice(0,3).join(","));this.paintSites();if(this.on)this.update(true)}catch(e){toast("No encuentro esa dirección. Prueba «calle y número»",true)}},
   get on(){const v=LS.get(this.ON);return v==null?true:v==="1"},set on(v){LS.set(this.ON,v?"1":"0")},
   mine(){try{const m=JSON.parse(LS.get("rx27-milugar")||"null");return m&&m.k?m:null}catch(e){return null}},
   dist(a,b,c,d){const R=6371e3,r=Math.PI/180,x=(d-b)*r*Math.cos((a+c)/2*r),y=(c-a)*r;return Math.sqrt(x*x+y*y)*R},
@@ -1667,19 +1681,21 @@ const Loc={
     catch(e){if(!silent)toast(e&&e.code===1?"El móvil no ha dado permiso de ubicación. Actívalo en Ajustes del iPhone → Privacidad → Localización":"No he podido leer tu ubicación",true)}
     finally{this.busy=false}
   },
-  async saveHere(k){try{const c=await this.pos();this.save(k,c.latitude,c.longitude);toast(this.NAMES[k]+" guardado en esta ubicación");if(this.on)this.update(true);else this.paintSites()}catch(e){toast(e&&e.code===1?"Necesito permiso de ubicación para guardar el sitio":"No he podido leer tu ubicación",true)}},
+  async saveHere(k){try{const c=await this.pos();this.save(k,c.latitude,c.longitude,"");toast(this.NAMES[k]+" guardado en esta ubicación");if(this.on)this.update(true);else this.paintSites()}catch(e){toast(e&&e.code===1?"Necesito permiso de ubicación para guardar el sitio":"No he podido leer tu ubicación",true)}},
   block(){return `<section class="panel loc rv" aria-label="Ubicación"><div class="loc-h"><div><h3 style="margin:0">Ubicación</h3><p class="sub" style="margin:4px 0 0">Javi aparece en el sitio del mapa donde estás. Solo se comparte el nombre del sitio, nunca tus coordenadas.</p></div>
       <button class="btn ${this.on?"pri":""}" type="button" data-locon aria-pressed="${this.on}">${this.on?"✓ Ubicación activada":"Activar ubicación"}</button></div>
       <div class="loc-now" id="locnow"></div>
-      <div class="lbl" style="margin-top:4px"><span>Guarda tus sitios estando en ellos</span></div>
-      <div class="row loc-sites">${["casa","f45","amazon","retiro"].map(k=>`<button class="btn" type="button" data-site="${k}">${this.NAMES[k]}</button>`).join("")}</div>
-      <p class="sub muted" style="margin:0">Restaurantes y bares se detectan solos con el mapa de OpenStreetMap. El Retiro ya viene guardado.</p>
+      <div class="lbl" style="margin-top:4px"><span>Tus sitios · escribe la dirección o pulsa 📍 estando allí</span></div>
+      <div class="loc-list">${this.SITES.map(([k,n])=>`<div class="loc-row" data-row="${k}"><span class="loc-n">${n}</span><input type="text" autocomplete="off" placeholder="${k==="casa"?"Ej.: Maldonado 63":k==="padres"?"Ej.: Diego de León 54":k==="suegros"?"Ej.: Gabriel Lobo 12":"Calle y número"}" aria-label="Dirección de ${n}" data-addr="${k}"><button class="btn" type="button" data-geo="${k}">Guardar</button><button class="btn ghost" type="button" data-site="${k}" aria-label="Usar mi ubicación actual para ${n}">📍</button></div>`).join("")}</div>
+      <p class="sub muted" style="margin:0">Las direcciones se guardan en tu Gist privado (no en la web pública) y se sincronizan entre tus dispositivos. Restaurantes y bares se detectan solos. El Retiro ya viene guardado.</p>
       ${typeof Sync!=="undefined"&&Sync.cfg&&Sync.cfg.share?`<p class="sub muted" style="margin:0">Para avisar al llegar sin abrir la app (atajo de iPhone): ID del enlace <span class="kbd" style="user-select:all">${esc(Sync.cfg.share)}</span></p>`:""}</section>`},
-  paintSites(){const S=this.sites,raw=(()=>{try{return JSON.parse(LS.get(this.KEY)||"{}")}catch(e){return {}}})();
-    document.querySelectorAll("[data-site]").forEach(b=>{const k=b.dataset.site,ok=!!raw[k]||k==="retiro";b.innerHTML=(ok?"✓ ":"+ ")+this.NAMES[k];b.classList.toggle("pri",ok&&!!raw[k])});
+  paintSites(){const raw=this.raw();
+    document.querySelectorAll("[data-row]").forEach(r=>{const k=r.dataset.row,o=raw[k],inp=r.querySelector("input"),b=r.querySelector("[data-geo]");r.classList.toggle("ok",!!o);if(o&&document.activeElement!==inp)inp.value=o.dir||"Guardado con tu ubicación";b.textContent=o?"✓ Guardado":"Guardar"});
     const n=$("#locnow");if(n){const m=this.mine();n.innerHTML=this.on?(m?`Ahora: <b>${esc(this.NAMES[m.k]||m.k)}${m.n?" · "+esc(m.n):""}</b> <span class="muted">· hace ${Math.max(0,Math.round((Date.now()-m.t)/60e3))} min</span>`:"Buscando…"):"Desactivada: Javi sigue tu plan del día."}},
   mount(){const b=document.querySelector("[data-locon]");if(b)b.onclick=()=>{this.on=!this.on;b.classList.toggle("pri",this.on);b.setAttribute("aria-pressed",this.on);b.textContent=this.on?"✓ Ubicación activada":"Activar ubicación";if(this.on)this.update();else{LS.set("rx27-milugar","null");Tama.publish()}this.paintSites();if(state.view==="juego")Tama.paintInfo()};
-    document.querySelectorAll("[data-site]").forEach(x=>x.onclick=()=>this.saveHere(x.dataset.site));this.paintSites();if(this.on)this.update(true)}
+    document.querySelectorAll("[data-site]").forEach(x=>x.onclick=()=>this.saveHere(x.dataset.site));
+    document.querySelectorAll("[data-geo]").forEach(x=>x.onclick=()=>{const k=x.dataset.geo;this.saveAddr(k,document.querySelector(`[data-addr="${k}"]`).value)});
+    document.querySelectorAll("[data-addr]").forEach(x=>{x.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();this.saveAddr(x.dataset.addr,x.value)}};x.oninput=()=>{const b=document.querySelector(`[data-geo="${x.dataset.addr}"]`);if(b)b.textContent="Guardar"}});this.paintSites();if(this.on)this.update(true)}
 };
 setInterval(()=>{if(Loc.on&&document.visibilityState==="visible"&&!document.body.classList.contains("viewer"))Loc.update(true)},4*60e3);
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&Loc.on&&!document.body.classList.contains("viewer"))Loc.update(true)});
@@ -1710,7 +1726,8 @@ const Tama={
     if(L){const P={f45:["gym","En el F45",act0&&act0.k==="gym"?act0.n:"Entrenando"],amazon:["work","En Amazon Ads","Currando"],retiro:["run","En el Retiro",act0&&act0.k==="run"?act0.n:"Corriendo o paseando"],
         restaurante:["eatout","Comiendo fuera",L.n||"En un restaurante"],fuera:[moving?"walk":"walk","Por Madrid",L.n||"En movimiento"]}[L.k];
       if(P){[k,txt,sub]=P}
-      else if(L.k==="casa"){if(night){k="sleep";txt="Durmiendo";sub="En casa"}else if(eat0){k="eat";txt="En casa comiendo";sub=eat0.n}else{k="rest";txt="En casa";sub="Recargando para el siguiente entreno"}}
+      else if(L.k==="casa"||L.k==="padres"||L.k==="suegros"){const w=L.k==="casa"?"En casa":L.k==="padres"?"En casa de sus padres":"En casa de sus suegros";
+        if(night&&L.k==="casa"){k="sleep";txt="Durmiendo";sub="En casa"}else if(eat0){k="eat";txt=w+" comiendo";sub=eat0.n}else{k="rest";txt=w;sub=L.k==="casa"?"Recargando para el siguiente entreno":"De visita"}}
       return {k,txt,sub,next,ag,min,lugar:L}}
     if(min<7*60||min>=23*60+30){k="sleep";txt="Durmiendo";sub="La recuperación también entrena"}
     else{const act=ag.find(x=>x.k!=="eat"&&min>=x.m-10&&min<x.e),eat=ag.find(x=>x.k==="eat"&&min>=x.m-5&&min<x.e);
