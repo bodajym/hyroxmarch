@@ -1,650 +1,897 @@
 {
-  "actualizado": "2026-11-03",
-  "momentos": [
-    "Desayuno",
-    "Comida",
-    "Merienda",
-    "Post-entreno",
-    "Cena",
-    "Snack"
-  ],
-  "recetas": [
-    {
-      "id": "des-a",
-      "momento": "Desayuno",
-      "nombre": "Tortilla de huevos y claras",
-      "min": 8,
-      "kcal": 505,
-      "p": 42,
-      "c": 42,
-      "g": 18,
-      "ingredientes": [
-        "3 huevos L",
-        "150 g de claras pasteurizadas",
-        "40 g de pan integral (1 rebanada gruesa)",
-        "1 pieza de fruta (mandarina, manzana o pera)",
-        "Unas gotas de AOVE o spray",
-        "Sal, pimienta y orégano"
-      ],
-      "pasos": [
-        "Bate los huevos con las claras, sal y pimienta.",
-        "Sartén antiadherente a fuego medio con unas gotas de aceite.",
-        "Echa el batido y deja 2-3 min sin tocar hasta que cuaje el borde.",
-        "Dobla por la mitad y 1 min más. Que quede jugosa por dentro.",
-        "Tuesta el pan y acompaña con la fruta."
-      ],
-      "variantes": "Añade un puñado de espinacas o champiñones al batido (no suman casi nada). Con 50 g de pavo picado sube 10 g de proteína."
-    },
-    {
-      "id": "des-b",
-      "momento": "Desayuno",
-      "nombre": "Bol de queso batido, Evolate y avena",
-      "min": 4,
-      "kcal": 525,
-      "p": 55,
-      "c": 64,
-      "g": 5,
-      "ingredientes": [
-        "250 g de queso fresco batido 0 % (o skyr)",
-        "25 g de HSN Evolate vainilla (un cacito escaso)",
-        "40 g de copos de avena",
-        "1 plátano en rodajas",
-        "Canela"
-      ],
-      "pasos": [
-        "Mezcla el Evolate con el queso batido y 2 cucharadas de agua para que no haga grumos.",
-        "Añade la avena, el plátano en rodajas y canela."
-      ],
-      "variantes": "Con frutos rojos congelados en lugar de plátano, cuando entren en el presupuesto."
-    },
-    {
-      "id": "com-a",
-      "momento": "Comida",
-      "nombre": "Pollo al limón con arroz y brócoli",
-      "min": 25,
-      "kcal": 735,
-      "p": 66,
-      "c": 67,
-      "g": 20,
-      "ingredientes": [
-        "250 g de pechuga de pollo",
-        "70 g de arroz (en crudo)",
-        "300 g de brócoli o judías verdes (congeladas valen)",
-        "15 g de AOVE (1 cucharada y media)",
-        "1 diente de ajo, medio limón, pimentón, sal"
-      ],
-      "pasos": [
-        "Cuece el arroz en agua con sal 15-18 min y escurre.",
-        "Corta el pollo en tiras, sal y pimentón.",
-        "Sartén muy caliente con la mitad del aceite: pollo 6-8 min, que se dore. Al final, zumo de limón.",
-        "Verdura al vapor en el microondas 5 min (táper con tapa y un dedo de agua), o salteada con el ajo y el resto del aceite."
-      ],
-      "variantes": "Para el batch cooking del domingo: 1,5 kg de pollo al horno a 200 °C 22-25 min y 300 g de arroz cocido. Dura 4 días en la nevera."
-    },
-    {
-      "id": "com-b",
-      "momento": "Comida",
-      "nombre": "Picada de ternera con tomate y patata",
-      "min": 25,
-      "kcal": 635,
-      "p": 55,
-      "c": 55,
-      "g": 22,
-      "ingredientes": [
-        "220 g de carne picada de ternera 5 % grasa",
-        "250 g de patata",
-        "300 g de verdura (pimiento, calabacín, cebolla)",
-        "100 g de tomate triturado",
-        "10 g de AOVE",
-        "Comino, pimentón, orégano, sal"
-      ],
-      "pasos": [
-        "Patata en dados al microondas 8-10 min en táper tapado con un chorrito de agua, o al horno a 200 °C 30 min.",
-        "Sofríe la verdura picada con el aceite 5 min.",
-        "Añade la picada, desmenúzala y dórala 5 min con las especias.",
-        "Echa el tomate y deja 5 min a fuego bajo.",
-        "Sirve con la patata."
-      ],
-      "variantes": "Haz 1 kg de picada en tomate el domingo: son 4-5 raciones. También sirve para hamburguesas."
-    },
-    {
-      "id": "com-c",
-      "momento": "Comida",
-      "nombre": "Lomo con arroz y pimientos",
-      "min": 20,
-      "kcal": 785,
-      "p": 60,
-      "c": 69,
-      "g": 29,
-      "ingredientes": [
-        "250 g de cinta de lomo de cerdo en filetes",
-        "70 g de arroz (en crudo)",
-        "300 g de pimiento y cebolla",
-        "10 g de AOVE",
-        "Ajo en polvo, sal, pimienta"
-      ],
-      "pasos": [
-        "Cuece el arroz 15-18 min.",
-        "Pimiento y cebolla en tiras a la plancha con la mitad del aceite, 8 min.",
-        "Lomo a la plancha muy caliente 2 min por lado con sal y ajo."
-      ],
-      "variantes": "Si es un día de descanso, cambia el arroz por más verdura y baja a unas 550 kcal."
-    },
-    {
-      "id": "com-d",
-      "momento": "Comida",
-      "nombre": "Merluza al horno con patata",
-      "min": 35,
-      "kcal": 525,
-      "p": 55,
-      "c": 48,
-      "g": 12,
-      "ingredientes": [
-        "300 g de merluza (filetes congelados valen)",
-        "250 g de patata en rodajas finas",
-        "Ensalada grande",
-        "10 g de AOVE",
-        "Ajo, perejil, limón, sal"
-      ],
-      "pasos": [
-        "Horno a 200 °C. Patata en rodajas con la mitad del aceite y sal, 20 min.",
-        "Pon la merluza encima con ajo, perejil y el resto del aceite, 10-12 min más.",
-        "Limón por encima y ensalada al lado."
-      ],
-      "variantes": "Es una comida ligera: perfecta para el viernes de Z2 o el domingo."
-    },
-    {
-      "id": "com-e",
-      "momento": "Comida",
-      "nombre": "Hamburguesas caseras con patata",
-      "min": 30,
-      "kcal": 545,
-      "p": 51,
-      "c": 48,
-      "g": 16,
-      "ingredientes": [
-        "220 g de picada de ternera 5 % (2 hamburguesas)",
-        "250 g de patata",
-        "Ensalada con tomate",
-        "5 g de AOVE",
-        "Sal, pimienta, ajo en polvo, mostaza"
-      ],
-      "pasos": [
-        "Patata en gajos al horno a 210 °C 25-30 min con el aceite y sal.",
-        "Forma 2 hamburguesas con la picada y las especias.",
-        "Plancha muy caliente 3 min por lado.",
-        "Sirve con ensalada y mostaza."
-      ],
-      "variantes": "Sábado: si sales a cenar, esta es la comida."
-    },
-    {
-      "id": "com-f",
-      "momento": "Comida",
-      "nombre": "Pollo al curry con arroz",
-      "min": 25,
-      "kcal": 795,
-      "p": 73,
-      "c": 92,
-      "g": 15,
-      "ingredientes": [
-        "250 g de pechuga de pollo",
-        "100 g de arroz (en crudo)",
-        "300 g de verdura (calabacín o el salteado congelado)",
-        "125 g de queso fresco batido 0 % (o yogur natural)",
-        "1 cucharada de curry en polvo",
-        "5 g de AOVE, sal"
-      ],
-      "pasos": [
-        "Cuece el arroz 15-18 min.",
-        "Pollo en dados dorado con el aceite 5 min.",
-        "Añade el calabacín en dados y el curry, 5 min.",
-        "Fuera del fuego, mezcla el queso batido para hacer la salsa."
-      ],
-      "variantes": "Plato del jueves HYROX: lleva más arroz a propósito."
-    },
-    {
-      "id": "com-g",
-      "momento": "Comida",
-      "nombre": "Garbanzos salteados con pollo",
-      "min": 15,
-      "kcal": 690,
-      "p": 63,
-      "c": 57,
-      "g": 21,
-      "ingredientes": [
-        "350 g de garbanzos cocidos (1 bote, escurridos)",
-        "150 g de pollo (vale el del batch cooking)",
-        "200 g de verdura salteada congelada",
-        "10 g de AOVE",
-        "Pimentón, comino, sal"
-      ],
-      "pasos": [
-        "Lava y escurre los garbanzos.",
-        "Saltea la verdura con el aceite 5 min.",
-        "Añade el pollo en dados y los garbanzos con las especias, 5 min a fuego fuerte."
-      ],
-      "variantes": "Plato de domingo: llena mucho y casi no hay que cocinar."
-    },
-    {
-      "id": "com-h",
-      "momento": "Comida",
-      "nombre": "Patata, huevo y atún",
-      "min": 20,
-      "kcal": 610,
-      "p": 46,
-      "c": 56,
-      "g": 22,
-      "ingredientes": [
-        "300 g de patata",
-        "2 huevos",
-        "2 latas de atún al natural",
-        "Ensalada grande",
-        "10 g de AOVE",
-        "Sal, vinagre, orégano"
-      ],
-      "pasos": [
-        "Patata en dados al microondas 10 min en táper tapado con un chorrito de agua (o cocida 15 min).",
-        "Cuece los huevos 10 min.",
-        "Mezcla la patata templada con el atún escurrido, los huevos en cuartos y la ensalada. Aliña con el aceite y el vinagre."
-      ],
-      "variantes": "Comida barata y rápida. Fría también vale para llevar."
-    },
-    {
-      "id": "mer-a",
-      "momento": "Merienda",
-      "nombre": "Skyr con plátano y miel",
-      "min": 2,
-      "kcal": 295,
-      "p": 29,
-      "c": 45,
-      "g": 1,
-      "ingredientes": [
-        "250 g de skyr o queso fresco batido 0 %",
-        "1 plátano",
-        "10 g de miel",
-        "5 g de creatina (un cacito y medio): en el queso batido o en un vaso de agua"
-      ],
-      "pasos": [
-        "Plátano en rodajas sobre el skyr y la miel por encima.",
-        "Tómala 2-3 h antes de entrenar."
-      ],
-      "variantes": "Si no tienes hambre, cambia la miel por canela."
-    },
-    {
-      "id": "mer-b",
-      "momento": "Merienda",
-      "nombre": "Tostadas proteicas con pavo y fruta",
-      "min": 3,
-      "kcal": 295,
-      "p": 30,
-      "c": 39,
-      "g": 2,
-      "ingredientes": [
-        "6 tostadas proteicas Santiveri (2 raciones de 3, 36 g)",
-        "100 g de pechuga de pavo en lonchas (más del 90 % de carne)",
-        "1 pieza de fruta",
-        "5 g de creatina (un cacito y medio): en el queso batido o en un vaso de agua"
-      ],
-      "pasos": [
-        "Pon el pavo sobre las tostadas. Con tomate en rodajas, si quieres."
-      ],
-      "variantes": "Con 2 rebanadas de pan de molde integral en lugar de las tostadas: 345 kcal y 26 g de proteína. Para llevar al golf o al trabajo, en un táper para que no se rompan."
-    },
-    {
-      "id": "post-a",
-      "momento": "Post-entreno",
-      "nombre": "Batido de Evolate, leche y plátano",
-      "min": 1,
-      "kcal": 366,
-      "p": 57,
-      "c": 39,
-      "g": 1,
-      "ingredientes": [
-        "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
-        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)",
-        "1 plátano"
-      ],
-      "pasos": [
-        "Agita el Evolate y la leche fría en la coctelera 15 s.",
-        "Tómalo nada más llegar, con el plátano al lado."
-      ],
-      "variantes": "El batido de después de entrenar. Si estás fuera y no tienes leche, con 300 ml de agua: 255 kcal y 37 g de proteína."
-    },
-    {
-      "id": "post-b",
-      "momento": "Post-entreno",
-      "nombre": "Batido de Evolate con leche proteica",
-      "min": 1,
-      "kcal": 261,
-      "p": 56,
-      "c": 12,
-      "g": 1,
-      "ingredientes": [
-        "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
-        "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)"
-      ],
-      "pasos": [
-        "Agita el Evolate y la leche fría en la coctelera 15 s."
-      ],
-      "variantes": "Sin plátano, para días de descanso o Z2. 56 g de proteína por 261 kcal."
-    },
-    {
-      "id": "cen-a",
-      "momento": "Cena",
-      "nombre": "Tortilla de claras con ensalada",
-      "min": 8,
-      "kcal": 310,
-      "p": 32,
-      "c": 7,
-      "g": 16,
-      "ingredientes": [
-        "2 huevos + 150 g de claras",
-        "Ensalada grande (lechuga, tomate, pepino)",
-        "5 g de AOVE",
-        "Sal, vinagre"
-      ],
-      "pasos": [
-        "Tortilla francesa igual que la del desayuno.",
-        "Ensalada aliñada con el aceite y vinagre."
-      ],
-      "variantes": "Con champiñones salteados dentro, más saciante."
-    },
-    {
-      "id": "cen-b",
-      "momento": "Cena",
-      "nombre": "Queso batido con nueces y canela",
-      "min": 1,
-      "kcal": 290,
-      "p": 31,
-      "c": 16,
-      "g": 13,
-      "ingredientes": [
-        "350 g de queso fresco batido 0 %",
-        "20 g de nueces",
-        "Canela"
-      ],
-      "pasos": [
-        "Todo en un bol. Listo."
-      ],
-      "variantes": "La cena de los días que llegas tarde del F45."
-    },
-    {
-      "id": "cen-c",
-      "momento": "Cena",
-      "nombre": "Ensalada de atún y huevo",
-      "min": 10,
-      "kcal": 275,
-      "p": 27,
-      "c": 5,
-      "g": 15,
-      "ingredientes": [
-        "1 lata de atún al natural",
-        "2 huevos cocidos",
-        "Ensalada grande",
-        "5 g de AOVE"
-      ],
-      "pasos": [
-        "Cuece los huevos 10 min (o tenlos hechos del domingo).",
-        "Monta la ensalada con el atún escurrido y los huevos en cuartos."
-      ],
-      "variantes": "Añade 100 g de garbanzos si el día ha sido doble."
-    },
-    {
-      "id": "snk-a",
-      "momento": "Snack",
-      "nombre": "Atún con tortitas de arroz",
-      "min": 1,
-      "kcal": 180,
-      "p": 21,
-      "c": 16,
-      "g": 2,
-      "ingredientes": [
-        "1 lata de atún al natural",
-        "2 tortitas de arroz"
-      ],
-      "pasos": [
-        "El atún sobre las tortitas."
-      ],
-      "variantes": ""
-    },
-    {
-      "id": "snk-b",
-      "momento": "Snack",
-      "nombre": "Huevos cocidos y fruta",
-      "min": 1,
-      "kcal": 220,
-      "p": 14,
-      "c": 20,
-      "g": 10,
-      "ingredientes": [
-        "2 huevos cocidos",
-        "1 pieza de fruta"
-      ],
-      "pasos": [
-        "Cuece una docena el domingo: duran 5 días en la nevera."
-      ],
-      "variantes": ""
-    },
-    {
-      "id": "snk-c",
-      "momento": "Snack",
-      "nombre": "Cacito de Evolate",
-      "min": 1,
-      "kcal": 112,
-      "p": 27,
-      "c": 0,
-      "g": 0,
-      "ingredientes": [
-        "30 g de HSN Evolate (1 cacito)",
-        "250 ml de agua o leche proteica"
-      ],
-      "pasos": [
-        "Agita y listo. Para cuando vas corto de proteína a última hora."
-      ],
-      "variantes": ""
-    }
-  ],
-  "menu": [
-    {
-      "dia": "Lunes",
-      "tipo": "F45",
-      "desayuno": "des-a",
-      "comida": "com-a",
-      "merienda": "mer-a",
-      "post": "post-a",
-      "cena": "cen-a"
-    },
-    {
-      "dia": "Martes",
-      "tipo": "Z2 + F45",
-      "desayuno": "des-a",
-      "comida": "com-a",
-      "merienda": "mer-b",
-      "post": "post-a",
-      "cena": "cen-b"
-    },
-    {
-      "dia": "Miércoles",
-      "tipo": "F45",
-      "desayuno": "des-b",
-      "comida": "com-a",
-      "merienda": "mer-a",
-      "post": "post-b",
-      "cena": "cen-c"
-    },
-    {
-      "dia": "Jueves",
-      "tipo": "F45 HYROX",
-      "desayuno": "des-a",
-      "comida": "com-f",
-      "merienda": "mer-b",
-      "post": "post-a",
-      "cena": "cen-b"
-    },
-    {
-      "dia": "Viernes",
-      "tipo": "Series + F45 suave",
-      "desayuno": "des-b",
-      "comida": "com-h",
-      "merienda": "mer-a",
-      "post": "post-b",
-      "cena": "cen-a"
-    },
-    {
-      "dia": "Sábado",
-      "tipo": "F45",
-      "desayuno": "des-a",
-      "comida": "com-a",
-      "merienda": "mer-a",
-      "post": "post-b",
-      "cena": null
-    },
-    {
-      "dia": "Domingo",
-      "tipo": "Z2 largo",
-      "desayuno": "des-a",
-      "comida": "com-h",
-      "merienda": "mer-a",
-      "post": null,
-      "cena": "cen-c"
-    }
-  ],
-  "batch": [
-    "Horno a 200 °C: 1,5 kg de pechuga de pollo con sal, pimentón y ajo, 22-25 min. Pártelo en 6 tápers.",
-    "Mientras, cuece 300 g de arroz (unas 4 raciones) y una docena de huevos (10 min).",
-    "En la sartén: 1 kg de picada en tomate (receta de la comida B).",
-    "Microondas: 1,5 kg de patata en dados en 2 tandas de 10 min.",
-    "Bandeja de verdura asada (pimiento, cebolla, calabacín) con 1 cucharada de AOVE, 25 min.",
-    "Con esto tienes comidas de lunes a miércoles. El miércoles por la noche repites pollo y arroz."
-  ],
-  "compra": [
-    {
-      "seccion": "Carne y pescado",
-      "items": [
-        [
-          "Pechuga de pollo (2 bandejas grandes)",
-          "2 kg",
-          11.5
-        ],
-        [
-          "Pechuga de pavo en lonchas (+90 % carne)",
-          "1 paquete",
-          2.3
-        ],
-        [
-          "Atún al natural",
-          "pack de 6 latas",
-          4.8
-        ]
-      ]
-    },
-    {
-      "seccion": "Huevos y lácteos",
-      "items": [
-        [
-          "Huevos L",
-          "2 docenas",
-          5.5
-        ],
-        [
-          "Claras de huevo Hacendado",
-          "500 g",
-          2.0
-        ],
-        [
-          "Queso fresco batido 0 % Hacendado",
-          "3 × 1 kg",
-          6.9
-        ],
-        [
-          "Leche desnatada +Proteínas Hacendado (o la de Dia)",
-          "2 L",
-          2.4
-        ]
-      ]
-    },
-    {
-      "seccion": "Hidratos",
-      "items": [
-        [
-          "Arroz redondo o largo",
-          "1 kg",
-          1.3
-        ],
-        [
-          "Copos de avena",
-          "500 g",
-          1.1
-        ],
-        [
-          "Patatas",
-          "malla de 3 kg",
-          2.8
-        ],
-        [
-          "Pan de molde integral",
-          "1",
-          1.5
-        ]
-      ]
-    },
-    {
-      "seccion": "Fruta y verdura",
-      "items": [
-        [
-          "Plátanos",
-          "2 kg",
-          3.6
-        ],
-        [
-          "Brócoli congelado",
-          "1 kg",
-          1.8
-        ],
-        [
-          "Salteado de verduras congelado",
-          "1 kg",
-          1.8
-        ],
-        [
-          "Ensalada en bolsa",
-          "1",
-          1.0
-        ]
-      ]
-    }
-  ],
-  "compraNota": "Total aproximado: unos 49 € sin contar el Evolate. Precios orientativos: compruébalos en la app de Mercadona porque cambian. Esta semana hay pollo casi todos los días para no pasar de 50 €; la que viene rotamos con picada y merluza.",
-  "reglas": [
+ "actualizado": "2026-11-07",
+ "momentos": [
+  "Desayuno",
+  "Comida",
+  "Merienda",
+  "Post-entreno",
+  "Cena",
+  "Snack"
+ ],
+ "recetas": [
+  {
+   "id": "des-a",
+   "momento": "Desayuno",
+   "nombre": "Tortilla de huevos y claras",
+   "min": 8,
+   "kcal": 505,
+   "p": 42,
+   "c": 42,
+   "g": 18,
+   "ingredientes": [
+    "3 huevos L",
+    "150 g de claras pasteurizadas",
+    "40 g de pan integral (1 rebanada gruesa)",
+    "1 pieza de fruta (mandarina, manzana o pera)",
+    "Unas gotas de AOVE o spray",
+    "Sal, pimienta y orégano"
+   ],
+   "pasos": [
+    "Bate los huevos con las claras, sal y pimienta.",
+    "Sartén antiadherente a fuego medio con unas gotas de aceite.",
+    "Echa el batido y deja 2-3 min sin tocar hasta que cuaje el borde.",
+    "Dobla por la mitad y 1 min más. Que quede jugosa por dentro.",
+    "Tuesta el pan y acompaña con la fruta."
+   ],
+   "variantes": "Añade un puñado de espinacas o champiñones al batido (no suman casi nada). Con 50 g de pavo picado sube 10 g de proteína."
+  },
+  {
+   "id": "des-b",
+   "momento": "Desayuno",
+   "nombre": "Bol de queso batido, Evolate y avena",
+   "min": 4,
+   "kcal": 525,
+   "p": 55,
+   "c": 64,
+   "g": 5,
+   "ingredientes": [
+    "250 g de queso fresco batido 0 % (o skyr)",
+    "25 g de HSN Evolate vainilla (un cacito escaso)",
+    "40 g de copos de avena",
+    "1 plátano en rodajas",
+    "Canela"
+   ],
+   "pasos": [
+    "Mezcla el Evolate con el queso batido y 2 cucharadas de agua para que no haga grumos.",
+    "Añade la avena, el plátano en rodajas y canela."
+   ],
+   "variantes": "Con frutos rojos congelados en lugar de plátano, cuando entren en el presupuesto."
+  },
+  {
+   "id": "des-c",
+   "momento": "Desayuno",
+   "nombre": "Tostadas Santiveri con pavo, queso fresco y tomate",
+   "min": 5,
+   "kcal": 510,
+   "p": 62,
+   "c": 42,
+   "g": 10,
+   "ingredientes": [
+    "4 tostadas proteicas Santiveri",
+    "100 g de pechuga de pavo en lonchas",
+    "100 g de queso fresco batido 0 % para untar",
+    "1 tomate en rodajas, orégano y sal",
+    "250 ml de leche proteica Dia"
+   ],
+   "pasos": [
+    "Unta las tostadas con el queso batido y una pizca de sal.",
+    "Pon encima el pavo y el tomate con orégano.",
+    "Acompaña con el vaso de leche proteica."
+   ],
+   "variantes": "Sin huevo. Si tienes prisa, el pavo y la leche se toman igual de pie en 3 minutos."
+  },
+  {
+   "id": "des-d",
+   "momento": "Desayuno",
+   "nombre": "Tortitas de avena y claras con skyr",
+   "min": 10,
+   "kcal": 480,
+   "p": 46,
+   "c": 68,
+   "g": 4,
+   "ingredientes": [
+    "50 g de copos de avena",
+    "200 g de claras",
+    "1 plátano maduro",
+    "Canela y una pizca de levadura",
+    "100 g de queso batido 0 % por encima"
+   ],
+   "pasos": [
+    "Tritura la avena, las claras, medio plátano, canela y levadura.",
+    "Sartén antiadherente con unas gotas de aceite: tortitas pequeñas, 1-2 min por lado.",
+    "Sirve con el queso batido y el otro medio plátano en rodajas."
+   ],
+   "variantes": "Sin huevo entero. Con frutos rojos congelados en lugar del plátano de encima."
+  },
+  {
+   "id": "des-e",
+   "momento": "Desayuno",
+   "nombre": "Revuelto de claras con pavo y espinacas",
+   "min": 7,
+   "kcal": 440,
+   "p": 50,
+   "c": 48,
+   "g": 4,
+   "ingredientes": [
+    "250 g de claras",
+    "70 g de pavo en lonchas troceado",
+    "Un puñado de espinacas o brotes de la bolsa de ensalada",
+    "50 g de pan integral",
+    "2 mandarinas"
+   ],
+   "pasos": [
+    "Saltea las espinacas 1 min con unas gotas de aceite.",
+    "Añade el pavo y las claras, y remueve a fuego medio hasta que cuajen.",
+    "Tuesta el pan y termina con las mandarinas."
+   ],
+   "variantes": "Con champiñones laminados queda más jugoso."
+  },
+  {
+   "id": "des-f",
+   "momento": "Desayuno",
+   "nombre": "Batido para llevar: leche proteica, Evolate, avena y plátano",
+   "min": 2,
+   "kcal": 520,
+   "p": 52,
+   "c": 66,
+   "g": 6,
+   "ingredientes": [
+    "300 ml de leche proteica Dia",
+    "25 g de HSN Evolate vainilla",
+    "40 g de copos de avena",
+    "1 plátano",
+    "Canela"
+   ],
+   "pasos": [
+    "Todo a la batidora 30 segundos.",
+    "Si te lo llevas, en un termo con hielo."
+   ],
+   "variantes": "Para días de entreno a primera hora o de prisas. Antes de correr, tómate solo la mitad."
+  },
+  {
+   "id": "com-a",
+   "momento": "Comida",
+   "nombre": "Pollo al limón con arroz y brócoli",
+   "min": 25,
+   "kcal": 735,
+   "p": 66,
+   "c": 67,
+   "g": 20,
+   "ingredientes": [
+    "250 g de pechuga de pollo",
+    "70 g de arroz (en crudo)",
+    "300 g de brócoli o judías verdes (congeladas valen)",
+    "15 g de AOVE (1 cucharada y media)",
+    "1 diente de ajo, medio limón, pimentón, sal"
+   ],
+   "pasos": [
+    "Cuece el arroz en agua con sal 15-18 min y escurre.",
+    "Corta el pollo en tiras, sal y pimentón.",
+    "Sartén muy caliente con la mitad del aceite: pollo 6-8 min, que se dore. Al final, zumo de limón.",
+    "Verdura al vapor en el microondas 5 min (táper con tapa y un dedo de agua), o salteada con el ajo y el resto del aceite."
+   ],
+   "variantes": "Para el batch cooking del domingo: 1,5 kg de pollo al horno a 200 °C 22-25 min y 300 g de arroz cocido. Dura 4 días en la nevera."
+  },
+  {
+   "id": "com-b",
+   "momento": "Comida",
+   "nombre": "Picada de ternera con tomate y patata",
+   "min": 25,
+   "kcal": 635,
+   "p": 55,
+   "c": 55,
+   "g": 22,
+   "ingredientes": [
+    "220 g de carne picada de ternera 5 % grasa",
+    "250 g de patata",
+    "300 g de verdura (pimiento, calabacín, cebolla)",
+    "100 g de tomate triturado",
+    "10 g de AOVE",
+    "Comino, pimentón, orégano, sal"
+   ],
+   "pasos": [
+    "Patata en dados al microondas 8-10 min en táper tapado con un chorrito de agua, o al horno a 200 °C 30 min.",
+    "Sofríe la verdura picada con el aceite 5 min.",
+    "Añade la picada, desmenúzala y dórala 5 min con las especias.",
+    "Echa el tomate y deja 5 min a fuego bajo.",
+    "Sirve con la patata."
+   ],
+   "variantes": "Haz 1 kg de picada en tomate el domingo: son 4-5 raciones. También sirve para hamburguesas."
+  },
+  {
+   "id": "com-c",
+   "momento": "Comida",
+   "nombre": "Lomo con arroz y pimientos",
+   "min": 20,
+   "kcal": 785,
+   "p": 60,
+   "c": 69,
+   "g": 29,
+   "ingredientes": [
+    "250 g de cinta de lomo de cerdo en filetes",
+    "70 g de arroz (en crudo)",
+    "300 g de pimiento y cebolla",
+    "10 g de AOVE",
+    "Ajo en polvo, sal, pimienta"
+   ],
+   "pasos": [
+    "Cuece el arroz 15-18 min.",
+    "Pimiento y cebolla en tiras a la plancha con la mitad del aceite, 8 min.",
+    "Lomo a la plancha muy caliente 2 min por lado con sal y ajo."
+   ],
+   "variantes": "Si es un día de descanso, cambia el arroz por más verdura y baja a unas 550 kcal."
+  },
+  {
+   "id": "com-d",
+   "momento": "Comida",
+   "nombre": "Merluza al horno con patata",
+   "min": 35,
+   "kcal": 525,
+   "p": 55,
+   "c": 48,
+   "g": 12,
+   "ingredientes": [
+    "300 g de merluza (filetes congelados valen)",
+    "250 g de patata en rodajas finas",
+    "Ensalada grande",
+    "10 g de AOVE",
+    "Ajo, perejil, limón, sal"
+   ],
+   "pasos": [
+    "Horno a 200 °C. Patata en rodajas con la mitad del aceite y sal, 20 min.",
+    "Pon la merluza encima con ajo, perejil y el resto del aceite, 10-12 min más.",
+    "Limón por encima y ensalada al lado."
+   ],
+   "variantes": "Es una comida ligera: perfecta para el viernes de Z2 o el domingo."
+  },
+  {
+   "id": "com-e",
+   "momento": "Comida",
+   "nombre": "Hamburguesas caseras con patata",
+   "min": 30,
+   "kcal": 545,
+   "p": 51,
+   "c": 48,
+   "g": 16,
+   "ingredientes": [
+    "220 g de picada de ternera 5 % (2 hamburguesas)",
+    "250 g de patata",
+    "Ensalada con tomate",
+    "5 g de AOVE",
+    "Sal, pimienta, ajo en polvo, mostaza"
+   ],
+   "pasos": [
+    "Patata en gajos al horno a 210 °C 25-30 min con el aceite y sal.",
+    "Forma 2 hamburguesas con la picada y las especias.",
+    "Plancha muy caliente 3 min por lado.",
+    "Sirve con ensalada y mostaza."
+   ],
+   "variantes": "Sábado: si sales a cenar, esta es la comida."
+  },
+  {
+   "id": "com-f",
+   "momento": "Comida",
+   "nombre": "Pollo al curry con arroz",
+   "min": 25,
+   "kcal": 795,
+   "p": 73,
+   "c": 92,
+   "g": 15,
+   "ingredientes": [
+    "250 g de pechuga de pollo",
+    "100 g de arroz (en crudo)",
+    "300 g de verdura (calabacín o el salteado congelado)",
+    "125 g de queso fresco batido 0 % (o yogur natural)",
+    "1 cucharada de curry en polvo",
+    "5 g de AOVE, sal"
+   ],
+   "pasos": [
+    "Cuece el arroz 15-18 min.",
+    "Pollo en dados dorado con el aceite 5 min.",
+    "Añade el calabacín en dados y el curry, 5 min.",
+    "Fuera del fuego, mezcla el queso batido para hacer la salsa."
+   ],
+   "variantes": "Plato del jueves HYROX: lleva más arroz a propósito."
+  },
+  {
+   "id": "com-g",
+   "momento": "Comida",
+   "nombre": "Garbanzos salteados con pollo",
+   "min": 15,
+   "kcal": 690,
+   "p": 63,
+   "c": 57,
+   "g": 21,
+   "ingredientes": [
+    "350 g de garbanzos cocidos (1 bote, escurridos)",
+    "150 g de pollo (vale el del batch cooking)",
+    "200 g de verdura salteada congelada",
+    "10 g de AOVE",
+    "Pimentón, comino, sal"
+   ],
+   "pasos": [
+    "Lava y escurre los garbanzos.",
+    "Saltea la verdura con el aceite 5 min.",
+    "Añade el pollo en dados y los garbanzos con las especias, 5 min a fuego fuerte."
+   ],
+   "variantes": "Plato de domingo: llena mucho y casi no hay que cocinar."
+  },
+  {
+   "id": "com-h",
+   "momento": "Comida",
+   "nombre": "Patata, huevo y atún",
+   "min": 20,
+   "kcal": 610,
+   "p": 46,
+   "c": 56,
+   "g": 22,
+   "ingredientes": [
+    "300 g de patata",
+    "2 huevos",
+    "2 latas de atún al natural",
+    "Ensalada grande",
+    "10 g de AOVE",
+    "Sal, vinagre, orégano"
+   ],
+   "pasos": [
+    "Patata en dados al microondas 10 min en táper tapado con un chorrito de agua (o cocida 15 min).",
+    "Cuece los huevos 10 min.",
+    "Mezcla la patata templada con el atún escurrido, los huevos en cuartos y la ensalada. Aliña con el aceite y el vinagre."
+   ],
+   "variantes": "Comida barata y rápida. Fría también vale para llevar."
+  },
+  {
+   "id": "com-i",
+   "momento": "Comida",
+   "nombre": "Pavo salteado con verduras y cuscús",
+   "min": 15,
+   "kcal": 640,
+   "p": 63,
+   "c": 62,
+   "g": 14,
+   "ingredientes": [
+    "250 g de filetes de pechuga de pavo en tiras",
+    "70 g de cuscús (en seco)",
+    "300 g de salteado de verduras congelado",
+    "10 g de AOVE",
+    "Un chorrito de soja, ajo en polvo y pimentón"
+   ],
+   "pasos": [
+    "Cuscús: el mismo peso de agua hirviendo con sal, tapa 5 min y esponja con un tenedor.",
+    "Sartén muy caliente con el aceite: el pavo 5 min, que se dore.",
+    "Añade la verdura congelada 5-6 min y la soja al final."
+   ],
+   "variantes": "Con arroz si no tienes cuscús."
+  },
+  {
+   "id": "com-j",
+   "momento": "Comida",
+   "nombre": "Lentejas con pollo y verduras",
+   "min": 15,
+   "kcal": 620,
+   "p": 62,
+   "c": 55,
+   "g": 15,
+   "ingredientes": [
+    "200 g de lentejas cocidas de bote, escurridas y lavadas",
+    "180 g de pechuga de pollo en dados",
+    "Media cebolla, 1 zanahoria, medio pimiento",
+    "100 g de tomate triturado",
+    "10 g de AOVE, pimentón, comino, laurel"
+   ],
+   "pasos": [
+    "Sofríe la verdura picada con el aceite 5 min.",
+    "Añade el pollo y dóralo 4 min.",
+    "Tomate, especias, las lentejas y un vaso de agua: 8 min a fuego medio."
+   ],
+   "variantes": "Aguanta 3 días en la nevera: haz doble y tienes cena de recurso."
+  },
+  {
+   "id": "com-k",
+   "momento": "Comida",
+   "nombre": "Merluza con tomate y arroz",
+   "min": 20,
+   "kcal": 560,
+   "p": 50,
+   "c": 62,
+   "g": 9,
+   "ingredientes": [
+    "250 g de lomos de merluza (congelados valen)",
+    "60 g de arroz (en crudo)",
+    "200 g de tomate triturado con media cebolla y ajo",
+    "5 g de AOVE",
+    "Perejil, sal"
+   ],
+   "pasos": [
+    "Cuece el arroz 15-18 min.",
+    "Sofrito rápido: cebolla y ajo con el aceite, tomate y 8 min.",
+    "Mete la merluza en la salsa, tapa y 6-8 min a fuego bajo."
+   ],
+   "variantes": "Con patata cocida en lugar del arroz."
+  },
+  {
+   "id": "mer-a",
+   "momento": "Merienda",
+   "nombre": "Skyr con plátano y miel",
+   "min": 2,
+   "kcal": 295,
+   "p": 29,
+   "c": 45,
+   "g": 1,
+   "ingredientes": [
+    "250 g de skyr o queso fresco batido 0 %",
+    "1 plátano",
+    "10 g de miel",
+    "5 g de creatina (un cacito y medio): en el queso batido o en un vaso de agua"
+   ],
+   "pasos": [
+    "Plátano en rodajas sobre el skyr y la miel por encima.",
+    "Tómala 2-3 h antes de entrenar."
+   ],
+   "variantes": "Si no tienes hambre, cambia la miel por canela."
+  },
+  {
+   "id": "mer-b",
+   "momento": "Merienda",
+   "nombre": "Tostadas proteicas con pavo y fruta",
+   "min": 3,
+   "kcal": 295,
+   "p": 30,
+   "c": 39,
+   "g": 2,
+   "ingredientes": [
+    "6 tostadas proteicas Santiveri (2 raciones de 3, 36 g)",
+    "100 g de pechuga de pavo en lonchas (más del 90 % de carne)",
+    "1 pieza de fruta",
+    "5 g de creatina (un cacito y medio): en el queso batido o en un vaso de agua"
+   ],
+   "pasos": [
+    "Pon el pavo sobre las tostadas. Con tomate en rodajas, si quieres."
+   ],
+   "variantes": "Con 2 rebanadas de pan de molde integral en lugar de las tostadas: 345 kcal y 26 g de proteína. Para llevar al golf o al trabajo, en un táper para que no se rompan."
+  },
+  {
+   "id": "post-a",
+   "momento": "Post-entreno",
+   "nombre": "Batido de Evolate, leche y plátano",
+   "min": 1,
+   "kcal": 366,
+   "p": 57,
+   "c": 39,
+   "g": 1,
+   "ingredientes": [
+    "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
+    "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)",
+    "1 plátano"
+   ],
+   "pasos": [
+    "Agita el Evolate y la leche fría en la coctelera 15 s.",
+    "Tómalo nada más llegar, con el plátano al lado."
+   ],
+   "variantes": "El batido de después de entrenar. Si estás fuera y no tienes leche, con 300 ml de agua: 255 kcal y 37 g de proteína."
+  },
+  {
+   "id": "post-b",
+   "momento": "Post-entreno",
+   "nombre": "Batido de Evolate con leche proteica",
+   "min": 1,
+   "kcal": 261,
+   "p": 56,
+   "c": 12,
+   "g": 1,
+   "ingredientes": [
+    "40 g de HSN Evolate vainilla (1 cacito y un tercio)",
+    "250 ml de leche desnatada alta en proteína (Dia, o Hacendado +Proteínas)"
+   ],
+   "pasos": [
+    "Agita el Evolate y la leche fría en la coctelera 15 s."
+   ],
+   "variantes": "Sin plátano, para días de descanso o Z2. 56 g de proteína por 261 kcal."
+  },
+  {
+   "id": "cen-a",
+   "momento": "Cena",
+   "nombre": "Tortilla de claras con ensalada",
+   "min": 8,
+   "kcal": 310,
+   "p": 32,
+   "c": 7,
+   "g": 16,
+   "ingredientes": [
+    "2 huevos + 150 g de claras",
+    "Ensalada grande (lechuga, tomate, pepino)",
+    "5 g de AOVE",
+    "Sal, vinagre"
+   ],
+   "pasos": [
+    "Tortilla francesa igual que la del desayuno.",
+    "Ensalada aliñada con el aceite y vinagre."
+   ],
+   "variantes": "Con champiñones salteados dentro, más saciante."
+  },
+  {
+   "id": "cen-b",
+   "momento": "Cena",
+   "nombre": "Queso batido con nueces y canela",
+   "min": 1,
+   "kcal": 290,
+   "p": 31,
+   "c": 16,
+   "g": 13,
+   "ingredientes": [
+    "350 g de queso fresco batido 0 %",
+    "20 g de nueces",
+    "Canela"
+   ],
+   "pasos": [
+    "Todo en un bol. Listo."
+   ],
+   "variantes": "La cena de los días que llegas tarde del F45."
+  },
+  {
+   "id": "cen-c",
+   "momento": "Cena",
+   "nombre": "Ensalada de atún y huevo",
+   "min": 10,
+   "kcal": 275,
+   "p": 27,
+   "c": 5,
+   "g": 15,
+   "ingredientes": [
+    "1 lata de atún al natural",
+    "2 huevos cocidos",
+    "Ensalada grande",
+    "5 g de AOVE"
+   ],
+   "pasos": [
+    "Cuece los huevos 10 min (o tenlos hechos del domingo).",
+    "Monta la ensalada con el atún escurrido y los huevos en cuartos."
+   ],
+   "variantes": "Añade 100 g de garbanzos si el día ha sido doble."
+  },
+  {
+   "id": "cen-d",
+   "momento": "Cena",
+   "nombre": "Pollo a la plancha con verduras asadas",
+   "min": 15,
+   "kcal": 330,
+   "p": 45,
+   "c": 15,
+   "g": 9,
+   "ingredientes": [
+    "170 g de pechuga de pollo",
+    "250 g de verduras (calabacín, pimiento, cebolla o el salteado congelado)",
+    "5 g de AOVE",
+    "Sal, pimienta, hierbas"
+   ],
+   "pasos": [
+    "Verdura al horno 20 min a 200 °C o salteada 8 min.",
+    "Pollo a la plancha muy caliente, 4 min por lado."
+   ],
+   "variantes": "Del batch: pollo ya hecho y verdura asada en 3 minutos de microondas."
+  },
+  {
+   "id": "cen-e",
+   "momento": "Cena",
+   "nombre": "Merluza con ensalada",
+   "min": 10,
+   "kcal": 280,
+   "p": 42,
+   "c": 8,
+   "g": 8,
+   "ingredientes": [
+    "220 g de merluza",
+    "Ensalada grande con tomate",
+    "5 g de AOVE",
+    "Limón y sal"
+   ],
+   "pasos": [
+    "Merluza a la plancha o al microondas 4 min tapada con limón.",
+    "Ensalada aliñada con el aceite."
+   ],
+   "variantes": "Con medio aguacate si el día ha sido muy largo de entreno (+120 kcal)."
+  },
+  {
+   "id": "cen-f",
+   "momento": "Cena",
+   "nombre": "Revuelto de claras con champiñones y pavo",
+   "min": 8,
+   "kcal": 260,
+   "p": 42,
+   "c": 8,
+   "g": 5,
+   "ingredientes": [
+    "250 g de claras",
+    "150 g de champiñones laminados",
+    "60 g de pavo en lonchas",
+    "Ajo, perejil, unas gotas de AOVE"
+   ],
+   "pasos": [
+    "Saltea los champiñones con el ajo 4 min.",
+    "Añade el pavo y las claras, y remueve hasta que cuajen."
+   ],
+   "variantes": "Con 1 huevo entero queda más cremoso (+75 kcal)."
+  },
+  {
+   "id": "snk-a",
+   "momento": "Snack",
+   "nombre": "Atún con tortitas de arroz",
+   "min": 1,
+   "kcal": 180,
+   "p": 21,
+   "c": 16,
+   "g": 2,
+   "ingredientes": [
+    "1 lata de atún al natural",
+    "2 tortitas de arroz"
+   ],
+   "pasos": [
+    "El atún sobre las tortitas."
+   ],
+   "variantes": ""
+  },
+  {
+   "id": "snk-b",
+   "momento": "Snack",
+   "nombre": "Huevos cocidos y fruta",
+   "min": 1,
+   "kcal": 220,
+   "p": 14,
+   "c": 20,
+   "g": 10,
+   "ingredientes": [
+    "2 huevos cocidos",
+    "1 pieza de fruta"
+   ],
+   "pasos": [
+    "Cuece una docena el domingo: duran 5 días en la nevera."
+   ],
+   "variantes": ""
+  },
+  {
+   "id": "snk-c",
+   "momento": "Snack",
+   "nombre": "Cacito de Evolate",
+   "min": 1,
+   "kcal": 112,
+   "p": 27,
+   "c": 0,
+   "g": 0,
+   "ingredientes": [
+    "30 g de HSN Evolate (1 cacito)",
+    "250 ml de agua o leche proteica"
+   ],
+   "pasos": [
+    "Agita y listo. Para cuando vas corto de proteína a última hora."
+   ],
+   "variantes": ""
+  }
+ ],
+ "menu": [
+  {
+   "dia": "Lunes",
+   "tipo": "F45",
+   "desayuno": "des-c",
+   "comida": "com-j",
+   "merienda": "mer-a",
+   "post": "post-b",
+   "cena": "cen-d"
+  },
+  {
+   "dia": "Martes",
+   "tipo": "Z2/Test + F45",
+   "desayuno": "des-f",
+   "comida": "com-i",
+   "merienda": "mer-b",
+   "post": "post-a",
+   "cena": "cen-e"
+  },
+  {
+   "dia": "Miércoles",
+   "tipo": "F45",
+   "desayuno": "des-a",
+   "comida": "com-a",
+   "merienda": "mer-a",
+   "post": "post-b",
+   "cena": "cen-f"
+  },
+  {
+   "dia": "Jueves",
+   "tipo": "F45 HYROX",
+   "desayuno": "des-d",
+   "comida": "com-f",
+   "merienda": "mer-b",
+   "post": "post-a",
+   "cena": "cen-b"
+  },
+  {
+   "dia": "Viernes",
+   "tipo": "Series + F45 suave",
+   "desayuno": "des-b",
+   "comida": "com-k",
+   "merienda": "mer-a",
+   "post": "post-b",
+   "cena": "cen-a"
+  },
+  {
+   "dia": "Sábado",
+   "tipo": "F45",
+   "desayuno": "des-e",
+   "comida": "com-g",
+   "merienda": "mer-b",
+   "post": "post-b",
+   "cena": "cen-c"
+  },
+  {
+   "dia": "Domingo",
+   "tipo": "Z2 largo / golf",
+   "desayuno": "des-b",
+   "comida": "com-b",
+   "merienda": "mer-a",
+   "post": null,
+   "cena": "cen-d"
+  }
+ ],
+ "batch": [
+  "Horno a 200 °C: 1 kg de pechuga de pollo con sal, pimentón y ajo, 22-25 min. Para las lentejas del lunes, la cena del lunes y el miércoles.",
+  "A la vez, bandeja de verdura asada (pimiento, cebolla, calabacín o el salteado congelado) con 1 cucharada de AOVE, 25 min.",
+  "En el fuego: las lentejas con pollo (receta com-j) en doble ración: comida del lunes y cena de recurso.",
+  "Cuece 250 g de arroz para lunes a miércoles.",
+  "El jueves por la noche: pavo salteado o merluza en 15 minutos, no hace falta batch."
+ ],
+ "compra": [
+  {
+   "seccion": "Carne y pescado",
+   "items": [
     [
-      "Proteína",
-      "190-210 g todos los días. Es la cifra que no se negocia: si vas corto, cacito de Evolate."
+     "Pechuga de pollo",
+     "1 kg",
+     5.8
     ],
     [
-      "Creatina",
-      "5 g al día (un cacito y medio de Optimum Nutrition), todos los días. Antes de entrenar, con la merienda o en agua; los días sin entreno, con el desayuno. La hora casi no importa: lo que cuenta es no saltarse días. Las primeras 2-3 semanas puede subir 1-2 kg de agua en el músculo: no es grasa."
+     "Filetes de pechuga de pavo",
+     "500 g",
+     4.0
     ],
     [
-      "Hidratos",
-      "Pegados al entreno: merienda, batido y comida. Desayuno y cena, sobre todo proteína y verdura."
+     "Pechuga de pavo en lonchas (+90 % carne)",
+     "1 paquete",
+     2.3
     ],
     [
-      "Agua",
-      "3-3,5 L al día + 500-750 ml por hora de entreno. Con electrolitos si pasas de 60 min o haces golf."
+     "Lomos de merluza congelados",
+     "500 g",
+     4.2
     ],
     [
-      "Comer fuera",
-      "Plancha o parrilla, verdura o ensalada, una ración de patata o arroz si has entrenado, y como mucho una caña o copa de vino."
-    ],
-    [
-      "Fin de semana",
-      "Una comida libre a la semana, no un día libre."
-    ],
-    [
-      "Semana de HYROX",
-      "Mantenimiento (2.850-3.050 kcal). 36 h antes, carga de 450-550 g de hidratos al día. Nada nuevo."
+     "Atún al natural",
+     "pack de 6 latas",
+     4.8
     ]
+   ]
+  },
+  {
+   "seccion": "Huevos y lácteos",
+   "items": [
+    [
+     "Huevos L",
+     "1 docena",
+     2.8
+    ],
+    [
+     "Claras de huevo Hacendado",
+     "2 × 500 g",
+     4.0
+    ],
+    [
+     "Queso fresco batido 0 % Hacendado",
+     "2 × 1 kg",
+     4.6
+    ],
+    [
+     "Leche proteica (Dia) o +Proteínas Hacendado",
+     "2 L",
+     2.4
+    ]
+   ]
+  },
+  {
+   "seccion": "Hidratos y legumbre",
+   "items": [
+    [
+     "Copos de avena",
+     "500 g",
+     1.1
+    ],
+    [
+     "Cuscús",
+     "500 g",
+     1.2
+    ],
+    [
+     "Lentejas cocidas",
+     "2 botes",
+     1.8
+    ],
+    [
+     "Patatas",
+     "malla de 2 kg",
+     2.0
+    ]
+   ]
+  },
+  {
+   "seccion": "Fruta y verdura",
+   "items": [
+    [
+     "Plátanos",
+     "1,5 kg",
+     2.7
+    ],
+    [
+     "Mandarinas",
+     "1 kg",
+     1.9
+    ],
+    [
+     "Brócoli congelado",
+     "1 kg",
+     1.8
+    ],
+    [
+     "Salteado de verduras congelado",
+     "1 kg",
+     1.8
+    ],
+    [
+     "Champiñón laminado",
+     "1 bandeja",
+     1.2
+    ],
+    [
+     "Tomate triturado",
+     "1 brick",
+     0.6
+    ],
+    [
+     "Ensalada en bolsa",
+     "1",
+     1.0
+    ]
+   ]
+  }
+ ],
+ "compraNota": "Total aproximado: unos 52 € sin contar el Evolate (arroz, pan y tostadas Santiveri los tienes de la semana pasada). Esta semana hay variedad: pavo, lentejas, merluza y pollo, y solo 1 de cada 7 desayunos con huevos enteros. Precios orientativos: compruébalos en la app de Mercadona.",
+ "reglas": [
+  [
+   "Proteína",
+   "190-210 g todos los días. Es la cifra que no se negocia: si vas corto, cacito de Evolate."
   ],
-  "compraTitulo": "Compra de esta semana · del martes 3 al lunes 9",
-  "casa": "Antes de salir mira si tienes en casa: aceite de oliva, sal, especias (pimentón, curry, orégano, canela), miel, vinagre y café. Si se te ha acabado algo, cómpralo, pero el aceite (8-9 €) se come casi todo el margen: esa semana compra 1 kg de pollo menos y tira de huevos."
+  [
+   "Creatina",
+   "5 g al día (un cacito y medio de Optimum Nutrition), todos los días. Antes de entrenar, con la merienda o en agua; los días sin entreno, con el desayuno. La hora casi no importa: lo que cuenta es no saltarse días. Las primeras 2-3 semanas puede subir 1-2 kg de agua en el músculo: no es grasa."
+  ],
+  [
+   "Hidratos",
+   "Pegados al entreno: merienda, batido y comida. Desayuno y cena, sobre todo proteína y verdura."
+  ],
+  [
+   "Agua",
+   "3-3,5 L al día + 500-750 ml por hora de entreno. Con electrolitos si pasas de 60 min o haces golf."
+  ],
+  [
+   "Comer fuera",
+   "Plancha o parrilla, verdura o ensalada, una ración de patata o arroz si has entrenado, y como mucho una caña o copa de vino."
+  ],
+  [
+   "Fin de semana",
+   "Una comida libre a la semana, no un día libre."
+  ],
+  [
+   "Semana de HYROX",
+   "Mantenimiento (2.850-3.050 kcal). 36 h antes, carga de 450-550 g de hidratos al día. Nada nuevo."
+  ]
+ ],
+ "compraTitulo": "Compra de esta semana · del martes 10 al lunes 16",
+ "casa": "Antes de salir mira si tienes en casa: aceite de oliva, sal, especias (pimentón, curry, orégano, canela), miel, vinagre y café. Si se te ha acabado algo, cómpralo, pero el aceite (8-9 €) se come casi todo el margen: esa semana compra 1 kg de pollo menos y tira de huevos."
 }
