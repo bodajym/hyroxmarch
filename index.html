@@ -1100,7 +1100,7 @@ function shrink(file){return new Promise((res,rej)=>{const r=new FileReader();r.
 
 /* =============== PANEL =============== */
 let panelTimer=null;
-const START_W=97.5,GOAL_W=85,RACE_T=new Date(2027,2,17,9,0,0);
+const START_W=100,START_D="2026-11-02",GOAL_W=85,RACE_T=new Date(2027,2,17,9,0,0);
 const dayN=s=>Math.round((pd(s)-START)/864e5);
 function linFit(p){const n=p.length;if(n<2)return null;let sx=0,sy=0,sxx=0,sxy=0;p.forEach(q=>{sx+=q.t;sy+=q.y;sxx+=q.t*q.t;sxy+=q.t*q.y});const d=n*sxx-sx*sx;if(!d)return null;const m=(n*sxy-sx*sy)/d;return {m,b:(sy-m*sx)/n}}
 function streakOf(test){let s=todayStr(),n=0;if(!test(s))s=addDays(s,-1);while(n<500&&test(s)){n++;s=addDays(s,-1)}return n}
@@ -1137,7 +1137,7 @@ function weightChart(pts,avg,fit,zoom){
   const inR=p=>p.x>=from&&p.x<=to;
   const P=pts.filter(inR),A=avg.filter(inR);
   const tgt=s=>START_W+(GOAL_W-START_W)*(dayN(s)-dayN("2026-11-02"))/(dayN("2027-03-17")-dayN("2026-11-02"));
-  let ys=P.map(p=>p.y).concat([tgt(from),tgt(to)]);if(zoom==="all")ys=ys.concat([GOAL_W,START_W]);
+  let ys=P.map(p=>p.y).concat([tgt(from),tgt(to),START_W]);if(zoom==="all")ys=ys.concat([GOAL_W,START_W]);
   const lo=Math.floor(Math.min(...ys)-1),hi=Math.ceil(Math.max(...ys)+1);
   const X=s=>L+(pd(s)-pd(from))/864e5/span*(W-L-R),Y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
   let g="";const step=Math.max(1,Math.ceil((hi-lo)/6));for(let v=lo;v<=hi;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${L-10}" y="${Y(v)+3}" text-anchor="end">${v}</text>`;
@@ -1152,7 +1152,7 @@ function weightChart(pts,avg,fit,zoom){
   if(fit&&fit.m<-0.005&&A.length){const a=A[A.length-1];const daysTo=(a.y-GOAL_W)/(-fit.m);let end=addDays(a.x,Math.round(daysTo));let ey=GOAL_W;if(end>to){end=to;ey=a.y+fit.m*((pd(to)-pd(a.x))/864e5)}
     proj=`<line x1="${X(a.x)}" y1="${Y(a.y)}" x2="${X(end)}" y2="${Y(ey)}" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" opacity=".8"/>`}
   dots=P.map(p=>`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="3.2" fill="var(--bg2)" stroke="var(--muted)" stroke-width="1.5"/>`).join("");
-  const fst=P[0];const startMk=fst&&pts[0]&&fst.x===pts[0].x?`<circle cx="${X(fst.x)}" cy="${Y(fst.y)}" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/><text x="${X(fst.x)+8}" y="${Y(fst.y)-10}" style="fill:var(--ink)">INICIO ${fmt1(fst.y)}</text>`:"";
+  const fst=P[0];const startMk=(Y(START_W)>=0?`<line x1="${L}" x2="${W-R}" y1="${Y(START_W)}" y2="${Y(START_W)}" stroke="var(--ink)" stroke-opacity=".35" stroke-dasharray="2 5"/><text x="${L+4}" y="${Y(START_W)-6}" style="fill:var(--ink)">INICIO ${fmt1(START_W)} kg</text>`:"")+(fst&&pts[0]&&fst.x===pts[0].x?`<circle cx="${X(fst.x)}" cy="${Y(fst.y)}" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`:"");
   const last=A[A.length-1];const endDot=startMk+last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"";
   const geo={pts:P.map(p=>({x:p.x,y:p.y,g:p.g,a:(A.find(q=>q.x===p.x)||{}).y,px:X(p.x),py:Y(p.y)})),W,H,T,B};
   return {svg:`<svg id="wchart" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Peso diario, media de 7 días, trayectoria objetivo hasta 85 kg y proyección. Usa las flechas para recorrer los días.">
@@ -1188,7 +1188,7 @@ function dayDetail(s){
   const first=pts[0],prev=[...pts].reverse().find(x=>x.date<s);
   if(s>todayStr())return `<div class="dd-card"><div class="dd-h"><h4>${esc(nice(s))}</h4><span class="delta">por llegar</span></div><div class="sub">${esc(dayPlan(s).items.map(i=>i.d+": "+i.t).slice(0,2).join(" · "))}</div></div>`;
   if(!d)return `<div class="dd-card"><div class="dd-h"><h4>${esc(nice(s))}</h4></div><div class="sub">No hay nada apuntado este día.</div></div>`;
-  const tt=totals(d),e=energia(s),df=d.peso!=null&&first?d.peso-first.peso:null,dp=d.peso!=null&&prev?d.peso-prev.peso:null;
+  const tt=totals(d),e=energia(s),df=d.peso!=null?d.peso-START_W:null,dp=d.peso!=null&&prev?d.peso-prev.peso:null;
   const sg=x=>x==null?"—":(x>0?"+":x<0?"−":"")+fmt1(Math.abs(x));
   return `<div class="dd-card"><div class="dd-h"><div><div class="eyebrow">Semana ${weekOf(s)} · ${dayScore(s)} de 4 objetivos</div><h4>${esc(nice(s))}</h4></div>
     ${d.peso!=null?`<span class="delta ${df!=null&&df<0?"good":"mid"}">${sg(df)} kg desde el inicio</span>`:""}</div>
@@ -1213,10 +1213,11 @@ function renderPanel(){
   const fit=linFit(pts.filter(p=>p.x>=addDays(t,-21)).map(p=>({t:dayN(p.x),y:p.y})));
   const rate=fit?fit.m*7:null;
   let eta=null;if(fit&&fit.m<-0.01&&cur!=null){eta=addDays(t,Math.round((cur-GOAL_W)/(-fit.m)))}
-  const prog=cur==null?0:Math.max(0,Math.min(1,(START_W-cur)/(START_W-GOAL_W)));
-  const lost=cur==null?null:START_W-cur;
-  const tgtNow=START_W+(GOAL_W-START_W)*(dayN(t))/(dayN("2027-03-17"));
-  const vsPlan=cur==null?null:cur-tgtNow;
+  const lw=lastW?lastW.y:null;
+  const prog=lw==null?0:Math.max(0,Math.min(1,(START_W-lw)/(START_W-GOAL_W)));
+  const lost=lw==null?null:START_W-lw;
+  const tgtNow=START_W+(GOAL_W-START_W)*Math.max(0,dayN(t)-dayN(START_D))/(dayN("2027-03-17")-dayN(START_D));
+  const vsPlan=lw==null?null:lw-tgtNow;
   const dT=data.days[t]||blankDay(t),tot=totals(dT),tipo=dT.tipo||dayPlan(t).type,tg=TARGETS[tipo];
   const st=weekStats(w);
   const protStreak=streakOf(s=>{const d=data.days[s];return !!d&&totals(d).p>=190});
@@ -1261,19 +1262,19 @@ function renderPanel(){
     <section class="tile t-hero rv" aria-label="Peso">
       <div class="lbl"><span>Peso · media 7 días</span><em>${lastW?"último "+fmt1(lastW.y)+" kg · "+short(lastW.x):"sin pesajes"}</em></div>
       <div class="hero-row"><div class="kpi"><span data-count="${cur!=null?cur.toFixed(1):""}" data-dec="1">${cur!=null?fmt1(cur):"—"}</span><small>kg</small></div>
-        <div class="chips2" style="padding-bottom:10px">${pts.length?`<span class="delta">inicio ${fmt1(pts[0].y)} kg · ${short(pts[0].x)}</span><span class="delta good">objetivo 85 kg</span>`:""}${lost!=null?`<span class="delta ${lost>0?"good":"mid"}">${lost>=0?"−":"+"}${fmt1(Math.abs(lost))} kg desde el inicio</span>`:""}${rate!=null?`<span class="delta ${deltaCls(rate)}">${rate>0?"+":"−"}${fmt1(Math.abs(rate))} kg/semana</span>`:""}${vsPlan!=null?`<span class="delta ${vsPlan<=0.3?"good":vsPlan<=1.2?"mid":"bad"}">${vsPlan<=0?"por delante del plan "+fmt1(-vsPlan)+" kg":"detrás del plan "+fmt1(vsPlan)+" kg"}</span>`:""}</div></div>
+        <div class="chips2" style="padding-bottom:10px">${pts.length?`<span class="delta">inicio ${fmt1(START_W)} kg · ${short(START_D)}</span><span class="delta good">objetivo 85 kg</span>`:""}${lost!=null?`<span class="delta ${lost>0?"good":"mid"}">${lost>=0?"−":"+"}${fmt1(Math.abs(lost))} kg desde el inicio</span>`:""}${rate!=null?`<span class="delta ${deltaCls(rate)}">${rate>0?"+":"−"}${fmt1(Math.abs(rate))} kg/semana</span>`:""}${vsPlan!=null?`<span class="delta ${vsPlan<=0.3?"good":vsPlan<=1.2?"mid":"bad"}">${vsPlan<=0?"por delante del plan "+fmt1(-vsPlan)+" kg":"detrás del plan "+fmt1(vsPlan)+" kg"}</span>`:""}</div></div>
       <div class="sub">${eta?`A este ritmo llegas a <b>85 kg el ${fmtD(eta)}</b>${eta<="2027-03-17"?" — antes de HYROX.":" — después de HYROX: hay que apretar un poco."}`:pts.length<3?"Con 3 o más pesajes calculo tu ritmo real y cuándo llegas a 85 kg.":"Aún no hay tendencia de bajada clara: dale una semana más de datos."}</div>
       ${sparkSVG(w14,{h:46,goal:null})}
     </section>
     <section class="tile t-wide rv" aria-label="Diario de pesajes">
       <div class="lbl"><span>Diario de pesajes</span><em>${pts.length} ${pts.length===1?"pesaje":"pesajes"} · pulsa uno para ver su día</em></div>
       <div class="wl-top">
-        <div class="wl-k"><span class="lbl">Inicio · ${pts.length?short(pts[0].x):"—"}</span><div class="kpi-m"><span data-count="${pts.length?pts[0].y.toFixed(1):""}" data-dec="1">${pts.length?fmt1(pts[0].y):"—"}</span><small>kg</small></div></div>
+        <div class="wl-k"><span class="lbl">Inicio · ${short(START_D)}</span><div class="kpi-m"><span data-count="${START_W.toFixed(1)}" data-dec="1">${fmt1(START_W)}</span><small>kg</small></div></div>
         <div class="wl-k"><span class="lbl">Último · ${lastW?short(lastW.x):"—"}</span><div class="kpi-m"><span data-count="${lastW?lastW.y.toFixed(1):""}" data-dec="1">${lastW?fmt1(lastW.y):"—"}</span><small>kg</small></div></div>
-        <div class="wl-k lost"><span class="lbl">Perdido</span><div class="kpi-m">${pts.length>1?(pts[0].y-lastW.y>=0?"−":"+"):""}<span data-count="${pts.length>1?Math.abs(pts[0].y-lastW.y).toFixed(1):""}" data-dec="1">${pts.length>1?fmt1(Math.abs(pts[0].y-lastW.y)):"—"}</span><small>kg</small></div></div>
+        <div class="wl-k lost"><span class="lbl">Perdido · ${lastW?Math.round(Math.max(0,Math.min(1,(START_W-lastW.y)/(START_W-GOAL_W)))*100)+"% hecho":"—"}</span><div class="kpi-m">${lastW?(START_W-lastW.y>=0?"−":"+"):""}<span data-count="${lastW?Math.abs(START_W-lastW.y).toFixed(1):""}" data-dec="1">${lastW?fmt1(Math.abs(START_W-lastW.y)):"—"}</span><small>kg</small></div></div>
         <div class="wl-k goal"><span class="lbl">Objetivo · 17 mar</span><div class="kpi-m">85<small>kg · faltan ${lastW?fmt1(Math.max(0,lastW.y-85)):"—"}</small></div></div>
       </div>
-      ${pts.length?`<div class="wl-strip" role="listbox" aria-label="Pesajes">${pts.map((p,i)=>{const dprev=i?p.y-pts[i-1].y:null,pr=Math.max(0,Math.min(1,(pts[0].y-p.y)/(pts[0].y-85)));return `<button type="button" class="wd" data-day="${p.x}" role="option" aria-label="${esc(nice(p.x))}: ${fmt1(p.y)} kg"><span class="d">${esc(DOW[pd(p.x).getDay()].slice(0,3))} ${pd(p.x).getDate()} ${MON[pd(p.x).getMonth()]}</span><span class="k">${fmt1(p.y)}<small>kg</small></span><span class="dl" style="color:${dprev==null?"var(--muted)":dprev<0?"var(--ok)":dprev>0?"var(--bad)":"var(--muted)"}">${dprev==null?"inicio":(dprev>0?"+":dprev<0?"−":"±")+fmt1(Math.abs(dprev))}</span><span class="gr">${p.g!=null?fmt1(p.g)+" % grasa":"grasa —"}</span><span class="pg"><i style="width:${pr*100}%"></i></span></button>`}).join("")}</div>`:`<div class="empty-s">Tu primer pesaje aparecerá aquí. Cada día que te peses se añade una tarjeta con lo que has bajado.</div>`}
+      ${pts.length?`<div class="wl-strip" role="listbox" aria-label="Pesajes">${pts.map((p,i)=>{const dprev=i?p.y-pts[i-1].y:null,pr=Math.max(0,Math.min(1,(START_W-p.y)/(START_W-GOAL_W)));return `<button type="button" class="wd" data-day="${p.x}" role="option" aria-label="${esc(nice(p.x))}: ${fmt1(p.y)} kg"><span class="d">${esc(DOW[pd(p.x).getDay()].slice(0,3))} ${pd(p.x).getDate()} ${MON[pd(p.x).getMonth()]}</span><span class="k">${fmt1(p.y)}<small>kg</small></span><span class="dl" style="color:${dprev==null?"var(--muted)":dprev<0?"var(--ok)":dprev>0?"var(--bad)":"var(--muted)"}">${dprev==null?"inicio":(dprev>0?"+":dprev<0?"−":"±")+fmt1(Math.abs(dprev))}</span><span class="gr">${p.g!=null?fmt1(p.g)+" % grasa":"grasa —"}</span><span class="pg"><i style="width:${pr*100}%"></i></span></button>`}).join("")}</div>`:`<div class="empty-s">Tu primer pesaje aparecerá aquí. Cada día que te peses se añade una tarjeta con lo que has bajado.</div>`}
       <div id="wdetail" class="dd" aria-live="polite"></div>
     </section>
     <section class="tile t-wide rv" aria-label="Registro de peso y grasa">
@@ -1282,9 +1283,9 @@ function renderPanel(){
       ${pts.length?`<div class="trk-box" id="trkbox">${trackChart(pts,state.tmet==="grasa"?"g":"y")}</div>
       <div class="rg" role="table" aria-label="Registro de pesajes">
         <div class="rg-h" role="row"><span role="columnheader">Día</span><span role="columnheader">Peso</span><span role="columnheader">Δ día</span><span role="columnheader">Grasa</span><span role="columnheader">Δ grasa</span><span role="columnheader" class="hide-s">Desde inicio</span></div>
-        ${pts.slice().reverse().map(p=>{const i=pts.indexOf(p),pr=i?pts[i-1]:null,dg=(()=>{const q=pts.slice(0,i).reverse().find(x=>x.g!=null);return p.g!=null&&q?p.g-q.g:null})(),dy=pr?p.y-pr.y:null,d0=p.y-pts[0].y;
+        ${pts.slice().reverse().map(p=>{const i=pts.indexOf(p),pr=i?pts[i-1]:null,dg=(()=>{const q=pts.slice(0,i).reverse().find(x=>x.g!=null);return p.g!=null&&q?p.g-q.g:null})(),dy=pr?p.y-pr.y:null,d0=p.y-START_W;
           const sg=(x,u)=>x==null?"—":`<em class="${x<0?"dn":x>0?"up":""}">${x>0?"+":x<0?"−":"±"}${fmt1(Math.abs(x))}${u}</em>`;
-          return `<button type="button" class="rg-r" role="row" data-day="${p.x}" aria-expanded="false"><span role="cell"><b>${pd(p.x).getDate()} ${MON[pd(p.x).getMonth()]}</b> <small>${esc(DOW[pd(p.x).getDay()].slice(0,3))}</small></span><span role="cell" class="n">${fmt1(p.y)} kg</span><span role="cell">${sg(dy,"")}</span><span role="cell" class="n">${p.g!=null?fmt1(p.g)+" %":"—"}</span><span role="cell">${sg(dg,"")}</span><span role="cell" class="hide-s">${i?sg(d0," kg"):"<em>inicio</em>"}</span></button><div class="rg-x" data-x="${p.x}"></div>`}).join("")}
+          return `<button type="button" class="rg-r" role="row" data-day="${p.x}" aria-expanded="false"><span role="cell"><b>${pd(p.x).getDate()} ${MON[pd(p.x).getMonth()]}</b> <small>${esc(DOW[pd(p.x).getDay()].slice(0,3))}</small></span><span role="cell" class="n">${fmt1(p.y)} kg</span><span role="cell">${sg(dy,"")}</span><span role="cell" class="n">${p.g!=null?fmt1(p.g)+" %":"—"}</span><span role="cell">${sg(dg,"")}</span><span role="cell" class="hide-s">${sg(d0," kg")}</span></button><div class="rg-x" data-x="${p.x}"></div>`}).join("")}
       </div>`:`<div class="empty-s">Cuando te peses, aquí tendrás cada día con su peso y su % de grasa.</div>`}
     </section>
     <section class="tile t-ring rv" aria-label="Progreso hacia 85 kg">
@@ -1292,7 +1293,7 @@ function renderPanel(){
       <div class="ringbox">${ringSVG(prog,{label:"Progreso hacia el objetivo",big:Math.round(prog*100)+"%"})}
         <div style="display:grid;gap:10px">
           <div><div class="kpi-m"><span data-count="${lost!=null?Math.max(0,lost).toFixed(1):""}" data-dec="1">${lost!=null?fmt1(Math.max(0,lost)):"—"}</span><small>kg perdidos</small></div></div>
-          <div><div class="kpi-m"><span data-count="${cur!=null?Math.max(0,cur-GOAL_W).toFixed(1):""}" data-dec="1">${cur!=null?fmt1(Math.max(0,cur-GOAL_W)):"—"}</span><small>kg por perder</small></div></div>
+          <div><div class="kpi-m"><span data-count="${lw!=null?Math.max(0,lw-GOAL_W).toFixed(1):""}" data-dec="1">${lw!=null?fmt1(Math.max(0,lw-GOAL_W)):"—"}</span><small>kg por perder</small></div></div>
           ${gNow!=null?`<div class="sub">Grasa corporal <b>${fmt1(gNow)} %</b>${gFirst!=null&&grasas.length>1?` · ${gNow-gFirst<=0?"−":"+"}${fmt1(Math.abs(gNow-gFirst))} pts`:""}</div>`:""}
         </div></div>
     </section>
@@ -1384,7 +1385,7 @@ function renderPanel(){
     const tip=$("#wtip"),cx=svg.querySelector("#cx"),cd=svg.querySelector("#cdot"),G=wc.geo;let idx=G.pts.length-1;
     const show=i=>{idx=Math.max(0,Math.min(G.pts.length-1,i));const p=G.pts[idx];cx.setAttribute("x1",p.px);cx.setAttribute("x2",p.px);cx.setAttribute("opacity","1");cd.setAttribute("cx",p.px);cd.setAttribute("cy",p.py);cd.setAttribute("opacity","1");
       const r=svg.getBoundingClientRect(),sx=r.width/G.W,sy=r.height/G.H;tip.style.left=Math.min(r.width-70,Math.max(70,p.px*sx))+"px";tip.style.top=(p.py*sy-10)+"px";
-      const f0=pts[0];tip.innerHTML=`<span>${esc(nice(p.x))}</span><b>${fmt1(p.y)} kg</b><span>${f0?(p.y-f0.y<=0?"−":"+")+fmt1(Math.abs(p.y-f0.y))+" kg desde el inicio · ":""}media ${p.a!=null?fmt1(p.a):"—"}${p.g!=null?" · grasa "+fmt1(p.g)+" %":""}</span>`;tip.classList.add("on")};
+      tip.innerHTML=`<span>${esc(nice(p.x))}</span><b>${fmt1(p.y)} kg</b><span>${(p.y-START_W<=0?"−":"+")+fmt1(Math.abs(p.y-START_W))+" kg desde los "+fmt1(START_W)+" · "}media ${p.a!=null?fmt1(p.a):"—"}${p.g!=null?" · grasa "+fmt1(p.g)+" %":""}</span>`;tip.classList.add("on")};
     const hide=()=>{cx.setAttribute("opacity","0");cd.setAttribute("opacity","0");tip.classList.remove("on")};
     const near=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*G.W;let b=0,bd=1e9;G.pts.forEach((p,i)=>{const d=Math.abs(p.px-x);if(d<bd){bd=d;b=i}});return b};
     let pinned=false;
@@ -1801,14 +1802,14 @@ const Cifras={
     let pasosT=0,entT=0,km=0,best={v:0,s:null},bestBal={v:0,s:null},regs=0;
     days.forEach(x=>{const ps=x.pasos||0;pasosT+=ps;if(ps>best.v)best={v:ps,s:x.date};(x.entrenos||[]).forEach(en=>{entT++;km+=num(en.km)||0});
       if((x.comidas||[]).length){regs++;if(x.date<t){const b=energia(x.date).balFin;if(b<bestBal.v)bestBal={v:b,s:x.date}}}});
-    const lost=p0&&p1?p0.peso-p1.peso:null,prog=p1?Math.max(0,Math.min(1,(START_W-p1.peso)/(START_W-GOAL_W))):0;
+    const lost=p1?START_W-p1.peso:null,prog=p1?Math.max(0,Math.min(1,(START_W-p1.peso)/(START_W-GOAL_W))):0;
     return {t,hoy:[
       {k:"Pasos",v:d.pasos||0,g:10000,u:""},
       {k:"Kcal activas",v:d.activas||0,g:600,u:""},
       {k:"Proteína",v:Math.round(tt.p),g:190,u:" g"},
       {k:"Déficit",v:Math.max(0,-Math.round(e.balAhora)),g:DEF_OBJ,u:" kcal"}],
       kcal:Math.round(tt.kcal),kcalObj:tg?tg.kcal:null,balance:Math.round(e.balAhora),
-      tot:{lost,prog,peso:p1?p1.peso:null,inicio:p0?p0.peso:null,pasosT,entT,km,best,bestBal,regs,dias:Math.max(0,Math.round((RACE-new Date(new Date().toDateString()))/864e5)),
+      tot:{lost,prog,peso:p1?p1.peso:null,inicio:START_W,pasosT,entT,km,best,bestBal,regs,dias:Math.max(0,Math.round((RACE-new Date(new Date().toDateString()))/864e5)),
         racha:streakOf(s=>{const x=data.days[s];return !!x&&(x.pasos||0)>=10000})}};
   },
   ring(v,g,i){const r=34,L=2*Math.PI*r,f=Math.max(0,Math.min(1,v/g));return `<svg class="cf-ring" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="${r}" class="trk"/><circle cx="42" cy="42" r="${r}" class="val c${i}" stroke-dasharray="${L}" stroke-dashoffset="${L}" data-off="${L*(1-f)}"/>${v>=g?`<circle cx="42" cy="42" r="${r}" class="val c${i} over" stroke-dasharray="${L}" stroke-dashoffset="${L}" data-off="${L*(1-Math.min(1,v/g-1))}"/>`:""}</svg>`},
@@ -1920,9 +1921,9 @@ const Scene3D={
     // cinta diaria del peso (media 7 días) por delante de las columnas
     let pulse=null;const dots=[];const dx=s=>X(1)-SP/2+((pd(s)-START)/864e5)/7*SP;
     // cada pesaje es una esfera que se puede tocar
-    {const g=new THREE.SphereGeometry(.17,16,16),f0=pts[0];pts.forEach(p=>{const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0xffffff,emissive:accent.getHex(),emissiveIntensity:.35,roughness:.3}));m.position.set(dx(p.x),Y(p.y)+.05,1.15);m.userData={dia:p.x,kg:p.y,df:f0?p.y-f0.y:0,first:f0&&p.x===f0.x};scene.add(m);dots.push(m);
+    {const g=new THREE.SphereGeometry(.17,16,16),f0=pts[0];pts.forEach(p=>{const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0xffffff,emissive:accent.getHex(),emissiveIntensity:.35,roughness:.3}));m.position.set(dx(p.x),Y(p.y)+.05,1.15);m.userData={dia:p.x,kg:p.y,df:p.y-START_W,first:false};scene.add(m);dots.push(m);
       const st=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(m.position.x,0,1.15),m.position.clone()]),new THREE.LineBasicMaterial({color:accent.getHex(),transparent:true,opacity:.3}));scene.add(st)});
-     if(f0){const ini=label("INICIO "+fmt1(f0.y),css("--ink"),.7);ini.position.set(dx(f0.x)-.4,Y(f0.y)+1.3,1.15);scene.add(ini)}}
+     if(f0){const ini=label("INICIO "+fmt1(START_W)+" KG",css("--ink"),.7);ini.position.set(dx(f0.x)-.4,Math.min(Y(START_W),Y(f0.y)+2.2),1.15);scene.add(ini)}}
     if(avg.length>1){
       const curve=new THREE.CatmullRomCurve3(avg.map(p=>new THREE.Vector3(dx(p.x),Y(p.y)+.05,.75)));
       scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,avg.length*8),.07,8,false),new THREE.MeshBasicMaterial({color:accent.getHex()})));
