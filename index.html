@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0C0F13">
 <title>RX/27 · Preparación HYROX</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RX27">
+<meta name="application-name" content="RX27">
 <meta name="description" content="Diario de preparación HYROX marzo 2027: plan del día, comidas, entrenos, carreras y progreso.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -342,14 +350,17 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 .legend2 i.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);vertical-align:0}
 .legend2 i.proj{background:repeating-linear-gradient(90deg,var(--accent) 0 5px,transparent 5px 9px)}
 .heat{max-width:620px;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:4px}
-.heat i{aspect-ratio:1;border-radius:3px;background:var(--bg3);display:block;transition:transform .2s var(--spring)}
-.heat i.l1{background:color-mix(in srgb,var(--accent) 28%,var(--bg3))}
-.heat i.l2{background:color-mix(in srgb,var(--accent) 50%,var(--bg3))}
-.heat i.l3{background:color-mix(in srgb,var(--accent) 75%,var(--bg3))}
-.heat i.l4{background:var(--accent);box-shadow:0 0 10px color-mix(in srgb,var(--accent) 55%,transparent)}
-.heat i.fut{background:color-mix(in srgb,var(--bg3) 45%,transparent);border:1px dashed var(--line2)}
-.heat i.now{outline:1.5px solid var(--ink);outline-offset:1px}
-@media (hover:hover){.heat i:hover{transform:scale(1.35)}}
+.heat .hc{all:unset;box-sizing:border-box;cursor:pointer;aspect-ratio:1;border-radius:3px;background:var(--bg3);display:block;transition:transform .2s var(--spring)}
+.heat .hc.l1{background:color-mix(in srgb,var(--accent) 28%,var(--bg3))}
+.heat .hc.l2{background:color-mix(in srgb,var(--accent) 50%,var(--bg3))}
+.heat .hc.l3{background:color-mix(in srgb,var(--accent) 75%,var(--bg3))}
+.heat .hc.l4{background:var(--accent);box-shadow:0 0 10px color-mix(in srgb,var(--accent) 55%,transparent)}
+.heat .hc.fut{background:color-mix(in srgb,var(--bg3) 45%,transparent);border:1px dashed var(--line2)}
+.heat .hc.now{outline:1.5px solid var(--ink);outline-offset:1px}
+@media (hover:hover){.heat .hc:hover{transform:scale(1.4);z-index:1}}
+.heat .hc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.heat .hc.sel{outline:2px solid var(--accent);outline-offset:2px;transform:scale(1.25)}
+.heat .hc.w::after{content:"";display:block;width:4px;height:4px;border-radius:50%;background:var(--ink);margin:auto;position:relative;top:calc(50% - 2px)}
 .heat-legend{display:flex;gap:5px;align-items:center;font-family:var(--mono);font-size:10px;color:var(--muted)}
 .heat-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
 .gauge{width:100%;max-width:260px;height:auto;display:block;margin:0 auto;overflow:visible}
@@ -366,6 +377,31 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 @media (max-width:560px){.t-3d{min-height:400px}}
 .empty-s{font-size:12.5px;color:var(--muted);border:1px dashed var(--line2);border-radius:12px;padding:12px}
 
+/* diario de pesajes y ficha del día */
+.wl-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.wl-top{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wl-k{display:grid;gap:4px;padding:14px;border-radius:14px;background:color-mix(in srgb,var(--bg3) 65%,transparent);border:1px solid var(--line)}
+.wl-k .kpi-m{font-size:clamp(34px,3.6vw,46px)}
+.wl-k.goal{border-color:color-mix(in srgb,var(--ok) 40%,transparent)}.wl-k.goal .kpi-m{color:var(--ok)}
+.wl-k.lost .kpi-m{color:var(--accent)}
+.wl-strip{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;perspective:900px}
+.wl-strip::-webkit-scrollbar{height:6px}.wl-strip::-webkit-scrollbar-thumb{background:var(--line2);border-radius:3px}
+.wd{all:unset;box-sizing:border-box;cursor:pointer;scroll-snap-align:start;flex:0 0 112px;display:grid;gap:6px;padding:12px;border-radius:14px;background:linear-gradient(180deg,color-mix(in srgb,var(--bg3) 85%,var(--accent) 6%),var(--bg3));border:1px solid var(--line);transition:transform .45s var(--spring),border-color .3s,box-shadow .3s;transform-origin:50% 100%}
+.wd:hover{transform:translateY(-6px) rotateX(8deg)}
+.wd:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wd.sel{border-color:var(--accent);box-shadow:0 14px 34px -14px color-mix(in srgb,var(--accent) 80%,transparent);transform:translateY(-6px)}
+.wd .d{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.wd .k{font-family:var(--display);font-weight:900;font-size:30px;line-height:.9}
+.wd .k small{font-family:var(--mono);font-size:10px;font-weight:400;color:var(--muted);margin-left:3px}
+.wd .dl{font-family:var(--mono);font-size:11px}
+.wd .pg{height:4px;border-radius:2px;background:var(--line);overflow:hidden}.wd .pg i{display:block;height:100%;background:linear-gradient(90deg,var(--p2),var(--accent))}
+.dd{display:grid}
+.dd:empty{display:none}
+.dd-card{display:grid;gap:12px;padding:16px;border-radius:16px;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:linear-gradient(160deg,color-mix(in srgb,var(--bg3) 80%,var(--accent) 10%),var(--bg3));box-shadow:0 20px 40px -24px color-mix(in srgb,var(--accent) 70%,transparent)}
+.dd-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.dd-h h4{margin:0;font-family:var(--display);font-weight:800;font-size:26px;text-transform:uppercase;line-height:1}
+.dd-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.dd-g div{display:grid;gap:2px}.dd-g b{font-family:var(--display);font-weight:800;font-size:24px;line-height:1}.dd-g span{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 /* balance energético */
 .bal{display:grid;gap:10px;padding:14px;border-radius:14px;background:color-mix(in srgb,var(--bg3) 70%,transparent);border:1px solid var(--line)}
 .bal-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
@@ -1021,7 +1057,8 @@ function weightChart(pts,avg,fit,zoom){
   if(fit&&fit.m<-0.005&&A.length){const a=A[A.length-1];const daysTo=(a.y-GOAL_W)/(-fit.m);let end=addDays(a.x,Math.round(daysTo));let ey=GOAL_W;if(end>to){end=to;ey=a.y+fit.m*((pd(to)-pd(a.x))/864e5)}
     proj=`<line x1="${X(a.x)}" y1="${Y(a.y)}" x2="${X(end)}" y2="${Y(ey)}" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" opacity=".8"/>`}
   dots=P.map(p=>`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="3.2" fill="var(--bg2)" stroke="var(--muted)" stroke-width="1.5"/>`).join("");
-  const last=A[A.length-1];const endDot=last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"";
+  const fst=P[0];const startMk=fst&&pts[0]&&fst.x===pts[0].x?`<circle cx="${X(fst.x)}" cy="${Y(fst.y)}" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/><text x="${X(fst.x)+8}" y="${Y(fst.y)-10}" style="fill:var(--ink)">INICIO ${fmt1(fst.y)}</text>`:"";
+  const last=A[A.length-1];const endDot=startMk+last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"";
   const geo={pts:P.map(p=>({x:p.x,y:p.y,a:(A.find(q=>q.x===p.x)||{}).y,px:X(p.x),py:Y(p.y)})),W,H,T,B};
   return {svg:`<svg id="wchart" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Peso diario, media de 7 días, trayectoria objetivo hasta 85 kg y proyección. Usa las flechas para recorrer los días.">
     <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".32"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient>
@@ -1036,6 +1073,27 @@ function gaugeSVG(score,color){
   return `<svg class="gauge" viewBox="0 0 ${W} ${H}" role="img" aria-label="Recuperación ${Math.round(score)} de 100"><path class="trk" d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}"/>
     <path class="val" data-ring="${len}" d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}" stroke="${color}" stroke-dasharray="${len}" stroke-dashoffset="${len*(1-frac)}" style="filter:drop-shadow(0 0 10px ${color})"/>
     <text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="54" data-count="${Math.round(score)}">${Math.round(score)}</text></svg>`;
+}
+function dayDetail(s){
+  const d=data.days[s],pts=Object.values(data.days).filter(x=>x.peso!=null).sort((a,b)=>a.date<b.date?-1:1);
+  const first=pts[0],prev=[...pts].reverse().find(x=>x.date<s);
+  if(s>todayStr())return `<div class="dd-card"><div class="dd-h"><h4>${esc(nice(s))}</h4><span class="delta">por llegar</span></div><div class="sub">${esc(dayPlan(s).items.map(i=>i.d+": "+i.t).slice(0,2).join(" · "))}</div></div>`;
+  if(!d)return `<div class="dd-card"><div class="dd-h"><h4>${esc(nice(s))}</h4></div><div class="sub">No hay nada apuntado este día.</div></div>`;
+  const tt=totals(d),e=energia(s),df=d.peso!=null&&first?d.peso-first.peso:null,dp=d.peso!=null&&prev?d.peso-prev.peso:null;
+  const sg=x=>x==null?"—":(x>0?"+":x<0?"−":"")+fmt1(Math.abs(x));
+  return `<div class="dd-card"><div class="dd-h"><div><div class="eyebrow">Semana ${weekOf(s)} · ${dayScore(s)} de 4 objetivos</div><h4>${esc(nice(s))}</h4></div>
+    ${d.peso!=null?`<span class="delta ${df!=null&&df<0?"good":"mid"}">${sg(df)} kg desde el inicio</span>`:""}</div>
+    <div class="dd-g">
+      <div><span>Peso</span><b>${d.peso!=null?fmt1(d.peso)+" kg":"—"}</b>${dp!=null?`<small class="muted">${sg(dp)} vs ${short(prev.date)}</small>`:""}</div>
+      ${d.grasa!=null?`<div><span>Grasa</span><b>${fmt1(d.grasa)} %</b></div>`:""}
+      <div><span>Proteína</span><b>${fmt0(tt.p)} g</b></div>
+      <div><span>Kcal</span><b>${fmt0(tt.kcal)}</b></div>
+      <div><span>Balance</span><b style="color:${e.balFin<=-400?"var(--ok)":e.balFin<=0?"var(--warn)":"var(--bad)"}">${e.balFin>0?"+":"−"}${fmt0(Math.abs(e.balFin))}</b></div>
+      <div><span>Pasos</span><b>${d.pasos!=null?fmt0(d.pasos):"—"}</b></div>
+      <div><span>Creatina</span><b>${d.creatina?"Sí":"No"}</b></div>
+    </div>
+    ${(d.entrenos||[]).length?`<div class="sub">${d.entrenos.map(x=>"<b>"+esc(x.tipo)+"</b>"+(x.dur?" · "+x.dur+" min":"")+(x.rpe?" · RPE "+x.rpe:"")+(x.km?" · "+fmt1(num(x.km))+" km":"")).join("<br>")}</div>`:`<div class="sub">Sin entreno apuntado.</div>`}
+    <div class="row"><a class="btn" href="#dia" data-open="${s}">Abrir este día</a></div></div>`;
 }
 function renderPanel(){
   const t=todayStr(),w=clampW(weekOf(t)),v=$("#view");
@@ -1073,7 +1131,7 @@ function renderPanel(){
   const mac=m7.length?{p:avgOf(m7.map(x=>x.p)),kcal:avgOf(m7.map(x=>x.kcal)),c:avgOf(m7.map(x=>x.c)),g:avgOf(m7.map(x=>x.g))}:null;
   const T7=TARGETS.calidad;
   // mapa de calor
-  let heat="";for(let i=0;i<140;i++){const s=addDays("2026-11-02",i);const fut=s>t;const sc=fut?0:dayScore(s);heat+=`<i class="${fut?"fut":"l"+sc}${s===t?" now":""}" title="${esc(nice(s))} · ${fut?"por llegar":sc+" de 4"}"></i>`}
+  let heat="";for(let i=0;i<140;i++){const s=addDays("2026-11-02",i);const fut=s>t;const sc=fut?0:dayScore(s);heat+=`<button type="button" class="hc ${fut?"fut":"l"+sc}${s===t?" now":""}${data.days[s]&&data.days[s].peso!=null?" w":""}" data-day="${s}" aria-label="${esc(nice(s))} · ${fut?"por llegar":sc+" de 4"}${data.days[s]&&data.days[s].peso!=null?" · "+fmt1(data.days[s].peso)+" kg":""}"></button>`}
   const done=Object.keys(data.days).filter(s=>s<=t&&dayScore(s)>=3).length,elapsed=Math.max(1,Math.min(140,dayN(t)+1));
   const zoom=state.wzoom||"all";
   const wc=weightChart(pts,avg,fit,zoom);
@@ -1093,9 +1151,20 @@ function renderPanel(){
     <section class="tile t-hero rv" aria-label="Peso">
       <div class="lbl"><span>Peso · media 7 días</span><em>${lastW?"último "+fmt1(lastW.y)+" kg · "+short(lastW.x):"sin pesajes"}</em></div>
       <div class="hero-row"><div class="kpi"><span data-count="${cur!=null?cur.toFixed(1):""}" data-dec="1">${cur!=null?fmt1(cur):"—"}</span><small>kg</small></div>
-        <div class="chips2" style="padding-bottom:10px">${lost!=null?`<span class="delta ${lost>0?"good":"mid"}">${lost>=0?"−":"+"}${fmt1(Math.abs(lost))} kg desde el inicio</span>`:""}${rate!=null?`<span class="delta ${deltaCls(rate)}">${rate>0?"+":"−"}${fmt1(Math.abs(rate))} kg/semana</span>`:""}${vsPlan!=null?`<span class="delta ${vsPlan<=0.3?"good":vsPlan<=1.2?"mid":"bad"}">${vsPlan<=0?"por delante del plan "+fmt1(-vsPlan)+" kg":"detrás del plan "+fmt1(vsPlan)+" kg"}</span>`:""}</div></div>
+        <div class="chips2" style="padding-bottom:10px">${pts.length?`<span class="delta">inicio ${fmt1(pts[0].y)} kg · ${short(pts[0].x)}</span><span class="delta good">objetivo 85 kg</span>`:""}${lost!=null?`<span class="delta ${lost>0?"good":"mid"}">${lost>=0?"−":"+"}${fmt1(Math.abs(lost))} kg desde el inicio</span>`:""}${rate!=null?`<span class="delta ${deltaCls(rate)}">${rate>0?"+":"−"}${fmt1(Math.abs(rate))} kg/semana</span>`:""}${vsPlan!=null?`<span class="delta ${vsPlan<=0.3?"good":vsPlan<=1.2?"mid":"bad"}">${vsPlan<=0?"por delante del plan "+fmt1(-vsPlan)+" kg":"detrás del plan "+fmt1(vsPlan)+" kg"}</span>`:""}</div></div>
       <div class="sub">${eta?`A este ritmo llegas a <b>85 kg el ${fmtD(eta)}</b>${eta<="2027-03-17"?" — antes de HYROX.":" — después de HYROX: hay que apretar un poco."}`:pts.length<3?"Con 3 o más pesajes calculo tu ritmo real y cuándo llegas a 85 kg.":"Aún no hay tendencia de bajada clara: dale una semana más de datos."}</div>
       ${sparkSVG(w14,{h:46,goal:null})}
+    </section>
+    <section class="tile t-wide rv" aria-label="Diario de pesajes">
+      <div class="lbl"><span>Diario de pesajes</span><em>${pts.length} ${pts.length===1?"pesaje":"pesajes"} · pulsa uno para ver su día</em></div>
+      <div class="wl-top">
+        <div class="wl-k"><span class="lbl">Inicio · ${pts.length?short(pts[0].x):"—"}</span><div class="kpi-m"><span data-count="${pts.length?pts[0].y.toFixed(1):""}" data-dec="1">${pts.length?fmt1(pts[0].y):"—"}</span><small>kg</small></div></div>
+        <div class="wl-k"><span class="lbl">Último · ${lastW?short(lastW.x):"—"}</span><div class="kpi-m"><span data-count="${lastW?lastW.y.toFixed(1):""}" data-dec="1">${lastW?fmt1(lastW.y):"—"}</span><small>kg</small></div></div>
+        <div class="wl-k lost"><span class="lbl">Perdido</span><div class="kpi-m">${pts.length>1?(pts[0].y-lastW.y>=0?"−":"+"):""}<span data-count="${pts.length>1?Math.abs(pts[0].y-lastW.y).toFixed(1):""}" data-dec="1">${pts.length>1?fmt1(Math.abs(pts[0].y-lastW.y)):"—"}</span><small>kg</small></div></div>
+        <div class="wl-k goal"><span class="lbl">Objetivo · 17 mar</span><div class="kpi-m">85<small>kg · faltan ${lastW?fmt1(Math.max(0,lastW.y-85)):"—"}</small></div></div>
+      </div>
+      ${pts.length?`<div class="wl-strip" role="listbox" aria-label="Pesajes">${pts.map((p,i)=>{const dprev=i?p.y-pts[i-1].y:null,pr=Math.max(0,Math.min(1,(pts[0].y-p.y)/(pts[0].y-85)));return `<button type="button" class="wd" data-day="${p.x}" role="option" aria-label="${esc(nice(p.x))}: ${fmt1(p.y)} kg"><span class="d">${esc(DOW[pd(p.x).getDay()].slice(0,3))} ${pd(p.x).getDate()} ${MON[pd(p.x).getMonth()]}</span><span class="k">${fmt1(p.y)}<small>kg</small></span><span class="dl" style="color:${dprev==null?"var(--muted)":dprev<0?"var(--ok)":dprev>0?"var(--bad)":"var(--muted)"}">${dprev==null?"inicio":(dprev>0?"+":dprev<0?"−":"±")+fmt1(Math.abs(dprev))}</span><span class="pg"><i style="width:${pr*100}%"></i></span></button>`}).join("")}</div>`:`<div class="empty-s">Tu primer pesaje aparecerá aquí. Cada día que te peses se añade una tarjeta con lo que has bajado.</div>`}
+      <div id="wdetail" class="dd" aria-live="polite"></div>
     </section>
     <section class="tile t-ring rv" aria-label="Progreso hacia 85 kg">
       <div class="lbl"><span>Hacia 85 kg</span><em>de ${fmt1(START_W)} a ${GOAL_W}</em></div>
@@ -1138,7 +1207,8 @@ function renderPanel(){
 
     <section class="tile t-7 rv" aria-label="Constancia diaria">
       <div class="lbl"><span>Constancia · 140 días</span><em>${done} días completos de ${elapsed}</em></div>
-      <div class="heat" role="img" aria-label="Mapa de constancia: cada casilla es un día, más intensa cuanto más cumpliste">${heat}</div>
+      <div class="heat" role="group" aria-label="Mapa de constancia: cada casilla es un día; el punto indica que ese día te pesaste. Pulsa un día para ver su ficha">${heat}</div>
+      <div id="daydetail" class="dd" aria-live="polite"></div>
       <div class="dash-top"><div class="sub">Cada día suma: entreno · proteína ≥ 190 g · 10.000 pasos · creatina o 7 h de sueño</div>
         <div class="heat-legend">Menos <i style="background:var(--bg3)"></i><i style="background:color-mix(in srgb,var(--accent) 28%,var(--bg3))"></i><i style="background:color-mix(in srgb,var(--accent) 50%,var(--bg3))"></i><i style="background:color-mix(in srgb,var(--accent) 75%,var(--bg3))"></i><i style="background:var(--accent)"></i> Más</div></div>
     </section>
@@ -1166,6 +1236,13 @@ function renderPanel(){
     </section>
   </div></div>`;
   // ---------- interacción ----------
+  const openDetail=(box,s,src)=>{box.innerHTML=dayDetail(s);if(Motion.ok)gsap.fromTo(box.firstElementChild,{opacity:0,rotateX:-14,y:18,transformPerspective:900,transformOrigin:"50% 0%"},{opacity:1,rotateX:0,y:0,duration:.6,ease:"expo.out"});
+    v.querySelectorAll(".hc.sel,.wd.sel").forEach(x=>x.classList.remove("sel"));v.querySelectorAll(`[data-day="${s}"]`).forEach(x=>x.classList.add("sel"));
+    const a=box.querySelector("[data-open]");if(a)a.onclick=e=>{e.preventDefault();state.date=s;go("dia")};
+    if(src==="strip"&&innerWidth<760)box.scrollIntoView({behavior:"smooth",block:"nearest"})};
+  v.querySelectorAll(".heat .hc").forEach(b=>b.onclick=()=>openDetail($("#daydetail"),b.dataset.day,"heat"));
+  v.querySelectorAll(".wd").forEach(b=>b.onclick=()=>openDetail($("#wdetail"),b.dataset.day,"strip"));
+  {const st=v.querySelector(".wl-strip");if(st)st.scrollLeft=st.scrollWidth}
   v.querySelectorAll("[data-wz]").forEach(b=>b.onclick=()=>{state.wzoom=b.dataset.wz;render()});
   const tick=()=>{const ms=RACE_T-new Date();const el=$("#clock");if(!el){clearInterval(panelTimer);return}if(ms<=0){el.textContent="Día de carrera";return}
     const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;el.innerHTML=`<b>${d}</b>d ${pad(h)}h ${pad(m)}m ${pad(s)}s · HYROX`};
@@ -1175,10 +1252,11 @@ function renderPanel(){
     const tip=$("#wtip"),cx=svg.querySelector("#cx"),cd=svg.querySelector("#cdot"),G=wc.geo;let idx=G.pts.length-1;
     const show=i=>{idx=Math.max(0,Math.min(G.pts.length-1,i));const p=G.pts[idx];cx.setAttribute("x1",p.px);cx.setAttribute("x2",p.px);cx.setAttribute("opacity","1");cd.setAttribute("cx",p.px);cd.setAttribute("cy",p.py);cd.setAttribute("opacity","1");
       const r=svg.getBoundingClientRect(),sx=r.width/G.W,sy=r.height/G.H;tip.style.left=Math.min(r.width-70,Math.max(70,p.px*sx))+"px";tip.style.top=(p.py*sy-10)+"px";
-      tip.innerHTML=`<span>${esc(nice(p.x))}</span><b>${fmt1(p.y)} kg</b><span>media 7 d · ${p.a!=null?fmt1(p.a):"—"} kg</span>`;tip.classList.add("on")};
+      const f0=pts[0];tip.innerHTML=`<span>${esc(nice(p.x))}</span><b>${fmt1(p.y)} kg</b><span>${f0?(p.y-f0.y<=0?"−":"+")+fmt1(Math.abs(p.y-f0.y))+" kg desde el inicio · ":""}media ${p.a!=null?fmt1(p.a):"—"}</span>`;tip.classList.add("on")};
     const hide=()=>{cx.setAttribute("opacity","0");cd.setAttribute("opacity","0");tip.classList.remove("on")};
     const near=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*G.W;let b=0,bd=1e9;G.pts.forEach((p,i)=>{const d=Math.abs(p.px-x);if(d<bd){bd=d;b=i}});return b};
-    svg.addEventListener("pointermove",e=>show(near(e)));svg.addEventListener("pointerdown",e=>show(near(e)));svg.addEventListener("pointerleave",hide);
+    let pinned=false;
+    svg.addEventListener("pointermove",e=>{if(!pinned)show(near(e))});svg.addEventListener("pointerdown",e=>{pinned=true;const i=near(e);show(i);openDetail($("#wdetail"),G.pts[i].x,"chart")});svg.addEventListener("pointerleave",()=>{if(!pinned)hide()});
     svg.addEventListener("focus",()=>show(idx));svg.addEventListener("blur",hide);
     svg.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){e.preventDefault();show(idx-1)}if(e.key==="ArrowRight"){e.preventDefault();show(idx+1)}if(e.key==="Escape")hide()});
   }
@@ -1229,8 +1307,12 @@ const Scene3D={
     const planPts=[];for(let w=1;w<=20;w++)planPts.push(new THREE.Vector3(X(w),Y(planW(w))+.02,0));
     const planLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(planPts),new THREE.LineDashedMaterial({color:ink.getHex(),dashSize:.3,gapSize:.25,transparent:true,opacity:.45}));planLine.computeLineDistances();scene.add(planLine);
     // cinta diaria del peso (media 7 días) por delante de las columnas
-    let pulse=null;
-    if(avg.length>1){const dx=s=>X(1)-SP/2+((pd(s)-START)/864e5)/7*SP;
+    let pulse=null;const dots=[];const dx=s=>X(1)-SP/2+((pd(s)-START)/864e5)/7*SP;
+    // cada pesaje es una esfera que se puede tocar
+    {const g=new THREE.SphereGeometry(.17,16,16),f0=pts[0];pts.forEach(p=>{const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0xffffff,emissive:accent.getHex(),emissiveIntensity:.35,roughness:.3}));m.position.set(dx(p.x),Y(p.y)+.05,1.15);m.userData={dia:p.x,kg:p.y,df:f0?p.y-f0.y:0,first:f0&&p.x===f0.x};scene.add(m);dots.push(m);
+      const st=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(m.position.x,0,1.15),m.position.clone()]),new THREE.LineBasicMaterial({color:accent.getHex(),transparent:true,opacity:.3}));scene.add(st)});
+     if(f0){const ini=label("INICIO "+fmt1(f0.y),css("--ink"),.7);ini.position.set(dx(f0.x)-.4,Y(f0.y)+1.3,1.15);scene.add(ini)}}
+    if(avg.length>1){
       const curve=new THREE.CatmullRomCurve3(avg.map(p=>new THREE.Vector3(dx(p.x),Y(p.y)+.05,.75)));
       scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,avg.length*8),.07,8,false),new THREE.MeshBasicMaterial({color:accent.getHex()})));
       scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,avg.length*8),.2,8,false),new THREE.MeshBasicMaterial({color:accent.getHex(),transparent:true,opacity:.16,depthWrite:false})));
@@ -1252,10 +1334,11 @@ const Scene3D={
     const place=()=>{cam.position.set(target.x+dist*Math.sin(theta)*Math.cos(phi),target.y+dist*Math.sin(phi),target.z+dist*Math.cos(theta)*Math.cos(phi));cam.lookAt(target)};
     // info al pasar por encima
     const info=document.getElementById("info3d"),ray=new THREE.Raycaster(),mv=new THREE.Vector2();let hover=null;
-    const pick=e=>{const r=canvas.getBoundingClientRect();mv.x=(e.clientX-r.left)/r.width*2-1;mv.y=-(e.clientY-r.top)/r.height*2+1;ray.setFromCamera(mv,cam);const hit=ray.intersectObjects(pillars,false)[0];setHover(hit?hit.object:null)};
-    const setHover=o=>{if(hover===o)return;if(hover&&hover.material.emissive)hover.material.emissiveIntensity=hover.userData.cur?.55:.25;hover=o;
+    const pick=e=>{const r=canvas.getBoundingClientRect();mv.x=(e.clientX-r.left)/r.width*2-1;mv.y=-(e.clientY-r.top)/r.height*2+1;ray.setFromCamera(mv,cam);const hit=ray.intersectObjects(dots.concat(pillars),false)[0];setHover(hit?hit.object:null)};
+    const setHover=o=>{if(hover===o)return;if(hover&&hover.material.emissive)hover.material.emissiveIntensity=hover.userData.dia?.35:hover.userData.cur?.55:.25;if(hover&&hover.userData.dia)hover.scale.setScalar(1);hover=o;
       if(!info)return;if(!o){info.innerHTML=info.dataset.def;return}
       const u=o.userData;if(o.material.emissive)o.material.emissiveIntensity=.9;
+      if(u.dia){o.scale.setScalar(1.6);info.innerHTML=`<b>${esc(nice(u.dia))}</b> · ${fmt1(u.kg)} kg · ${u.first?"tu primer pesaje":(u.df<=0?"<span style='color:var(--ok)'>−"+fmt1(-u.df)+" kg desde el inicio</span>":"+"+fmt1(u.df)+" kg desde el inicio")} · faltan ${fmt1(Math.max(0,u.kg-85))} para 85`;return}
       info.innerHTML=`<b>Semana ${u.w}</b> · ${u.real!=null?"media "+fmt1(u.real)+" kg · plan "+fmt1(u.plan)+" kg · "+(u.real-u.plan<=0?"<span style='color:var(--ok)'>por delante "+fmt1(u.plan-u.real)+"</span>":"<span style='color:var(--warn)'>detrás "+fmt1(u.real-u.plan)+"</span>"):"objetivo "+fmt1(u.plan)+" kg"+(u.w===20?" · HYROX":"")}`};
     if(info)info.dataset.def=info.innerHTML;
     canvas.addEventListener("pointermove",e=>{if(drag){tTheta=drag.t-(e.clientX-drag.x)*.006;tPhi=Math.max(.08,Math.min(1.1,drag.p+(e.clientY-drag.y)*.004))}
@@ -1467,7 +1550,7 @@ const Motion={
     v.querySelectorAll("#wchart path.draw").forEach(p=>{const L=p.getTotalLength();if(!L)return;gsap.fromTo(p,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:1.8,ease:"power2.inOut",delay:.3,onComplete:()=>{p.style.strokeDasharray="none"}})});
     gsap.from(v.querySelectorAll(".lbar"),{scaleY:0,duration:.9,ease:"back.out(1.4)",stagger:.06,delay:.35});
     gsap.from(v.querySelectorAll(".bar2 i"),{width:0,duration:1.2,ease:"expo.out",stagger:.05,delay:.3});
-    gsap.from(v.querySelectorAll(".heat i"),{opacity:0,scale:.3,duration:.45,ease:"back.out(2)",stagger:{each:.004},delay:.3});
+    gsap.from(v.querySelectorAll(".heat .hc"),{opacity:0,scale:.3,duration:.45,ease:"back.out(2)",stagger:{each:.004},delay:.3});
     gsap.from(v.querySelectorAll(".spark"),{opacity:0,y:8,duration:.8,ease:"power3.out",stagger:.05,delay:.4});
     if(matchMedia("(hover:hover) and (pointer:fine)").matches){
       v.querySelectorAll(".tile:not(.t-wide)").forEach(t=>{

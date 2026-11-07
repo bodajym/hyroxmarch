@@ -1,0 +1,16 @@
+{
+  "name": "RX/27 · HYROX",
+  "short_name": "RX27",
+  "description": "Plan HYROX marzo 2027: entrenos, comidas, peso y déficit.",
+  "start_url": "./#dia",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0C0F13",
+  "theme_color": "#0C0F13",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
