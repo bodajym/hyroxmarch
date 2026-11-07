@@ -366,6 +366,29 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 @media (max-width:560px){.t-3d{min-height:400px}}
 .empty-s{font-size:12.5px;color:var(--muted);border:1px dashed var(--line2);border-radius:12px;padding:12px}
 
+/* balance energético */
+.bal{display:grid;gap:10px;padding:14px;border-radius:14px;background:color-mix(in srgb,var(--bg3) 70%,transparent);border:1px solid var(--line)}
+.bal-row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.bal-n{font-size:clamp(38px,4vw,50px)}
+.bal-bars{display:grid;gap:8px}
+.bb{display:grid;grid-template-columns:62px 1fr 50px;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+.bb b{font-family:var(--mono);font-weight:500;color:var(--ink);text-align:right}
+.bar2.g i{background:linear-gradient(90deg,color-mix(in srgb,var(--ok) 45%,transparent),var(--ok));box-shadow:0 0 14px color-mix(in srgb,var(--ok) 45%,transparent)}
+/* 3D: recetas que giran, profundidad interna, listas que se elevan, giroscopio */
+.rec{perspective:1400px}
+.flip{display:grid;transform-style:preserve-3d;transition:transform .9s var(--spring)}
+.flip.on{transform:rotateY(180deg)}
+.face{grid-area:1/1;display:grid;gap:12px;align-content:start;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.face.back ol{margin:0;padding-left:18px;display:grid;gap:8px;font-size:14px}
+.panel>*,.stat>*,.face>*{transform:translate3d(calc(var(--px,0) * var(--d,5px)),calc(var(--py,0) * var(--d,5px)),0);transition:transform .6s var(--ease)}
+.panel>h3,.panel>.panel-h,.panel>.view-head,.face>.rec-h,.stat>.v,.today .view-head{--d:12px}
+.item,.shop-row,.steps .s{transition:transform .35s var(--spring),background .3s var(--ease)}
+@media (hover:hover){.item:hover,.shop-row:hover,.steps .s:hover{transform:translateX(6px)}}
+.item:active,.shop-row:active{transform:scale(.985)}
+body.gyro main{perspective:1300px}
+body.gyro #view{transform:rotateX(var(--gy,0deg)) rotateY(var(--gx,0deg));transition:transform .25s linear;transform-origin:50% 30%}
+@media (prefers-reduced-motion: reduce){.flip{transition:none}.panel>*,.stat>*,.face>*{transform:none}body.gyro #view{transform:none}}
 /* mundo 3D, cursor, ondas, píldora de navegación */
 #world{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none;opacity:.6;transition:opacity 1s var(--ease)}
 :root[data-theme="light"] #world{opacity:.38}
@@ -679,6 +702,19 @@ function render(){
   UX.pill&&UX.pill();UX.tilt(v);
 }
 
+/* =============== GASTO ENERGÉTICO =============== */
+// Mifflin-St Jeor (hombre, 176 cm, 32 años): 10·kg + 6,25·176 − 5·32 + 5
+const ALTURA=176,EDAD=32,DEF_OBJ=650;
+function pesoRef(s){let k=s;for(let i=0;i<30;i++){const d=data.days[k];if(d&&d.peso!=null)return d.peso;k=addDays(k,-1)}return START_W}
+const bmr=s=>Math.round(10*pesoRef(s)+6.25*ALTURA-5*EDAD+5);
+function energia(s){
+  const d=data.days[s]||blankDay(s),tot=totals(d),full=bmr(s),isToday=s===todayStr();
+  const now=new Date(),frac=isToday?Math.min(1,(now.getHours()*60+now.getMinutes())/1440):1;
+  const reposoAhora=d.reposo!=null?d.reposo:Math.round(full*frac),reposoFin=d.reposo!=null&&!isToday?d.reposo:Math.max(full,d.reposo||0);
+  const act=d.activas||0,gastoAhora=reposoAhora+act,gastoFin=reposoFin+act;
+  return {tot,full,frac,isToday,reposoAhora,reposoFin,act,gastoAhora,gastoFin,balAhora:tot.kcal-gastoAhora,balFin:tot.kcal-gastoFin,
+    margen:Math.round(gastoFin-DEF_OBJ-tot.kcal),fuente:d.reposo!=null?"Salud":"estimado",tieneAct:d.activas!=null,t:d.energiaT};
+}
 /* =============== DÍA =============== */
 function totals(d){return (d.comidas||[]).reduce((a,c)=>({kcal:a.kcal+(+c.kcal||0),p:a.p+(+c.p||0),c:a.c+(+c.c||0),g:a.g+(+c.g||0)}),{kcal:0,p:0,c:0,g:0})}
 function meter(val,rng,noHigh){
@@ -730,6 +766,8 @@ function renderDay(){
         <div class="fields">
           <label class="f">Peso en ayunas · kg<input id="peso" type="number" inputmode="decimal" step="0.1" value="${day.peso??""}" placeholder="97,5"></label>
           <label class="f">Grasa corporal · %<input id="grasa" type="number" inputmode="decimal" step="0.1" value="${day.grasa??""}" placeholder="30,5"></label>
+          <label class="f">Kcal activas · Salud<input id="activas" type="number" inputmode="numeric" value="${day.activas??""}" placeholder="650"></label>
+          <label class="f">Kcal en reposo · Salud<input id="reposo" type="number" inputmode="numeric" value="${day.reposo??""}" placeholder="auto"></label>
           <label class="f">Pasos<input id="pasos" type="number" inputmode="numeric" step="100" value="${day.pasos??""}" placeholder="10000"></label>
           <label class="f">Sueño · h<input id="sueno" type="number" inputmode="decimal" step="0.25" value="${day.sueno??""}" placeholder="7,5"></label>
           <label class="f">Agua · L<input id="agua" type="number" inputmode="decimal" step="0.25" value="${day.agua??""}" placeholder="3"></label>
@@ -749,6 +787,16 @@ function renderDay(){
       <section class="panel rv" aria-labelledby="comt">
         <div class="panel-h"><h3 id="comt">Comidas</h3>
           <select id="tipo" aria-label="Tipo de día" style="width:auto">${Object.entries(TARGETS).map(([k,t])=>`<option value="${k}" ${k===tipo?"selected":""}>${t.n}${k===plan.type?" · plan":""}</option>`).join("")}</select></div>
+        ${(()=>{const e=energia(s),pos=x=>x>0?"+":x<0?"−":"",cls=e.balFin<=-500?"good":e.balFin<=-200?"mid":"bad";
+          const mx=Math.max(e.gastoFin,e.tot.kcal,1)*1.1;
+          return `<div class="bal">
+          <div class="lbl"><span>Balance energético${e.isToday?" · ahora":""}</span><em>${e.fuente==="Salud"?"reposo de Salud":"reposo estimado"}${e.t?" · "+new Date(e.t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}):""}</em></div>
+          <div class="bal-row"><div><span class="kpi-m bal-n" data-count="${Math.abs(e.balAhora)}">${pos(e.balAhora)}${fmt0(Math.abs(e.balAhora))}</span><small class="muted"> kcal ${e.balAhora<0?"de déficit":"de superávit"}</small></div>
+            ${e.isToday?`<span class="delta ${cls}">al cerrar el día ${pos(e.balFin)}${fmt0(Math.abs(e.balFin))}</span>`:""}</div>
+          <div class="bal-bars"><div class="bb"><span>Comido</span><div class="bar2"><i style="width:${e.tot.kcal/mx*100}%"></i></div><b>${fmt0(e.tot.kcal)}</b></div>
+            <div class="bb"><span>Gastado</span><div class="bar2 g"><i style="width:${e.gastoAhora/mx*100}%"></i><span class="bd" style="left:${e.gastoFin/mx*100}%"></span></div><b>${fmt0(e.gastoAhora)}</b></div></div>
+          <div class="sub">Reposo ${fmt0(e.reposoAhora)}${e.isToday&&e.fuente!=="Salud"?" de "+fmt0(e.full):""} + activas ${e.tieneAct?fmt0(e.act):"—"} kcal.${e.isToday?(e.margen>0?` <b>Puedes comer ~${fmt0(e.margen)} kcal más</b> y cerrar con −${DEF_OBJ}.`:` Ya estás por encima del déficit objetivo (−${DEF_OBJ}): ${fmt0(-e.margen)} kcal de más.`):""}${!e.tieneAct?" Las kcal activas llegan con el atajo de Salud o escríbelas en Registro.":""}</div>
+        </div>`})()}
         <div class="macros">
           ${macroBlock("Proteína",tot.p,tg.p,"g",true)}
           <div class="mac-grid">${macroBlock("Kcal",tot.kcal,tg.kcal,"")}${macroBlock("Hidratos",tot.c,tg.c,"g")}${macroBlock("Grasa",tot.g,tg.g,"g")}</div>
@@ -804,7 +852,7 @@ function bindDay(s){
   $("#prev").onclick=()=>{state.date=addDays(s,-1);render()};
   $("#next").onclick=()=>{state.date=addDays(s,1);render()};
   $("#date").onchange=e=>{if(e.target.value){state.date=e.target.value;render()}};
-  ["peso","grasa","pasos","sueno","agua","energia","hambre"].forEach(k=>$("#"+k).addEventListener("input",e=>{const n=num(e.target.value);e.target.setAttribute("aria-invalid",e.target.value!==""&&n==null?"true":"false");day[k]=n;touch(day)}));
+  ["peso","grasa","activas","reposo","pasos","sueno","agua","energia","hambre"].forEach(k=>$("#"+k).addEventListener("input",e=>{const n=num(e.target.value);e.target.setAttribute("aria-invalid",e.target.value!==""&&n==null?"true":"false");day[k]=n;touch(day)}));
   $("#notas").addEventListener("input",e=>{day.notas=e.target.value;touch(day)});
   $("#tipo").onchange=e=>{day.tipo=e.target.value===dayPlan(s).type?null:e.target.value;touch(day,true);render()};
   $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4]});touch(day,true);render();toast("Añadido · "+p[0].split(" · ")[0])};
@@ -1066,7 +1114,7 @@ function renderPanel(){
       <div class="lbl"><span>Kcal hoy</span><em>${esc(tg.n)}</em></div>
       <div class="kpi-m"><span data-count="${Math.round(tot.kcal)}">${fmt0(tot.kcal)}</span><small>/ ${fmt0(tg.kcal[0])}-${fmt0(tg.kcal[1])}</small></div>
       <div class="bar2"><i data-w="${Math.min(100,tot.kcal/(tg.kcal[1]*1.15)*100)}" style="width:${Math.min(100,tot.kcal/(tg.kcal[1]*1.15)*100)}%"></i><span class="bd" style="left:${tg.kcal[0]/(tg.kcal[1]*1.15)*100}%"></span><span class="bd" style="left:${tg.kcal[1]/(tg.kcal[1]*1.15)*100}%"></span></div>
-      <div class="sub">${fmt0(tot.c)} g hidratos · ${fmt0(tot.g)} g grasa</div>
+      <div class="sub">${(()=>{const e=energia(t);return `Gasto ahora <b>${fmt0(e.gastoAhora)}</b> · balance <b style="color:${e.balAhora<=-300?"var(--ok)":e.balAhora<=0?"var(--warn)":"var(--bad)"}">${e.balAhora>0?"+":"−"}${fmt0(Math.abs(e.balAhora))}</b>${e.margen>0?` · te quedan ~${fmt0(e.margen)} kcal`:""}`})()}</div>
     </section>
     <section class="tile rv" aria-label="Racha de proteína">
       <div class="lbl"><span>Racha proteína</span><em>≥ 190 g</em></div>
@@ -1109,6 +1157,8 @@ function renderPanel(){
     </section>
     <section class="tile t-5 rv" aria-label="Macros de los últimos 7 días">
       <div class="lbl"><span>Macros · media 7 días</span><em>${m7.length} días con datos</em></div>
+      ${(()=>{const ds=[];for(let i=1;i<=7;i++){const k=addDays(t,-i),d=data.days[k];if(d&&d.comidas&&d.comidas.length)ds.push(energia(k).balFin)}if(!ds.length)return "";const a=ds.reduce((x,y)=>x+y,0)/ds.length,kg=-a*7/7700;
+        return `<div class="tile-row"><div><div class="kpi-m" style="font-size:40px;color:${a<=-450?"var(--ok)":a<=-150?"var(--warn)":"var(--bad)"}">${a>0?"+":"−"}${fmt0(Math.abs(a))}<small>kcal/día</small></div><div class="sub">Déficit medio de los últimos ${ds.length} días cerrados${kg>0?` ≈ <b>${fmt1(kg)} kg de grasa por semana</b>`:""}</div></div></div>`})()}
       ${mac?[["Proteína",mac.p,T7.p,"g"],["Kcal",mac.kcal,T7.kcal,""],["Hidratos",mac.c,T7.c,"g"],["Grasa",mac.g,T7.g,"g"]].map(([n,val,r,u])=>{const mx=r[1]*1.3;return `<div class="mrow"><span>${n}</span><div class="bar2"><i data-w="${Math.min(100,val/mx*100)}" style="width:${Math.min(100,val/mx*100)}%"></i><span class="bd" style="left:${r[0]/mx*100}%"></span><span class="bd" style="left:${r[1]/mx*100}%"></span></div><span class="v"><b>${fmt0(val)}</b> / ${fmt0(r[0])}-${fmt0(r[1])}${u}</span></div>`}).join(""):`<div class="empty-s">Cuando apuntes comidas verás aquí tu media frente a los objetivos.</div>`}
       <div class="dash-top"><div style="flex:1"><div class="lbl"><span>Sueño 14 d</span><em>${fmt1(avgOf(sleep14.map(x=>x.v)))} h</em></div>${sparkSVG(sleep14,{goal:7.5,h:34})}</div><div style="flex:1"><div class="lbl"><span>Pasos 14 d</span><em>${fmt0(avgOf(steps14.map(x=>x.v)))}</em></div>${sparkSVG(steps14,{goal:10000,h:34})}</div></div>
     </section>
@@ -1252,13 +1302,19 @@ function renderFood(){
 
   <section class="view" id="f-rec" style="gap:16px;scroll-margin-top:96px">
     <div class="panel-h rv"><h3 style="font-size:30px">Recetas</h3><div class="chips" role="group" aria-label="Filtrar por momento">${["Todas"].concat(FOOD.momentos).map(m=>`<button class="chip" type="button" data-mom="${m}" aria-pressed="${state.mom===m}">${m}</button>`).join("")}</div></div>
-    <div class="recipes">${list.map(r=>`<article class="rec rv" id="r-${r.id}">
+    <div class="recipes">${list.map(r=>`<article class="rec rv" id="r-${r.id}"><div class="flip">
+      <div class="face front">
       <div class="rec-h"><div><div class="mom">${esc(r.momento)}</div><h3>${esc(r.nombre)}</h3></div><span class="min">${r.min} min</span></div>
       <div class="mline"><span><b>${r.p}</b>g P</span><span><b>${r.kcal}</b>kcal</span><span>${r.c} C · ${r.g} G</span></div>
       <ul>${r.ingredientes.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
-      <details><summary>Cómo se hace</summary><ol style="margin-top:8px">${r.pasos.map(i=>`<li>${esc(i)}</li>`).join("")}</ol></details>
       ${r.variantes?`<p class="var" style="margin:0">${esc(r.variantes)}</p>`:""}
-      <div class="row">${todayRec.has(r.id)?`<button class="btn pri" type="button" data-unlog="${r.id}">✓ Apuntada hoy · quitar</button>`:`<button class="btn" type="button" data-log="${r.id}">+ Apuntar hoy</button>`}</div>
+      <div class="row">${todayRec.has(r.id)?`<button class="btn pri" type="button" data-unlog="${r.id}">✓ Apuntada hoy · quitar</button>`:`<button class="btn" type="button" data-log="${r.id}">+ Apuntar hoy</button>`}<button class="btn ghost" type="button" data-flip aria-label="Ver cómo se hace ${esc(r.nombre)}" style="color:var(--accent)">Cómo se hace ↻</button></div>
+      </div>
+      <div class="face back" aria-hidden="true">
+      <div class="rec-h"><div><div class="mom">Paso a paso · ${r.min} min</div><h3>${esc(r.nombre)}</h3></div></div>
+      <ol>${r.pasos.map(i=>`<li>${esc(i)}</li>`).join("")}</ol>
+      <div class="row"><button class="btn" type="button" data-flip aria-label="Volver a los ingredientes">↺ Ingredientes</button></div>
+      </div></div>
     </article>`).join("")}</div>
   </section>
 
@@ -1287,6 +1343,7 @@ function renderFood(){
   v.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>document.getElementById(b.dataset.go).scrollIntoView({behavior:smooth}));
   v.querySelectorAll("[data-mom]").forEach(b=>b.onclick=()=>{state.mom=b.dataset.mom;render();document.getElementById("f-rec").scrollIntoView({behavior:"auto"})});
   v.querySelectorAll("[data-rec]").forEach(a=>a.onclick=e=>{e.preventDefault();if(state.mom!=="Todas"){state.mom="Todas";render()}const el=document.getElementById("r-"+a.dataset.rec);if(!el)return;el.scrollIntoView({behavior:smooth,block:"center"});el.classList.add("hl");setTimeout(()=>el.classList.remove("hl"),1600)});
+  v.querySelectorAll("[data-flip]").forEach(b=>b.onclick=()=>{const f=b.closest(".flip"),on=!f.classList.contains("on");f.classList.toggle("on",on);f.querySelector(".front").setAttribute("aria-hidden",on);f.querySelector(".back").setAttribute("aria-hidden",!on);const t=f.querySelector(on?".back [data-flip]":".front [data-flip]");setTimeout(()=>t&&t.focus({preventScroll:true}),350)});
   v.querySelectorAll("[data-log]").forEach(b=>b.onclick=()=>{const r=R[b.dataset.log],d=getDay(todayStr());d.comidas.push({id:uid(),rec:r.id,nombre:r.momento+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g});touch(d,true);const y=scrollY;render();scrollTo(0,y);toast("Apuntada · hoy llevas "+fmt0(totals(d).p)+" g de proteína")});
   v.querySelectorAll("[data-unlog]").forEach(b=>b.onclick=()=>{const d=getDay(todayStr()),i=d.comidas.map(c=>c.rec).lastIndexOf(b.dataset.unlog);if(i>=0)d.comidas.splice(i,1);touch(d,true);const y=scrollY;render();scrollTo(0,y);toast("Quitada de hoy")});
   $("#shop").addEventListener("change",e=>{const k=e.target.dataset.buy;if(!k)return;wk.compra=wk.compra||{};if(e.target.checked)wk.compra[k]=true;else delete wk.compra[k];touch(wk,true);e.target.closest(".shop-row").classList.toggle("done",e.target.checked);
@@ -1372,11 +1429,16 @@ function renderSettings(){
         <p style="margin:0;font-size:14px">Descarga todos tus datos en un archivo o recupera una copia.</p>
         <div class="row"><button class="btn" type="button" id="exp">Descargar copia</button><button class="btn" type="button" id="impb">Importar copia</button><input id="imp" type="file" accept="application/json,.json" hidden></div>
       </section>
+      <section class="panel rv"><h3>Experiencia 3D</h3>
+        <p style="margin:0;font-size:14px">En el móvil, la app y el mundo 3D se mueven al inclinar el teléfono.</p>
+        <div class="row"><button class="btn ${UX.gyroOn?"pri":""}" type="button" id="gyrob">${UX.gyroOn?"✓ Giroscopio activado":"Activar giroscopio"}</button></div>
+      </section>
       <section class="panel rv"><h3>Tema</h3>
         <div class="row"><button class="btn" type="button" data-th="">Sistema</button><button class="btn" type="button" data-th="dark">Oscuro</button><button class="btn" type="button" data-th="light">Claro</button></div>
       </section>
     </aside>
   </div></div>`;
+  const gb=$("#gyrob");if(gb)gb.onclick=async()=>{const ok=await UX.gyro(!UX.gyroOn);if(!ok)toast("El móvil no ha dado permiso al sensor de movimiento",true);else toast(UX.gyroOn?"Giroscopio activado: inclina el móvil":"Giroscopio desactivado");render()};
   const c=$("#connect");if(c)c.onclick=async()=>{const t=$("#tok").value;if(!t.trim()){$("#tok").setAttribute("aria-invalid","true");toast("Pega tu token de GitHub",true);return}
     c.classList.add("loading");c.textContent="Conectando…";
     try{await Sync.connect(t,$("#gist").value);toast("Sincronización activada");render()}catch(e){Sync.err(e);toast(e&&e.status===401?"El token no es válido":e&&e.status===404?"No encuentro ese Gist con este token":"No se ha podido conectar",true);c.classList.remove("loading");c.textContent="Conectar"}};
@@ -1452,6 +1514,7 @@ function daySummary(s){
   const d=data.days[s]||blankDay(s),t=totals(d),L=[];
   L.push("RX27 · "+nice(s)+" ("+s+") · S"+weekOf(s));
   L.push("Peso "+(d.peso??"—")+" kg · grasa "+(d.grasa??"—")+" % · pasos "+(d.pasos??"—")+" · sueño "+(d.sueno??"—")+" h · agua "+(d.agua??"—")+" L · energía "+(d.energia??"—")+" · hambre "+(d.hambre??"—"));
+  {const e=energia(s);L.push("Gasto: reposo "+fmt0(e.reposoFin)+" ("+e.fuente+") + activas "+(e.tieneAct?fmt0(e.act):"—")+" = "+fmt0(e.gastoFin)+" kcal · balance "+(e.balFin>0?"+":"")+fmt0(e.balFin)+" kcal")}
   L.push("Comidas: "+fmt0(t.kcal)+" kcal · "+fmt0(t.p)+" P · "+fmt0(t.c)+" C · "+fmt0(t.g)+" G");
   (d.comidas||[]).forEach(c=>L.push("  - "+c.nombre+" ("+fmt0(c.kcal)+" kcal, "+fmt0(c.p)+" P)"));
   (d.entrenos||[]).forEach(e=>{L.push("Entreno: "+e.tipo+" · "+e.centro+" · "+(e.dur??"—")+" min · RPE "+(e.rpe??"—")+(e.km?" · "+e.km+" km en "+(e.tiempo||"—")+" · ritmo "+(pace(num(e.km),e.tiempo)||"—")+" · FC "+(e.fc??"—"):""));
@@ -1475,8 +1538,24 @@ async function copyText(txt,msg){
 }
 
 /* =============== IMPORTAR DESDE LA BÁSCULA (Atajos de iPhone) =============== */
+// Cantidades que llegan de Salud: "8532", "8.532", "523,4", "523.4567", "1.915,2"
+function parseQty(raw,lo,hi){if(raw==null)return null;let s0=String(raw).trim().replace(/[^0-9.,-]/g,"");if(!s0)return null;let v;
+  if(/^\d{1,3}(\.\d{3})+(,\d+)?$/.test(s0))v=Number(s0.replace(/\./g,"").replace(",","."));
+  else if(/^\d+,\d+$/.test(s0))v=Number(s0.replace(",","."));
+  else if(/^\d+\.\d+$/.test(s0))v=Number(s0);
+  else if(/^\d{1,3}(,\d{3})+(\.\d+)?$/.test(s0))v=Number(s0.replace(/,/g,""));
+  else v=Number(s0.replace(/[.,]/g,""));
+  return isFinite(v)&&v>=lo&&v<=hi?Math.round(v):null}
+function importEnergy(q,s){
+  if(!["pasos","activas","reposo"].some(k=>q.has(k)))return;
+  const d=getDay(s),got=[],bad=[];
+  const set=(k,lo,hi,label)=>{if(!q.has(k))return;const v=parseQty(q.get(k),lo,hi);if(v==null){bad.push(label+' "'+String(q.get(k)).slice(0,20)+'"');return}d[k]=v;got.push(label+" "+fmt0(v))};
+  set("pasos",0,80000,"pasos");set("activas",0,6000,"kcal activas");set("reposo",0,4000,"kcal reposo");
+  if(got.length){d.energiaT=Date.now();touch(d,true);state.date=s;state.view="dia";setTimeout(()=>toast("Salud guardada · "+got.join(" · ")),q.has("peso")?2900:400)}
+  if(bad.length)setTimeout(()=>toast("No he entendido: "+bad.join(", "),true),q.has("peso")?5600:3000);
+}
 function importFromURL(){
-  const q=new URLSearchParams(location.search);if(!q.has("peso"))return;
+  const q=new URLSearchParams(location.search);if(!["peso","pasos","activas","reposo"].some(k=>q.has(k)))return;
   const fix=(v,lo,hi)=>{if(v==null)return v;for(const d of [1,10,100,1000]){if(v/d>=lo&&v/d<=hi)return v/d}return v};
   const pn=v=>{if(v==null)return null;const m=String(v).replace(",",".").match(/-?\d+(\.\d+)?/);return m?Number(m[0]):null};
   const peso=pn(q.get("peso"));let grasa=pn(q.get("grasa"));if(grasa!=null&&grasa>0&&grasa<1)grasa=Math.round(grasa*1000)/10;else if(grasa!=null)grasa=fix(grasa,3,70);
@@ -1493,6 +1572,8 @@ function importFromURL(){
   if(kg==null||kg<30||kg>250||!/[.,]/.test(rawP)&&String(rawP).replace(/[^0-9]/g,"").length>4)kg=fromDigits(rawP,30,250);
   // si llega solo con dígitos y sin separador (p. ej. "96900000000000000" = 96,9000…), coloca la coma tras 2 o 3 cifras
   if(kg==null||kg<30||kg>250){const dg=(raw.match(/\d+/)||[""])[0];if(!/[.,]/.test(raw)&&dg.length>=3){for(const n of [2,3]){const v=Number(dg.slice(0,n)+"."+dg.slice(n,n+2));if(v>=30&&v<=250){kg=v;break}}}}
+  importEnergy(q,s);
+  if(!q.has("peso"))return;
   if(!raw){setTimeout(()=>toast("El atajo envió el peso vacío. Da permiso a Atajos en Ajustes → Salud → Acceso a datos y dispositivos → Atajos",true),400);return}
   if(kg==null||kg<30||kg>250){setTimeout(()=>toast('No he entendido el peso. Llegó: "'+raw.slice(0,40)+'"',true),400);return}
   const d=getDay(s);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
@@ -1529,7 +1610,8 @@ const World3D={
       const a=cc(css("--accent")),o=cc(css("--ok")),p=cc(css("--p3"));pm.color=a;lm1.color=a;lm3.color=o;glow.material.color=a;rings.forEach((m,i)=>m.material.color=i===1?p:a);sats.forEach((s,i)=>s.m.material.color=i===1?o:a)};
     this.recolor=recolor;recolor();
     const size=()=>{r.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()};addEventListener("resize",size);size();
-    let mx=0,my=0,tx=0,ty=0,boost=0;addEventListener("pointermove",e=>{tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5},{passive:true});
+    let mx=0,my=0,tx=0,ty=0,boost=0;addEventListener("pointermove",e=>{if(e.pointerType==="mouse"){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5}},{passive:true});
+    this.setPointer=(x,y)=>{tx=x;ty=y};
     this.burst=()=>{boost=1};
     const cur={x:7.5,y:1.2,z:-6,s:1};let last=performance.now(),acc=0;
     const loop=now=>{requestAnimationFrame(loop);if(document.hidden)return;const dt=Math.min(.05,(now-last)/1000);last=now;
@@ -1573,12 +1655,19 @@ const UX={
     document.addEventListener("pointermove",e=>{const b=e.target.closest&&e.target.closest(".btn.pri,.chip,.btn.sq");if(!b)return;const r=b.getBoundingClientRect();gsap.to(b,{x:(e.clientX-r.left-r.width/2)*.22,y:(e.clientY-r.top-r.height/2)*.3,duration:.4,ease:"power3.out"})});
     document.addEventListener("pointerout",e=>{const b=e.target.closest&&e.target.closest(".btn.pri,.chip,.btn.sq");if(!b||(e.relatedTarget&&b.contains(e.relatedTarget)))return;gsap.to(b,{x:0,y:0,duration:.7,ease:"elastic.out(1,.45)"})});
   },
+  gyroOn:false,
+  async gyro(enable){
+    if(!enable){this.gyroOn=false;document.body.classList.remove("gyro");LS.del("rx27-gyro");return true}
+    try{if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==="function"){const r=await DeviceOrientationEvent.requestPermission();if(r!=="granted")return false}}catch(e){return false}
+    if(!this._gyroL){this._gyroL=e=>{if(!this.gyroOn||e.gamma==null)return;const gx=Math.max(-1,Math.min(1,e.gamma/25)),gy=Math.max(-1,Math.min(1,((e.beta||45)-45)/25));
+      document.documentElement.style.setProperty("--gx",(gx*3).toFixed(2)+"deg");document.documentElement.style.setProperty("--gy",(-gy*2.5).toFixed(2)+"deg");World3D.setPointer&&World3D.setPointer(gx*.5,gy*.5)};addEventListener("deviceorientation",this._gyroL)}
+    this.gyroOn=true;document.body.classList.add("gyro");LS.set("rx27-gyro","1");return true},
   tilt(root){
     if(!window.gsap||!Motion.ok||!matchMedia("(hover:hover) and (pointer:fine)").matches)return;
     root.querySelectorAll(".panel,.rec,.stat").forEach(c=>{if(c._tilt)return;c._tilt=1;
       c.addEventListener("pointermove",e=>{if(e.target.closest("input,textarea,select,table,.scrollx")||c.querySelector("input:focus,textarea:focus,select:focus"))return gsap.to(c,{rotateX:0,rotateY:0,duration:.5});
-        const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5,amp=r.height>500?1:2.4;gsap.to(c,{rotateY:px*amp,rotateX:-py*amp,transformPerspective:1400,duration:.6,ease:"power3.out"})});
-      c.addEventListener("pointerleave",()=>gsap.to(c,{rotateX:0,rotateY:0,duration:.9,ease:"power3.out"}))});
+        const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5,amp=r.height>500?1:2.4;gsap.to(c,{rotateY:px*amp,rotateX:-py*amp,transformPerspective:1400,duration:.6,ease:"power3.out"});c.style.setProperty("--px",(-px*2).toFixed(3));c.style.setProperty("--py",(-py*2).toFixed(3))});
+      c.addEventListener("pointerleave",()=>{gsap.to(c,{rotateX:0,rotateY:0,duration:.9,ease:"power3.out"});c.style.setProperty("--px",0);c.style.setProperty("--py",0)})});
   }
 };
 
@@ -1591,6 +1680,7 @@ const th=LS.get("rx27-theme");if(th)setTheme(th);
 renderHero();
 Motion.init();
 UX.init();
+if(LS.get("rx27-gyro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==="function")document.addEventListener("pointerup",()=>UX.gyro(true),{once:true});else UX.gyro(true)}
 setTimeout(()=>World3D.init(),300);
 render();
 Sync.idle();
