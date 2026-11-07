@@ -433,6 +433,28 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 body.viewer nav.tabs,body.viewer #sync,body.viewer .hero,body.viewer footer{display:none!important}
 body.viewer .tama-view{padding-top:12px}
 
+/* ---------- viaje 3D ---------- */
+.jy{padding:0!important;overflow:hidden}
+.jy-stage{position:relative;height:clamp(440px,74vh,760px);background:radial-gradient(ellipse at 50% 30%,#101a3a,#05070d 70%);touch-action:none;user-select:none;-webkit-user-select:none}
+.jy-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab}.jy-stage canvas:active{cursor:grabbing}
+.jy-stage.full{position:fixed;inset:0;height:auto;z-index:95;border-radius:0}
+body.jy-lock{overflow:hidden}
+.jy-hud{position:absolute;pointer-events:none;padding:18px 20px}
+.jy-hud.tl{top:0;left:0;max-width:70%}.jy-hud.tr{top:0;right:0;text-align:right;font-family:var(--display);font-weight:900;font-size:clamp(40px,7vw,84px);line-height:.85;color:#EEF1F5;text-shadow:0 0 30px rgba(143,168,255,.6)}
+.jy-hud.tr small{display:block;font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.2em;color:#73EFF7}
+.jy-t{margin:4px 0 0;font-family:var(--display);font-weight:900;font-size:clamp(34px,5vw,64px);line-height:.9;color:#EEF1F5}.jy-t b{color:#FFCD75;text-shadow:0 0 24px rgba(255,205,117,.6)}
+.jy-s{margin:6px 0 0;font-family:var(--mono);font-size:12px;color:#b9c1cf;max-width:420px}
+.jy-ctl{position:absolute;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:6px;padding:6px;border-radius:18px;background:rgba(11,16,32,.66);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(143,168,255,.28);max-width:calc(100% - 24px);overflow-x:auto;scrollbar-width:none}
+.jy-b{all:unset;cursor:pointer;white-space:nowrap;padding:10px 14px;border-radius:12px;font-size:13px;font-weight:600;color:#EEF1F5;transition:background .2s,transform .2s var(--spring)}
+.jy-b:hover{background:rgba(143,168,255,.16)}.jy-b:active{transform:scale(.94)}.jy-b:focus-visible{outline:2px solid #8FA8FF;outline-offset:1px}
+.jy-b.pri{background:#8FA8FF;color:#0C0F13;box-shadow:0 0 24px -4px #8FA8FF}
+.jy-card{position:absolute;left:20px;bottom:86px;display:grid;gap:3px;padding:14px 16px;border-radius:16px;background:rgba(11,16,32,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,205,117,.45);color:#EEF1F5;max-width:min(320px,calc(100% - 40px))}
+.jy-card b{font-family:var(--display);font-weight:900;font-size:40px;line-height:.9}.jy-card b small{font-size:16px;color:#b9c1cf}.jy-card span:last-child{font-family:var(--mono);font-size:11.5px;color:#b9c1cf}
+.jy-load{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;transition:opacity .6s}.jy-load.off{opacity:0}
+.jy-load i{width:42px;height:42px;border-radius:50%;border:2px solid rgba(143,168,255,.25);border-top-color:#8FA8FF;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:560px){.jy-hud{padding:14px}.jy-hud.tl{max-width:62%}.jy-t{font-size:30px}.jy-s{font-size:10.5px}.jy-hud.tr{font-size:34px}.jy-ctl{bottom:12px}.jy-card{left:12px;bottom:76px}.jy-b{padding:10px 11px}}
+
 /* ---------- mapa real pixel ---------- */
 .pmap{display:grid;gap:12px}
 .pmap-h{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
@@ -879,7 +901,7 @@ const editing=()=>{const a=document.activeElement;return a&&$("#view").contains(
 function render(){
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===state.view?"page":"false"));
   const v=$("#view");
-  if(state.view!=="panel"){clearInterval(panelTimer);Scene3D.stop()}
+  if(state.view!=="panel"){clearInterval(panelTimer);Scene3D.stop();Journey.stop()}
   if(state.view!=="juego"&&state.view!=="javi")Game.stop();
   if(state.view!=="juego"&&state.view!=="javi")Tama.stop();
   if(state.view!=="juego")PixMap.stop();
@@ -1318,6 +1340,7 @@ function renderPanel(){
         <div><div class="big3">${cur!=null?fmt1(cur)+" <b>→ 85</b> kg":"Tu ruta a <b>85 kg</b>"}</div><div class="hint" id="info3d" style="margin-top:8px;text-transform:none;letter-spacing:.02em;font-size:12px;color:var(--ink)">${matchMedia("(hover:hover)").matches?"Pasa el ratón por una semana para ver tu peso frente al plan":"Toca una semana para ver tu peso frente al plan · arrastra para girar"}</div></div></div>
     </section>
     ${Cifras.tile()}
+    ${Journey.tile(pts)}
     <section class="tile t-hero rv" aria-label="Peso">
       <div class="lbl"><span>Peso · media 7 días</span><em>${lastW?"último "+fmt1(lastW.y)+" kg · "+short(lastW.x):"sin pesajes"}</em></div>
       <div class="hero-row"><div class="kpi"><span data-count="${cur!=null?cur.toFixed(1):""}" data-dec="1">${cur!=null?fmt1(cur):"—"}</span><small>kg</small></div>
@@ -1452,7 +1475,7 @@ function renderPanel(){
     svg.addEventListener("focus",()=>show(idx));svg.addEventListener("blur",hide);
     svg.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){e.preventDefault();show(idx-1)}if(e.key==="ArrowRight"){e.preventDefault();show(idx+1)}if(e.key==="Escape")hide()});
   }
-  Motion.panel(v);Cifras.animate(v);
+  Motion.panel(v);Cifras.animate(v);Journey.mount(pts);
   Scene3D.mount($("#c3d"),pts,avg);
 }
 /* =============== JAVI EN DIRECTO · mundo pixel art =============== */
@@ -1700,6 +1723,142 @@ function renderGame(){
   PixMap.mount();mountLive();Tama.mount();Loc.mount();if(Sync.on()&&Sync.cfg.share)Tama.fetchRemote(Sync.cfg.share);
 }
 window.RX27Game=Game;
+
+/* =============== VIAJE 3D · la ruta de 100 a 85 kg =============== */
+const Journey={
+  raf:0,R:null,
+  D0:"2026-11-02",D1:"2027-03-17",
+  tile(pts){
+    return `<section class="tile t-wide rv jy" aria-label="Viaje 3D hacia 85 kg">
+      <div class="jy-stage" id="jystage">
+        <canvas id="jycv" aria-label="Ruta 3D de tu peso: espiral que baja de 100 a 85 kg. Arrastra para girar, pellizca para acercar y toca un cristal para ver ese día." role="img"></canvas>
+        <div class="jy-hud tl"><div class="eyebrow">Viaje 3D · ruta a HYROX</div><h3 class="jy-t">De 100 a <b>85</b></h3><p class="jy-s" id="jysub"></p></div>
+        <div class="jy-hud tr" aria-hidden="true"><span id="jyalt">—</span><small>KG</small></div>
+        <div class="jy-card" id="jycard" hidden aria-live="polite"></div>
+        <div class="jy-ctl" role="group" aria-label="Cámara">
+          <button type="button" class="jy-b pri" data-jy="fly">▶ Volar la ruta</button>
+          <button type="button" class="jy-b" data-jy="start">Inicio</button>
+          <button type="button" class="jy-b" data-jy="now">Hoy</button>
+          <button type="button" class="jy-b" data-jy="goal">Meta</button>
+          <button type="button" class="jy-b" data-jy="full" aria-label="Pantalla completa">⤢</button>
+        </div>
+        <div class="jy-load" id="jyload" aria-hidden="true"><i></i></div>
+      </div>
+    </section>`},
+  stop(){cancelAnimationFrame(this.raf);this.raf=0;if(this.io){this.io.disconnect();this.io=null}if(this.ro){this.ro.disconnect();this.ro=null}if(this.R){this.R.dispose();this.R=null}document.body.classList.remove("jy-lock")},
+  async mount(pts){
+    this.stop();const cv=$("#jycv"),stage=$("#jystage");if(!cv)return;
+    const THREE=await Scene3D.load();if(!THREE||!cv.isConnected)return;
+    const mobile=matchMedia("(max-width:560px)").matches,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const R=new THREE.WebGLRenderer({canvas:cv,antialias:!mobile,alpha:false,powerPreference:"high-performance"});this.R=R;
+    R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));R.setClearColor(0x05070d,1);
+    const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x05070d,0.022);
+    const cam=new THREE.PerspectiveCamera(55,1,0.1,400);
+    const ACC=new THREE.Color("#8FA8FF"),CY=new THREE.Color("#73EFF7"),OK=new THREE.Color("#5FE0B0"),GOLD=new THREE.Color("#FFCD75"),PINK=new THREE.Color("#FF7A95");
+    // ---- geometría de la ruta: espiral que baja con el peso ----
+    const day=s=>Math.round((pd(s)-pd(this.D0))/864e5),TOT=day(this.D1),RAD=16,K=1.15;
+    const pos=(s01,kg)=>{const a=s01*Math.PI*2.2-Math.PI/2,r=RAD-s01*5;return new THREE.Vector3(Math.cos(a)*r,(kg-85)*K,Math.sin(a)*r)};
+    const planPts=[];for(let i=0;i<=120;i++){const s=i/120;planPts.push(pos(s,100-15*s))}
+    const planCurve=new THREE.CatmullRomCurve3(planPts);
+    const glowTex=(()=>{const c=document.createElement("canvas");c.width=c.height=64;const g=c.getContext("2d"),r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,"rgba(255,255,255,1)");r.addColorStop(.25,"rgba(255,255,255,.55)");r.addColorStop(1,"rgba(255,255,255,0)");g.fillStyle=r;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)})();
+    const label=(txt,color,size=1,sub)=>{const c=document.createElement("canvas"),g=c.getContext("2d");c.width=512;c.height=sub?192:128;g.font='900 84px "Big Shoulders Display",Impact,sans-serif';g.textAlign="center";g.fillStyle=color;g.shadowColor=color;g.shadowBlur=24;g.fillText(txt,256,92);
+      if(sub){g.font='500 34px "JetBrains Mono",monospace';g.shadowBlur=0;g.fillStyle="rgba(238,241,245,.7)";g.fillText(sub,256,160)}
+      const t=new THREE.CanvasTexture(c);t.minFilter=THREE.LinearFilter;const m=new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,fog:false});const s=new THREE.Sprite(m);s.scale.set(4*size,(sub?1.5:1)*size,1);return s};
+    // plan: tubo fantasma
+    const planTube=new THREE.Mesh(new THREE.TubeGeometry(planCurve,400,.06,6,false),new THREE.MeshBasicMaterial({color:ACC,transparent:true,opacity:.28}));scene.add(planTube);
+    // anillos de nivel 100/95/90/85
+    [100,95,90,85].forEach(kg=>{const y=(kg-85)*K,ring=new THREE.Mesh(new THREE.TorusGeometry(RAD+3,.025,6,160),new THREE.MeshBasicMaterial({color:kg===85?GOLD:ACC,transparent:true,opacity:kg===85?.55:.16}));ring.rotation.x=Math.PI/2;ring.position.y=y;scene.add(ring);
+      const l=label(kg+" KG",kg===85?"#FFCD75":"#8FA8FF",1.1);l.position.set(RAD+4.8,y+.5,0);scene.add(l)});
+    // suelo: rejilla
+    const grid=new THREE.GridHelper(120,60,0x2a3566,0x141a33);grid.position.y=-3.2;grid.material.transparent=true;grid.material.opacity=.55;scene.add(grid);
+    // estrellas
+    const N=mobile?900:1800,sg=new THREE.BufferGeometry(),sp=new Float32Array(N*3);for(let i=0;i<N;i++){const r=60+Math.random()*120,t=Math.random()*Math.PI*2,u=Math.random()*2-1;sp[i*3]=r*Math.sqrt(1-u*u)*Math.cos(t);sp[i*3+1]=r*u*.6+10;sp[i*3+2]=r*Math.sqrt(1-u*u)*Math.sin(t)}
+    sg.setAttribute("position",new THREE.BufferAttribute(sp,3));const stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0x9fb2ff,size:.35,transparent:true,opacity:.8,fog:false}));scene.add(stars);
+    // polvo que sube
+    const M=mobile?160:320,dg=new THREE.BufferGeometry(),dp=new Float32Array(M*3);for(let i=0;i<M;i++){dp[i*3]=(Math.random()-.5)*44;dp[i*3+1]=Math.random()*22-3;dp[i*3+2]=(Math.random()-.5)*44}
+    dg.setAttribute("position",new THREE.BufferAttribute(dp,3));const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:CY,size:.12,map:glowTex,transparent:true,opacity:.7,depthWrite:false,blending:THREE.AdditiveBlending}));scene.add(dust);
+    // portal de meta y puerta de salida
+    const portal=new THREE.Group(),pEnd=pos(1,85);portal.position.copy(pEnd);scene.add(portal);
+    [[1.9,.07,GOLD,1],[2.4,.03,ACC,.6],[2.9,.02,CY,.35]].forEach(([r,t,c,o],i)=>{const m=new THREE.Mesh(new THREE.TorusGeometry(r,t,8,90),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:o}));m.userData.spin=(i%2?-1:1)*(0.4+i*.3);portal.add(m)});
+    const pg=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:GOLD,transparent:true,opacity:.55,blending:THREE.AdditiveBlending,depthWrite:false}));pg.scale.set(7,7,1);portal.add(pg);
+    const pl=label("HYROX","#FFCD75",1.6,"17·03·27 · 85 KG");pl.position.set(0,3.6,0);portal.add(pl);
+    const pStart=pos(0,100),sl=label("INICIO","#EEF1F5",1.2,"2 NOV · 100 KG");sl.position.copy(pStart).add(new THREE.Vector3(0,2.4,0));scene.add(sl);
+    const sGate=new THREE.Mesh(new THREE.TorusGeometry(1.2,.04,8,60),new THREE.MeshBasicMaterial({color:0xEEF1F5,transparent:true,opacity:.5}));sGate.position.copy(pStart);scene.add(sGate);
+    // ruta real: cristales por pesaje + tubo brillante
+    const P=pts.filter(p=>p.x>=this.D0).map(p=>({...p,s:Math.max(0,Math.min(1,day(p.x)/TOT))}));
+    const crystals=[],realPts=[pos(0,100)].concat(P.map(p=>pos(p.s,p.y)));
+    let realCurve=null,energy=null;
+    if(realPts.length>1){realCurve=new THREE.CatmullRomCurve3(realPts);const tube=new THREE.Mesh(new THREE.TubeGeometry(realCurve,Math.max(40,realPts.length*30),.16,10,false),new THREE.MeshBasicMaterial({color:CY}));scene.add(tube);
+      const halo=new THREE.Mesh(new THREE.TubeGeometry(realCurve,Math.max(40,realPts.length*30),.42,10,false),new THREE.MeshBasicMaterial({color:ACC,transparent:true,opacity:.18,blending:THREE.AdditiveBlending,depthWrite:false}));scene.add(halo);
+      this.tubes=[tube,halo];
+      energy=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:0xffffff,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false}));energy.scale.set(1.6,1.6,1);scene.add(energy)}
+    P.forEach((p,i)=>{const v=pos(p.s,p.y),last=i===P.length-1;
+      const g=new THREE.Group();g.position.copy(v).add(new THREE.Vector3(0,1.1,0));
+      const cr=new THREE.Mesh(new THREE.OctahedronGeometry(last?.55:.38,0),new THREE.MeshBasicMaterial({color:last?GOLD:ACC,wireframe:false,transparent:true,opacity:.92}));
+      const wf=new THREE.Mesh(new THREE.OctahedronGeometry(last?.7:.5,0),new THREE.MeshBasicMaterial({color:last?GOLD:CY,wireframe:true,transparent:true,opacity:.6}));
+      const gl=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:last?GOLD:ACC,transparent:true,opacity:.6,blending:THREE.AdditiveBlending,depthWrite:false}));gl.scale.set(2.6,2.6,1);
+      g.add(cr,wf,gl);const stem=new THREE.Mesh(new THREE.CylinderGeometry(.012,.012,1.1,4),new THREE.MeshBasicMaterial({color:ACC,transparent:true,opacity:.5}));stem.position.copy(v).add(new THREE.Vector3(0,.55,0));scene.add(stem);
+      g.userData={p,i,base:g.position.y};cr.userData=g.userData;scene.add(g);crystals.push(g);
+      if(last||P.length<=8||i%3===0){const l=label(fmt1(p.y),last?"#FFCD75":"#EEF1F5",last?1:.75);l.position.copy(g.position).add(new THREE.Vector3(0,1.25,0));scene.add(l)}});
+    // Javi en pixel art donde estás hoy
+    const jc=document.createElement("canvas");jc.width=jc.height=16;Game.sprite(jc.getContext("2d"),0,0,"down",0);const jt=new THREE.CanvasTexture(jc);jt.magFilter=THREE.NearestFilter;jt.minFilter=THREE.NearestFilter;
+    const javi=new THREE.Sprite(new THREE.SpriteMaterial({map:jt,transparent:true}));javi.scale.set(1.8,1.8,1);
+    const lastP=P.length?P[P.length-1]:null,jv=lastP?pos(lastP.s,lastP.y):pStart;javi.position.copy(jv).add(new THREE.Vector3(0,3.3,0));scene.add(javi);
+    // ---- cámara orbital propia ----
+    const target=new THREE.Vector3(0,6,0),sph={r:mobile?46:40,th:.7,ph:1.05},want={r:sph.r,th:sph.th,ph:sph.ph,t:target.clone()};let auto=!reduce,flying=null;
+    const place=()=>{cam.position.set(target.x+sph.r*Math.sin(sph.ph)*Math.cos(sph.th),target.y+sph.r*Math.cos(sph.ph),target.z+sph.r*Math.sin(sph.ph)*Math.sin(sph.th));cam.lookAt(target)};
+    const ptrs=new Map();let last=null,pinch=null,moved=0;
+    cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});last={x:e.clientX,y:e.clientY};moved=0;auto=false;flying=null;if(ptrs.size===2){const [a,b]=[...ptrs.values()];pinch=Math.hypot(a.x-b.x,a.y-b.y)}});
+    cv.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId))return;ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(ptrs.size===2){const [a,b]=[...ptrs.values()],d=Math.hypot(a.x-b.x,a.y-b.y);if(pinch){want.r=Math.max(10,Math.min(80,want.r*pinch/d))}pinch=d;moved+=5;return}
+      const dx=e.clientX-last.x,dy=e.clientY-last.y;last={x:e.clientX,y:e.clientY};moved+=Math.abs(dx)+Math.abs(dy);want.th+=dx*.008;want.ph=Math.max(.25,Math.min(1.5,want.ph-dy*.006))});
+    const end=e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinch=null;if(e.type==="pointerup"&&moved<6)pick(e)};cv.addEventListener("pointerup",end);cv.addEventListener("pointercancel",end);
+    cv.addEventListener("wheel",e=>{e.preventDefault();auto=false;want.r=Math.max(10,Math.min(80,want.r*(e.deltaY>0?1.1:.9)))},{passive:false});
+    // ---- selección ----
+    const ray=new THREE.Raycaster(),mv=new THREE.Vector2(),card=$("#jycard");
+    const show=g=>{const p=g.userData.p,dd=p.y-100,pr=Math.max(0,Math.min(1,(100-p.y)/15));
+      card.innerHTML=`<span class="eyebrow">${esc(nice(p.x))}</span><b>${fmt1(p.y)}<small> kg</small></b><span>${dd<=0?"−":"+"}${fmt1(Math.abs(dd))} kg desde los 100 · ${Math.round(pr*100)} % del camino${p.g!=null?" · grasa "+fmt1(p.g)+" %":""}</span>`;
+      card.hidden=false;if(Motion.ok)gsap.fromTo(card,{opacity:0,y:12,rotateX:-20,transformPerspective:600},{opacity:1,y:0,rotateX:0,duration:.45,ease:"back.out(1.8)"});
+      crystals.forEach(c=>c.userData.sel=c===g);flyTo(g.position.clone(),16,null,1.2)};
+    const pick=e=>{const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mv,cam);
+      const hit=ray.intersectObjects(crystals.map(c=>c.children[0]).concat(crystals.map(c=>c.children[1])),false)[0];
+      if(hit){const g=hit.object.parent;show(g)}else{card.hidden=true;crystals.forEach(c=>c.userData.sel=false)}};
+    // ---- vuelos de cámara ----
+    const flyTo=(t,r,ph,dur)=>{auto=false;flying=null;if(typeof gsap==="undefined"||reduce){target.copy(t);want.t.copy(t);want.r=r;if(ph)want.ph=ph;return}
+      gsap.to(want.t,{x:t.x,y:t.y,z:t.z,duration:dur||1.4,ease:"power3.inOut"});gsap.to(want,{r,duration:dur||1.4,ease:"power3.inOut",...(ph?{ph}:{})})};
+    const fly=()=>{if(reduce||typeof gsap==="undefined"){flyTo(pEnd,22);return}auto=false;card.hidden=true;const curve=planCurve,o={t:0},endT=1;
+      flying=o;gsap.fromTo(o,{t:0},{t:endT,duration:9,ease:"power1.inOut",onUpdate:()=>{if(flying!==o)return;const p=curve.getPointAt(o.t),q=curve.getPointAt(Math.min(1,o.t+.03));
+        cam.position.copy(p).add(new THREE.Vector3(0,3.2,0)).add(p.clone().setY(0).normalize().multiplyScalar(5.5));cam.lookAt(q.x,q.y+1,q.z);
+        const kg=100-15*o.t;$("#jyalt").textContent=fmt1(kg)},onComplete:()=>{if(flying!==o)return;flying=null;$("#jyalt").textContent=lastP?fmt1(lastP.y):"—";want.t.copy(pEnd);target.copy(pEnd);
+        want.r=18;want.ph=.95;sph.r=18;const d=cam.position.clone().sub(pEnd);sph.th=Math.atan2(d.z,d.x);want.th=sph.th;toast(lastP?"Te quedan "+fmt1(Math.max(0,lastP.y-85))+" kg hasta el portal":"Meta: 85 kg el 17 de marzo")}})};
+    stage.querySelectorAll("[data-jy]").forEach(b=>b.onclick=()=>{const k=b.dataset.jy;if(navigator.vibrate)navigator.vibrate(8);
+      if(k==="fly")fly();else if(k==="start")flyTo(pStart,18,1.0);else if(k==="now")flyTo(jv.clone().add(new THREE.Vector3(0,2,0)),14,1.0);else if(k==="goal")flyTo(pEnd,18,.95);
+      else if(k==="full"){const on=!stage.classList.contains("full");stage.classList.toggle("full",on);document.body.classList.toggle("jy-lock",on);b.textContent=on?"✕":"⤢";setTimeout(size,60)}});
+    // ---- tamaño, visibilidad, bucle ----
+    const size=()=>{const r=stage.getBoundingClientRect();R.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.fov=r.width<600?62:52;cam.updateProjectionMatrix()};
+    size();this.ro=new ResizeObserver(size);this.ro.observe(stage);
+    let vis=true;this.io=new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:.05});this.io.observe(stage);
+    $("#jyalt").textContent=lastP?fmt1(lastP.y):"—";const sub=$("#jysub");if(sub)sub.textContent=lastP?`Vas por ${fmt1(lastP.y)} kg · ${Math.round(Math.max(0,Math.min(1,(100-lastP.y)/15))*100)} % del camino · faltan ${Math.max(0,Math.round((RACE-new Date())/864e5))} días`:"Cuando te peses, aquí aparece tu ruta";
+    // intro: la ruta se dibuja y la cámara entra desde lejos
+    const intro={k:reduce?1:0};if(this.tubes)this.tubes.forEach(t=>t.geometry.setDrawRange(0,0));
+    if(!reduce&&Motion.ok){sph.r=110;sph.ph=.5;gsap.to(intro,{k:1,duration:2.6,ease:"power2.out",delay:.2})}
+    $("#jyload").classList.add("off");
+    const clock=new THREE.Clock();
+    const loop=()=>{this.raf=requestAnimationFrame(loop);if(!vis)return;const t=clock.getElapsedTime();
+      if(this.tubes)this.tubes.forEach(m=>{const n=m.geometry.index?m.geometry.index.count:m.geometry.attributes.position.count;m.geometry.setDrawRange(0,Math.floor(n*intro.k))});
+      if(!flying){if(auto)want.th+=.0016;sph.r+=(want.r-sph.r)*.07;sph.th+=(want.th-sph.th)*.08;sph.ph+=(want.ph-sph.ph)*.08;target.lerp(want.t,.08);place()}
+      portal.children.forEach(c=>{if(c.userData.spin)c.rotation.z+=c.userData.spin*.01});portal.rotation.y=Math.sin(t*.3)*.4;pg.material.opacity=.4+Math.sin(t*2)*.15;
+      sGate.rotation.y=t*.6;
+      crystals.forEach((g,i)=>{g.rotation.y=t*.8+i;g.position.y=g.userData.base+Math.sin(t*1.6+i)*.12;const s=g.userData.sel?1.5:1;g.scale.lerp(new THREE.Vector3(s,s,s),.15)});
+      javi.position.y=jv.y+3.3+Math.abs(Math.sin(t*3))*.25;
+      if(energy&&realCurve){energy.position.copy(realCurve.getPointAt((t*.18)%1*intro.k));}
+      const a=dg.attributes.position.array;for(let i=0;i<M;i++){a[i*3+1]+=.02+(i%5)*.004;if(a[i*3+1]>20)a[i*3+1]=-3}dg.attributes.position.needsUpdate=true;
+      stars.rotation.y=t*.004;
+      R.render(scene,cam)};
+    {const mid=jv.clone().multiplyScalar(.55).add(new THREE.Vector3(0,7,0).multiplyScalar(.45));want.t.copy(mid);want.r=mobile?30:27;want.ph=1.02;const d=jv.clone().setY(0);want.th=Math.atan2(d.z,d.x)+.35;if(reduce){target.copy(mid);sph.r=want.r;sph.th=want.th;sph.ph=want.ph}}
+    place();loop();
+  }
+};
 
 /* =============== MAPA REAL EN PIXEL ART =============== */
 const PixMap={
