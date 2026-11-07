@@ -1549,7 +1549,7 @@ function parseQty(raw,lo,hi){if(raw==null)return null;let s0=String(raw).trim().
 function importEnergy(q,s){
   if(!["pasos","activas","reposo"].some(k=>q.has(k)))return;
   const d=getDay(s),got=[],bad=[];
-  const set=(k,lo,hi,label)=>{if(!q.has(k))return;const v=parseQty(q.get(k),lo,hi);if(v==null){bad.push(label+' "'+String(q.get(k)).slice(0,20)+'"');return}d[k]=v;got.push(label+" "+fmt0(v))};
+  const set=(k,lo,hi,label)=>{if(!q.has(k)||!String(q.get(k)).trim())return;const v=parseQty(q.get(k),lo,hi);if(v==null){bad.push(label+' "'+String(q.get(k)).slice(0,20)+'"');return}d[k]=v;got.push(label+" "+fmt0(v))};
   set("pasos",0,80000,"pasos");set("activas",0,6000,"kcal activas");set("reposo",0,4000,"kcal reposo");
   if(got.length){d.energiaT=Date.now();touch(d,true);state.date=s;state.view="dia";setTimeout(()=>toast("Salud guardada · "+got.join(" · ")),q.has("peso")?2900:400)}
   if(bad.length)setTimeout(()=>toast("No he entendido: "+bad.join(", "),true),q.has("peso")?5600:3000);
