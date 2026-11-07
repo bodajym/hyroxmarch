@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-07T20:40",
+ "actualizado": "2026-11-07T23:12",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -558,7 +558,7 @@
     {
      "h": "09:00",
      "d": "Desayuno",
-     "t": "Tortilla de 3 huevos + claras, pan integral y fruta. Creatina con el desayuno (hoy no entrenas)"
+     "t": "Bol de queso batido con Evolate, avena y plátano (hoy descansas del huevo). Creatina con el desayuno"
     },
     {
      "h": "10:30",
@@ -593,7 +593,7 @@
     {
      "h": "22:30",
      "d": "Recena",
-     "t": "Queso batido con un poco de miel"
+     "t": "Un vaso de leche proteica Dia (250 ml)"
     },
     {
      "h": "23:00",
@@ -604,11 +604,11 @@
    "comidas": [
     {
      "h": "09:00",
-     "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
-     "kcal": 505,
-     "p": 42,
-     "c": 42,
-     "g": 18
+     "n": "Desayuno B · 250 g queso batido 0 %, 25 g Evolate, 40 g avena, 1 plátano",
+     "kcal": 525,
+     "p": 55,
+     "c": 64,
+     "g": 5
     },
     {
      "h": "09:00",
@@ -652,11 +652,11 @@
     },
     {
      "h": "22:30",
-     "n": "Recena · 250 g queso batido 0 %, 10 g miel",
-     "kcal": 220,
-     "p": 26,
-     "c": 22,
-     "g": 1
+     "n": "Recena · 250 ml leche proteica Dia",
+     "kcal": 160,
+     "p": 20,
+     "c": 12,
+     "g": 3
     }
    ]
   },
