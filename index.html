@@ -1644,9 +1644,9 @@ window.RX27Game=Game;
 const Loc={
   KEY:"rx27-lugares",ON:"rx27-loc",FILE:"rx27-lugar.json",last:null,busy:false,
   NAMES:{casa:"Casa",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
-  get sites(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}return Object.assign({retiro:{lat:40.4153,lon:-3.6845,r:700}},o)},
-  save(k,lat,lon){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}o[k]={lat,lon,r:k==="retiro"?700:160};LS.set(this.KEY,JSON.stringify(o))},
-  get on(){return LS.get(this.ON)==="1"},set on(v){LS.set(this.ON,v?"1":"0")},
+  get sites(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}return Object.assign({retiro:{lat:40.4148,lon:-3.6842,r:520}},o)},
+  save(k,lat,lon){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}o[k]={lat,lon,r:k==="retiro"?520:140};LS.set(this.KEY,JSON.stringify(o))},
+  get on(){const v=LS.get(this.ON);return v==null?true:v==="1"},set on(v){LS.set(this.ON,v?"1":"0")},
   mine(){try{const m=JSON.parse(LS.get("rx27-milugar")||"null");return m&&m.k?m:null}catch(e){return null}},
   dist(a,b,c,d){const R=6371e3,r=Math.PI/180,x=(d-b)*r*Math.cos((a+c)/2*r),y=(c-a)*r;return Math.sqrt(x*x+y*y)*R},
   pos(){return new Promise((ok,ko)=>{if(!navigator.geolocation)return ko(new Error("sin geo"));navigator.geolocation.getCurrentPosition(p=>ok(p.coords),ko,{enableHighAccuracy:true,maximumAge:60000,timeout:15000})})},
@@ -1661,7 +1661,7 @@ const Loc={
   },
   async update(silent){
     if(!this.on||this.busy)return;this.busy=true;
-    try{const c=await this.pos(),L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
+    try{const c=await this.pos();if(c.accuracy>400){this.busy=false;return}const L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
       LS.set("rx27-milugar",JSON.stringify(L));this.last=L;if(!prev||prev.k!==L.k||prev.n!==L.n||Date.now()-prev.t>20*60e3)Tama.publish();
       if(state.view==="juego")Tama.paintInfo();this.paintSites()}
     catch(e){if(!silent)toast(e&&e.code===1?"El móvil no ha dado permiso de ubicación. Actívalo en Ajustes del iPhone → Privacidad → Localización":"No he podido leer tu ubicación",true)}
@@ -1714,17 +1714,18 @@ const Tama={
       return {k,txt,sub,next,ag,min,lugar:L}}
     if(min<7*60||min>=23*60+30){k="sleep";txt="Durmiendo";sub="La recuperación también entrena"}
     else{const act=ag.find(x=>x.k!=="eat"&&min>=x.m-10&&min<x.e),eat=ag.find(x=>x.k==="eat"&&min>=x.m-5&&min<x.e);
-      if(act){k=act.k;txt=act.k==="run"?"Corriendo":"En el gimnasio";sub=act.n+(act.t?" · "+act.t.split(/[.:]/)[0]:"")}
-      else if(eat){k="eat";txt="Comiendo";sub=eat.n}
+      if(act){k=act.k;txt=act.k==="run"?"Toca correr":"Toca entrenar";sub=act.n+" · según el plan"}
+      else if(eat){k="eat";txt="Hora de comer";sub=eat.n+" · según el plan"}
       else if(moving){k="walk";txt="En movimiento";sub="Sumando pasos"}
-      else if(dow>=1&&dow<=5&&min>=9*60&&min<18*60+30){k="work";txt="Trabajando";sub="Modo oficina"}}
+      else if(dow>=1&&dow<=5&&min>=9*60&&min<18*60+30){k="work";txt="Horario de trabajo";sub="Según el plan"}
+      else sub="Según el plan · sin ubicación ahora"}
     return {k,txt,sub,next,ag,min};
   },
   lugarFile:null,
   lugar(info){
     const c=[info&&info.lugar,this.lugarFile,document.body.classList.contains("viewer")?null:Loc.mine()].filter(x=>x&&x.k&&x.t);
     if(!c.length)return null;c.sort((a,b)=>b.t-a.t);const L=c[0],age=Date.now()-L.t;
-    return age<(L.k==="fuera"||L.k==="restaurante"?75:240)*60e3?L:null},
+    return age<(L.src==="atajo"?14*60:L.k==="fuera"||L.k==="restaurante"?75:240)*60e3?L:null},
   payload(){
     const s=todayStr(),d=data.days[s]||blankDay(s),tt=totals(d);
     return {v:1,t:Date.now(),fecha:s,lugar:Loc.mine(),pasos:d.pasos||0,activas:d.activas||0,prot:Math.round(tt.p),kcal:Math.round(tt.kcal),
@@ -1748,7 +1749,7 @@ const Tama={
   async fetchRemote(id){
     try{const r=await fetch("https://api.github.com/gists/"+id,{headers:{Accept:"application/vnd.github+json"},cache:"no-store"});if(!r.ok)return;
       const j=await r.json(),lf=j.files&&j.files[Loc.FILE];
-      if(lf&&lf.content){const [k,ts]=String(lf.content).trim().split("|"),t=Date.parse(ts||"")||Date.parse(j.updated_at);if(Loc.NAMES[k.trim().toLowerCase()]!==undefined)this.lugarFile={k:k.trim().toLowerCase(),t}}
+      if(lf&&lf.content){const [k,ts]=String(lf.content).trim().split("|"),t=Date.parse(ts||"")||Date.parse(j.updated_at);if(Loc.NAMES[k.trim().toLowerCase()]!==undefined)this.lugarFile={k:k.trim().toLowerCase(),t,src:"atajo"}}
       const f=j.files&&j.files[this.FILE];if(!f){if(state.view==="javi"||state.view==="juego")this.paintInfo();return}const txt=f.truncated?await (await fetch(f.raw_url)).text():f.content;const p=JSON.parse(txt);
       if(this.info&&this.info.t!==p.t)this.prev=this.info;if(document.body.classList.contains("viewer"))this.info=p;if(state.view==="javi"||state.view==="juego")this.paintInfo()}catch(e){}
   },
@@ -2383,6 +2384,7 @@ const UX={
     document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")Tama.fetchRemote(TQ)});
   }}
 importFromURL();
+setTimeout(()=>{if(!document.body.classList.contains("viewer")&&Loc.on)Loc.update(true)},2500);
 fetch("alimentacion.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.recetas){FOOD=j;if(state.view==="comida"&&!editing())render()}}).catch(()=>{});
 fetch("coach.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.dias){COACH=j;if(!editing())render()}}).catch(()=>{});
 const th=LS.get("rx27-theme");if(th)setTheme(th);
