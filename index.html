@@ -433,6 +433,54 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 body.viewer nav.tabs,body.viewer #sync,body.viewer .hero,body.viewer footer{display:none!important}
 body.viewer .tama-view{padding-top:12px}
 
+/* ---------- mapa real pixel ---------- */
+.pmap{display:grid;gap:12px}
+.pmap-h{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.pmap-t{margin:2px 0 0;font-family:var(--display);font-weight:900;font-size:clamp(30px,4.4vw,48px);line-height:.95}
+.pmap-ctl{display:flex;gap:6px}
+.pm-b{all:unset;cursor:pointer;min-width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bg2) 80%,transparent);font-family:var(--mono);font-size:18px;color:var(--ink);transition:transform .2s var(--spring),border-color .2s}
+.pm-b.wide{padding:0 14px;font-size:13px}.pm-b:hover{border-color:var(--accent)}.pm-b:active{transform:scale(.92)}.pm-b:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pmap-frame{position:relative;height:clamp(300px,52vh,520px);border-radius:22px;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:#0b1020;touch-action:none;cursor:grab;
+  box-shadow:0 0 0 1px rgba(255,255,255,.03),0 40px 80px -40px rgba(0,0,0,.8),0 0 80px -30px color-mix(in srgb,var(--accent) 60%,transparent)}
+.pmap-frame:active{cursor:grabbing}
+.pmap-frame canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.pm-base.raw{filter:invert(1) hue-rotate(185deg) brightness(.85) contrast(1.1) saturate(1.4)}
+.pm-scan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(5,8,20,.75));mix-blend-mode:multiply}
+.pm-hud{position:absolute;pointer-events:none;font-family:"Press Start 2P",var(--mono);font-size:8px;letter-spacing:.06em;color:#73eff7;text-shadow:0 0 8px #73eff7;padding:12px}
+.pm-hud.tl{top:0;left:0}.pm-hud.br{bottom:0;right:0;color:rgba(255,255,255,.55);text-shadow:none;font-family:var(--mono);font-size:10px}
+.pm-card{position:absolute;left:12px;bottom:12px;display:grid;gap:2px;padding:10px 14px;border-radius:14px;background:rgba(11,16,32,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(143,168,255,.4);color:#EEF1F5;font-size:13px}
+.pm-card b{font-family:var(--display);font-size:22px;font-weight:900;line-height:1}.pm-card span{color:#b9c1cf;font-family:var(--mono);font-size:11px}
+/* ---------- guía ---------- */
+.tour{position:fixed;inset:0;z-index:90}
+.tour-spot{position:fixed;border-radius:18px;box-shadow:0 0 0 9999px rgba(5,7,12,.74),0 0 0 2px var(--accent),0 0 40px 4px color-mix(in srgb,var(--accent) 50%,transparent);transition:all .45s var(--ease);pointer-events:auto;opacity:0}
+.tour-card{position:fixed;left:50%;transform:translateX(-50%);width:min(440px,calc(100vw - 32px));display:grid;gap:8px;padding:20px;border-radius:22px;background:color-mix(in srgb,var(--bg2) 92%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line2);box-shadow:0 30px 80px -20px rgba(0,0,0,.8)}
+.tour-card h3{margin:0;font-family:var(--display);font-weight:900;font-size:34px;line-height:.95}
+.tour-card p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+.tour-n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.tour-dots{display:flex;gap:6px;margin:4px 0}.tour-dots i{width:18px;height:4px;border-radius:2px;background:var(--line2);transition:all .3s}.tour-dots i.on{width:34px;background:var(--accent)}
+.tour-btns{display:flex;gap:8px;align-items:center}
+.tour-btn{all:unset;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--accent);padding:6px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);white-space:nowrap}
+.tour-btn:hover{background:color-mix(in srgb,var(--accent) 12%,transparent)}.tour-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* ---------- dock móvil ---------- */
+.dock,.sheet{display:none}
+@media (max-width:760px){
+  nav.tabs{display:none!important}.tour-btn{margin-left:auto}
+  body:not(.viewer){padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  body:not(.viewer) .dock{display:flex;position:fixed;z-index:60;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));height:64px;padding:6px;border-radius:22px;
+    background:color-mix(in srgb,var(--bg2) 78%,transparent);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line2);box-shadow:0 20px 50px -18px rgba(0,0,0,.75)}
+  .dock a{position:relative;z-index:1;flex:1;display:grid;place-items:center;gap:2px;text-decoration:none;color:var(--muted);font-size:10.5px;font-weight:600;border-radius:16px;-webkit-tap-highlight-color:transparent}
+  .dock a svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .dock a[aria-current="page"]{color:var(--ink)}.dock a[aria-current="page"] svg{stroke:var(--accent);filter:drop-shadow(0 0 6px var(--accent))}
+  .dock a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+  .dock-pill{position:absolute;top:6px;bottom:6px;left:0;border-radius:16px;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);transition:transform .45s var(--spring),width .45s var(--spring)}
+  .sheet:not([hidden]){display:block;position:fixed;inset:0;z-index:70}
+  .sheet-b{position:absolute;inset:0;background:rgba(5,7,12,.55);backdrop-filter:blur(4px)}
+  .sheet-c{position:absolute;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));display:grid;gap:4px;padding:10px;border-radius:22px;background:var(--bg2);border:1px solid var(--line2);box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
+  .sheet-c a,.sheet-c button{all:unset;display:grid;gap:2px;padding:12px 14px;border-radius:14px;font-weight:600;font-size:16px;color:var(--ink);cursor:pointer}
+  .sheet-c a:active,.sheet-c button:active{background:var(--bg3)}.sheet-c small{font-weight:400;font-size:12.5px;color:var(--muted)}
+  .toast,#toast{bottom:calc(92px + env(safe-area-inset-bottom))!important}
+}
+
 /* minijuego */
 .gm-wrap{display:grid;gap:18px}
 .live-w{display:grid;gap:14px}
@@ -595,14 +643,15 @@ footer .shell{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
   <div class="shell">
     <a class="mark" href="#dia" aria-label="RX/27, ir al día">RX<i>/</i>27</a>
     <nav class="tabs" aria-label="Secciones">
-      <a href="#dia" data-v="dia">Día</a>
+      <a href="#dia" data-v="dia">Hoy</a>
       <a href="#panel" data-v="panel">Panel</a>
-      <a href="#semana" data-v="semana">Semana</a>
-      <a href="#comida" data-v="comida">Comida</a>
-      <a href="#progreso" data-v="progreso">Progreso</a>
       <a href="#juego" data-v="juego">En vivo</a>
+      <a href="#comida" data-v="comida">Comida</a>
+      <a href="#semana" data-v="semana">Semana</a>
+      <a href="#progreso" data-v="progreso">Progreso</a>
       <a href="#ajustes" data-v="ajustes">Ajustes</a>
     </nav>
+    <button class="tour-btn" type="button" data-tour-top aria-label="Ver la guía de la app">✦ Guía</button>
     <a class="sync" id="sync" href="#ajustes" role="status" aria-live="polite"><span class="dot"></span><span id="synctext">Solo en este dispositivo</span></a>
   </div>
 </header>
@@ -833,13 +882,14 @@ function render(){
   if(state.view!=="panel"){clearInterval(panelTimer);Scene3D.stop()}
   if(state.view!=="juego"&&state.view!=="javi")Game.stop();
   if(state.view!=="juego"&&state.view!=="javi")Tama.stop();
+  if(state.view!=="juego")PixMap.stop();
   ({dia:renderDay,panel:renderPanel,semana:renderWeek,comida:renderFood,progreso:renderProgress,juego:renderGame,javi:renderJavi,ajustes:renderSettings}[state.view]||renderDay)();
   v.firstElementChild&&v.firstElementChild.classList.add("fadein");
   requestAnimationFrame(()=>v.querySelectorAll(".meter .fill").forEach(f=>{f.style.width=f.dataset.w+"%"}));
   const changed=state._last!==state.view;state._last=state.view;
   Motion.sections(changed);
   if(changed){World3D.setView(state.view);if(Motion.ok&&v.firstElementChild)gsap.fromTo(v.firstElementChild,{opacity:0,rotateX:9,y:44,z:-80,transformOrigin:"50% 0%"},{opacity:1,rotateX:0,y:0,z:0,duration:.85,ease:"expo.out",clearProps:"transform,opacity"})}
-  UX.pill&&UX.pill();UX.tilt(v);
+  UX.pill&&UX.pill();UX.tilt(v);if(window.Dock&&document.querySelector(".dock"))Dock.sync();
 }
 
 /* =============== GASTO ENERGÉTICO =============== */
@@ -1162,7 +1212,7 @@ function weightChart(pts,avg,fit,zoom){
     proj=`<line x1="${X(a.x)}" y1="${Y(a.y)}" x2="${X(end)}" y2="${Y(ey)}" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" opacity=".8"/>`}
   dots=P.map(p=>`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="3.2" fill="var(--bg2)" stroke="var(--muted)" stroke-width="1.5"/>`).join("");
   const fst=P[0];const startMk=(Y(START_W)>=0?`<line x1="${L}" x2="${W-R}" y1="${Y(START_W)}" y2="${Y(START_W)}" stroke="var(--ink)" stroke-opacity=".35" stroke-dasharray="2 5"/><text x="${L+4}" y="${Y(START_W)-6}" style="fill:var(--ink)">INICIO ${fmt1(START_W)} kg</text>`:"")+(fst&&pts[0]&&fst.x===pts[0].x?`<circle cx="${X(fst.x)}" cy="${Y(fst.y)}" r="5" fill="none" stroke="var(--ink)" stroke-width="1.5"/>`:"");
-  const last=A[A.length-1];const endDot=startMk+last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"";
+  const last=A[A.length-1];const endDot=startMk+(last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"");
   const geo={pts:P.map(p=>({x:p.x,y:p.y,g:p.g,a:(A.find(q=>q.x===p.x)||{}).y,px:X(p.x),py:Y(p.y)})),W,H,T,B};
   return {svg:`<svg id="wchart" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Peso diario, media de 7 días, trayectoria objetivo hasta 85 kg y proyección. Usa las flechas para recorrer los días.">
     <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".32"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient>
@@ -1617,6 +1667,7 @@ const Game=(()=>{
   function scene(c,k,f){const o=ctx;ctx=c;try{c.imageSmoothingEnabled=false;sceneDraw(k,f)}finally{ctx=o}}
   return {
     scene,
+    sprite(c,x,y,dir,f){const o=ctx;ctx=c;try{person(x,y,dir,f,JAVI)}finally{ctx=o}},
     mount(canvas,kindFn){cv=canvas;ctx=cv.getContext("2d");getKind=kindFn||getKind;on=true;tick.l=0;demo=null;kindT=0;cars=[];
       const k=getKind();if(N.kind!==k||!N.spot&&!N.path.length)plan(k,true);
       cv.onpointerdown=e=>{const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*VW,y=(e.clientY-r.top)/r.height*VH;
@@ -1641,13 +1692,155 @@ function mountLive(){
 function renderGame(){
   $("#view").innerHTML=`<div class="view gm-wrap">
     <div class="view-head rv"><div><div class="eyebrow">En directo · pixel art</div><h2>Javi ahora</h2></div></div>
+    ${PixMap.block()}
     ${liveBlock(false)}
     ${Loc.block()}
     ${Tama.block(false)}
   </div>`;
-  mountLive();Tama.mount();Loc.mount();if(Sync.on()&&Sync.cfg.share)Tama.fetchRemote(Sync.cfg.share);
+  PixMap.mount();mountLive();Tama.mount();Loc.mount();if(Sync.on()&&Sync.cfg.share)Tama.fetchRemote(Sync.cfg.share);
 }
 window.RX27Game=Game;
+
+/* =============== MAPA REAL EN PIXEL ART =============== */
+const PixMap={
+  z:15,c:null,drag:null,tiles:new Map(),raf:0,f:0,sel:null,follow:true,
+  ICON:{casa:"casa",padres:"casa",suegros:"casa",f45:"pesa",amazon:"maletin",retiro:"arbol"},
+  last(){try{const p=JSON.parse(LS.get("rx27-lastpos")||"null");return p&&p.lat?p:null}catch(e){return null}},
+  center(){const p=this.last();if(p)return {lat:p.lat,lon:p.lon};const s=Loc.sites;return s.casa?{lat:s.casa.lat,lon:s.casa.lon}:{lat:s.retiro.lat,lon:s.retiro.lon}},
+  block(){return `<section class="pmap rv" aria-label="Mapa real en pixel art">
+    <div class="pmap-h"><div><div class="eyebrow">Mapa real · pixel art</div><h3 class="pmap-t" id="pmapt">Dónde está Javi</h3></div>
+      <div class="pmap-ctl" role="group" aria-label="Controles del mapa"><button class="pm-b" type="button" data-pm="out" aria-label="Alejar">−</button><button class="pm-b" type="button" data-pm="in" aria-label="Acercar">+</button><button class="pm-b wide" type="button" data-pm="me" aria-label="Centrar en mi posición">◎ Yo</button></div></div>
+    <div class="pmap-frame"><canvas class="pm-base" aria-hidden="true"></canvas><canvas class="pm-top" role="img" aria-label="Mapa de Madrid con tus sitios y tu posición. Arrastra para moverte y toca un sitio para ver qué es."></canvas>
+      <div class="pm-scan" aria-hidden="true"></div><div class="pm-hud tl" id="pmhud" aria-hidden="true"></div><div class="pm-hud br" aria-hidden="true">© OpenStreetMap</div>
+      <div class="pm-card" id="pmcard" aria-live="polite" hidden></div></div>
+  </section>`},
+  mount(){
+    const fr=document.querySelector(".pmap-frame");if(!fr)return;this.fr=fr;this.base=fr.querySelector(".pm-base");this.top=fr.querySelector(".pm-top");
+    this.c=this.center();this.follow=true;this.sel=null;this.size();
+    const ro=new ResizeObserver(()=>{this.size();this.draw()});ro.observe(fr);this.ro=ro;
+    fr.addEventListener("pointerdown",e=>{if(e.target.closest(".pm-card"))return;this.drag={x:e.clientX,y:e.clientY,c:{...this.c},moved:false};fr.setPointerCapture(e.pointerId)});
+    fr.addEventListener("pointermove",e=>{if(!this.drag)return;const dx=e.clientX-this.drag.x,dy=e.clientY-this.drag.y;if(Math.abs(dx)+Math.abs(dy)>4)this.drag.moved=true;if(!this.drag.moved)return;
+      const p=this.proj(this.drag.c.lat,this.drag.c.lon);this.c=this.unproj(p.x-dx/this.cell/this.scale,p.y-dy/this.cell/this.scale);this.follow=false;this.draw()});
+    const up=e=>{if(this.drag&&!this.drag.moved)this.tap(e);this.drag=null};fr.addEventListener("pointerup",up);fr.addEventListener("pointercancel",()=>this.drag=null);
+    fr.addEventListener("wheel",e=>{e.preventDefault();this.zoom(e.deltaY<0?1:-1)},{passive:false});
+    document.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{const k=b.dataset.pm;if(k==="in")this.zoom(1);else if(k==="out")this.zoom(-1);else{this.follow=true;this.c=this.center();if(Loc.on)Loc.update();this.draw()}});
+    cancelAnimationFrame(this.raf);const loop=()=>{if(!document.body.contains(this.top))return;this.raf=requestAnimationFrame(loop);this.f++;if(this.f%4===0)this.drawTop()};loop();
+    this.draw();
+  },
+  size(){const r=this.fr.getBoundingClientRect();this.cell=3;this.W=Math.ceil(r.width/this.cell);this.H=Math.ceil(r.height/this.cell);this.px=1;this.scale=1/4;
+    [this.base,this.top].forEach(cv=>{cv.width=this.W;cv.height=this.H})},
+  proj(lat,lon){const s=256*Math.pow(2,this.z),x=(lon+180)/360*s,sn=Math.sin(lat*Math.PI/180),y=(0.5-Math.log((1+sn)/(1-sn))/(4*Math.PI))*s;return {x,y}},
+  unproj(x,y){const s=256*Math.pow(2,this.z),lon=x/s*360-180,n=Math.PI-2*Math.PI*y/s;return {lat:180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))),lon}},
+  // pantalla (celdas) <- mundo: cada tile de 256 px se pinta en 64 celdas
+  toScr(lat,lon){const p=this.proj(lat,lon),c=this.proj(this.c.lat,this.c.lon);return {x:Math.round(this.W/2+(p.x-c.x)*this.scale),y:Math.round(this.H/2+(p.y-c.y)*this.scale)}},
+  zoom(d){const z=Math.max(12,Math.min(17,this.z+d));if(z===this.z)return;this.z=z;this.draw()},
+  tile(z,x,y){const n=Math.pow(2,z);x=((x%n)+n)%n;const k=z+"/"+x+"/"+y;let t=this.tiles.get(k);if(!t){t=new Image();t.crossOrigin="anonymous";t.decoding="async";t.onload=()=>this.draw();t.src=`https://tile.openstreetmap.org/${k}.png`;this.tiles.set(k,t)}return t},
+  draw(){
+    if(!this.base)return;const ctx=this.base.getContext("2d");ctx.imageSmoothingEnabled=true;ctx.fillStyle="#0b1020";ctx.fillRect(0,0,this.W,this.H);
+    const c=this.proj(this.c.lat,this.c.lon),T=256*this.scale,x0=c.x-this.W/2/this.scale,y0=c.y-this.H/2/this.scale;
+    for(let tx=Math.floor(x0/256);tx<=Math.floor((x0+this.W/this.scale)/256);tx++)for(let ty=Math.floor(y0/256);ty<=Math.floor((y0+this.H/this.scale)/256);ty++){
+      const im=this.tile(this.z,tx,ty);if(im.complete&&im.naturalWidth)ctx.drawImage(im,Math.round((tx*256-x0)*this.scale),Math.round((ty*256-y0)*this.scale),T,T)}
+    // paleta pixel: agua, parques, calles, edificios y fondo
+    try{const id=ctx.getImageData(0,0,this.W,this.H),d=id.data;
+      for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2],L=(r*3+g*6+b)/10;let o;
+        if(r<20&&g<25&&b<40)o=[11,16,32];
+        else if(b>r+18&&b>g)o=[24,58,110];
+        else if(g>r+12&&g>b)o=[22,70,58];
+        else if(r>235&&g<225&&b<200)o=[255,176,92];
+        else if(L>246)o=[92,206,232];
+        else if(L>236)o=[38,48,84];
+        else if(L>212)o=[28,34,60];
+        else o=[52,40,86];
+        d[i]=o[0];d[i+1]=o[1];d[i+2]=o[2]}
+      ctx.putImageData(id,0,0);this.base.classList.remove("raw")}catch(e){this.base.classList.add("raw")}
+    this.drawTop();
+  },
+  drawTop(){
+    if(!this.top)return;const ctx=this.top.getContext("2d");ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,this.W,this.H);
+    const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x|0,y|0,w,h)},S=Loc.sites,m=Loc.mine(),me=this.last();this.hits=[];
+    const ico=(k,x,y,on)=>{const t=this.ICON[k]||"pin",c=on?"#ffcd75":"#8FA8FF";
+      R(x-6,y-14,13,13,"#0b1020");R(x-5,y-13,11,11,c);R(x-1,y-2,3,4,c);
+      if(t==="casa"){R(x-3,y-9,7,5,"#0b1020");R(x-4,y-10,9,1,"#0b1020");R(x-3,y-11,7,1,"#0b1020");R(x-1,y-7,2,3,c)}
+      else if(t==="pesa"){R(x-4,y-8,9,1,"#0b1020");R(x-4,y-10,2,5,"#0b1020");R(x+3,y-10,2,5,"#0b1020")}
+      else if(t==="maletin"){R(x-3,y-9,7,5,"#0b1020");R(x-1,y-11,3,2,"#0b1020")}
+      else if(t==="arbol"){R(x-3,y-11,7,5,"#0b1020");R(x,y-6,1,3,"#0b1020")}};
+    Object.entries(S).forEach(([k,v])=>{const p=this.toScr(v.lat,v.lon);if(p.x<-20||p.y<-20||p.x>this.W+20||p.y>this.H+20)return;const on=m&&m.k===k;
+      if(k==="retiro"){ctx.globalAlpha=.16;ctx.fillStyle="#38b764";const rr=Math.max(4,v.r*this.scale*Math.pow(2,this.z)*256/(40075016*Math.cos(v.lat*Math.PI/180)));ctx.beginPath();ctx.arc(p.x,p.y,rr,0,7);ctx.fill();ctx.globalAlpha=1}
+      if(on){const pr=(this.f%40)/40;ctx.globalAlpha=1-pr;ctx.strokeStyle="#ffcd75";ctx.lineWidth=1;ctx.beginPath();ctx.arc(p.x,p.y-7,8+pr*14,0,7);ctx.stroke();ctx.globalAlpha=1}
+      ico(k,p.x,p.y,on);this.hits.push({x:p.x,y:p.y-7,k,n:Loc.NAMES[k],v})});
+    if(me){const p=this.toScr(me.lat,me.lon),pr=(this.f%30)/30;
+      ctx.globalAlpha=.25;ctx.fillStyle="#73eff7";ctx.beginPath();ctx.arc(p.x,p.y,Math.max(3,Math.min(60,(me.acc||30)*this.scale*Math.pow(2,this.z)*256/(40075016*Math.cos(me.lat*Math.PI/180)))),0,7);ctx.fill();
+      ctx.globalAlpha=1-pr;ctx.strokeStyle="#73eff7";ctx.beginPath();ctx.arc(p.x,p.y,4+pr*16,0,7);ctx.stroke();ctx.globalAlpha=1;
+      Game.sprite(ctx,p.x-8,p.y-17-((this.f>>3)%2),"down",0);this.hits.push({x:p.x,y:p.y-8,k:"yo",n:"Tú",v:me})}
+    const hud=$("#pmhud");if(hud){const st=Tama.estado(Tama.payload());hud.textContent=`Z${this.z} · ${m?(Loc.NAMES[m.k]||m.k).toUpperCase():"SIN UBICACIÓN"}`;const t=$("#pmapt");if(t)t.textContent=st.txt}
+  },
+  tap(e){const r=this.top.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*this.W,y=(e.clientY-r.top)/r.height*this.H;
+    const h=(this.hits||[]).map(o=>({...o,d:Math.hypot(o.x-x,o.y-y)})).sort((a,b)=>a.d-b.d)[0],card=$("#pmcard");if(!card)return;
+    if(!h||h.d>14){card.hidden=true;return}
+    const me=this.last(),dist=me&&h.k!=="yo"?Loc.dist(me.lat,me.lon,h.v.lat,h.v.lon):null,m=Loc.mine();
+    card.innerHTML=`<b>${esc(h.n)}</b><span>${h.k==="yo"?(m?"Ahora: "+esc(Loc.NAMES[m.k]||m.k)+(m.n?" · "+esc(m.n):""):"Tu posición"):(m&&m.k===h.k?"Estás aquí":dist!=null?(dist<1000?Math.round(dist)+" m":fmt1(dist/1000)+" km")+" de ti":"Guardado")}</span>`;
+    card.hidden=false;if(Motion.ok)gsap.fromTo(card,{opacity:0,y:8,scale:.96},{opacity:1,y:0,scale:1,duration:.35,ease:"back.out(2)"})},
+  stop(){cancelAnimationFrame(this.raf);if(this.ro)this.ro.disconnect()}
+};
+
+/* =============== GUÍA INTERACTIVA =============== */
+const Tour={
+  STEPS:[
+    {v:"dia",sel:".hero h1, .view-head h2",t:"Esto es RX/27",d:"Mi app para llegar a HYROX (marzo 2027) con 85 kg. Cada mañana mi coach (Claude) me deja aquí el plan del día: entrenos, comidas y horas."},
+    {v:"dia",sel:"#view .panel, #view section",t:"Hoy, de un vistazo",d:"Lo que toca hoy y el menú. Con + apunto lo que como, y el peso, los pasos y las calorías llegan solos desde Salud del iPhone."},
+    {v:"panel",sel:".cf",t:"El marcador",d:"Anillos de hoy contra el objetivo: pasos, kcal activas, proteína y déficit. «Crear story» saca una imagen lista para Instagram."},
+    {v:"panel",sel:".wl-strip, .t-hero",t:"Cada pesaje cuenta",d:"Empecé en 100 kg. Toca cualquier día o punto de la gráfica y ves lo que pesaba, la grasa y cuánto he bajado."},
+    {v:"juego",sel:".pmap",t:"Dónde estoy, en pixel art",d:"Mapa real de Madrid con mis sitios. Arrastra, haz zoom y toca un icono: casa, F45, la oficina o el Retiro."},
+    {v:"juego",sel:".live-w",t:"Javi en directo",d:"Un muñeco que hace lo que estoy haciendo: entrenar, correr, comer o currar. Lo sabe por la hora, el plan y la ubicación. Tócalo y saluda."},
+    {v:"juego",sel:".tama-wrap",t:"Compartir",d:"Con «Enlace para compartir» cualquiera ve en vivo qué estoy haciendo, sin ver mi peso ni mis coordenadas. Y en el iPhone tengo widgets y avisos de «te toca…»."}
+  ],
+  i:0,el:null,
+  start(){this.i=0;this.open()},
+  open(){
+    if(!this.el){this.el=document.createElement("div");this.el.className="tour";this.el.setAttribute("role","dialog");this.el.setAttribute("aria-modal","true");this.el.setAttribute("aria-label","Guía de la app");
+      this.el.innerHTML=`<div class="tour-spot"></div><div class="tour-card"><div class="tour-n"></div><h3></h3><p></p><div class="tour-dots"></div><div class="tour-btns"><button class="btn ghost" type="button" data-t="skip">Salir</button><span style="flex:1"></span><button class="btn" type="button" data-t="prev">Atrás</button><button class="btn pri" type="button" data-t="next">Siguiente</button></div></div>`;
+      document.body.appendChild(this.el);
+      this.el.querySelector('[data-t="skip"]').onclick=()=>this.close();this.el.querySelector('[data-t="prev"]').onclick=()=>this.step(-1);this.el.querySelector('[data-t="next"]').onclick=()=>this.step(1);
+      this.key=e=>{if(e.key==="Escape")this.close();if(e.key==="ArrowRight")this.step(1);if(e.key==="ArrowLeft")this.step(-1)};document.addEventListener("keydown",this.key);
+      this.el.addEventListener("click",e=>{if(e.target===this.el||e.target.classList.contains("tour-spot"))this.step(1)})}
+    this.show();
+  },
+  step(d){const n=this.i+d;if(n<0)return;if(n>=this.STEPS.length){this.close();toast("¡Listo! Ya sabes cómo funciona");return}this.i=n;this.show()},
+  show(){
+    const s=this.STEPS[this.i],card=this.el.querySelector(".tour-card");
+    if(state.view!==s.v)go(s.v);
+    card.querySelector(".tour-n").textContent=(this.i+1)+" / "+this.STEPS.length;card.querySelector("h3").textContent=s.t;card.querySelector("p").textContent=s.d;
+    card.querySelector(".tour-dots").innerHTML=this.STEPS.map((_,i)=>`<i class="${i===this.i?"on":""}"></i>`).join("");
+    this.el.querySelector('[data-t="next"]').textContent=this.i===this.STEPS.length-1?"Terminar":"Siguiente";this.el.querySelector('[data-t="prev"]').disabled=this.i===0;
+    setTimeout(()=>{const t=document.querySelector(s.sel),sp=this.el.querySelector(".tour-spot");
+      if(t){t.scrollIntoView({block:"center",behavior:Motion.ok?"smooth":"auto"});setTimeout(()=>{const r=t.getBoundingClientRect(),pad=8;
+        Object.assign(sp.style,{left:Math.max(6,r.left-pad)+"px",top:Math.max(6,r.top-pad)+"px",width:Math.min(innerWidth-12,r.width+pad*2)+"px",height:Math.min(innerHeight*.62,r.height+pad*2)+"px",opacity:1});
+        const below=r.top<innerHeight*.45;card.style.top=below?"auto":"16px";card.style.bottom=below?"calc(16px + env(safe-area-inset-bottom))":"auto"},Motion.ok?420:0)}
+      else sp.style.opacity=0;
+      if(Motion.ok)gsap.fromTo(card,{opacity:0,y:14,rotateX:-8,transformPerspective:800},{opacity:1,y:0,rotateX:0,duration:.45,ease:"expo.out"})},state.view!==s.v?60:0);
+    this.el.querySelector('[data-t="next"]').focus({preventScroll:true});
+  },
+  close(){if(this.el){this.el.remove();this.el=null;document.removeEventListener("keydown",this.key)}LS.set("rx27-tour","1")}
+};
+
+/* =============== DOCK INFERIOR (móvil) =============== */
+const Dock={
+  I:{dia:'<path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/>',panel:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',juego:'<circle cx="12" cy="10" r="3"/><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/>',comida:'<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2 1-3 4-3 7h3"/>',mas:'<circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/>'},
+  html(){const it=[["dia","Hoy"],["panel","Panel"],["juego","En vivo"],["comida","Comida"],["mas","Más"]];
+    return `<nav class="dock" aria-label="Secciones">${it.map(([k,n])=>`<a href="${k==="mas"?"#":"#"+k}" data-dock="${k}" ${k==="mas"?'role="button" aria-haspopup="true"':""}><svg viewBox="0 0 24 24" aria-hidden="true">${this.I[k]}</svg><span>${n}</span></a>`).join("")}<i class="dock-pill" aria-hidden="true"></i></nav>
+      <div class="sheet" id="sheet" hidden><div class="sheet-b" data-close></div><div class="sheet-c" role="menu" aria-label="Más secciones">
+        <a href="#semana" role="menuitem">Semana<small>Objetivos, cintura, fotos y compra</small></a><a href="#progreso" role="menuitem">Progreso<small>Tests y evolución</small></a>
+        <a href="#ajustes" role="menuitem">Ajustes<small>Sincronizar, widgets, tema</small></a><button type="button" role="menuitem" data-tour>✦ Ver la guía<small>Cómo funciona la app en 7 pasos</small></button>
+        <a href="widget.html" role="menuitem">Widgets para iPhone<small>Anillos, peso y avisos</small></a></div></div>`},
+  mount(){
+    document.body.insertAdjacentHTML("beforeend",this.html());const sh=$("#sheet");
+    const close=()=>{sh.hidden=true};document.querySelectorAll("[data-dock]").forEach(a=>a.addEventListener("click",e=>{if(a.dataset.dock==="mas"){e.preventDefault();sh.hidden=!sh.hidden;if(!sh.hidden&&Motion.ok)gsap.fromTo(".sheet-c",{y:40,opacity:0},{y:0,opacity:1,duration:.4,ease:"expo.out"})}else close();if(navigator.vibrate)navigator.vibrate(6)}));
+    sh.querySelectorAll("a,[data-close]").forEach(a=>a.addEventListener("click",close));sh.querySelector("[data-tour]").onclick=()=>{close();Tour.start()};
+    this.sync();
+  },
+  sync(){const more=["semana","progreso","ajustes"].includes(state.view);document.querySelectorAll("[data-dock]").forEach(a=>{const on=a.dataset.dock===state.view||(more&&a.dataset.dock==="mas");a.setAttribute("aria-current",on?"page":"false")});
+    const on=document.querySelector('[data-dock][aria-current="page"]'),p=document.querySelector(".dock-pill");if(on&&p){p.style.transform=`translateX(${on.offsetLeft}px)`;p.style.width=on.offsetWidth+"px"}}
+};
 
 /* =============== UBICACIÓN · sitios de Javi =============== */
 const Loc={
@@ -1675,7 +1868,7 @@ const Loc={
   },
   async update(silent){
     if(!this.on||this.busy)return;this.busy=true;
-    try{const c=await this.pos();if(c.accuracy>400){this.busy=false;return}const L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
+    try{const c=await this.pos();LS.set("rx27-lastpos",JSON.stringify({lat:c.latitude,lon:c.longitude,acc:Math.round(c.accuracy||0),t:Date.now()}));if(state.view==="juego"&&PixMap.follow){PixMap.c={lat:c.latitude,lon:c.longitude};PixMap.draw()}if(c.accuracy>400){this.busy=false;return}const L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
       LS.set("rx27-milugar",JSON.stringify(L));this.last=L;if(!prev||prev.k!==L.k||prev.n!==L.n||Date.now()-prev.t>20*60e3)Tama.publish();
       if(state.view==="juego")Tama.paintInfo();this.paintSites()}
     catch(e){if(!silent)toast(e&&e.code===1?"El móvil no ha dado permiso de ubicación. Actívalo en Ajustes del iPhone → Privacidad → Localización":"No he podido leer tu ubicación",true)}
@@ -2401,6 +2594,8 @@ const UX={
     document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")Tama.fetchRemote(TQ)});
   }}
 importFromURL();
+window.Dock=Dock;if(!document.body.classList.contains("viewer")){Dock.mount();const tb=document.querySelector("[data-tour-top]");if(tb)tb.onclick=()=>Tour.start();
+  if(!LS.get("rx27-tour"))setTimeout(()=>{if(!document.querySelector(".tour"))Tour.start()},2200)}
 setTimeout(()=>{if(!document.body.classList.contains("viewer")&&Loc.on)Loc.update(true)},2500);
 fetch("alimentacion.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.recetas){FOOD=j;if(state.view==="comida"&&!editing())render()}}).catch(()=>{});
 fetch("coach.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.dias){COACH=j;if(!editing())render()}}).catch(()=>{});

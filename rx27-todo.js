@@ -36,6 +36,28 @@ async function load(id) {
   } catch (e) { return fm.fileExists(cache) ? { d: JSON.parse(fm.readString(cache)), live: false } : null; }
 }
 
+// ---------- dónde estás (ubicación del iPhone + tus sitios guardados en la app) ----------
+const PLACE = { casa: "En casa", padres: "Casa de tus padres", suegros: "Casa de tus suegros", f45: "En el F45", amazon: "En Amazon Ads", retiro: "En el Retiro" };
+const PICON = { casa: "house.fill", padres: "house.fill", suegros: "house.fill", f45: "dumbbell.fill", amazon: "briefcase.fill", retiro: "tree.fill", fuera: "figure.walk" };
+async function where(data) {
+  const lp = fm.joinPath(fm.documentsDirectory(), "rx27-where.json");
+  try {
+    Location.setAccuracyToHundredMeters();
+    const l = await Location.current(), sites = Object.assign({ retiro: { lat: 40.4148, lon: -3.6842, r: 520 } }, data.lugares || {});
+    let best = null;
+    for (const [k, v] of Object.entries(sites)) { if (!v || v.lat == null) continue; const R = 6371e3, r = Math.PI / 180, x = (v.lon - l.longitude) * r * Math.cos((v.lat + l.latitude) / 2 * r), y = (v.lat - l.latitude) * r, d = Math.sqrt(x * x + y * y) * R; if (d <= (v.r || 140) + 40 && (!best || d < best.d)) best = { k, d }; }
+    const o = best ? { k: best.k, n: PLACE[best.k] || best.k } : { k: "fuera", n: "Por Madrid" };
+    fm.writeString(lp, JSON.stringify(o)); return o;
+  } catch (e) { return fm.fileExists(lp) ? JSON.parse(fm.readString(lp)) : null; }
+}
+function placeChip(st, p, size) {
+  if (!p) return;
+  const c = st.addStack(); c.centerAlignContent(); c.spacing = 4; c.setPadding(3, 7, 3, 8); c.cornerRadius = 9;
+  c.backgroundColor = new Color("#8FA8FF", 0.16); c.borderColor = new Color("#8FA8FF", 0.45); c.borderWidth = 1;
+  const i = c.addImage(SFSymbol.named(PICON[p.k] || "location.fill").image); i.imageSize = new Size(size, size); i.tintColor = C.acc;
+  const t = c.addText(p.n); t.font = Font.semiboldSystemFont(size); t.textColor = INK; t.lineLimit = 1;
+}
+
 // ---------- widget de peso ----------
 const pad = n => String(n).padStart(2, "0");
 const ds = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
@@ -115,6 +137,7 @@ async function buildPeso(res) {
   const brand = top.addStack();
   txt(brand, "RX", 13, C.ink, "black"); txt(brand, "/", 13, C.acc, "black"); txt(brand, "27", 13, C.ink, "black");
   top.addSpacer();
+  if (res.place && fam !== "small") { placeChip(top, res.place, 10); top.addSpacer(6); }
   txt(top, S.left + " DÍAS", 9, C.acc, "mono");
   wd.addSpacer(fam === "small" ? 6 : 8);
 
@@ -195,7 +218,7 @@ function ring(m, size, big) {
   };
   const p = new Path(); p.addEllipse(new Rect(cx - r, cy - r, 2 * r, 2 * r)); dc.addPath(p); dc.setStrokeColor(TRK); dc.setLineWidth(lw); dc.strokePath();
   const v = Math.max(0, m.v), a0 = -Math.PI / 2;
-  if (v > 0.003) arc(a0, a0 + 2 * Math.PI * Math.min(1, v) - (v >= 1 ? 0.001 : 0), col, lw);
+  if (v > 0.003) { const e = a0 + 2 * Math.PI * Math.min(1, v) - (v >= 1 ? 0.001 : 0); arc(a0, e, new Color(m.c, 0.18), lw * 1.9); arc(a0, e, col, lw); }
   if (v > 1) arc(a0, a0 + 2 * Math.PI * Math.min(1, v - 1), m.over && v > 1.08 ? new Color("#FF5A5A") : new Color("#FFFFFF", 0.85), lw * 0.45);
   const pct = Math.round(v * 100) + "%";
   dc.setFont(Font.heavyRoundedSystemFont(size * (pct.length > 4 ? 0.2 : 0.24))); dc.setTextColor(INK); dc.setTextAlignedCenter();
@@ -213,20 +236,29 @@ function cell(st, m, size, big) {
 async function buildAnillos(res) {
   const fam = config.widgetFamily || "large", w = new ListWidget();
   w.url = APP; w.backgroundColor = BG; w.refreshAfterDate = new Date(Date.now() + 15 * 60e3);
-  const g = new LinearGradient(); g.colors = [new Color("#161C30"), BG]; g.locations = [0, .75]; w.backgroundGradient = g;
+  const g = new LinearGradient(); g.colors = [new Color("#1B2240"), new Color("#0E1220"), BG]; g.locations = [0, .55, 1]; g.startPoint = new Point(0, 0); g.endPoint = new Point(1, 1); w.backgroundGradient = g;
   w.setPadding(12, 10, 12, 10);
   const M = calc(res.d);
   if (fam === "small") {
     const pick = [M[0], M[2], M[3], M[1]];
     for (let r = 0; r < 2; r++) { const row = w.addStack(); row.spacing = 6; for (let c = 0; c < 2; c++) cell(row, pick[r * 2 + c], 52, false); if (!r) w.addSpacer(6); }
   } else if (fam === "large") {
-    const h = w.addStack(); h.centerAlignContent();
-    const t1 = h.addText("RX/27 · HOY"); t1.font = Font.blackSystemFont(16); t1.textColor = INK; h.addSpacer();
+    const h = w.addStack(); h.centerAlignContent(); h.spacing = 8;
+    const jv = h.addImage(javi(3)); jv.imageSize = new Size(36, 36);
+    const hv = h.addStack(); hv.layoutVertically(); hv.spacing = 3;
+    const t1 = hv.addText("RX/27 · HOY"); t1.font = Font.blackSystemFont(17); t1.textColor = INK;
+    placeChip(hv, res.place, 10);
+    h.addSpacer();
     const t2 = h.addText(new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })); t2.font = Font.mediumMonospacedSystemFont(11); t2.textColor = MUT;
     w.addSpacer();
     for (let r = 0; r < 2; r++) { const row = w.addStack(); row.spacing = 10; for (let c = 0; c < 3; c++) { cell(row, M[r * 3 + c], 88, true); } if (!r) w.addSpacer(14); }
     w.addSpacer();
   } else {
+    const h = w.addStack(); h.centerAlignContent(); h.spacing = 6;
+    const t1 = h.addText("RX/27"); t1.font = Font.blackSystemFont(13); t1.textColor = INK;
+    placeChip(h, res.place, 9); h.addSpacer();
+    const t2 = h.addText(new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })); t2.font = Font.mediumMonospacedSystemFont(9); t2.textColor = MUT;
+    w.addSpacer(6);
     const row = w.addStack(); row.spacing = 4; row.centerAlignContent();
     M.forEach(m => cell(row, m, 46, false));
   }
@@ -307,7 +339,7 @@ if (config.runsInWidget) {
   const id = await gistId(), res = id ? await load(id) : null;
   let wd;
   if (!res) { wd = new ListWidget(); wd.backgroundColor = BG; const t = wd.addText(id ? "RX/27 · sin conexión" : "Abre Scriptable y ejecuta RX27 con ▶︎"); t.font = Font.boldSystemFont(12); t.textColor = INK; }
-  else wd = param.startsWith("peso") ? await buildPeso(res) : await buildAnillos(res);
+  else { res.place = await where(res.d); wd = param.startsWith("peso") ? await buildPeso(res) : await buildAnillos(res); }
   await avisos(false);
   Script.setWidget(wd);
 } else {
@@ -318,7 +350,7 @@ if (config.runsInWidget) {
     m.addAction(Keychain.contains("rx27-avisos") && Keychain.get("rx27-avisos") === "no" ? "Activar avisos" : "Desactivar avisos");
     m.addCancelAction("Cerrar");
     const i = await m.presentSheet();
-    const res = id ? await load(id) : null;
+    const res = id ? await load(id) : null; if (res) res.place = await where(res.d);
     if ((i === 0 || i === 1) && res) { const wd = i === 0 ? await buildAnillos(res) : await buildPeso(res); if (i === 0) await wd.presentLarge(); else await wd.presentMedium(); }
     else if (i === 2) { if (Keychain.contains("rx27-avisos")) Keychain.remove("rx27-avisos"); const r = await avisos(true); const a = new Alert(); a.title = "Avisos"; a.message = r ? r.n + " avisos programados para hoy y mañana." + (r.next ? "\nPróximo: " + r.next.title.replace(/^\S+\s/, "") + " a las " + pad(r.next.t.getHours()) + ":" + pad(r.next.t.getMinutes()) : "") : "No se han podido programar."; a.addAction("OK"); await a.present(); }
     else if (i === 3) { const off = Keychain.contains("rx27-avisos") && Keychain.get("rx27-avisos") === "no"; if (off) { Keychain.remove("rx27-avisos"); await avisos(true) } else { Keychain.set("rx27-avisos", "no"); const p = await Notification.allPending(); const ids = p.filter(n => n.threadIdentifier === THREAD).map(n => n.identifier); if (ids.length) await Notification.removePending(ids) } }
