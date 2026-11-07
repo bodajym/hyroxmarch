@@ -82,7 +82,7 @@ nav.tabs a:focus-visible,.mark:focus-visible{outline:2px solid var(--accent);out
 @media (max-width:760px){
   .bar .shell{height:auto;flex-wrap:wrap;gap:6px 12px;padding-block:10px 0}
   nav.tabs{order:3;width:100%;margin:0 -4px;justify-content:space-between;overflow-x:auto}
-  nav.tabs a{padding:10px 4px 12px;flex:1;text-align:center;font-size:13.5px}
+  nav.tabs a{padding:10px 2px 12px;flex:1 0 auto;text-align:center;font-size:13px}
   .sync{margin-left:auto}
   .sync span:last-child{max-width:120px;overflow:hidden;text-overflow:ellipsis}
 }
@@ -242,6 +242,102 @@ table.t tr.today-row td{background:var(--glow)}
 .kbd{font-family:var(--mono);font-size:12px;background:var(--bg3);padding:2px 6px;border-radius:5px}
 ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 
+/* panel: cabina de telemetría */
+.dash-wrap{position:relative;display:grid;gap:22px}
+.dash-wrap::before{content:"";position:absolute;inset:-40px -20px auto;height:520px;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 30% 0%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 30% 0%,#000 20%,transparent 75%);opacity:.55}
+.dash-top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:999px;padding:6px 12px;background:color-mix(in srgb,var(--bg2) 70%,transparent);backdrop-filter:blur(8px)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent);animation:ping 2s var(--ease) infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 55%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.clock{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:clamp(15px,1.6vw,18px);color:var(--ink);letter-spacing:.04em}
+.clock b{font-weight:500;color:var(--accent)}
+.dash{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.tile{position:relative;grid-column:span 3;border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:12px;align-content:start;overflow:hidden;isolation:isolate;min-width:0;
+  background:linear-gradient(165deg,color-mix(in srgb,var(--bg2) 90%,var(--accent) 10%) 0%,var(--bg2) 55%);transition:border-color .35s var(--ease)}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(460px circle at var(--mx,50%) var(--my,-30%),var(--glow),transparent 45%);opacity:.0;transition:opacity .45s var(--ease)}
+.tile::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--accent) 75%,transparent),transparent 65%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s var(--ease)}
+@media (hover:hover){.tile:hover::before,.tile:hover::after{opacity:1}}
+.tile:focus-within{border-color:var(--line2)}
+.t-hero{grid-column:span 7}.t-ring{grid-column:span 5}.t-wide{grid-column:span 12}.t-7{grid-column:span 7}.t-5{grid-column:span 5}.t-6{grid-column:span 6}
+@media (max-width:980px){.dash{grid-template-columns:repeat(6,minmax(0,1fr))}.tile{grid-column:span 3}.t-hero,.t-ring,.t-wide,.t-7,.t-5,.t-6{grid-column:span 6}}
+@media (max-width:560px){.dash{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{grid-column:span 1;padding:16px;border-radius:16px}.t-hero,.t-ring,.t-wide,.t-7,.t-5,.t-6{grid-column:span 2}}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:8px;align-items:center}
+.lbl em{font-style:normal;color:var(--accent)}
+.kpi{font-family:var(--display);font-weight:900;line-height:.82;letter-spacing:-.02em;font-size:clamp(84px,11vw,150px)}
+.kpi small{font-size:.24em;font-weight:800;letter-spacing:.02em;color:var(--muted);margin-left:.12em}
+.kpi-m{font-family:var(--display);font-weight:800;line-height:.88;font-size:clamp(40px,4.4vw,56px);letter-spacing:-.01em}
+.kpi-m small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted);margin-left:5px;letter-spacing:0}
+.sub{font-size:13px;color:var(--muted);line-height:1.4}
+.sub b{color:var(--ink);font-weight:600}
+.delta{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid var(--line2)}
+.delta.good{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.delta.bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 45%,transparent);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.delta.mid{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 10%,transparent)}
+.hero-row{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap}
+.chips2{display:flex;gap:8px;flex-wrap:wrap}
+.ringbox{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+@media (max-width:560px){.ringbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+.ring{width:100%;max-width:200px;height:auto;display:block;overflow:visible}
+.ring .trk{fill:none;stroke:var(--bg3);stroke-width:12}
+.ring .val{fill:none;stroke:url(#rg);stroke-width:12;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--accent) 55%,transparent))}
+.ring .tick{stroke:var(--line2);stroke-width:1}
+.ring text{font-family:var(--display);font-weight:900;fill:var(--ink)}
+.ring .rt{font-family:var(--mono);font-weight:400;fill:var(--muted);font-size:9px;letter-spacing:.12em}
+.mini-ring{width:64px;height:64px;flex:none}
+.mini-ring .trk{stroke-width:7}.mini-ring .val{stroke-width:7}
+.tile-row{display:flex;align-items:center;gap:14px;justify-content:space-between}
+.spark{width:100%;height:40px;display:block;overflow:visible}
+.dots{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;max-width:200px}
+.dots span{height:20px;border-radius:6px;background:var(--bg3);border:1px solid var(--line)}
+.dots span.on{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px color-mix(in srgb,var(--accent) 50%,transparent)}
+.dots span.isnow{outline:1.5px solid var(--ink);outline-offset:2px}
+.bar2{height:8px;border-radius:4px;background:var(--bg3);position:relative;overflow:hidden}
+.bar2 i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 55%,transparent),var(--accent));box-shadow:0 0 14px color-mix(in srgb,var(--accent) 45%,transparent)}
+.bar2 .bd{position:absolute;top:-3px;bottom:-3px;border-left:1.5px dashed var(--ink);opacity:.55}
+.mrow{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;font-size:13px}
+.mrow .v{font-family:var(--mono);font-size:11px;text-align:right;color:var(--muted);white-space:nowrap}
+.mrow .v b{color:var(--ink);font-weight:500}
+.chartbox{position:relative}
+.chartbox svg{width:100%;height:auto;display:block;overflow:visible;touch-action:pan-y}
+.chartbox svg:focus-visible{outline:2px solid var(--accent);outline-offset:6px;border-radius:8px}
+.chartbox text{fill:var(--muted);font-family:var(--mono);font-size:10px}
+.tip{position:absolute;top:0;left:0;pointer-events:none;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border:1px solid var(--line2);border-radius:12px;padding:9px 12px;font-size:12px;min-width:130px;opacity:0;transform:translate(-50%,-110%);transition:opacity .18s var(--ease);z-index:2;white-space:nowrap}
+.tip.on{opacity:1}
+.tip b{font-family:var(--display);font-weight:800;font-size:22px;display:block;line-height:1}
+.tip span{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.legend2{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em}
+.legend2 i{display:inline-block;width:16px;height:2px;margin-right:6px;vertical-align:3px;background:var(--accent)}
+.legend2 i.dash{background:repeating-linear-gradient(90deg,var(--muted) 0 4px,transparent 4px 7px)}
+.legend2 i.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);vertical-align:0}
+.legend2 i.proj{background:repeating-linear-gradient(90deg,var(--accent) 0 5px,transparent 5px 9px)}
+.heat{max-width:620px;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));grid-template-rows:repeat(7,auto);grid-auto-flow:column;gap:4px}
+.heat i{aspect-ratio:1;border-radius:3px;background:var(--bg3);display:block;transition:transform .2s var(--spring)}
+.heat i.l1{background:color-mix(in srgb,var(--accent) 28%,var(--bg3))}
+.heat i.l2{background:color-mix(in srgb,var(--accent) 50%,var(--bg3))}
+.heat i.l3{background:color-mix(in srgb,var(--accent) 75%,var(--bg3))}
+.heat i.l4{background:var(--accent);box-shadow:0 0 10px color-mix(in srgb,var(--accent) 55%,transparent)}
+.heat i.fut{background:color-mix(in srgb,var(--bg3) 45%,transparent);border:1px dashed var(--line2)}
+.heat i.now{outline:1.5px solid var(--ink);outline-offset:1px}
+@media (hover:hover){.heat i:hover{transform:scale(1.35)}}
+.heat-legend{display:flex;gap:5px;align-items:center;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.heat-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.gauge{width:100%;max-width:260px;height:auto;display:block;margin:0 auto;overflow:visible}
+.gauge .trk{fill:none;stroke:var(--bg3);stroke-width:14;stroke-linecap:round}
+.gauge .val{fill:none;stroke-width:14;stroke-linecap:round}
+.gauge text{font-family:var(--display);font-weight:900;fill:var(--ink)}
+.t-3d{padding:0;min-height:420px;position:relative;background:radial-gradient(120% 90% at 50% 100%,color-mix(in srgb,var(--accent) 14%,var(--bg2)),var(--bg2) 60%)}
+.t-3d canvas{display:block;width:100%;height:100%;position:absolute;inset:0;border-radius:inherit}
+.t-3d .ov{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;z-index:1}
+.t-3d .ov>*{pointer-events:auto}
+.t-3d .big3{font-family:var(--display);font-weight:900;font-size:clamp(38px,5vw,64px);line-height:.9;text-transform:uppercase;letter-spacing:-.01em;text-shadow:0 2px 24px color-mix(in srgb,var(--bg) 70%,transparent)}
+.t-3d .big3 b{color:var(--accent)}
+.t-3d .hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:560px){.t-3d{min-height:400px}}
+.empty-s{font-size:12.5px;color:var(--muted);border:1px dashed var(--line2);border-radius:12px;padding:12px}
+
 /* comida */
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--line2);background:transparent;color:var(--muted);border-radius:999px;padding:7px 13px;cursor:pointer;transition:all .2s var(--ease)}
@@ -294,6 +390,7 @@ footer .shell{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
     <a class="mark" href="#dia" aria-label="RX/27, ir al día">RX<i>/</i>27</a>
     <nav class="tabs" aria-label="Secciones">
       <a href="#dia" data-v="dia">Día</a>
+      <a href="#panel" data-v="panel">Panel</a>
       <a href="#semana" data-v="semana">Semana</a>
       <a href="#comida" data-v="comida">Comida</a>
       <a href="#progreso" data-v="progreso">Progreso</a>
@@ -518,14 +615,15 @@ function renderHero(){
 $("#strip").addEventListener("click",e=>{const b=e.target.closest("[data-wk]");if(!b)return;state.week=+b.dataset.wk;go("semana");document.getElementById("view").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})});
 
 /* =============== NAVEGACIÓN =============== */
-const VIEWS=["dia","semana","comida","progreso","ajustes"];
+const VIEWS=["dia","panel","semana","comida","progreso","ajustes"];
 function go(v){state.view=v;if(location.hash!=="#"+v)location.hash=v;else render()}
 window.addEventListener("hashchange",()=>{const v=location.hash.slice(1);if(VIEWS.includes(v)){state.view=v;render()}});
 const editing=()=>{const a=document.activeElement;return a&&$("#view").contains(a)&&/INPUT|TEXTAREA|SELECT/.test(a.tagName)};
 function render(){
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.v===state.view?"page":"false"));
   const v=$("#view");
-  ({dia:renderDay,semana:renderWeek,comida:renderFood,progreso:renderProgress,ajustes:renderSettings}[state.view]||renderDay)();
+  if(state.view!=="panel"){clearInterval(panelTimer);Scene3D.stop()}
+  ({dia:renderDay,panel:renderPanel,semana:renderWeek,comida:renderFood,progreso:renderProgress,ajustes:renderSettings}[state.view]||renderDay)();
   v.firstElementChild&&v.firstElementChild.classList.add("fadein");
   requestAnimationFrame(()=>v.querySelectorAll(".meter .fill").forEach(f=>{f.style.width=f.dataset.w+"%"}));
   Motion.sections();
@@ -769,6 +867,321 @@ async function loadPhotos(){
 }
 function shrink(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=900,sc=Math.min(1,m/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.74))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
 
+/* =============== PANEL =============== */
+let panelTimer=null;
+const START_W=97.5,GOAL_W=85,RACE_T=new Date(2027,2,17,9,0,0);
+const dayN=s=>Math.round((pd(s)-START)/864e5);
+function linFit(p){const n=p.length;if(n<2)return null;let sx=0,sy=0,sxx=0,sxy=0;p.forEach(q=>{sx+=q.t;sy+=q.y;sxx+=q.t*q.t;sxy+=q.t*q.y});const d=n*sxx-sx*sx;if(!d)return null;const m=(n*sxy-sx*sy)/d;return {m,b:(sy-m*sx)/n}}
+function streakOf(test){let s=todayStr(),n=0;if(!test(s))s=addDays(s,-1);while(n<500&&test(s)){n++;s=addDays(s,-1)}return n}
+function dayScore(s){const d=data.days[s];if(!d)return 0;let k=0;if((d.entrenos||[]).length)k++;if(totals(d).p>=190)k++;if((d.pasos||0)>=10000)k++;if(d.creatina||(d.sueno||0)>=7)k++;return k}
+function lastN(n,fn){const out=[];for(let i=n-1;i>=0;i--){const s=addDays(todayStr(),-i);out.push({s,v:fn(data.days[s],s)})}return out}
+const avgOf=a=>{const b=a.filter(v=>v!=null&&!isNaN(v));return b.length?b.reduce((x,y)=>x+y,0)/b.length:null};
+function sparkSVG(vals,{h=40,goal=null,fmt=fmt0}={}){
+  const W=160,H=h,pad=4,v=vals.map(x=>x.v);const have=v.filter(x=>x!=null);
+  if(have.length<2)return `<div class="sub">Sin datos suficientes todavía</div>`;
+  let lo=Math.min(...have),hi=Math.max(...have);if(goal!=null){lo=Math.min(lo,goal);hi=Math.max(hi,goal)}if(hi===lo){hi+=1;lo-=1}
+  const X=i=>pad+i*(W-2*pad)/(vals.length-1),Y=y=>pad+(hi-y)/(hi-lo)*(H-2*pad);
+  let d="",first=null,last=null;vals.forEach((p,i)=>{if(p.v==null)return;d+=(d?"L":"M")+X(i).toFixed(1)+" "+Y(p.v).toFixed(1);if(first==null)first=i;last=i});
+  const area=d+` L${X(last).toFixed(1)} ${H} L${X(first).toFixed(1)} ${H} Z`;
+  const gid="sg"+Math.random().toString(36).slice(2,7);
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="${gid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".35"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient></defs>
+    ${goal!=null?`<line x1="0" x2="${W}" y1="${Y(goal)}" y2="${Y(goal)}" stroke="var(--line2)" stroke-dasharray="3 3" vector-effect="non-scaling-stroke"/>`:""}
+    <path d="${area}" fill="url(#${gid})"/><path class="draw" d="${d}" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${X(last)}" cy="${Y(vals[last].v)}" r="3" fill="var(--accent)"/></svg>`;
+}
+function ringSVG(frac,{size=200,label="",big="",cls="ring",sw=12}={}){
+  const r=(size-sw)/2-6,c=2*Math.PI*r,off=c*(1-Math.max(0,Math.min(1,frac)));
+  let ticks="";for(let i=0;i<60;i++){const a=i/60*2*Math.PI,r1=r+sw/2+4,r2=r1+(i%5?2:5);ticks+=`<line class="tick" x1="${size/2+r1*Math.sin(a)}" y1="${size/2-r1*Math.cos(a)}" x2="${size/2+r2*Math.sin(a)}" y2="${size/2-r2*Math.cos(a)}"/>`}
+  return `<svg class="${cls}" viewBox="-8 -8 ${size+16} ${size+16}" role="img" aria-label="${esc(label)}"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--p2)"/><stop offset="1" stop-color="var(--accent)"/></linearGradient></defs>
+    ${cls==="ring"&&size>100?ticks:""}<circle class="trk" cx="${size/2}" cy="${size/2}" r="${r}" style="stroke-width:${sw}"/><circle class="val" data-ring="${c}" cx="${size/2}" cy="${size/2}" r="${r}" style="stroke-width:${sw}" stroke-dasharray="${c}" stroke-dashoffset="${off}"/>
+    ${big?`<text x="${size/2}" y="${size/2+(size>100?14:6)}" text-anchor="middle" font-size="${size>100?44:18}">${big}</text>`:""}
+    ${size>100?`<text class="rt" x="${size/2}" y="${size/2+34}" text-anchor="middle">DEL OBJETIVO</text>`:""}</svg>`;
+}
+function weightChart(pts,avg,fit,zoom){
+  const narrow=innerWidth<600,W=narrow?420:760,H=narrow?280:300,L=narrow?34:44,R=narrow?10:18,T=18,B=30;
+  const t=todayStr();
+  let from=zoom==="all"?"2026-11-02":addDays(t,-27),to=zoom==="all"?"2027-03-17":addDays(t,7);
+  if(zoom!=="all"&&from<"2026-11-02")from="2026-11-02";
+  const span=Math.max(1,(pd(to)-pd(from))/864e5);
+  const inR=p=>p.x>=from&&p.x<=to;
+  const P=pts.filter(inR),A=avg.filter(inR);
+  const tgt=s=>START_W+(GOAL_W-START_W)*(dayN(s)-dayN("2026-11-02"))/(dayN("2027-03-17")-dayN("2026-11-02"));
+  let ys=P.map(p=>p.y).concat([tgt(from),tgt(to)]);if(zoom==="all")ys=ys.concat([GOAL_W,START_W]);
+  const lo=Math.floor(Math.min(...ys)-1),hi=Math.ceil(Math.max(...ys)+1);
+  const X=s=>L+(pd(s)-pd(from))/864e5/span*(W-L-R),Y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
+  let g="";const step=Math.max(1,Math.ceil((hi-lo)/6));for(let v=lo;v<=hi;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${L-10}" y="${Y(v)+3}" text-anchor="end">${v}</text>`;
+  const nt=narrow?3:6;let xt="";for(let i=0;i<=nt;i++){const s=addDays(from,Math.round(span*i/nt));xt+=`<text x="${X(s)}" y="${H-8}" text-anchor="middle">${short(s)}</text>`}
+  const tl=`<line x1="${X(from)}" y1="${Y(tgt(from))}" x2="${X(to)}" y2="${Y(tgt(to))}" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 5" opacity=".7"/>`;
+  const goalLine=`<line x1="${L}" x2="${W-R}" y1="${Y(GOAL_W)}" y2="${Y(GOAL_W)}" stroke="var(--ok)" stroke-opacity=".5"/><text x="${W-R}" y="${Y(GOAL_W)-6}" text-anchor="end" style="fill:var(--ok)">85 kg</text>`;
+  const todayX=X(t);const nowLine=t>=from&&t<=to?`<line x1="${todayX}" x2="${todayX}" y1="${T}" y2="${H-B}" stroke="var(--accent)" stroke-opacity=".35"/><text x="${todayX+4}" y="${T+10}" style="fill:var(--accent)">HOY</text>`:"";
+  let line="",area="",proj="",dots="";
+  if(A.length>1){const d=A.map((p,i)=>(i?"L":"M")+X(p.x).toFixed(1)+" "+Y(p.y).toFixed(1)).join(" ");
+    area=`<path d="${d} L${X(A[A.length-1].x).toFixed(1)} ${H-B} L${X(A[0].x).toFixed(1)} ${H-B} Z" fill="url(#wg)"/>`;
+    line=`<path class="draw" d="${d}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)"/>`}
+  if(fit&&fit.m<-0.005&&A.length){const a=A[A.length-1];const daysTo=(a.y-GOAL_W)/(-fit.m);let end=addDays(a.x,Math.round(daysTo));let ey=GOAL_W;if(end>to){end=to;ey=a.y+fit.m*((pd(to)-pd(a.x))/864e5)}
+    proj=`<line x1="${X(a.x)}" y1="${Y(a.y)}" x2="${X(end)}" y2="${Y(ey)}" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 6" opacity=".8"/>`}
+  dots=P.map(p=>`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="3.2" fill="var(--bg2)" stroke="var(--muted)" stroke-width="1.5"/>`).join("");
+  const last=A[A.length-1];const endDot=last?`<circle cx="${X(last.x)}" cy="${Y(last.y)}" r="6" fill="var(--accent)"/><circle cx="${X(last.x)}" cy="${Y(last.y)}" r="12" fill="var(--accent)" opacity=".18"><animate attributeName="r" values="7;16;7" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".35;0;.35" dur="2.4s" repeatCount="indefinite"/></circle>`:"";
+  const geo={pts:P.map(p=>({x:p.x,y:p.y,a:(A.find(q=>q.x===p.x)||{}).y,px:X(p.x),py:Y(p.y)})),W,H,T,B};
+  return {svg:`<svg id="wchart" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Peso diario, media de 7 días, trayectoria objetivo hasta 85 kg y proyección. Usa las flechas para recorrer los días.">
+    <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--accent)" stop-opacity=".32"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    ${g}${xt}${goalLine}${tl}${nowLine}${area}${line}${proj}${dots}${endDot}
+    <line id="cx" x1="0" x2="0" y1="${T}" y2="${H-B}" stroke="var(--ink)" stroke-opacity=".5" opacity="0"/><circle id="cdot" r="6" fill="var(--ink)" opacity="0"/>
+    <rect x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent" id="hit"/></svg>`,geo};
+}
+function gaugeSVG(score,color){
+  const W=240,H=140,cx=120,cy=125,r=100,a0=Math.PI,frac=Math.max(0,Math.min(1,score/100));
+  const pt=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];const [x0,y0]=pt(Math.PI),[x1,y1]=pt(0);const len=Math.PI*r;
+  return `<svg class="gauge" viewBox="0 0 ${W} ${H}" role="img" aria-label="Recuperación ${Math.round(score)} de 100"><path class="trk" d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}"/>
+    <path class="val" data-ring="${len}" d="M${x0} ${y0} A${r} ${r} 0 0 1 ${x1} ${y1}" stroke="${color}" stroke-dasharray="${len}" stroke-dashoffset="${len*(1-frac)}" style="filter:drop-shadow(0 0 10px ${color})"/>
+    <text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="54" data-count="${Math.round(score)}">${Math.round(score)}</text></svg>`;
+}
+function renderPanel(){
+  const t=todayStr(),w=clampW(weekOf(t)),v=$("#view");
+  const all=Object.values(data.days).filter(d=>d.peso!=null).sort((a,b)=>a.date<b.date?-1:1);
+  const pts=all.map(d=>({x:d.date,y:d.peso}));
+  const avg=pts.map(p=>{const f=addDays(p.x,-6),win=pts.filter(q=>q.x>=f&&q.x<=p.x);return {x:p.x,y:win.reduce((a,b)=>a+b.y,0)/win.length}});
+  const cur=avg.length?avg[avg.length-1].y:null,lastW=pts.length?pts[pts.length-1]:null;
+  const fit=linFit(pts.filter(p=>p.x>=addDays(t,-21)).map(p=>({t:dayN(p.x),y:p.y})));
+  const rate=fit?fit.m*7:null;
+  let eta=null;if(fit&&fit.m<-0.01&&cur!=null){eta=addDays(t,Math.round((cur-GOAL_W)/(-fit.m)))}
+  const prog=cur==null?0:Math.max(0,Math.min(1,(START_W-cur)/(START_W-GOAL_W)));
+  const lost=cur==null?null:START_W-cur;
+  const tgtNow=START_W+(GOAL_W-START_W)*(dayN(t))/(dayN("2027-03-17"));
+  const vsPlan=cur==null?null:cur-tgtNow;
+  const dT=data.days[t]||blankDay(t),tot=totals(dT),tipo=dT.tipo||dayPlan(t).type,tg=TARGETS[tipo];
+  const st=weekStats(w);
+  const protStreak=streakOf(s=>{const d=data.days[s];return !!d&&totals(d).p>=190});
+  const creaStreak=streakOf(s=>!!(data.days[s]&&data.days[s].creatina));
+  const prot14=lastN(14,d=>d&&d.comidas&&d.comidas.length?totals(d).p:null);
+  const sleep14=lastN(14,d=>d?d.sueno:null),steps14=lastN(14,d=>d?d.pasos:null),w14=lastN(28,(d)=>d?d.peso:null);
+  const crea7=lastN(7,d=>!!(d&&d.creatina));
+  const grasas=Object.values(data.days).filter(d=>d.grasa!=null).sort((a,b)=>a.date<b.date?-1:1);
+  const gNow=grasas.length?grasas[grasas.length-1].grasa:null,gFirst=grasas.length?grasas[0].grasa:null;
+  // recuperación
+  const r3=lastN(3,d=>d||null).map(x=>x.v).filter(Boolean);
+  const sl=avgOf(r3.map(d=>d.sueno)),en=avgOf(r3.map(d=>d.energia)),rp=avgOf(r3.flatMap(d=>(d.entrenos||[]).map(e=>e.rpe)));
+  let ready=null;if(sl!=null||en!=null){ready=(sl!=null?Math.min(sl/7.5,1)*45:22)+(en!=null?en/10*35:17)+(rp!=null?(1-Math.max(0,rp-6)/4)*20:12)}
+  const rCol=ready==null?"var(--muted)":ready>=75?"var(--ok)":ready>=55?"var(--warn)":"var(--bad)";
+  const rTxt=ready==null?"Apunta sueño y energía en Día para calcularla":ready>=75?"Verde · puedes apretar":ready>=55?"Ámbar · sesión controlada":"Rojo · prioriza recuperar";
+  // carga por semana
+  const loads=[];for(let k=Math.max(1,w-7);k<=w;k++){const ds=weekDays(k).map(s=>data.days[s]).filter(Boolean);const ents=ds.flatMap(d=>d.entrenos||[]);loads.push({w:k,load:ents.reduce((a,e)=>a+(num(e.dur)||0)*(num(e.rpe)||6),0),n:ents.length,km:ents.reduce((a,e)=>a+(num(e.km)||0),0)})}
+  const maxL=Math.max(1,...loads.map(l=>l.load));
+  // macros 7 días
+  const m7=lastN(7,d=>d&&d.comidas&&d.comidas.length?totals(d):null).map(x=>x.v).filter(Boolean);
+  const mac=m7.length?{p:avgOf(m7.map(x=>x.p)),kcal:avgOf(m7.map(x=>x.kcal)),c:avgOf(m7.map(x=>x.c)),g:avgOf(m7.map(x=>x.g))}:null;
+  const T7=TARGETS.calidad;
+  // mapa de calor
+  let heat="";for(let i=0;i<140;i++){const s=addDays("2026-11-02",i);const fut=s>t;const sc=fut?0:dayScore(s);heat+=`<i class="${fut?"fut":"l"+sc}${s===t?" now":""}" title="${esc(nice(s))} · ${fut?"por llegar":sc+" de 4"}"></i>`}
+  const done=Object.keys(data.days).filter(s=>s<=t&&dayScore(s)>=3).length,elapsed=Math.max(1,Math.min(140,dayN(t)+1));
+  const zoom=state.wzoom||"all";
+  const wc=weightChart(pts,avg,fit,zoom);
+  const fmtD=s=>s?pd(s).getDate()+" "+MON[pd(s).getMonth()]+" "+String(pd(s).getFullYear()).slice(2):"—";
+  const deltaCls=x=>x==null?"":x<=-0.2?"good":x>0.3?"bad":"mid";
+  v.innerHTML=`<div class="view dash-wrap">
+  <div class="dash-top rv">
+    <div><div class="eyebrow">Telemetría · semana ${w} de 20 · fase ${phaseOf(w)}</div><h2>Panel</h2></div>
+    <div style="display:grid;gap:8px;justify-items:end"><span class="live"><i></i>En directo · ${Sync.on()?"sincronizado":"este dispositivo"}</span><span class="clock" id="clock" aria-live="off">—</span></div>
+  </div>
+  <div class="dash">
+    <section class="tile t-wide t-3d rv" aria-label="Trayectoria 3D del peso">
+      <canvas id="c3d" aria-hidden="true"></canvas>
+      <div class="ov"><div class="lbl" style="color:var(--muted)"><span>20 semanas · 3D</span><em>sólida: tu peso · cristal: el plan</em></div>
+        <div><div class="big3">${cur!=null?fmt1(cur)+" <b>→ 85</b> kg":"Tu ruta a <b>85 kg</b>"}</div><div class="hint" id="info3d" style="margin-top:8px;text-transform:none;letter-spacing:.02em;font-size:12px;color:var(--ink)">${matchMedia("(hover:hover)").matches?"Pasa el ratón por una semana para ver tu peso frente al plan":"Toca una semana para ver tu peso frente al plan · arrastra para girar"}</div></div></div>
+    </section>
+    <section class="tile t-hero rv" aria-label="Peso">
+      <div class="lbl"><span>Peso · media 7 días</span><em>${lastW?"último "+fmt1(lastW.y)+" kg · "+short(lastW.x):"sin pesajes"}</em></div>
+      <div class="hero-row"><div class="kpi"><span data-count="${cur!=null?cur.toFixed(1):""}" data-dec="1">${cur!=null?fmt1(cur):"—"}</span><small>kg</small></div>
+        <div class="chips2" style="padding-bottom:10px">${lost!=null?`<span class="delta ${lost>0?"good":"mid"}">${lost>=0?"−":"+"}${fmt1(Math.abs(lost))} kg desde el inicio</span>`:""}${rate!=null?`<span class="delta ${deltaCls(rate)}">${rate>0?"+":"−"}${fmt1(Math.abs(rate))} kg/semana</span>`:""}${vsPlan!=null?`<span class="delta ${vsPlan<=0.3?"good":vsPlan<=1.2?"mid":"bad"}">${vsPlan<=0?"por delante del plan "+fmt1(-vsPlan)+" kg":"detrás del plan "+fmt1(vsPlan)+" kg"}</span>`:""}</div></div>
+      <div class="sub">${eta?`A este ritmo llegas a <b>85 kg el ${fmtD(eta)}</b>${eta<="2027-03-17"?" — antes de HYROX.":" — después de HYROX: hay que apretar un poco."}`:pts.length<3?"Con 3 o más pesajes calculo tu ritmo real y cuándo llegas a 85 kg.":"Aún no hay tendencia de bajada clara: dale una semana más de datos."}</div>
+      ${sparkSVG(w14,{h:46,goal:null})}
+    </section>
+    <section class="tile t-ring rv" aria-label="Progreso hacia 85 kg">
+      <div class="lbl"><span>Hacia 85 kg</span><em>de ${fmt1(START_W)} a ${GOAL_W}</em></div>
+      <div class="ringbox">${ringSVG(prog,{label:"Progreso hacia el objetivo",big:Math.round(prog*100)+"%"})}
+        <div style="display:grid;gap:10px">
+          <div><div class="kpi-m"><span data-count="${lost!=null?Math.max(0,lost).toFixed(1):""}" data-dec="1">${lost!=null?fmt1(Math.max(0,lost)):"—"}</span><small>kg perdidos</small></div></div>
+          <div><div class="kpi-m"><span data-count="${cur!=null?Math.max(0,cur-GOAL_W).toFixed(1):""}" data-dec="1">${cur!=null?fmt1(Math.max(0,cur-GOAL_W)):"—"}</span><small>kg por perder</small></div></div>
+          ${gNow!=null?`<div class="sub">Grasa corporal <b>${fmt1(gNow)} %</b>${gFirst!=null&&grasas.length>1?` · ${gNow-gFirst<=0?"−":"+"}${fmt1(Math.abs(gNow-gFirst))} pts`:""}</div>`:""}
+        </div></div>
+    </section>
+
+    <section class="tile rv" aria-label="Proteína de hoy">
+      <div class="lbl"><span>Proteína hoy</span><em>${tg.p[0]}-${tg.p[1]} g</em></div>
+      <div class="tile-row"><div class="kpi-m"><span data-count="${Math.round(tot.p)}">${fmt0(tot.p)}</span><small>g</small></div>${ringSVG(tot.p/tg.p[0],{cls:"ring mini-ring",size:64,sw:7,label:"Proteína de hoy"})}</div>
+      ${sparkSVG(prot14,{goal:190})}
+    </section>
+    <section class="tile rv" aria-label="Calorías de hoy">
+      <div class="lbl"><span>Kcal hoy</span><em>${esc(tg.n)}</em></div>
+      <div class="kpi-m"><span data-count="${Math.round(tot.kcal)}">${fmt0(tot.kcal)}</span><small>/ ${fmt0(tg.kcal[0])}-${fmt0(tg.kcal[1])}</small></div>
+      <div class="bar2"><i data-w="${Math.min(100,tot.kcal/(tg.kcal[1]*1.15)*100)}" style="width:${Math.min(100,tot.kcal/(tg.kcal[1]*1.15)*100)}%"></i><span class="bd" style="left:${tg.kcal[0]/(tg.kcal[1]*1.15)*100}%"></span><span class="bd" style="left:${tg.kcal[1]/(tg.kcal[1]*1.15)*100}%"></span></div>
+      <div class="sub">${fmt0(tot.c)} g hidratos · ${fmt0(tot.g)} g grasa</div>
+    </section>
+    <section class="tile rv" aria-label="Racha de proteína">
+      <div class="lbl"><span>Racha proteína</span><em>≥ 190 g</em></div>
+      <div class="kpi-m"><span data-count="${protStreak}">${protStreak}</span><small>${protStreak===1?"día":"días"}</small></div>
+      <div class="dots">${lastN(7,d=>!!d&&totals(d).p>=190).map(x=>`<span class="${x.v?"on":""} ${x.s===t?"isnow":""}" title="${esc(nice(x.s))}"></span>`).join("")}</div>
+    </section>
+    <section class="tile rv" aria-label="Creatina">
+      <div class="lbl"><span>Creatina</span><em>5 g/día</em></div>
+      <div class="kpi-m"><span data-count="${creaStreak}">${creaStreak}</span><small>${creaStreak===1?"día seguido":"días seguidos"}</small></div>
+      <div class="dots">${crea7.map(x=>`<span class="${x.v?"on":""} ${x.s===t?"isnow":""}" title="${esc(nice(x.s))}"></span>`).join("")}</div>
+    </section>
+
+    <section class="tile t-wide rv" aria-label="Evolución del peso">
+      <div class="dash-top"><div class="lbl" style="display:block"><span>Evolución del peso · trayectoria a HYROX</span></div>
+        <div class="chips" role="group" aria-label="Rango"><button class="chip" type="button" data-wz="all" aria-pressed="${zoom==="all"}">Hasta marzo</button><button class="chip" type="button" data-wz="4w" aria-pressed="${zoom!=="all"}">4 semanas</button></div></div>
+      ${pts.length?`<div class="chartbox">${wc.svg}<div class="tip" id="wtip"></div></div>`:`<div class="empty-s">Apunta tu peso en ayunas (o deja que lo suba el atajo) y aquí verás tu línea contra la trayectoria hasta 85 kg.</div>`}
+      <div class="legend2"><span><i></i>Media 7 días</span><span><i class="dot"></i>Pesaje</span><span><i class="dash"></i>Plan hasta 85 kg</span><span><i class="proj"></i>Proyección a tu ritmo</span></div>
+    </section>
+
+    <section class="tile t-7 rv" aria-label="Constancia diaria">
+      <div class="lbl"><span>Constancia · 140 días</span><em>${done} días completos de ${elapsed}</em></div>
+      <div class="heat" role="img" aria-label="Mapa de constancia: cada casilla es un día, más intensa cuanto más cumpliste">${heat}</div>
+      <div class="dash-top"><div class="sub">Cada día suma: entreno · proteína ≥ 190 g · 10.000 pasos · creatina o 7 h de sueño</div>
+        <div class="heat-legend">Menos <i style="background:var(--bg3)"></i><i style="background:color-mix(in srgb,var(--accent) 28%,var(--bg3))"></i><i style="background:color-mix(in srgb,var(--accent) 50%,var(--bg3))"></i><i style="background:color-mix(in srgb,var(--accent) 75%,var(--bg3))"></i><i style="background:var(--accent)"></i> Más</div></div>
+    </section>
+    <section class="tile t-5 rv" aria-label="Recuperación">
+      <div class="lbl"><span>Recuperación · 3 días</span><em>sueño · energía · RPE</em></div>
+      ${gaugeSVG(ready==null?0:ready,rCol)}
+      <div style="text-align:center;font-family:var(--display);font-weight:800;font-size:22px;text-transform:uppercase;color:${rCol}">${rTxt.split(" · ")[0]}</div>
+      <div class="sub" style="text-align:center">${rTxt.includes(" · ")?rTxt.split(" · ")[1]:rTxt}${sl!=null?` · sueño ${fmt1(sl)} h`:""}${en!=null?` · energía ${fmt1(en)}`:""}</div>
+    </section>
+
+    <section class="tile t-7 rv" aria-label="Carga de entrenamiento">
+      <div class="lbl"><span>Carga de entrenamiento</span><em>minutos × RPE por semana</em></div>
+      <div style="display:grid;grid-template-columns:repeat(${Math.max(8,loads.length)},minmax(0,1fr));gap:8px;align-items:end;height:150px">${loads.map(l=>`<div style="display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:flex-end;height:100%">
+        <span class="num" style="font-size:10px;color:var(--muted)">${l.load?fmt0(l.load):""}</span>
+        <div style="width:100%;max-width:38px;height:${Math.max(4,Math.round(l.load/maxL*104))}px;border-radius:8px 8px 3px 3px;background:${l.w===w?"linear-gradient(180deg,var(--accent),color-mix(in srgb,var(--accent) 35%,transparent))":"color-mix(in srgb,var(--accent) 28%,var(--bg3))"};${l.w===w?"box-shadow:0 0 18px color-mix(in srgb,var(--accent) 45%,transparent)":""};transform-origin:bottom" class="lbar"></div>
+        <span class="num" style="font-size:10px;color:${l.w===w?"var(--ink)":"var(--muted)"}">S${l.w}</span></div>`).join("")}</div>
+      <div class="sub">Esta semana: <b>${st.total} sesiones</b> · F45 ${st.f45} · carrera ${st.series+st.z2} · <b>${fmt1(st.km)} km</b>${st.rpe!=null?` · RPE medio ${fmt1(st.rpe)}`:""}</div>
+    </section>
+    <section class="tile t-5 rv" aria-label="Macros de los últimos 7 días">
+      <div class="lbl"><span>Macros · media 7 días</span><em>${m7.length} días con datos</em></div>
+      ${mac?[["Proteína",mac.p,T7.p,"g"],["Kcal",mac.kcal,T7.kcal,""],["Hidratos",mac.c,T7.c,"g"],["Grasa",mac.g,T7.g,"g"]].map(([n,val,r,u])=>{const mx=r[1]*1.3;return `<div class="mrow"><span>${n}</span><div class="bar2"><i data-w="${Math.min(100,val/mx*100)}" style="width:${Math.min(100,val/mx*100)}%"></i><span class="bd" style="left:${r[0]/mx*100}%"></span><span class="bd" style="left:${r[1]/mx*100}%"></span></div><span class="v"><b>${fmt0(val)}</b> / ${fmt0(r[0])}-${fmt0(r[1])}${u}</span></div>`}).join(""):`<div class="empty-s">Cuando apuntes comidas verás aquí tu media frente a los objetivos.</div>`}
+      <div class="dash-top"><div style="flex:1"><div class="lbl"><span>Sueño 14 d</span><em>${fmt1(avgOf(sleep14.map(x=>x.v)))} h</em></div>${sparkSVG(sleep14,{goal:7.5,h:34})}</div><div style="flex:1"><div class="lbl"><span>Pasos 14 d</span><em>${fmt0(avgOf(steps14.map(x=>x.v)))}</em></div>${sparkSVG(steps14,{goal:10000,h:34})}</div></div>
+    </section>
+  </div></div>`;
+  // ---------- interacción ----------
+  v.querySelectorAll("[data-wz]").forEach(b=>b.onclick=()=>{state.wzoom=b.dataset.wz;render()});
+  const tick=()=>{const ms=RACE_T-new Date();const el=$("#clock");if(!el){clearInterval(panelTimer);return}if(ms<=0){el.textContent="Día de carrera";return}
+    const d=Math.floor(ms/864e5),h=Math.floor(ms/36e5)%24,m=Math.floor(ms/6e4)%60,s=Math.floor(ms/1e3)%60;el.innerHTML=`<b>${d}</b>d ${pad(h)}h ${pad(m)}m ${pad(s)}s · HYROX`};
+  clearInterval(panelTimer);tick();panelTimer=setInterval(tick,1000);
+  const svg=$("#wchart");
+  if(svg&&wc.geo.pts.length){
+    const tip=$("#wtip"),cx=svg.querySelector("#cx"),cd=svg.querySelector("#cdot"),G=wc.geo;let idx=G.pts.length-1;
+    const show=i=>{idx=Math.max(0,Math.min(G.pts.length-1,i));const p=G.pts[idx];cx.setAttribute("x1",p.px);cx.setAttribute("x2",p.px);cx.setAttribute("opacity","1");cd.setAttribute("cx",p.px);cd.setAttribute("cy",p.py);cd.setAttribute("opacity","1");
+      const r=svg.getBoundingClientRect(),sx=r.width/G.W,sy=r.height/G.H;tip.style.left=Math.min(r.width-70,Math.max(70,p.px*sx))+"px";tip.style.top=(p.py*sy-10)+"px";
+      tip.innerHTML=`<span>${esc(nice(p.x))}</span><b>${fmt1(p.y)} kg</b><span>media 7 d · ${p.a!=null?fmt1(p.a):"—"} kg</span>`;tip.classList.add("on")};
+    const hide=()=>{cx.setAttribute("opacity","0");cd.setAttribute("opacity","0");tip.classList.remove("on")};
+    const near=e=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*G.W;let b=0,bd=1e9;G.pts.forEach((p,i)=>{const d=Math.abs(p.px-x);if(d<bd){bd=d;b=i}});return b};
+    svg.addEventListener("pointermove",e=>show(near(e)));svg.addEventListener("pointerdown",e=>show(near(e)));svg.addEventListener("pointerleave",hide);
+    svg.addEventListener("focus",()=>show(idx));svg.addEventListener("blur",hide);
+    svg.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"){e.preventDefault();show(idx-1)}if(e.key==="ArrowRight"){e.preventDefault();show(idx+1)}if(e.key==="Escape")hide()});
+  }
+  Motion.panel(v);
+  Scene3D.mount($("#c3d"),pts,avg);
+}
+/* =============== ESCENA 3D =============== */
+const Scene3D={
+  lib:null,raf:0,
+  load(){if(this.lib)return Promise.resolve(this.lib);if(window.THREE){this.lib=window.THREE;return Promise.resolve(this.lib)}
+    return new Promise(res=>{const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";sc.onload=()=>{this.lib=window.THREE;res(this.lib)};sc.onerror=()=>res(null);document.head.appendChild(sc)})},
+  stop(){cancelAnimationFrame(this.raf);this.raf=0;if(this.ro){this.ro.disconnect();this.ro=null}if(this.renderer){this.renderer.dispose();this.renderer=null}},
+  async mount(canvas,pts,avg){
+    this.stop();if(!canvas)return;
+    const THREE=await this.load();if(!THREE||!canvas.isConnected)return;
+    const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const col=v=>{const c=document.createElement("canvas").getContext("2d");c.fillStyle=v;return new THREE.Color(c.fillStyle)};
+    const accent=col(css("--accent")),ok=col(css("--ok")),ink=col(css("--ink")),bgc=col(css("--bg2")),mutedC=col(css("--muted")),p2=col(css("--p2"));
+    const mobile=matchMedia("(max-width:560px)").matches,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,alpha:true,powerPreference:"low-power"});renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));this.renderer=renderer;
+    const scene=new THREE.Scene();scene.fog=new THREE.Fog(bgc.getHex(),26,58);
+    const cam=new THREE.PerspectiveCamera(36,2,0.1,120);
+    scene.add(new THREE.AmbientLight(0xffffff,.55));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(-6,14,10);scene.add(dl);
+    const pl=new THREE.PointLight(accent.getHex(),1.4,30);scene.add(pl);
+    // escala: 20 semanas en x, peso en y (base 80 kg)
+    const SP=1.35,X=w=>(w-10.5)*SP,Y=kg=>Math.max(.15,(kg-80)*.42);
+    const t=todayStr(),wNow=clampW(weekOf(t));
+    const planW=w=>START_W+(GOAL_W-START_W)*Math.min(1,(w*7-3.5)/137);
+    const weekAvg=w=>{const ds=weekDays(w).map(s=>data.days[s]).filter(d=>d&&d.peso!=null);return ds.length?ds.reduce((a,d)=>a+d.peso,0)/ds.length:null};
+    const grid=new THREE.GridHelper(48,48,mutedC.getHex(),mutedC.getHex());grid.material.transparent=true;grid.material.opacity=.16;scene.add(grid);
+    // suelo reflectante sutil
+    const floor=new THREE.Mesh(new THREE.CircleGeometry(26,64),new THREE.MeshBasicMaterial({color:accent.getHex(),transparent:true,opacity:.04,depthWrite:false}));floor.rotation.x=-Math.PI/2;floor.position.y=.01;scene.add(floor);
+    // texto en sprites
+    const label=(txt,color,sz=.9)=>{const c=document.createElement("canvas");c.width=512;c.height=128;const g=c.getContext("2d");g.font="700 64px 'Big Shoulders Display', 'Arial Narrow', sans-serif";g.fillStyle=color;g.textAlign="center";g.textBaseline="middle";g.fillText(txt,256,64);
+      const tx=new THREE.CanvasTexture(c);tx.minFilter=THREE.LinearFilter;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tx,transparent:true,depthWrite:false}));sp.scale.set(4*sz,1*sz,1);return sp};
+    // columnas
+    const pillars=[],box=new THREE.BoxGeometry(.86,1,.86);box.translate(0,.5,0);
+    for(let w=1;w<=20;w++){
+      const real=w<=wNow?weekAvg(w):null,h=Y(real!=null?real:planW(w)),cur=w===wNow,past=real!=null;
+      let mesh;
+      if(past){mesh=new THREE.Mesh(box,new THREE.MeshStandardMaterial({color:cur?accent.getHex():p2.getHex(),emissive:cur?accent.getHex():p2.getHex(),emissiveIntensity:cur?.55:.25,roughness:.35,metalness:.3,transparent:true,opacity:cur?1:.9}))}
+      else{mesh=new THREE.Mesh(box,new THREE.MeshBasicMaterial({color:accent.getHex(),transparent:true,opacity:.07,depthWrite:false}));
+        const e=new THREE.LineSegments(new THREE.EdgesGeometry(box),new THREE.LineBasicMaterial({color:accent.getHex(),transparent:true,opacity:cur?.9:.35}));mesh.add(e)}
+      mesh.position.set(X(w),0,0);mesh.userData={w,h,real,plan:planW(w),past,cur};mesh.scale.y=reduce?h:.001;scene.add(mesh);pillars.push(mesh);
+      if(cur){pl.position.set(X(w),h+2.5,2)}
+    }
+    // plan: línea punteada sobre las columnas
+    const planPts=[];for(let w=1;w<=20;w++)planPts.push(new THREE.Vector3(X(w),Y(planW(w))+.02,0));
+    const planLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(planPts),new THREE.LineDashedMaterial({color:ink.getHex(),dashSize:.3,gapSize:.25,transparent:true,opacity:.45}));planLine.computeLineDistances();scene.add(planLine);
+    // cinta diaria del peso (media 7 días) por delante de las columnas
+    let pulse=null;
+    if(avg.length>1){const dx=s=>X(1)-SP/2+((pd(s)-START)/864e5)/7*SP;
+      const curve=new THREE.CatmullRomCurve3(avg.map(p=>new THREE.Vector3(dx(p.x),Y(p.y)+.05,.75)));
+      scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,avg.length*8),.07,8,false),new THREE.MeshBasicMaterial({color:accent.getHex()})));
+      scene.add(new THREE.Mesh(new THREE.TubeGeometry(curve,Math.max(12,avg.length*8),.2,8,false),new THREE.MeshBasicMaterial({color:accent.getHex(),transparent:true,opacity:.16,depthWrite:false})));
+      const l=avg[avg.length-1];pulse=new THREE.Mesh(new THREE.SphereGeometry(.26,20,20),new THREE.MeshBasicMaterial({color:accent.getHex(),transparent:true,opacity:.35,depthWrite:false}));pulse.position.set(dx(l.x),Y(l.y)+.05,.75);scene.add(pulse);
+      const core=new THREE.Mesh(new THREE.SphereGeometry(.13,16,16),new THREE.MeshBasicMaterial({color:0xffffff}));core.position.copy(pulse.position);scene.add(core);
+      const hoy=label("HOY",css("--accent"),.8);hoy.position.set(pulse.position.x,pulse.position.y+1.1,.75);scene.add(hoy)}
+    // meta: anillo sobre la última columna + línea de 85 kg
+    const gy=Y(GOAL_W);
+    const gl=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(X(1)-1,gy,-.6),new THREE.Vector3(X(20)+1,gy,-.6)]),new THREE.LineBasicMaterial({color:ok.getHex(),transparent:true,opacity:.7}));scene.add(gl);
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(.75,.05,12,64),new THREE.MeshBasicMaterial({color:ok.getHex()}));ring.position.set(X(20),Y(planW(20))+1.6,0);scene.add(ring);
+    const ringHalo=new THREE.Mesh(new THREE.TorusGeometry(.75,.2,12,64),new THREE.MeshBasicMaterial({color:ok.getHex(),transparent:true,opacity:.18,depthWrite:false}));ringHalo.position.copy(ring.position);scene.add(ringHalo);
+    const meta=label("HYROX · 85 KG",css("--ok"),.85);meta.position.set(X(20),ring.position.y+1.3,0);scene.add(meta);
+    const s1=label("NOV",css("--muted"),.6);s1.position.set(X(1),-.6,1.2);scene.add(s1);const s20=label("MAR",css("--muted"),.6);s20.position.set(X(20),-.6,1.2);scene.add(s20);
+    // partículas
+    const N=mobile?260:700,pos=new Float32Array(N*3);for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*50;pos[i*3+1]=Math.random()*12;pos[i*3+2]=(Math.random()-.5)*30}
+    const parts=new THREE.Points(new THREE.BufferGeometry().setAttribute("position",new THREE.BufferAttribute(pos,3)),new THREE.PointsMaterial({color:accent.getHex(),size:mobile?.09:.06,transparent:true,opacity:.5,depthWrite:false}));scene.add(parts);
+    // cámara
+    const target=mobile?new THREE.Vector3(-4.5,3.6,0):new THREE.Vector3(-1.6,3.9,0);let theta=mobile?-1.05:-.5,phi=mobile?.36:.3,dist=reduce?(mobile?31:31):56,tTheta=theta,tPhi=phi,tDist=mobile?36:31,drag=null;
+    const place=()=>{cam.position.set(target.x+dist*Math.sin(theta)*Math.cos(phi),target.y+dist*Math.sin(phi),target.z+dist*Math.cos(theta)*Math.cos(phi));cam.lookAt(target)};
+    // info al pasar por encima
+    const info=document.getElementById("info3d"),ray=new THREE.Raycaster(),mv=new THREE.Vector2();let hover=null;
+    const pick=e=>{const r=canvas.getBoundingClientRect();mv.x=(e.clientX-r.left)/r.width*2-1;mv.y=-(e.clientY-r.top)/r.height*2+1;ray.setFromCamera(mv,cam);const hit=ray.intersectObjects(pillars,false)[0];setHover(hit?hit.object:null)};
+    const setHover=o=>{if(hover===o)return;if(hover&&hover.material.emissive)hover.material.emissiveIntensity=hover.userData.cur?.55:.25;hover=o;
+      if(!info)return;if(!o){info.innerHTML=info.dataset.def;return}
+      const u=o.userData;if(o.material.emissive)o.material.emissiveIntensity=.9;
+      info.innerHTML=`<b>Semana ${u.w}</b> · ${u.real!=null?"media "+fmt1(u.real)+" kg · plan "+fmt1(u.plan)+" kg · "+(u.real-u.plan<=0?"<span style='color:var(--ok)'>por delante "+fmt1(u.plan-u.real)+"</span>":"<span style='color:var(--warn)'>detrás "+fmt1(u.real-u.plan)+"</span>"):"objetivo "+fmt1(u.plan)+" kg"+(u.w===20?" · HYROX":"")}`};
+    if(info)info.dataset.def=info.innerHTML;
+    canvas.addEventListener("pointermove",e=>{if(drag){tTheta=drag.t-(e.clientX-drag.x)*.006;tPhi=Math.max(.08,Math.min(1.1,drag.p+(e.clientY-drag.y)*.004))}
+      else if(e.pointerType==="mouse"){const r=canvas.getBoundingClientRect();tTheta=(mobile?-1.05:-.5)+((e.clientX-r.left)/r.width-.5)*.8;tPhi=.32+((e.clientY-r.top)/r.height-.5)*-.3}
+      pick(e)});
+    canvas.addEventListener("pointerdown",e=>{drag={x:e.clientX,y:e.clientY,t:tTheta,p:tPhi};pick(e)});
+    canvas.addEventListener("pointerup",()=>drag=null);canvas.addEventListener("pointercancel",()=>drag=null);canvas.addEventListener("pointerleave",()=>{drag=null;setHover(null)});
+    canvas.style.touchAction="pan-y";
+    const size=()=>{const r=canvas.getBoundingClientRect();if(!r.width)return;renderer.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix();if(!this.raf)renderer.render(scene,cam)};
+    this.ro=new ResizeObserver(size);this.ro.observe(canvas);size();
+    // entrada: columnas que se levantan en ola
+    const born=performance.now();let t0=born;
+    const ease=x=>1-Math.pow(1-Math.min(1,Math.max(0,x)),3);
+    const frame=now=>{if(!canvas.isConnected){this.stop();return}
+      const dt=Math.min(.05,(now-t0)/1000);t0=now;const el=(now-born)/1000;
+      if(!reduce){pillars.forEach((m,i)=>{const k=ease((el-.15-i*.05)/.9);m.scale.y=Math.max(.001,m.userData.h*k)});
+        if(!drag)tTheta+=dt*.03;
+        const s=1+Math.sin(now/550)*.2;if(pulse)pulse.scale.setScalar(s);ring.rotation.y+=dt*.9;ringHalo.scale.setScalar(1+Math.sin(now/900)*.12);parts.rotation.y+=dt*.012;
+        pillars.forEach(m=>{if(m.userData.cur&&m.material.emissive&&m!==hover)m.material.emissiveIntensity=.45+Math.sin(now/500)*.2})}
+      theta+=(tTheta-theta)*Math.min(1,dt*3.5);phi+=(tPhi-phi)*Math.min(1,dt*3.5);dist+=(tDist-dist)*Math.min(1,dt*1.6);place();
+      renderer.render(scene,cam);
+      if(reduce&&!drag&&Math.abs(tTheta-theta)<.001&&Math.abs(tPhi-phi)<.001){this.raf=0;return}
+      this.raf=requestAnimationFrame(frame)};
+    place();this.raf=requestAnimationFrame(frame);
+    if(reduce)canvas.addEventListener("pointermove",()=>{if(!this.raf)this.raf=requestAnimationFrame(frame)});
+  }
+};
+
 /* =============== COMIDA =============== */
 let FOOD=null;state.mom="Todas";
 function renderFood(){
@@ -930,6 +1343,23 @@ function setTheme(t){if(t)document.documentElement.setAttribute("data-theme",t);
 /* =============== MOVIMIENTO =============== */
 const Motion={
   ok:false,
+  panel(v){
+    if(!v._glow){v._glow=1;v.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest(".tile");if(!t)return;const r=t.getBoundingClientRect();t.style.setProperty("--mx",(e.clientX-r.left)+"px");t.style.setProperty("--my",(e.clientY-r.top)+"px")})}
+    if(!this.ok)return;
+    v.querySelectorAll("[data-count]").forEach(el=>{const to=parseFloat(el.dataset.count);if(isNaN(to))return;const dec=+el.dataset.dec||0,o={n:to*0.6};gsap.to(o,{n:to,duration:1.5,ease:"power3.out",delay:.15,onUpdate:()=>{el.textContent=dec?fmt1(o.n):fmt0(o.n)},onComplete:()=>{el.textContent=dec?fmt1(to):fmt0(to)}})});
+    v.querySelectorAll("[data-ring]").forEach(el=>{const c=+el.dataset.ring,end=+el.getAttribute("stroke-dashoffset");gsap.fromTo(el,{attr:{"stroke-dashoffset":c}},{attr:{"stroke-dashoffset":end},duration:1.8,ease:"expo.out",delay:.25})});
+    v.querySelectorAll("#wchart path.draw").forEach(p=>{const L=p.getTotalLength();if(!L)return;gsap.fromTo(p,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:1.8,ease:"power2.inOut",delay:.3,onComplete:()=>{p.style.strokeDasharray="none"}})});
+    gsap.from(v.querySelectorAll(".lbar"),{scaleY:0,duration:.9,ease:"back.out(1.4)",stagger:.06,delay:.35});
+    gsap.from(v.querySelectorAll(".bar2 i"),{width:0,duration:1.2,ease:"expo.out",stagger:.05,delay:.3});
+    gsap.from(v.querySelectorAll(".heat i"),{opacity:0,scale:.3,duration:.45,ease:"back.out(2)",stagger:{each:.004},delay:.3});
+    gsap.from(v.querySelectorAll(".spark"),{opacity:0,y:8,duration:.8,ease:"power3.out",stagger:.05,delay:.4});
+    if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+      v.querySelectorAll(".tile:not(.t-wide)").forEach(t=>{
+        t.addEventListener("pointermove",e=>{const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;gsap.to(t,{rotateY:x*3,rotateX:-y*3,transformPerspective:1000,duration:.6,ease:"power3.out"})});
+        t.addEventListener("pointerleave",()=>gsap.to(t,{rotateX:0,rotateY:0,duration:.8,ease:"power3.out"}));
+      });
+    }
+  },
   init(){
     const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     if(reduce||!window.gsap){return}
@@ -950,7 +1380,7 @@ const Motion={
     if(!this.ok)return;
     const els=[...document.querySelectorAll("#view .rv")];
     els.forEach((el,i)=>gsap.to(el,{opacity:1,y:0,duration:.6,ease:"power3.out",delay:Math.min(i,6)*.05,clearProps:"transform"}));
-    const p=document.querySelector("#view path.draw");
+    const p=state.view==="panel"?null:document.querySelector("#view path.draw");
     if(p){const L=p.getTotalLength();gsap.fromTo(p,{strokeDasharray:L,strokeDashoffset:L},{strokeDashoffset:0,duration:1.2,ease:"power2.out",onComplete:()=>p.style.strokeDasharray="none"})}
   }
 };
