@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-07T20:14",
+ "actualizado": "2026-11-07T20:40",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -551,36 +551,147 @@
    ]
   },
   "2026-11-08": {
-   "titulo": "Test de 5 km y check-in",
+   "titulo": "Golf en el Centro Nacional (18 hoyos andando) + check-in",
    "tipo": "z2",
-   "nota": "De este tiempo salen todos tus ritmos de series, Z2 y carrera HYROX.",
+   "nota": "Hoy no hay entreno: 18 hoyos andando arrastrando el carro son 4-5 horas de Z1, unos 12-14 km y 15.000-20.000 pasos. Es recuperación activa perfecta. El test de 5 km pasa al martes a primera hora.",
    "sesiones": [
     {
-     "h": "09:30",
-     "d": "Antes",
-     "t": "Desayuno ligero 1-1,5 h antes: pan con miel y plátano, y café"
+     "h": "09:00",
+     "d": "Desayuno",
+     "t": "Tortilla de 3 huevos + claras, pan integral y fruta. Creatina con el desayuno (hoy no entrenas)"
     },
     {
      "h": "10:30",
+     "d": "Salida",
+     "t": "Mete en la bolsa: el sándwich de pavo y queso, un plátano, 1,5 L de agua y crema solar"
+    },
+    {
+     "h": "11:20",
+     "d": "Golf · Centro Nacional",
+     "t": "18 hoyos andando con el carro. Ritmo tranquilo, bebe en cada green impar. Deja el reloj midiendo el entreno como 'Caminar' para que sumen las kcal activas"
+    },
+    {
+     "h": "13:30",
+     "d": "Comida en el campo",
+     "t": "Sándwich de pavo y queso + plátano, hacia el hoyo 9-10"
+    },
+    {
+     "h": "16:30",
+     "d": "Comida",
+     "t": "Al volver: táper de pollo con arroz y verdura"
+    },
+    {
+     "h": "18:30",
+     "d": "Casa · check-in",
+     "t": "Batch cooking de la semana, cintura y fotos. Luego en Semana pulsa 'Copiar mi semana para Claude' y pégamelo"
+    },
+    {
+     "h": "21:15",
+     "d": "Cena",
+     "t": "Ensalada grande con 2 latas de atún al natural y 1 huevo"
+    },
+    {
+     "h": "22:30",
+     "d": "Recena",
+     "t": "Queso batido con un poco de miel"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "Mañana F45 normal. El martes a primera hora, test de 5 km"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "09:00",
+     "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
+     "kcal": 505,
+     "p": 42,
+     "c": 42,
+     "g": 18
+    },
+    {
+     "h": "09:00",
+     "n": "Creatina · 1 cacito y medio (5 g) con el desayuno",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "13:30",
+     "n": "Golf · sándwich de pavo y queso (60 g pan integral, 100 g pavo, 1 loncha queso light)",
+     "kcal": 360,
+     "p": 32,
+     "c": 35,
+     "g": 9
+    },
+    {
+     "h": "13:30",
+     "n": "Golf · 1 plátano",
+     "kcal": 105,
+     "p": 1,
+     "c": 27,
+     "g": 0
+    },
+    {
+     "h": "16:30",
+     "n": "Comida A · 250 g pollo, 70 g arroz, verdura, 15 g AOVE",
+     "kcal": 735,
+     "p": 66,
+     "c": 67,
+     "g": 20
+    },
+    {
+     "h": "21:15",
+     "n": "Cena · ensalada con 2 latas de atún al natural, 1 huevo, 5 g AOVE",
+     "kcal": 330,
+     "p": 50,
+     "c": 5,
+     "g": 12
+    },
+    {
+     "h": "22:30",
+     "n": "Recena · 250 g queso batido 0 %, 10 g miel",
+     "kcal": 220,
+     "p": 26,
+     "c": 22,
+     "g": 1
+    }
+   ]
+  },
+  "2026-11-10": {
+   "titulo": "Test de 5 km (temprano) + F45 suave",
+   "tipo": "calidad",
+   "nota": "El test que no hiciste el domingo. De este tiempo salen tus ritmos de series, Z2 y carrera HYROX. Hoy no hay Z2 en UFC: el test ocupa ese hueco.",
+   "sesiones": [
+    {
+     "h": "06:15",
+     "d": "Antes",
+     "t": "Medio plátano con un poco de pan y miel, y café"
+    },
+    {
+     "h": "06:50",
      "d": "Retiro",
      "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
     },
     {
-     "h": "10:50",
-     "d": "Test",
+     "h": "07:10",
+     "d": "Test 5 km",
      "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones en Día → Entrenamientos (sesión Series, 5 km)"
     },
     {
-     "h": "Después",
-     "d": "Vuelta a la calma",
-     "t": "10 min andando"
+     "h": "08:00",
+     "d": "Desayuno",
+     "t": "Desayuno completo con proteína: 250 g de skyr con Evolate, avena y frutos rojos"
     },
     {
      "h": "Tarde",
-     "d": "Casa",
-     "t": "Batch cooking, cintura y fotos. Luego pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
+     "d": "F45 · RPE 6",
+     "t": "Clase de F45 sin apretar: las piernas vienen del test"
     }
-   ]
+   ],
+   "comidas": null
   }
  },
  "diario": {
