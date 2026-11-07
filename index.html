@@ -463,7 +463,7 @@ body.jy-lock{overflow:hidden}
 .pmap-ctl{display:flex;gap:6px}
 .pm-b{all:unset;cursor:pointer;min-width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line2);background:color-mix(in srgb,var(--bg2) 80%,transparent);font-family:var(--mono);font-size:18px;color:var(--ink);transition:transform .2s var(--spring),border-color .2s}
 .pm-b.wide{padding:0 14px;font-size:13px}.pm-b:hover{border-color:var(--accent)}.pm-b:active{transform:scale(.92)}.pm-b:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.pmap-frame{position:relative;height:clamp(300px,52vh,520px);border-radius:22px;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:#0b1020;touch-action:none;cursor:grab;
+.pmap-frame{position:relative;height:clamp(360px,62vh,640px);border-radius:22px;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:#0b1020;touch-action:none;cursor:grab;
   box-shadow:0 0 0 1px rgba(255,255,255,.03),0 40px 80px -40px rgba(0,0,0,.8),0 0 80px -30px color-mix(in srgb,var(--accent) 60%,transparent)}
 .pmap-frame:active{cursor:grabbing}
 .pmap-frame canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
@@ -472,6 +472,13 @@ body.jy-lock{overflow:hidden}
 .pm-hud{position:absolute;pointer-events:none;font-family:"Press Start 2P",var(--mono);font-size:8px;letter-spacing:.06em;color:#73eff7;text-shadow:0 0 8px #73eff7;padding:12px}
 .pm-hud.tl{top:0;left:0}.pm-hud.br{bottom:0;right:0;color:rgba(255,255,255,.55);text-shadow:none;font-family:var(--mono);font-size:10px}
 .pm-card{position:absolute;left:12px;bottom:12px;display:grid;gap:2px;padding:10px 14px;border-radius:14px;background:rgba(11,16,32,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(143,168,255,.4);color:#EEF1F5;font-size:13px}
+.pmap-frame.poke{background:linear-gradient(#9fd8ff,#c8ecff);border:3px solid #2a2a3a;box-shadow:0 0 0 3px #fffbe8,0 0 0 6px #2a2a3a,0 30px 70px -30px rgba(0,0,0,.7)}
+.pmap-frame.poke canvas{image-rendering:auto}
+.pmap-frame.poke .pm-hud.tl{margin:10px;padding:8px 10px;background:#fffbe8;color:#2a2a3a;text-shadow:none;border:3px solid #2a2a3a;border-radius:8px;box-shadow:inset 0 0 0 2px #c8c0a8;font-size:8px;max-width:70%}
+.pmap-frame.poke .pm-hud.br{color:rgba(42,42,58,.7)}
+.pmap-frame.poke .pm-card{background:#fffbe8;color:#2a2a3a;border:3px solid #2a2a3a;border-radius:10px;box-shadow:inset 0 0 0 2px #c8c0a8;backdrop-filter:none}
+.pmap-frame.poke .pm-card b{color:#2a2a3a;font-family:"Press Start 2P",var(--mono);font-size:12px;line-height:1.4}.pmap-frame.poke .pm-card span{color:#5a5a6a}
+.pmap-frame.poke .jy-load i{border-color:rgba(42,42,58,.2);border-top-color:#e04848}
 .pm-card b{font-family:var(--display);font-size:22px;font-weight:900;line-height:1}.pm-card span{color:#b9c1cf;font-family:var(--mono);font-size:11px}
 /* ---------- guía ---------- */
 .tour{position:fixed;inset:0;z-index:90}
@@ -1885,86 +1892,148 @@ const Journey={
   }
 };
 
-/* =============== MAPA REAL EN PIXEL ART =============== */
+/* =============== MAPA REAL 3D · estilo Pokémon =============== */
 const PixMap={
-  z:15,c:null,drag:null,tiles:new Map(),raf:0,f:0,sel:null,follow:true,
-  ICON:{casa:"casa",padres:"casa",suegros:"casa",f45:"pesa",amazon:"maletin",retiro:"arbol"},
+  Z:15,N:5,S:.5,c:null,follow:true,raf:0,R:null,
   last(){try{const p=JSON.parse(LS.get("rx27-lastpos")||"null");return p&&p.lat?p:null}catch(e){return null}},
   center(){const p=this.last();if(p)return {lat:p.lat,lon:p.lon};const s=Loc.sites;return s.casa?{lat:s.casa.lat,lon:s.casa.lon}:{lat:s.retiro.lat,lon:s.retiro.lon}},
-  block(){return `<section class="pmap rv" aria-label="Mapa real en pixel art">
-    <div class="pmap-h"><div><div class="eyebrow">Mapa real · pixel art</div><h3 class="pmap-t" id="pmapt">Dónde está Javi</h3></div>
-      <div class="pmap-ctl" role="group" aria-label="Controles del mapa"><button class="pm-b" type="button" data-pm="out" aria-label="Alejar">−</button><button class="pm-b" type="button" data-pm="in" aria-label="Acercar">+</button><button class="pm-b wide" type="button" data-pm="me" aria-label="Centrar en mi posición">◎ Yo</button></div></div>
-    <div class="pmap-frame"><canvas class="pm-base" aria-hidden="true"></canvas><canvas class="pm-top" role="img" aria-label="Mapa de Madrid con tus sitios y tu posición. Arrastra para moverte y toca un sitio para ver qué es."></canvas>
-      <div class="pm-scan" aria-hidden="true"></div><div class="pm-hud tl" id="pmhud" aria-hidden="true"></div><div class="pm-hud br" aria-hidden="true">© OpenStreetMap</div>
-      <div class="pm-card" id="pmcard" aria-live="polite" hidden></div></div>
+  block(){return `<section class="pmap rv" aria-label="Mapa real en 3D estilo Pokémon">
+    <div class="pmap-h"><div><div class="eyebrow">Mapa real · 3D pixel</div><h3 class="pmap-t" id="pmapt">Dónde está Javi</h3></div>
+      <div class="pmap-ctl" role="group" aria-label="Controles del mapa"><button class="pm-b" type="button" data-pm="rot" aria-label="Girar el mapa">⟳</button><button class="pm-b" type="button" data-pm="out" aria-label="Alejar">−</button><button class="pm-b" type="button" data-pm="in" aria-label="Acercar">+</button><button class="pm-b wide" type="button" data-pm="me" aria-label="Centrar en mi posición">◎ Yo</button></div></div>
+    <div class="pmap-frame poke"><canvas class="pm-3d" role="img" aria-label="Mapa de Madrid en 3D estilo Pokémon con tus sitios y tu posición. Arrastra para moverte, pellizca para acercar y toca un edificio para ver qué es."></canvas>
+      <div class="pm-hud tl" id="pmhud" aria-hidden="true"></div><div class="pm-hud br" aria-hidden="true">© OpenStreetMap</div>
+      <div class="pm-card" id="pmcard" aria-live="polite" hidden></div><div class="jy-load" id="pmload" aria-hidden="true"><i></i></div></div>
   </section>`},
-  mount(){
-    const fr=document.querySelector(".pmap-frame");if(!fr)return;this.fr=fr;this.base=fr.querySelector(".pm-base");this.top=fr.querySelector(".pm-top");
-    this.c=this.center();this.follow=true;this.sel=null;this.size();
-    const ro=new ResizeObserver(()=>{this.size();this.draw()});ro.observe(fr);this.ro=ro;
-    fr.addEventListener("pointerdown",e=>{if(e.target.closest(".pm-card"))return;this.drag={x:e.clientX,y:e.clientY,c:{...this.c},moved:false};fr.setPointerCapture(e.pointerId)});
-    fr.addEventListener("pointermove",e=>{if(!this.drag)return;const dx=e.clientX-this.drag.x,dy=e.clientY-this.drag.y;if(Math.abs(dx)+Math.abs(dy)>4)this.drag.moved=true;if(!this.drag.moved)return;
-      const p=this.proj(this.drag.c.lat,this.drag.c.lon);this.c=this.unproj(p.x-dx/this.cell/this.scale,p.y-dy/this.cell/this.scale);this.follow=false;this.draw()});
-    const up=e=>{if(this.drag&&!this.drag.moved)this.tap(e);this.drag=null};fr.addEventListener("pointerup",up);fr.addEventListener("pointercancel",()=>this.drag=null);
-    fr.addEventListener("wheel",e=>{e.preventDefault();this.zoom(e.deltaY<0?1:-1)},{passive:false});
-    document.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{const k=b.dataset.pm;if(k==="in")this.zoom(1);else if(k==="out")this.zoom(-1);else{this.follow=true;this.c=this.center();if(Loc.on)Loc.update();this.draw()}});
-    cancelAnimationFrame(this.raf);const loop=()=>{if(!document.body.contains(this.top))return;this.raf=requestAnimationFrame(loop);this.f++;if(this.f%4===0)this.drawTop()};loop();
-    this.draw();
-  },
-  size(){const r=this.fr.getBoundingClientRect();this.cell=3;this.W=Math.ceil(r.width/this.cell);this.H=Math.ceil(r.height/this.cell);this.px=1;this.scale=1/4;
-    [this.base,this.top].forEach(cv=>{cv.width=this.W;cv.height=this.H})},
-  proj(lat,lon){const s=256*Math.pow(2,this.z),x=(lon+180)/360*s,sn=Math.sin(lat*Math.PI/180),y=(0.5-Math.log((1+sn)/(1-sn))/(4*Math.PI))*s;return {x,y}},
-  unproj(x,y){const s=256*Math.pow(2,this.z),lon=x/s*360-180,n=Math.PI-2*Math.PI*y/s;return {lat:180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))),lon}},
-  // pantalla (celdas) <- mundo: cada tile de 256 px se pinta en 64 celdas
-  toScr(lat,lon){const p=this.proj(lat,lon),c=this.proj(this.c.lat,this.c.lon);return {x:Math.round(this.W/2+(p.x-c.x)*this.scale),y:Math.round(this.H/2+(p.y-c.y)*this.scale)}},
-  zoom(d){const z=Math.max(12,Math.min(17,this.z+d));if(z===this.z)return;this.z=z;this.draw()},
-  tile(z,x,y){const n=Math.pow(2,z);x=((x%n)+n)%n;const k=z+"/"+x+"/"+y;let t=this.tiles.get(k);if(!t){t=new Image();t.crossOrigin="anonymous";t.decoding="async";t.onload=()=>this.draw();t.src=`https://tile.openstreetmap.org/${k}.png`;this.tiles.set(k,t)}return t},
-  draw(){
-    if(!this.base)return;const ctx=this.base.getContext("2d");ctx.imageSmoothingEnabled=true;ctx.fillStyle="#0b1020";ctx.fillRect(0,0,this.W,this.H);
-    const c=this.proj(this.c.lat,this.c.lon),T=256*this.scale,x0=c.x-this.W/2/this.scale,y0=c.y-this.H/2/this.scale;
-    for(let tx=Math.floor(x0/256);tx<=Math.floor((x0+this.W/this.scale)/256);tx++)for(let ty=Math.floor(y0/256);ty<=Math.floor((y0+this.H/this.scale)/256);ty++){
-      const im=this.tile(this.z,tx,ty);if(im.complete&&im.naturalWidth)ctx.drawImage(im,Math.round((tx*256-x0)*this.scale),Math.round((ty*256-y0)*this.scale),T,T)}
-    // paleta pixel: agua, parques, calles, edificios y fondo
-    try{const id=ctx.getImageData(0,0,this.W,this.H),d=id.data;
-      for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2],L=(r*3+g*6+b)/10;let o;
-        if(r<20&&g<25&&b<40)o=[11,16,32];
-        else if(b>r+18&&b>g)o=[24,58,110];
-        else if(g>r+12&&g>b)o=[22,70,58];
-        else if(r>235&&g<225&&b<200)o=[255,176,92];
-        else if(L>246)o=[92,206,232];
-        else if(L>236)o=[38,48,84];
-        else if(L>212)o=[28,34,60];
-        else o=[52,40,86];
-        d[i]=o[0];d[i+1]=o[1];d[i+2]=o[2]}
-      ctx.putImageData(id,0,0);this.base.classList.remove("raw")}catch(e){this.base.classList.add("raw")}
-    this.drawTop();
-  },
-  drawTop(){
-    if(!this.top)return;const ctx=this.top.getContext("2d");ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,this.W,this.H);
-    const R=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x|0,y|0,w,h)},S=Loc.sites,m=Loc.mine(),me=this.last();this.hits=[];
-    const ico=(k,x,y,on)=>{const t=this.ICON[k]||"pin",c=on?"#ffcd75":"#8FA8FF";
-      R(x-6,y-14,13,13,"#0b1020");R(x-5,y-13,11,11,c);R(x-1,y-2,3,4,c);
-      if(t==="casa"){R(x-3,y-9,7,5,"#0b1020");R(x-4,y-10,9,1,"#0b1020");R(x-3,y-11,7,1,"#0b1020");R(x-1,y-7,2,3,c)}
-      else if(t==="pesa"){R(x-4,y-8,9,1,"#0b1020");R(x-4,y-10,2,5,"#0b1020");R(x+3,y-10,2,5,"#0b1020")}
-      else if(t==="maletin"){R(x-3,y-9,7,5,"#0b1020");R(x-1,y-11,3,2,"#0b1020")}
-      else if(t==="arbol"){R(x-3,y-11,7,5,"#0b1020");R(x,y-6,1,3,"#0b1020")}};
-    Object.entries(S).forEach(([k,v])=>{const p=this.toScr(v.lat,v.lon);if(p.x<-20||p.y<-20||p.x>this.W+20||p.y>this.H+20)return;const on=m&&m.k===k;
-      if(k==="retiro"){ctx.globalAlpha=.16;ctx.fillStyle="#38b764";const rr=Math.max(4,v.r*this.scale*Math.pow(2,this.z)*256/(40075016*Math.cos(v.lat*Math.PI/180)));ctx.beginPath();ctx.arc(p.x,p.y,rr,0,7);ctx.fill();ctx.globalAlpha=1}
-      if(on){const pr=(this.f%40)/40;ctx.globalAlpha=1-pr;ctx.strokeStyle="#ffcd75";ctx.lineWidth=1;ctx.beginPath();ctx.arc(p.x,p.y-7,8+pr*14,0,7);ctx.stroke();ctx.globalAlpha=1}
-      ico(k,p.x,p.y,on);this.hits.push({x:p.x,y:p.y-7,k,n:Loc.NAMES[k],v})});
-    if(me){const p=this.toScr(me.lat,me.lon),pr=(this.f%30)/30;
-      ctx.globalAlpha=.25;ctx.fillStyle="#73eff7";ctx.beginPath();ctx.arc(p.x,p.y,Math.max(3,Math.min(60,(me.acc||30)*this.scale*Math.pow(2,this.z)*256/(40075016*Math.cos(me.lat*Math.PI/180)))),0,7);ctx.fill();
-      ctx.globalAlpha=1-pr;ctx.strokeStyle="#73eff7";ctx.beginPath();ctx.arc(p.x,p.y,4+pr*16,0,7);ctx.stroke();ctx.globalAlpha=1;
-      Game.sprite(ctx,p.x-8,p.y-17-((this.f>>3)%2),"down",0);this.hits.push({x:p.x,y:p.y-8,k:"yo",n:"Tú",v:me})}
-    const hud=$("#pmhud");if(hud){const st=Tama.estado(Tama.payload());hud.textContent=`Z${this.z} · ${m?(Loc.NAMES[m.k]||m.k).toUpperCase():"SIN UBICACIÓN"}`;const t=$("#pmapt");if(t)t.textContent=st.txt}
-  },
-  tap(e){const r=this.top.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*this.W,y=(e.clientY-r.top)/r.height*this.H;
-    const h=(this.hits||[]).map(o=>({...o,d:Math.hypot(o.x-x,o.y-y)})).sort((a,b)=>a.d-b.d)[0],card=$("#pmcard");if(!card)return;
-    if(!h||h.d>14){card.hidden=true;return}
-    const me=this.last(),dist=me&&h.k!=="yo"?Loc.dist(me.lat,me.lon,h.v.lat,h.v.lon):null,m=Loc.mine();
-    card.innerHTML=`<b>${esc(h.n)}</b><span>${h.k==="yo"?(m?"Ahora: "+esc(Loc.NAMES[m.k]||m.k)+(m.n?" · "+esc(m.n):""):"Tu posición"):(m&&m.k===h.k?"Estás aquí":dist!=null?(dist<1000?Math.round(dist)+" m":fmt1(dist/1000)+" km")+" de ti":"Guardado")}</span>`;
-    card.hidden=false;if(Motion.ok)gsap.fromTo(card,{opacity:0,y:8,scale:.96},{opacity:1,y:0,scale:1,duration:.35,ease:"back.out(2)"})},
-  stop(){cancelAnimationFrame(this.raf);if(this.ro)this.ro.disconnect()}
+  proj(lat,lon){const s=256*Math.pow(2,this.Z),x=(lon+180)/360*s,sn=Math.sin(lat*Math.PI/180),y=(0.5-Math.log((1+sn)/(1-sn))/(4*Math.PI))*s;return {x,y}},
+  stop(){cancelAnimationFrame(this.raf);this.raf=0;if(this.ro){this.ro.disconnect();this.ro=null}if(this.R){this.R.dispose();this.R=null}},
+  draw(){if(this.R&&this.recenter)this.recenter()},
+  // ---------- pixel art de los edificios ----------
+  art(kind,name){
+    const W=48,H=56,c=document.createElement("canvas");c.width=W;c.height=H;const g=c.getContext("2d");g.imageSmoothingEnabled=false;
+    const R=(x,y,w,h,col)=>{g.fillStyle=col;g.fillRect(x,y,w,h)},K="#2a2a3a";
+    const house=(roof,roofD)=>{R(6,20,36,24,K);R(7,21,34,22,"#f8f0e0");R(7,38,34,5,"#d8c8b0");
+      for(let i=0;i<10;i++)R(4+i,20-i,40-2*i,2,i%2?roof:roofD);R(3,20,42,2,K);R(21,30,8,13,K);R(22,31,6,12,"#a86a3a");R(26,37,1,1,"#ffd27a");
+      R(10,26,7,6,K);R(11,27,5,4,"#9ad8ff");R(31,26,7,6,K);R(32,27,5,4,"#9ad8ff");R(36,6,4,8,K);R(37,7,2,6,"#c06040")};
+    if(kind==="casa")house("#e85050","#c03838");
+    else if(kind==="padres")house("#4a80e8","#3060c0");
+    else if(kind==="suegros")house("#48b860","#2f9048");
+    else if(kind==="f45"){R(3,14,42,30,K);R(4,15,40,28,"#c8ccd8");R(4,15,40,6,"#8890a8");R(2,12,44,4,K);R(3,12,42,3,"#e04848");
+      R(17,4,14,10,K);R(18,5,12,8,"#3b5dc9");g.fillStyle="#fff";g.font='6px "Press Start 2P",monospace';g.fillText("F45",17,12);
+      R(19,30,10,13,K);R(20,31,8,12,"#5a6078");R(24,31,1,12,K);R(7,24,8,6,K);R(8,25,6,4,"#9ad8ff");R(33,24,8,6,K);R(34,25,6,4,"#9ad8ff");
+      R(6,40,4,4,K);R(38,40,4,4,K)}
+    else if(kind==="amazon"){R(10,2,28,42,K);R(11,3,26,40,"#5a6890");for(let y=6;y<38;y+=5)for(let x=13;x<35;x+=5)R(x,y,3,3,(x+y)%3?"#9ad8ff":"#ffe08a");
+      R(8,38,32,6,K);R(9,39,30,4,"#3a4460");R(20,39,8,5,"#ffd27a");R(12,0,24,3,"#ff9900")}
+    else if(kind==="maria"){R(5,16,38,28,K);R(6,17,36,26,"#fff3e6");for(let x=6;x<42;x+=6){R(x,16,3,7,"#ff8a3d");R(x+3,16,3,7,"#fff")}R(5,23,38,1,K);
+      R(9,27,12,10,K);R(10,28,10,8,"#9ad8ff");R(26,28,10,15,K);R(27,29,8,14,"#c87a4a");R(4,13,40,4,K);R(5,13,38,3,"#ff8a3d")}
+    else if(kind==="retiro"){R(4,24,40,4,"#7a5a3c");R(6,14,4,30,K);R(7,15,2,29,"#c8b8a0");R(38,14,4,30,K);R(39,15,2,29,"#c8b8a0");R(4,12,40,4,K);R(5,13,38,2,"#2f9048");
+      [[12,26],[22,22],[30,27]].forEach(([x,y])=>{R(x+3,y+10,3,8,"#7a5a3c");R(x,y,10,11,K);R(x+1,y+1,8,9,"#48b860");R(x+2,y+2,3,3,"#88e070")})}
+    else{R(16,10,16,24,K);R(17,11,14,22,"#ff8a3d")}
+    // cartel con el nombre
+    if(name){g.font='5px "Press Start 2P",monospace';const tw=Math.min(W-2,Math.ceil(g.measureText(name).width)+6),x=(W-tw)>>1;R(x,H-10,tw,9,K);R(x+1,H-9,tw-2,7,"#fffbe8");g.fillStyle=K;g.fillText(name,x+3,H-3)}
+    return c},
+  async mount(){
+    this.stop();const fr=document.querySelector(".pmap-frame"),cv=fr&&fr.querySelector(".pm-3d");if(!cv)return;
+    const THREE=await Scene3D.load();if(!THREE||!cv.isConnected)return;
+    try{await document.fonts.load('6px "Press Start 2P"')}catch(e){}
+    const mobile=matchMedia("(max-width:560px)").matches,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,hr=new Date().getHours(),night=hr<7||hr>=21;
+    const R=new THREE.WebGLRenderer({canvas:cv,antialias:false,powerPreference:"high-performance"});this.R=R;R.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));
+    const SKY=night?0x1c2450:0x9fd8ff;R.setClearColor(SKY,1);
+    const scene=new THREE.Scene();scene.fog=new THREE.Fog(SKY,300,620);
+    const cam=new THREE.PerspectiveCamera(34,1,1,2000);
+    const TINT=night?new THREE.Color(0x8a90c8):new THREE.Color(0xffffff);
+    // ---------- suelo: teselas OSM repintadas con paleta Pokémon ----------
+    const SIZE=this.N*128,tex=document.createElement("canvas");tex.width=tex.height=SIZE;const tg=tex.getContext("2d");
+    const texture=new THREE.CanvasTexture(tex);texture.magFilter=THREE.NearestFilter;texture.minFilter=THREE.NearestFilter;texture.generateMipmaps=false;
+    const ground=new THREE.Mesh(new THREE.PlaneGeometry(SIZE,SIZE),new THREE.MeshBasicMaterial({map:texture,color:TINT}));ground.rotation.x=-Math.PI/2;scene.add(ground);
+    const under=new THREE.Mesh(new THREE.PlaneGeometry(6000,6000),new THREE.MeshBasicMaterial({color:night?0x2a5a40:0x78c860}));under.rotation.x=-Math.PI/2;under.position.y=-.5;scene.add(under);
+    let tx0=0,ty0=0;
+    const build=c=>new Promise(res=>{
+      const p=this.proj(c.lat,c.lon),half=(this.N-1)/2;tx0=Math.floor(p.x/256)-half;ty0=Math.floor(p.y/256)-half;ground.position.set(0,0,0);
+      tg.fillStyle="#88d070";tg.fillRect(0,0,SIZE,SIZE);let left=this.N*this.N,done=false;
+      const finish=()=>{if(done)return;done=true;
+        try{const id=tg.getImageData(0,0,SIZE,SIZE),d=id.data,park=[];
+          for(let i=0,px=0;i<d.length;i+=4,px++){const r=d[i],g=d[i+1],b=d[i+2],L=(r*3+g*6+b)/10,x=px%SIZE,y=(px/SIZE)|0;let o;
+            if(b>r+18&&b>g){o=((x+y)>>1)%5?[96,168,248]:[136,200,255]}
+            else if(g>r+12&&g>b){o=[72,176,88];if((x*7+y*13)%23===0)park.push([x,y])}
+            else if(r>235&&g<225&&b<200)o=[248,208,112];
+            else if(L>246)o=[240,226,180];
+            else if(L>236)o=((x>>1)+(y>>1))%2?[136,208,112]:[128,200,104];
+            else if(L>212)o=[200,200,216];
+            else o=[168,168,190];
+            d[i]=o[0];d[i+1]=o[1];d[i+2]=o[2]}
+          tg.putImageData(id,0,0);
+          park.forEach(([x,y])=>{tg.fillStyle="#2a2a3a";tg.fillRect(x-2,y-3,5,5);tg.fillStyle="#2f9048";tg.fillRect(x-1,y-2,3,3);tg.fillStyle="#88e070";tg.fillRect(x-1,y-2,1,1)});
+          fr.classList.remove("raw")}catch(e){fr.classList.add("raw")}
+        texture.needsUpdate=true;$("#pmload")&&$("#pmload").classList.add("off");res()};
+      for(let i=0;i<this.N;i++)for(let j=0;j<this.N;j++){const im=new Image();im.crossOrigin="anonymous";
+        im.onload=()=>{tg.imageSmoothingEnabled=true;tg.drawImage(im,i*128,j*128,128,128);if(--left===0)finish()};im.onerror=()=>{if(--left===0)finish()};
+        im.src=`https://tile.openstreetmap.org/${this.Z}/${tx0+i}/${ty0+j}.png`}
+      setTimeout(finish,7000)});
+    const w=(lat,lon)=>{const p=this.proj(lat,lon);return new THREE.Vector3((p.x-tx0*256)*this.S-SIZE/2,0,(p.y-ty0*256)*this.S-SIZE/2)};
+    // ---------- edificios (sprites de pixel art) ----------
+    const sprites=[],sGroup=new THREE.Group();scene.add(sGroup);
+    const shadowTex=(()=>{const c=document.createElement("canvas");c.width=32;c.height=16;const g=c.getContext("2d");g.fillStyle="rgba(20,30,40,.35)";g.beginPath();g.ellipse(16,8,15,7,0,0,7);g.fill();return new THREE.CanvasTexture(c)})();
+    const TAG={casa:"CASA",padres:"PADRES",suegros:"SUEGROS",f45:"F45",amazon:"AMAZON",maria:"FUDEAT",retiro:"RETIRO"};
+    const place=()=>{while(sGroup.children.length)sGroup.remove(sGroup.children[0]);sprites.length=0;
+      const S=Loc.sites,m=Loc.mine();
+      Object.entries(S).forEach(([k,v])=>{if(!v||v.lat==null)return;const p=w(v.lat,v.lon);if(Math.abs(p.x)>SIZE/2+40||Math.abs(p.z)>SIZE/2+40)return;
+        const t=new THREE.CanvasTexture(this.art(k,TAG[k]||k.toUpperCase()));t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestFilter;
+        const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,color:TINT}));sp.center.set(.5,0);sp.scale.set(30,35,1);sp.position.copy(p);sp.userData={k,v,base:30};
+        const sh=new THREE.Mesh(new THREE.PlaneGeometry(30,12),new THREE.MeshBasicMaterial({map:shadowTex,transparent:true,depthWrite:false}));sh.rotation.x=-Math.PI/2;sh.position.copy(p).add(new THREE.Vector3(0,.3,0));
+        sGroup.add(sp,sh);sprites.push(sp);
+        if(m&&m.k===k){const ring=new THREE.Mesh(new THREE.RingGeometry(14,17,24),new THREE.MeshBasicMaterial({color:0xffd27a,transparent:true,opacity:.8,side:THREE.DoubleSide,depthWrite:false}));ring.rotation.x=-Math.PI/2;ring.position.copy(p).add(new THREE.Vector3(0,.4,0));ring.userData.pulse=true;sGroup.add(ring)}});
+      // Javi
+      const me=this.last(),jp=me?w(me.lat,me.lon):(()=>{const c=this.center();return w(c.lat,c.lon)})();
+      jv.position.copy(jp).add(new THREE.Vector3(me&&m&&S[m.k]?14:0,0,me&&m&&S[m.k]?20:0));jsh.position.copy(jv.position).add(new THREE.Vector3(0,.3,0));
+      sGroup.add(jv,jsh);
+      const hud=$("#pmhud"),t=$("#pmapt");if(hud)hud.textContent=m?(Loc.NAMES[m.k]||m.k).toUpperCase()+(m.n?" · "+m.n.toUpperCase():""):"SIN UBICACIÓN";if(t)t.textContent=Tama.estado(Tama.payload()).txt};
+    // Javi con dos fotogramas
+    const jframes=[0,1,2,3].map(f=>{const c=document.createElement("canvas");c.width=c.height=16;Game.sprite(c.getContext("2d"),0,0,"down",f);const t=new THREE.CanvasTexture(c);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestFilter;return t});
+    const jv=new THREE.Sprite(new THREE.SpriteMaterial({map:jframes[0],transparent:true,color:TINT}));jv.center.set(.5,0);jv.scale.set(16,16,1);
+    const jsh=new THREE.Mesh(new THREE.PlaneGeometry(16,7),new THREE.MeshBasicMaterial({map:shadowTex,transparent:true,depthWrite:false}));jsh.rotation.x=-Math.PI/2;
+    const bubble=(()=>{const c=document.createElement("canvas");c.width=64;c.height=20;const g=c.getContext("2d");g.fillStyle="#2a2a3a";g.fillRect(0,0,64,16);g.fillStyle="#fffbe8";g.fillRect(1,1,62,14);g.fillStyle="#2a2a3a";g.fillRect(28,16,6,2);g.fillRect(30,18,2,2);
+      g.font='6px "Press Start 2P",monospace';g.fillText("¡AQUÍ!",12,11);const t=new THREE.CanvasTexture(c);t.magFilter=THREE.NearestFilter;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true}));s.center.set(.5,0);s.scale.set(26,8,1);return s})();
+    // ---------- cámara ----------
+    const cam0={az:0,el:.86,d:mobile?230:190},want={...cam0},target=new THREE.Vector3(),wantT=new THREE.Vector3();
+    const setCam=()=>{const cd=cam0.d*Math.cos(cam0.el);cam.position.set(target.x+Math.sin(cam0.az)*cd,cam0.d*Math.sin(cam0.el),target.z+Math.cos(cam0.az)*cd);cam.lookAt(target)};
+    const ptrs=new Map();let last=null,pinch=null,moved=0;
+    cv.addEventListener("pointerdown",e=>{cv.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});last={x:e.clientX,y:e.clientY};moved=0;if(ptrs.size===2){const [a,b]=[...ptrs.values()];pinch=Math.hypot(a.x-b.x,a.y-b.y)}});
+    cv.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId))return;ptrs.set(e.pointerId,{x:e.clientX,y:e.clientY});
+      if(ptrs.size===2){const [a,b]=[...ptrs.values()],d=Math.hypot(a.x-b.x,a.y-b.y);if(pinch)want.d=Math.max(70,Math.min(520,want.d*pinch/d));pinch=d;moved+=5;return}
+      const dx=e.clientX-last.x,dy=e.clientY-last.y;last={x:e.clientX,y:e.clientY};moved+=Math.abs(dx)+Math.abs(dy);this.follow=false;
+      const k=cam0.d*.0022,ca=Math.cos(cam0.az),sa=Math.sin(cam0.az);wantT.x-=(dx*ca+dy*sa)*k;wantT.z-=(-dx*sa+dy*ca)*k;
+      const lim=SIZE/2-40;wantT.x=Math.max(-lim,Math.min(lim,wantT.x));wantT.z=Math.max(-lim,Math.min(lim,wantT.z))});
+    const end=e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinch=null;if(e.type==="pointerup"&&moved<6)pick(e)};cv.addEventListener("pointerup",end);cv.addEventListener("pointercancel",end);
+    cv.addEventListener("wheel",e=>{e.preventDefault();want.d=Math.max(70,Math.min(520,want.d*(e.deltaY>0?1.12:.89)))},{passive:false});
+    const ray=new THREE.Raycaster(),mv=new THREE.Vector2(),card=$("#pmcard");
+    const pick=e=>{const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mv,cam);
+      const hit=ray.intersectObjects(sprites.concat([jv]),false)[0];if(!hit){card.hidden=true;return}
+      const o=hit.object,me=this.last(),m=Loc.mine();let html;
+      if(o===jv){html=`<b>Javi</b><span>${esc(Tama.estado(Tama.payload()).txt)}${m&&m.n?" · "+esc(m.n):""}</span>`;jumpT=1}
+      else{const {k,v}=o.userData,dist=me?Loc.dist(me.lat,me.lon,v.lat,v.lon):null;html=`<b>${esc(Loc.NAMES[k]||k)}</b><span>${m&&m.k===k?"Estás aquí":dist!=null?(dist<1000?Math.round(dist)+" m":fmt1(dist/1000)+" km")+" de ti":"Guardado"}</span>`;
+        wantT.copy(o.position);this.follow=false;o.userData.hop=1}
+      card.innerHTML=html;card.hidden=false;if(Motion.ok)gsap.fromTo(card,{opacity:0,y:10,scale:.95},{opacity:1,y:0,scale:1,duration:.35,ease:"back.out(2)"})};
+    let jumpT=0;
+    document.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{const k=b.dataset.pm;if(navigator.vibrate)navigator.vibrate(6);
+      if(k==="in")want.d=Math.max(70,want.d*.75);else if(k==="out")want.d=Math.min(520,want.d*1.33);else if(k==="rot")want.az+=Math.PI/4;
+      else{this.follow=true;wantT.copy(jv.position);if(Loc.on)Loc.update()}});
+    // ---------- recentrar cuando cambia tu posición ----------
+    this.recenter=async()=>{const c=this.center(),p=this.proj(c.lat,c.lon),half=(this.N-1)/2;
+      if(Math.floor(p.x/256)-half!==tx0||Math.floor(p.y/256)-half!==ty0)await build(c);place();if(this.follow)wantT.copy(jv.position)};
+    const size=()=>{const r=fr.getBoundingClientRect();R.setSize(r.width,r.height,false);cam.aspect=r.width/r.height;cam.updateProjectionMatrix()};
+    size();this.ro=new ResizeObserver(size);this.ro.observe(fr);
+    await build(this.center());place();wantT.copy(jv.position);target.copy(wantT);
+    if(!reduce){cam0.d=520;cam0.az=-.6}setCam();
+    const clock=new THREE.Clock();
+    const loop=()=>{this.raf=requestAnimationFrame(loop);if(!cv.isConnected){this.stop();return}const t=clock.getElapsedTime(),f=Math.floor(t*4)%4;
+      cam0.d+=(want.d-cam0.d)*.08;cam0.az+=(want.az-cam0.az)*.08;target.lerp(wantT,.1);setCam();
+      if(jumpT>0){jumpT=Math.max(0,jumpT-.03);jv.center.y=-Math.sin(jumpT*Math.PI)*.8}else jv.center.y=-Math.abs(Math.sin(t*3))*.08;
+      bubble.position.copy(jv.position).add(new THREE.Vector3(0,19+Math.sin(t*3)*1.2,0));if(!bubble.parent)sGroup.add(bubble);
+      sprites.forEach(s=>{if(s.userData.hop){s.userData.hop=Math.max(0,s.userData.hop-.04);s.center.y=-Math.sin(s.userData.hop*Math.PI)*.25}});
+      sGroup.children.forEach(o=>{if(o.userData&&o.userData.pulse){const k=1+((t*.8)%1)*.6;o.scale.set(k,k,k);o.material.opacity=.9-((t*.8)%1)*.8}});
+      R.render(scene,cam)};
+    loop();
+  }
 };
 
 /* =============== GUÍA INTERACTIVA =============== */
@@ -1974,7 +2043,7 @@ const Tour={
     {v:"dia",sel:"#view .panel, #view section",t:"Hoy, de un vistazo",d:"Lo que toca hoy y el menú. Con + apunto lo que como, y el peso, los pasos y las calorías llegan solos desde Salud del iPhone."},
     {v:"panel",sel:".cf",t:"El marcador",d:"Anillos de hoy contra el objetivo: pasos, kcal activas, proteína y déficit. «Crear story» saca una imagen lista para Instagram."},
     {v:"panel",sel:".wl-strip, .t-hero",t:"Cada pesaje cuenta",d:"Empecé en 100 kg. Toca cualquier día o punto de la gráfica y ves lo que pesaba, la grasa y cuánto he bajado."},
-    {v:"juego",sel:".pmap",t:"Dónde estoy, en pixel art",d:"Mapa real de Madrid con mis sitios. Arrastra, haz zoom y toca un icono: casa, F45, la oficina o el Retiro."},
+    {v:"juego",sel:".pmap",t:"Madrid en 3D, estilo Pokémon",d:"Mapa real de Madrid con mis sitios como edificios pixel: mi casa, la de mis padres, la de los padres de María, F45, Amazon Ads, Fudeat y el Retiro. Arrastra, pellizca, gira y toca un edificio."},
     {v:"juego",sel:".live-w",t:"Javi en directo",d:"Un muñeco que hace lo que estoy haciendo: entrenar, correr, comer o currar. Lo sabe por la hora, el plan y la ubicación. Tócalo y saluda."},
     {v:"juego",sel:".tama-wrap",t:"Compartir",d:"Con «Enlace para compartir» cualquiera ve en vivo qué estoy haciendo, sin ver mi peso ni mis coordenadas. Y en el iPhone tengo widgets y avisos de «te toca…»."}
   ],
@@ -2029,8 +2098,8 @@ const Dock={
 /* =============== UBICACIÓN · sitios de Javi =============== */
 const Loc={
   KEY:"rx27-lugares",ON:"rx27-loc",FILE:"rx27-lugar.json",last:null,busy:false,
-  NAMES:{casa:"Casa",padres:"Casa de sus padres",suegros:"Casa de sus suegros",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
-  SITES:[["casa","Casa"],["padres","Casa de mis padres"],["suegros","Padres de María"],["f45","F45"],["amazon","Amazon Ads"]],
+  NAMES:{casa:"Casa",padres:"Casa de sus padres",suegros:"Casa de sus suegros",maria:"Trabajo de María",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
+  SITES:[["casa","Casa"],["padres","Casa de mis padres"],["suegros","Padres de María"],["maria","Trabajo de María"],["f45","F45"],["amazon","Amazon Ads"]],
   raw(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}const d=data.lugares||{};Object.keys(d).forEach(k=>{if(d[k]&&d[k].lat!=null)o[k]=d[k]});return o},
   get sites(){return Object.assign({retiro:{lat:40.4148,lon:-3.6842,r:520}},this.raw())},
   save(k,lat,lon,dir){if(!data.lugares)data.lugares={};const o={lat:+lat.toFixed(6),lon:+lon.toFixed(6),r:k==="retiro"?520:120,dir:dir||""};data.lugares[k]=o;touch(o,true)},
@@ -2053,7 +2122,7 @@ const Loc={
   async update(silent){
     if(!this.on||this.busy)return;this.busy=true;
     try{const c=await this.pos();LS.set("rx27-lastpos",JSON.stringify({lat:c.latitude,lon:c.longitude,acc:Math.round(c.accuracy||0),t:Date.now()}));if(state.view==="juego"&&PixMap.follow){PixMap.c={lat:c.latitude,lon:c.longitude};PixMap.draw()}if(c.accuracy>400){this.busy=false;return}const L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
-      LS.set("rx27-milugar",JSON.stringify(L));this.last=L;if(!prev||prev.k!==L.k||prev.n!==L.n||Date.now()-prev.t>20*60e3)Tama.publish();
+      LS.set("rx27-milugar",JSON.stringify(L));this.last=L;if(state.view==="juego")PixMap.draw();if(!prev||prev.k!==L.k||prev.n!==L.n||Date.now()-prev.t>20*60e3)Tama.publish();
       if(state.view==="juego")Tama.paintInfo();this.paintSites()}
     catch(e){if(!silent)toast(e&&e.code===1?"El móvil no ha dado permiso de ubicación. Actívalo en Ajustes del iPhone → Privacidad → Localización":"No he podido leer tu ubicación",true)}
     finally{this.busy=false}
@@ -2063,7 +2132,7 @@ const Loc={
       <button class="btn ${this.on?"pri":""}" type="button" data-locon aria-pressed="${this.on}">${this.on?"✓ Ubicación activada":"Activar ubicación"}</button></div>
       <div class="loc-now" id="locnow"></div>
       <div class="lbl" style="margin-top:4px"><span>Tus sitios · escribe la dirección o pulsa 📍 estando allí</span></div>
-      <div class="loc-list">${this.SITES.map(([k,n])=>`<div class="loc-row" data-row="${k}"><span class="loc-n">${n}</span><input type="text" autocomplete="off" placeholder="${k==="casa"?"Ej.: Maldonado 63":k==="padres"?"Ej.: Diego de León 54":k==="suegros"?"Ej.: Gabriel Lobo 12":"Calle y número"}" aria-label="Dirección de ${n}" data-addr="${k}"><button class="btn" type="button" data-geo="${k}">Guardar</button><button class="btn ghost" type="button" data-site="${k}" aria-label="Usar mi ubicación actual para ${n}">📍</button></div>`).join("")}</div>
+      <div class="loc-list">${this.SITES.map(([k,n])=>`<div class="loc-row" data-row="${k}"><span class="loc-n">${n}</span><input type="text" autocomplete="off" placeholder="${k==="casa"?"Ej.: Maldonado 63":k==="padres"?"Ej.: Diego de León 54":k==="suegros"?"Ej.: Gabriel Lobo 12":k==="maria"?"Ej.: Príncipe de Vergara 13":"Calle y número"}" aria-label="Dirección de ${n}" data-addr="${k}"><button class="btn" type="button" data-geo="${k}">Guardar</button><button class="btn ghost" type="button" data-site="${k}" aria-label="Usar mi ubicación actual para ${n}">📍</button></div>`).join("")}</div>
       <p class="sub muted" style="margin:0">Las direcciones se guardan en tu Gist privado (no en la web pública) y se sincronizan entre tus dispositivos. Restaurantes y bares se detectan solos. El Retiro ya viene guardado.</p>
       ${typeof Sync!=="undefined"&&Sync.cfg&&Sync.cfg.share?`<p class="sub muted" style="margin:0">Para avisar al llegar sin abrir la app (atajo de iPhone): ID del enlace <span class="kbd" style="user-select:all">${esc(Sync.cfg.share)}</span></p>`:""}</section>`},
   paintSites(){const raw=this.raw();
@@ -2101,7 +2170,7 @@ const Tama={
     let k="rest",txt="En casa, tranquilo",sub="Recargando para el siguiente entreno";
     const L=this.lugar(info),act0=ag.find(x=>x.k!=="eat"&&min>=x.m-10&&min<x.e),eat0=ag.find(x=>x.k==="eat"&&min>=x.m-20&&min<x.e+30),night=min<7*60||min>=23*60+30;
     if(L){const P={f45:["gym","En el F45",act0&&act0.k==="gym"?act0.n:"Entrenando"],amazon:["work","En Amazon Ads","Currando"],retiro:["run","En el Retiro",act0&&act0.k==="run"?act0.n:"Corriendo o paseando"],
-        restaurante:["eatout","Comiendo fuera",L.n||"En un restaurante"],fuera:[moving?"walk":"walk","Por Madrid",L.n||"En movimiento"]}[L.k];
+        restaurante:["eatout","Comiendo fuera",L.n||"En un restaurante"],maria:["walk","En el trabajo de María","De visita en Fudeat"],fuera:[moving?"walk":"walk","Por Madrid",L.n||"En movimiento"]}[L.k];
       if(P){[k,txt,sub]=P}
       else if(L.k==="casa"||L.k==="padres"||L.k==="suegros"){const w=L.k==="casa"?"En casa":L.k==="padres"?"En casa de sus padres":"En casa de sus suegros";
         if(night&&L.k==="casa"){k="sleep";txt="Durmiendo";sub="En casa"}else if(eat0){k="eat";txt=w+" comiendo";sub=eat0.n}else{k="rest";txt=w;sub=L.k==="casa"?"Recargando para el siguiente entreno":"De visita"}}
