@@ -1,601 +1,601 @@
 {
-  "actualizado": "2026-11-06",
-  "semanas": {
-    "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
-  },
-  "dias": {
-    "2026-11-03": {
-      "titulo": "Golf + F45 a las 20:00",
-      "tipo": "calidad",
-      "ocultarNotaSemana": true,
-      "nota": "Comida tardía por el golf: en el campo solo el sándwich, y la comida fuerte al volver. En F45, RPE 7 y sin llegar al fallo, porque las piernas vienen del campo. Si por la noche tienes hambre, un cacito de Evolate. El test de 5 km pasa al viernes.",
-      "sesiones": [
-        {
-          "h": "08:00",
-          "d": "Desayuno",
-          "t": "Desayuno A (tortilla). Si ya has desayunado otra cosa, apúntala tal cual"
-        },
-        {
-          "h": "Golf",
-          "d": "En el campo",
-          "t": "Sándwich de pavo y queso hacia la mitad del recorrido. 1,5 L de agua, mejor con una pastilla de electrolitos. Andando si puedes. Si te cabe un plátano en la bolsa, mejor"
-        },
-        {
-          "h": "Al volver · 16:00",
-          "d": "Comida tardía",
-          "t": "Pollo con arroz y verdura, ración grande: es la comida fuerte del día y llega 4 h antes de F45, a tiempo para digerirla. Que no pase de las 16:30"
-        },
-        {
-          "h": "18:45",
-          "d": "Pre-entreno",
-          "t": "Ligero: plátano y 2 tortitas de arroz con miel, y café si lo quieres (el último del día)"
-        },
-        {
-          "h": "19:45",
-          "d": "Llegada",
-          "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
-        },
-        {
-          "h": "20:00",
-          "d": "F45",
-          "t": "Clase del día a RPE 7. Si hay muchos saltos o sprints, baja un escalón (step-ups en lugar de saltos al cajón). Apunta qué tocaba y el RPE"
-        },
-        {
-          "h": "20:50",
-          "d": "Post",
-          "t": "40 g de Evolate con agua y un plátano, nada más salir"
-        },
-        {
-          "h": "21:30",
-          "d": "Cena ligera",
-          "t": "Queso fresco batido con nueces y canela: cierra la proteína del día"
-        },
-        {
-          "h": "23:15",
-          "d": "Dormir",
-          "t": "Pantallas fuera a las 23:00, y 5 min de estiramiento de gemelo y flexor de cadera"
-        }
-      ],
-      "comidas": [
-        {
-          "h": "08:00",
-          "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan, fruta",
-          "kcal": 505,
-          "p": 42,
-          "c": 42,
-          "g": 18
-        },
-        {
-          "h": "Golf",
-          "n": "Sándwich de pavo y queso · 2 rebanadas de pan de molde integral, 100 g de pavo, 1 loncha de queso",
-          "kcal": 320,
-          "p": 30,
-          "c": 26,
-          "g": 10
-        },
-        {
-          "h": "16:00",
-          "n": "Comida tardía · 250 g pollo, 100 g arroz, 300 g verdura, 15 g AOVE",
-          "kcal": 840,
-          "p": 68,
-          "c": 90,
-          "g": 20
-        },
-        {
-          "h": "18:45",
-          "n": "Pre-entreno · plátano + 2 tortitas de arroz con 10 g de miel",
-          "kcal": 205,
-          "p": 3,
-          "c": 50,
-          "g": 0
-        },
-        {
-          "h": "20:50",
-          "n": "Post · 40 g Evolate con agua + plátano",
-          "kcal": 255,
-          "p": 37,
-          "c": 27,
-          "g": 1
-        },
-        {
-          "h": "21:30",
-          "n": "Cena · 350 g queso fresco batido 0 %, 20 g nueces, canela",
-          "kcal": 290,
-          "p": 31,
-          "c": 16,
-          "g": 13
-        }
-      ],
-      "compra": true,
-      "notaF45": "F45: HIIT de cardio alternando fuerza"
+ "actualizado": "2026-11-07T20:10",
+ "semanas": {
+  "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
+ },
+ "dias": {
+  "2026-11-03": {
+   "titulo": "Golf + F45 a las 20:00",
+   "tipo": "calidad",
+   "ocultarNotaSemana": true,
+   "nota": "Comida tardía por el golf: en el campo solo el sándwich, y la comida fuerte al volver. En F45, RPE 7 y sin llegar al fallo, porque las piernas vienen del campo. Si por la noche tienes hambre, un cacito de Evolate. El test de 5 km pasa al viernes.",
+   "sesiones": [
+    {
+     "h": "08:00",
+     "d": "Desayuno",
+     "t": "Desayuno A (tortilla). Si ya has desayunado otra cosa, apúntala tal cual"
     },
-    "2026-11-04": {
-      "titulo": "F45 + cocina de la mañana",
-      "tipo": "calidad",
-      "ocultarNotaSemana": true,
-      "nota": "Comida en Honest Greens: mucha proteína y pocos hidratos. Por eso la merienda lleva avena y el post-entreno plátano: así llegas con energía al F45 de las 20:00 (RPE 7). El táper de pollo con arroz, para mañana.",
-      "sesiones": [
-        {
-          "h": "07:30",
-          "d": "Báscula",
-          "t": "Pésate en ayunas después de ir al baño. El atajo de las 8:00 lo sube solo; si te pesas más tarde, tócalo a mano"
-        },
-        {
-          "h": "07:35",
-          "d": "Cocina 25 min",
-          "t": "Horno a 200 °C: 1 kg de pollo con sal, pimentón y ajo, 22 min. A la vez, 300 g de arroz 15 min y 6 huevos 10 min. Brócoli al microondas 5 min. Tienes comida para hoy, jueves y sábado, y huevos para las cenas"
-        },
-        {
-          "h": "08:00",
-          "d": "Desayuno",
-          "t": "Bol de queso batido con Evolate, avena y plátano (receta en Comida)"
-        },
-        {
-          "h": "08:15",
-          "d": "Mochila",
-          "t": "La merienda (queso batido, plátano y avena) y la coctelera con 40 g de Evolate en seco. El táper de pollo, a la nevera para mañana"
-        },
-        {
-          "h": "14:00",
-          "d": "Comida",
-          "t": "Honest Greens: pollo al limón con doble de pollo, verduras y ensalada"
-        },
-        {
-          "h": "17:30",
-          "d": "Merienda",
-          "t": "Queso batido con plátano, miel y 30 g de avena, unas 2,5 h antes de F45. Último café del día"
-        },
-        {
-          "h": "19:45",
-          "d": "Llegada",
-          "t": "Llega con 15 min: 5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
-        },
-        {
-          "h": "20:00",
-          "d": "F45",
-          "t": "Clase del día a RPE 7. Si es otra vez muy de piernas o de saltos, baja un escalón para llegar fresco al test del viernes. Haz una captura del entreno en la app y apunta el RPE"
-        },
-        {
-          "h": "20:50",
-          "d": "Post",
-          "t": "Batido de 40 g de Evolate con agua y un plátano al salir: hoy toca hidrato después de entrenar"
-        },
-        {
-          "h": "21:30",
-          "d": "Cena ligera",
-          "t": "Ensalada de atún con 2 huevos cocidos y 10 g de AOVE"
-        },
-        {
-          "h": "23:00",
-          "d": "Dormir",
-          "t": "El viernes a las 7:30 tienes el test de 5 km: estas dos noches el sueño cuenta"
-        }
-      ],
-      "comidas": [
-        {
-          "h": "08:00",
-          "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
-          "kcal": 525,
-          "p": 55,
-          "c": 64,
-          "g": 5
-        },
-        {
-          "h": "14:00",
-          "n": "Honest Greens · pollo al limón con doble de pollo, verduras y ensalada (estimado)",
-          "kcal": 800,
-          "p": 85,
-          "c": 25,
-          "g": 38
-        },
-        {
-          "h": "17:30",
-          "n": "Merienda · 250 g queso batido, plátano, 10 g miel, 30 g avena",
-          "kcal": 408,
-          "p": 33,
-          "c": 64,
-          "g": 3
-        },
-        {
-          "h": "20:50",
-          "n": "Post · 40 g Evolate con agua + plátano",
-          "kcal": 255,
-          "p": 37,
-          "c": 27,
-          "g": 1
-        },
-        {
-          "h": "21:30",
-          "n": "Cena · ensalada con 1 lata de atún, 2 huevos cocidos, 10 g AOVE",
-          "kcal": 365,
-          "p": 27,
-          "c": 5,
-          "g": 25
-        }
-      ],
-      "notaF45": "F45 Special Ops: HIIT con peso corporal (mountain climbers, plyo lunges, squat jumps, burpee + 180, frog squats) y core. Sin carga externa."
+    {
+     "h": "Golf",
+     "d": "En el campo",
+     "t": "Sándwich de pavo y queso hacia la mitad del recorrido. 1,5 L de agua, mejor con una pastilla de electrolitos. Andando si puedes. Si te cabe un plátano en la bolsa, mejor"
     },
-    "2026-11-05": {
-      "titulo": "F45 HYROX Signature · 19:30",
-      "tipo": "hyrox",
-      "ocultarNotaSemana": true,
-      "nota": "Hoy toca HYROX Signature: 75 min a las 19:30, con movimientos de HYROX y seguramente carrera. Es tu sesión de fuerza y de estaciones de la semana: dale a RPE 7-8. Por eso el test de 5 km pasa al domingo por la mañana. Con un HYROX largo la noche antes, el viernes a las 7:00 saldría un tiempo peor de lo que eres, y tus ritmos quedarían mal calculados.",
-      "sesiones": [
-        {
-          "h": "07:30",
-          "d": "Desayuno",
-          "t": "Tortilla de 3 huevos + claras, pan integral y fruta"
-        },
-        {
-          "h": "08:00",
-          "d": "Mochila",
-          "t": "El táper de pollo con arroz, las tostadas Santiveri con el pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco (la leche la añades al llegar a casa) y una botella con electrolitos para la clase"
-        },
-        {
-          "h": "14:00",
-          "d": "Comida",
-          "t": "El táper de pollo con arroz y brócoli. Para variar, añade una cucharada de curry y 2 de queso batido"
-        },
-        {
-          "h": "17:00",
-          "d": "Merienda",
-          "t": "6 tostadas proteicas Santiveri (2 raciones) con 100 g de pavo y una pieza de fruta. Último café"
-        },
-        {
-          "h": "18:45",
-          "d": "Pre-entreno",
-          "t": "Un plátano: la clase dura 75 min"
-        },
-        {
-          "h": "19:10",
-          "d": "Creatina",
-          "t": "Tomada: 1 cacito (3,4 g, 3 g de creatina) con 250 ml de agua. Márcala con el botón Creatina"
-        },
-        {
-          "h": "19:15",
-          "d": "Llegada",
-          "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
-        },
-        {
-          "h": "19:30",
-          "d": "F45 HYROX Signature",
-          "t": "RPE 7-8. Bebe agua con electrolitos durante la clase. Apunta las estaciones, las cargas y los tiempos, y haz una captura del entreno en la app"
-        },
-        {
-          "h": "20:50",
-          "d": "Post",
-          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano al llegar. Hoy, sin creatina: ya te la has tomado antes de la clase"
-        },
-        {
-          "h": "21:30",
-          "d": "Cena ligera",
-          "t": "Queso batido con 20 g de avena, canela y un poco de miel"
-        },
-        {
-          "h": "23:00",
-          "d": "Dormir",
-          "t": "Mañana no madrugas para correr: duerme 7,5-8 h"
-        }
-      ],
-      "comidas": [
-        {
-          "h": "07:30",
-          "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
-          "kcal": 505,
-          "p": 42,
-          "c": 42,
-          "g": 18
-        },
-        {
-          "h": "14:00",
-          "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
-          "kcal": 840,
-          "p": 68,
-          "c": 90,
-          "g": 20
-        },
-        {
-          "h": "17:00",
-          "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
-          "kcal": 295,
-          "p": 30,
-          "c": 39,
-          "g": 2
-        },
-        {
-          "h": "18:45",
-          "n": "Pre-entreno · 1 plátano",
-          "kcal": 105,
-          "p": 1,
-          "c": 27,
-          "g": 0
-        },
-        {
-          "h": "19:10",
-          "n": "Creatina · 1 cacito pequeño (3,4 g) con 250 ml de agua",
-          "kcal": 0,
-          "p": 0,
-          "c": 0,
-          "g": 0
-        },
-        {
-          "h": "20:50",
-          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
-          "kcal": 366,
-          "p": 57,
-          "c": 39,
-          "g": 1
-        },
-        {
-          "h": "21:30",
-          "n": "Cena · 350 g queso batido 0 %, 20 g avena, canela, 10 g miel",
-          "kcal": 266,
-          "p": 31,
-          "c": 34,
-          "g": 1
-        }
-      ]
+    {
+     "h": "Al volver · 16:00",
+     "d": "Comida tardía",
+     "t": "Pollo con arroz y verdura, ración grande: es la comida fuerte del día y llega 4 h antes de F45, a tiempo para digerirla. Que no pase de las 16:30"
     },
-    "2026-11-06": {
-      "titulo": "F45 MKATZ a las 18:00",
-      "tipo": "calidad",
-      "ocultarNotaSemana": true,
-      "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. El Z2 de esta mañana pasa al sábado. El test de 5 km es el domingo.",
-      "sesiones": [
-        {
-          "h": "Mañana",
-          "d": "Z2",
-          "t": "No se ha hecho: pasa al sábado, después del F45"
-        },
-        {
-          "h": "07:30",
-          "d": "Desayuno",
-          "t": "Bol de queso batido con Evolate, avena y plátano"
-        },
-        {
-          "h": "08:00",
-          "d": "Mochila",
-          "t": "Táper de patata con huevo y atún, las tostadas Santiveri con el pavo y una fruta, y la coctelera con 40 g de Evolate y la creatina en seco"
-        },
-        {
-          "h": "13:30",
-          "d": "Comida",
-          "t": "Patata, huevo y atún con ensalada (receta en Comida)"
-        },
-        {
-          "h": "15:45",
-          "d": "Merienda",
-          "t": "6 tostadas Santiveri con 100 g de pavo y una fruta, unas 2 h antes de F45, y la creatina: un cacito y medio (5 g) en un vaso de agua. Último café"
-        },
-        {
-          "h": "17:45",
-          "d": "Llegada",
-          "t": "5 min de movilidad de cadera, hombro y dorsal, y 2 × 10 sentadillas sin peso"
-        },
-        {
-          "h": "18:00",
-          "d": "F45 MKATZ",
-          "t": "Fuerza: elevaciones frontales y laterales, zancada atrás con kettlebell, aperturas con mancuernas, peso muerto rumano, sentadilla abrazando el deadball, remo en TRX, press militar con barra, hip thrust con disco y curl con barra. Apunta los kilos de peso muerto rumano, press militar y hip thrust: son tu referencia"
-        },
-        {
-          "h": "19:00",
-          "d": "Post",
-          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
-        },
-        {
-          "h": "20:30",
-          "d": "Cena ligera",
-          "t": "Tortilla de 2 huevos + 150 g de claras con ensalada"
-        },
-        {
-          "h": "23:00",
-          "d": "Dormir",
-          "t": "El sábado, F45 suave y el domingo, test de 5 km: descansa"
-        }
-      ],
-      "comidas": [
-        {
-          "h": "07:30",
-          "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
-          "kcal": 525,
-          "p": 55,
-          "c": 64,
-          "g": 5
-        },
-        {
-          "h": "13:30",
-          "n": "Comida · 400 g patata, 2 huevos, 2 latas de atún, ensalada, 10 g AOVE",
-          "kcal": 687,
-          "p": 48,
-          "c": 73,
-          "g": 22
-        },
-        {
-          "h": "15:45",
-          "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
-          "kcal": 295,
-          "p": 30,
-          "c": 39,
-          "g": 2
-        },
-        {
-          "h": "15:45",
-          "n": "Creatina · 1 cacito y medio (5 g) con agua en la merienda",
-          "kcal": 0,
-          "p": 0,
-          "c": 0,
-          "g": 0
-        },
-        {
-          "h": "19:00",
-          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
-          "kcal": 366,
-          "p": 57,
-          "c": 39,
-          "g": 1
-        },
-        {
-          "h": "20:30",
-          "n": "Cena · tortilla de 2 huevos + 150 g claras, ensalada, 5 g AOVE",
-          "kcal": 310,
-          "p": 32,
-          "c": 7,
-          "g": 16
-        }
-      ]
+    {
+     "h": "18:45",
+     "d": "Pre-entreno",
+     "t": "Ligero: plátano y 2 tortitas de arroz con miel, y café si lo quieres (el último del día)"
     },
-    "2026-11-07": {
-      "titulo": "F45 a las 11:00 + Z2 en el Retiro",
-      "tipo": "doble",
-      "ocultarNotaSemana": true,
-      "nota": "El Z2 que no hiciste el viernes va justo después del F45. Que sea suave de verdad: 25-30 min a ritmo de conversación, porque el domingo tienes el test de 5 km. El Retiro te queda al lado del F45.",
-      "sesiones": [
-        {
-          "h": "08:30",
-          "d": "Desayuno",
-          "t": "Tortilla de 3 huevos + claras con pan integral y fruta, unas 2,5 h antes de la clase"
-        },
-        {
-          "h": "10:30",
-          "d": "Pre-entreno",
-          "t": "Un plátano, café y la creatina: un cacito y medio (5 g) en un vaso de agua. Marca el botón Creatina"
-        },
-        {
-          "h": "11:00",
-          "d": "F45",
-          "t": "Clase de 1 h a RPE 6-7: mañana hay test. Mándame la captura"
-        },
-        {
-          "h": "12:10",
-          "d": "Retiro · Z2",
-          "t": "25-30 min de trote muy suave (7:00-7:30 /km), con el pulso por debajo de 140. Si las piernas no van, camina rápido 30 min. Lleva agua"
-        },
-        {
-          "h": "12:45",
-          "d": "Post",
-          "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
-        },
-        {
-          "h": "14:30",
-          "d": "Comida",
-          "t": "El último táper de pollo con arroz y brócoli"
-        },
-        {
-          "h": "17:30",
-          "d": "Merienda",
-          "t": "Queso batido con plátano y miel"
-        },
-        {
-          "h": "21:00",
-          "d": "Cena",
-          "t": "Ensalada de atún y huevo con 150 g de patata cocida: un poco de hidrato para el test de mañana. Si sales, plancha, ensalada y patata, sin alcohol"
-        },
-        {
-          "h": "23:00",
-          "d": "Dormir",
-          "t": "Deja preparadas la ropa y las zapatillas para el test"
-        }
-      ],
-      "comidas": [
-        {
-          "h": "08:30",
-          "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
-          "kcal": 505,
-          "p": 42,
-          "c": 42,
-          "g": 18
-        },
-        {
-          "h": "10:30",
-          "n": "Pre-entreno · 1 plátano",
-          "kcal": 105,
-          "p": 1,
-          "c": 27,
-          "g": 0
-        },
-        {
-          "h": "10:30",
-          "n": "Creatina · 1 cacito y medio (5 g) con agua antes de F45",
-          "kcal": 0,
-          "p": 0,
-          "c": 0,
-          "g": 0
-        },
-        {
-          "h": "12:45",
-          "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
-          "kcal": 366,
-          "p": 57,
-          "c": 39,
-          "g": 1
-        },
-        {
-          "h": "14:30",
-          "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
-          "kcal": 840,
-          "p": 68,
-          "c": 90,
-          "g": 20
-        },
-        {
-          "h": "17:30",
-          "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
-          "kcal": 295,
-          "p": 29,
-          "c": 45,
-          "g": 1
-        },
-        {
-          "h": "21:00",
-          "n": "Cena · ensalada con 1 lata de atún, 2 huevos, 150 g patata, 5 g AOVE",
-          "kcal": 390,
-          "p": 30,
-          "c": 31,
-          "g": 15
-        }
-      ]
+    {
+     "h": "19:45",
+     "d": "Llegada",
+     "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
     },
-    "2026-11-08": {
-      "titulo": "Test de 5 km y check-in",
-      "tipo": "z2",
-      "nota": "De este tiempo salen todos tus ritmos de series, Z2 y carrera HYROX.",
-      "sesiones": [
-        {
-          "h": "09:30",
-          "d": "Antes",
-          "t": "Desayuno ligero 1-1,5 h antes: pan con miel y plátano, y café"
-        },
-        {
-          "h": "10:30",
-          "d": "Retiro",
-          "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
-        },
-        {
-          "h": "10:50",
-          "d": "Test",
-          "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones en Día → Entrenamientos (sesión Series, 5 km)"
-        },
-        {
-          "h": "Después",
-          "d": "Vuelta a la calma",
-          "t": "10 min andando"
-        },
-        {
-          "h": "Tarde",
-          "d": "Casa",
-          "t": "Batch cooking, cintura y fotos. Luego pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
-        }
-      ]
+    {
+     "h": "20:00",
+     "d": "F45",
+     "t": "Clase del día a RPE 7. Si hay muchos saltos o sprints, baja un escalón (step-ups en lugar de saltos al cajón). Apunta qué tocaba y el RPE"
+    },
+    {
+     "h": "20:50",
+     "d": "Post",
+     "t": "40 g de Evolate con agua y un plátano, nada más salir"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena ligera",
+     "t": "Queso fresco batido con nueces y canela: cierra la proteína del día"
+    },
+    {
+     "h": "23:15",
+     "d": "Dormir",
+     "t": "Pantallas fuera a las 23:00, y 5 min de estiramiento de gemelo y flexor de cadera"
     }
+   ],
+   "comidas": [
+    {
+     "h": "08:00",
+     "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan, fruta",
+     "kcal": 505,
+     "p": 42,
+     "c": 42,
+     "g": 18
+    },
+    {
+     "h": "Golf",
+     "n": "Sándwich de pavo y queso · 2 rebanadas de pan de molde integral, 100 g de pavo, 1 loncha de queso",
+     "kcal": 320,
+     "p": 30,
+     "c": 26,
+     "g": 10
+    },
+    {
+     "h": "16:00",
+     "n": "Comida tardía · 250 g pollo, 100 g arroz, 300 g verdura, 15 g AOVE",
+     "kcal": 840,
+     "p": 68,
+     "c": 90,
+     "g": 20
+    },
+    {
+     "h": "18:45",
+     "n": "Pre-entreno · plátano + 2 tortitas de arroz con 10 g de miel",
+     "kcal": 205,
+     "p": 3,
+     "c": 50,
+     "g": 0
+    },
+    {
+     "h": "20:50",
+     "n": "Post · 40 g Evolate con agua + plátano",
+     "kcal": 255,
+     "p": 37,
+     "c": 27,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 350 g queso fresco batido 0 %, 20 g nueces, canela",
+     "kcal": 290,
+     "p": 31,
+     "c": 16,
+     "g": 13
+    }
+   ],
+   "compra": true,
+   "notaF45": "F45: HIIT de cardio alternando fuerza"
   },
-  "diario": {
-    "desde": "2026-11-05",
-    "items": [
-      {
-        "h": "Antes de entrenar",
-        "d": "Creatina",
-        "t": "5 g (un cacito y medio de Optimum Nutrition) con la merienda o el pre-entreno: en el queso batido o en un vaso de agua. Los días sin entreno, con el desayuno. Todos los días"
-      }
-    ]
+  "2026-11-04": {
+   "titulo": "F45 + cocina de la mañana",
+   "tipo": "calidad",
+   "ocultarNotaSemana": true,
+   "nota": "Comida en Honest Greens: mucha proteína y pocos hidratos. Por eso la merienda lleva avena y el post-entreno plátano: así llegas con energía al F45 de las 20:00 (RPE 7). El táper de pollo con arroz, para mañana.",
+   "sesiones": [
+    {
+     "h": "07:30",
+     "d": "Báscula",
+     "t": "Pésate en ayunas después de ir al baño. El atajo de las 8:00 lo sube solo; si te pesas más tarde, tócalo a mano"
+    },
+    {
+     "h": "07:35",
+     "d": "Cocina 25 min",
+     "t": "Horno a 200 °C: 1 kg de pollo con sal, pimentón y ajo, 22 min. A la vez, 300 g de arroz 15 min y 6 huevos 10 min. Brócoli al microondas 5 min. Tienes comida para hoy, jueves y sábado, y huevos para las cenas"
+    },
+    {
+     "h": "08:00",
+     "d": "Desayuno",
+     "t": "Bol de queso batido con Evolate, avena y plátano (receta en Comida)"
+    },
+    {
+     "h": "08:15",
+     "d": "Mochila",
+     "t": "La merienda (queso batido, plátano y avena) y la coctelera con 40 g de Evolate en seco. El táper de pollo, a la nevera para mañana"
+    },
+    {
+     "h": "14:00",
+     "d": "Comida",
+     "t": "Honest Greens: pollo al limón con doble de pollo, verduras y ensalada"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "Queso batido con plátano, miel y 30 g de avena, unas 2,5 h antes de F45. Último café del día"
+    },
+    {
+     "h": "19:45",
+     "d": "Llegada",
+     "t": "Llega con 15 min: 5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
+    },
+    {
+     "h": "20:00",
+     "d": "F45",
+     "t": "Clase del día a RPE 7. Si es otra vez muy de piernas o de saltos, baja un escalón para llegar fresco al test del viernes. Haz una captura del entreno en la app y apunta el RPE"
+    },
+    {
+     "h": "20:50",
+     "d": "Post",
+     "t": "Batido de 40 g de Evolate con agua y un plátano al salir: hoy toca hidrato después de entrenar"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena ligera",
+     "t": "Ensalada de atún con 2 huevos cocidos y 10 g de AOVE"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "El viernes a las 7:30 tienes el test de 5 km: estas dos noches el sueño cuenta"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "08:00",
+     "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
+     "kcal": 525,
+     "p": 55,
+     "c": 64,
+     "g": 5
+    },
+    {
+     "h": "14:00",
+     "n": "Honest Greens · pollo al limón con doble de pollo, verduras y ensalada (estimado)",
+     "kcal": 800,
+     "p": 85,
+     "c": 25,
+     "g": 38
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 250 g queso batido, plátano, 10 g miel, 30 g avena",
+     "kcal": 408,
+     "p": 33,
+     "c": 64,
+     "g": 3
+    },
+    {
+     "h": "20:50",
+     "n": "Post · 40 g Evolate con agua + plátano",
+     "kcal": 255,
+     "p": 37,
+     "c": 27,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · ensalada con 1 lata de atún, 2 huevos cocidos, 10 g AOVE",
+     "kcal": 365,
+     "p": 27,
+     "c": 5,
+     "g": 25
+    }
+   ],
+   "notaF45": "F45 Special Ops: HIIT con peso corporal (mountain climbers, plyo lunges, squat jumps, burpee + 180, frog squats) y core. Sin carga externa."
+  },
+  "2026-11-05": {
+   "titulo": "F45 HYROX Signature · 19:30",
+   "tipo": "hyrox",
+   "ocultarNotaSemana": true,
+   "nota": "Hoy toca HYROX Signature: 75 min a las 19:30, con movimientos de HYROX y seguramente carrera. Es tu sesión de fuerza y de estaciones de la semana: dale a RPE 7-8. Por eso el test de 5 km pasa al domingo por la mañana. Con un HYROX largo la noche antes, el viernes a las 7:00 saldría un tiempo peor de lo que eres, y tus ritmos quedarían mal calculados.",
+   "sesiones": [
+    {
+     "h": "07:30",
+     "d": "Desayuno",
+     "t": "Tortilla de 3 huevos + claras, pan integral y fruta"
+    },
+    {
+     "h": "08:00",
+     "d": "Mochila",
+     "t": "El táper de pollo con arroz, las tostadas Santiveri con el pavo y 2 plátanos. La coctelera con 40 g de Evolate en seco (la leche la añades al llegar a casa) y una botella con electrolitos para la clase"
+    },
+    {
+     "h": "14:00",
+     "d": "Comida",
+     "t": "El táper de pollo con arroz y brócoli. Para variar, añade una cucharada de curry y 2 de queso batido"
+    },
+    {
+     "h": "17:00",
+     "d": "Merienda",
+     "t": "6 tostadas proteicas Santiveri (2 raciones) con 100 g de pavo y una pieza de fruta. Último café"
+    },
+    {
+     "h": "18:45",
+     "d": "Pre-entreno",
+     "t": "Un plátano: la clase dura 75 min"
+    },
+    {
+     "h": "19:10",
+     "d": "Creatina",
+     "t": "Tomada: 1 cacito (3,4 g, 3 g de creatina) con 250 ml de agua. Márcala con el botón Creatina"
+    },
+    {
+     "h": "19:15",
+     "d": "Llegada",
+     "t": "5 min de movilidad de cadera y tobillo y 2 × 10 sentadillas sin peso"
+    },
+    {
+     "h": "19:30",
+     "d": "F45 HYROX Signature",
+     "t": "RPE 7-8. Bebe agua con electrolitos durante la clase. Apunta las estaciones, las cargas y los tiempos, y haz una captura del entreno en la app"
+    },
+    {
+     "h": "20:50",
+     "d": "Post",
+     "t": "40 g de Evolate con 250 ml de leche proteica y un plátano al llegar. Hoy, sin creatina: ya te la has tomado antes de la clase"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena ligera",
+     "t": "Queso batido con 20 g de avena, canela y un poco de miel"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "Mañana no madrugas para correr: duerme 7,5-8 h"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "07:30",
+     "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
+     "kcal": 505,
+     "p": 42,
+     "c": 42,
+     "g": 18
+    },
+    {
+     "h": "14:00",
+     "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
+     "kcal": 840,
+     "p": 68,
+     "c": 90,
+     "g": 20
+    },
+    {
+     "h": "17:00",
+     "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
+     "kcal": 295,
+     "p": 30,
+     "c": 39,
+     "g": 2
+    },
+    {
+     "h": "18:45",
+     "n": "Pre-entreno · 1 plátano",
+     "kcal": 105,
+     "p": 1,
+     "c": 27,
+     "g": 0
+    },
+    {
+     "h": "19:10",
+     "n": "Creatina · 1 cacito pequeño (3,4 g) con 250 ml de agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:50",
+     "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
+     "kcal": 366,
+     "p": 57,
+     "c": 39,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 350 g queso batido 0 %, 20 g avena, canela, 10 g miel",
+     "kcal": 266,
+     "p": 31,
+     "c": 34,
+     "g": 1
+    }
+   ]
+  },
+  "2026-11-06": {
+   "titulo": "F45 MKATZ a las 18:00",
+   "tipo": "calidad",
+   "ocultarNotaSemana": true,
+   "nota": "Por fin una clase de fuerza con carga: MKATZ trabaja pierna (zancada, peso muerto rumano, sentadilla, hip thrust), espalda, pecho y hombro. Es la que más protege el músculo mientras pierdes grasa: busca pesos con los que las últimas 2-3 repeticiones cuesten de verdad, sin perder la técnica. El Z2 de esta mañana pasa al sábado. El test de 5 km es el domingo.",
+   "sesiones": [
+    {
+     "h": "Mañana",
+     "d": "Z2",
+     "t": "No se ha hecho: pasa al sábado, después del F45"
+    },
+    {
+     "h": "07:30",
+     "d": "Desayuno",
+     "t": "Bol de queso batido con Evolate, avena y plátano"
+    },
+    {
+     "h": "08:00",
+     "d": "Mochila",
+     "t": "Táper de patata con huevo y atún, las tostadas Santiveri con el pavo y una fruta, y la coctelera con 40 g de Evolate y la creatina en seco"
+    },
+    {
+     "h": "13:30",
+     "d": "Comida",
+     "t": "Patata, huevo y atún con ensalada (receta en Comida)"
+    },
+    {
+     "h": "15:45",
+     "d": "Merienda",
+     "t": "6 tostadas Santiveri con 100 g de pavo y una fruta, unas 2 h antes de F45, y la creatina: un cacito y medio (5 g) en un vaso de agua. Último café"
+    },
+    {
+     "h": "17:45",
+     "d": "Llegada",
+     "t": "5 min de movilidad de cadera, hombro y dorsal, y 2 × 10 sentadillas sin peso"
+    },
+    {
+     "h": "18:00",
+     "d": "F45 MKATZ",
+     "t": "Fuerza: elevaciones frontales y laterales, zancada atrás con kettlebell, aperturas con mancuernas, peso muerto rumano, sentadilla abrazando el deadball, remo en TRX, press militar con barra, hip thrust con disco y curl con barra. Apunta los kilos de peso muerto rumano, press militar y hip thrust: son tu referencia"
+    },
+    {
+     "h": "19:00",
+     "d": "Post",
+     "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
+    },
+    {
+     "h": "20:30",
+     "d": "Cena ligera",
+     "t": "Tortilla de 2 huevos + 150 g de claras con ensalada"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "El sábado, F45 suave y el domingo, test de 5 km: descansa"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "07:30",
+     "n": "Desayuno · bol de 250 g queso batido, 25 g Evolate, 40 g avena, plátano",
+     "kcal": 525,
+     "p": 55,
+     "c": 64,
+     "g": 5
+    },
+    {
+     "h": "13:30",
+     "n": "Comida · 400 g patata, 2 huevos, 2 latas de atún, ensalada, 10 g AOVE",
+     "kcal": 687,
+     "p": 48,
+     "c": 73,
+     "g": 22
+    },
+    {
+     "h": "15:45",
+     "n": "Merienda · 6 tostadas proteicas Santiveri + 100 g pavo + fruta",
+     "kcal": 295,
+     "p": 30,
+     "c": 39,
+     "g": 2
+    },
+    {
+     "h": "15:45",
+     "n": "Creatina · 1 cacito y medio (5 g) con agua en la merienda",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "19:00",
+     "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
+     "kcal": 366,
+     "p": 57,
+     "c": 39,
+     "g": 1
+    },
+    {
+     "h": "20:30",
+     "n": "Cena · tortilla de 2 huevos + 150 g claras, ensalada, 5 g AOVE",
+     "kcal": 310,
+     "p": 32,
+     "c": 7,
+     "g": 16
+    }
+   ]
+  },
+  "2026-11-07": {
+   "titulo": "F45 a las 11:00 + Z2 en el Retiro",
+   "tipo": "doble",
+   "ocultarNotaSemana": true,
+   "nota": "El Z2 que no hiciste el viernes va justo después del F45. Que sea suave de verdad: 25-30 min a ritmo de conversación, porque el domingo tienes el test de 5 km. El Retiro te queda al lado del F45.",
+   "sesiones": [
+    {
+     "h": "08:30",
+     "d": "Desayuno",
+     "t": "Tortilla de 3 huevos + claras con pan integral y fruta, unas 2,5 h antes de la clase"
+    },
+    {
+     "h": "10:30",
+     "d": "Pre-entreno",
+     "t": "Un plátano, café y la creatina: un cacito y medio (5 g) en un vaso de agua. Marca el botón Creatina"
+    },
+    {
+     "h": "11:00",
+     "d": "F45",
+     "t": "Clase de 1 h a RPE 6-7: mañana hay test. Mándame la captura"
+    },
+    {
+     "h": "12:10",
+     "d": "Retiro · Z2",
+     "t": "25-30 min de trote muy suave (7:00-7:30 /km), con el pulso por debajo de 140. Si las piernas no van, camina rápido 30 min. Lleva agua"
+    },
+    {
+     "h": "12:45",
+     "d": "Post",
+     "t": "40 g de Evolate con 250 ml de leche proteica y un plátano"
+    },
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "El último táper de pollo con arroz y brócoli"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "Queso batido con plátano y miel"
+    },
+    {
+     "h": "20:30",
+     "d": "Cena",
+     "t": "Joe & the Juice (Velázquez): Joe's Club (pollo, aguacate, tomate, rúcula) con poco pesto, y agua o té. Nada de zumos ni batidos con fruta. Si prefieres carne: The Steak. Mañana hay test: este pan te viene bien"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "Deja preparadas la ropa y las zapatillas para el test"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno A · 3 huevos + 150 g claras, 40 g pan integral, fruta",
+     "kcal": 505,
+     "p": 42,
+     "c": 42,
+     "g": 18
+    },
+    {
+     "h": "10:30",
+     "n": "Pre-entreno · 1 plátano",
+     "kcal": 105,
+     "p": 1,
+     "c": 27,
+     "g": 0
+    },
+    {
+     "h": "10:30",
+     "n": "Creatina · 1 cacito y medio (5 g) con agua antes de F45",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "12:45",
+     "n": "Post · 40 g Evolate + 250 ml leche proteica + plátano",
+     "kcal": 366,
+     "p": 57,
+     "c": 39,
+     "g": 1
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · táper de 250 g de pollo, 100 g arroz, brócoli, 15 g AOVE",
+     "kcal": 840,
+     "p": 68,
+     "c": 90,
+     "g": 20
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
+     "kcal": 295,
+     "p": 29,
+     "c": 45,
+     "g": 1
+    },
+    {
+     "h": "20:30",
+     "n": "Cena · Joe & the Juice: Joe's Club (pollo, aguacate, tomate, pesto) + agua",
+     "kcal": 460,
+     "p": 31,
+     "c": 42,
+     "g": 20
+    }
+   ]
+  },
+  "2026-11-08": {
+   "titulo": "Test de 5 km y check-in",
+   "tipo": "z2",
+   "nota": "De este tiempo salen todos tus ritmos de series, Z2 y carrera HYROX.",
+   "sesiones": [
+    {
+     "h": "09:30",
+     "d": "Antes",
+     "t": "Desayuno ligero 1-1,5 h antes: pan con miel y plátano, y café"
+    },
+    {
+     "h": "10:30",
+     "d": "Retiro",
+     "t": "10 min de trote suave + movilidad + 4 progresivos de 80 m"
+    },
+    {
+     "h": "10:50",
+     "d": "Test",
+     "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones en Día → Entrenamientos (sesión Series, 5 km)"
+    },
+    {
+     "h": "Después",
+     "d": "Vuelta a la calma",
+     "t": "10 min andando"
+    },
+    {
+     "h": "Tarde",
+     "d": "Casa",
+     "t": "Batch cooking, cintura y fotos. Luego pulsa 'Copiar mi semana para Claude' en Semana y pégamelo"
+    }
+   ]
   }
+ },
+ "diario": {
+  "desde": "2026-11-05",
+  "items": [
+   {
+    "h": "Antes de entrenar",
+    "d": "Creatina",
+    "t": "5 g (un cacito y medio de Optimum Nutrition) con la merienda o el pre-entreno: en el queso batido o en un vaso de agua. Los días sin entreno, con el desayuno. Todos los días"
+   }
+  ]
+ }
 }
