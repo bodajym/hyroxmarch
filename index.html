@@ -710,10 +710,11 @@ const bmr=s=>Math.round(10*pesoRef(s)+6.25*ALTURA-5*EDAD+5);
 function energia(s){
   const d=data.days[s]||blankDay(s),tot=totals(d),full=bmr(s),isToday=s===todayStr();
   const now=new Date(),frac=isToday?Math.min(1,(now.getHours()*60+now.getMinutes())/1440):1;
-  const reposoAhora=d.reposo!=null?d.reposo:Math.round(full*frac),reposoFin=d.reposo!=null&&!isToday?d.reposo:Math.max(full,d.reposo||0);
+  // El reloj solo mide el reposo mientras lo llevas puesto: se usa el mayor entre Salud y el cálculo por peso/edad/altura
+  const est=Math.round(full*frac),reposoAhora=Math.max(d.reposo||0,est),reposoFin=Math.max(d.reposo||0,full),usaSalud=(d.reposo||0)>est;
   const act=d.activas||0,gastoAhora=reposoAhora+act,gastoFin=reposoFin+act;
   return {tot,full,frac,isToday,reposoAhora,reposoFin,act,gastoAhora,gastoFin,balAhora:tot.kcal-gastoAhora,balFin:tot.kcal-gastoFin,
-    margen:Math.round(gastoFin-DEF_OBJ-tot.kcal),fuente:d.reposo!=null?"Salud":"estimado",tieneAct:d.activas!=null,t:d.energiaT};
+    margen:Math.round(gastoFin-DEF_OBJ-tot.kcal),fuente:usaSalud?"Salud":"estimado",tieneAct:d.activas!=null,t:d.energiaT};
 }
 /* =============== DÍA =============== */
 function totals(d){return (d.comidas||[]).reduce((a,c)=>({kcal:a.kcal+(+c.kcal||0),p:a.p+(+c.p||0),c:a.c+(+c.c||0),g:a.g+(+c.g||0)}),{kcal:0,p:0,c:0,g:0})}
@@ -790,12 +791,13 @@ function renderDay(){
         ${(()=>{const e=energia(s),pos=x=>x>0?"+":x<0?"−":"",cls=e.balFin<=-500?"good":e.balFin<=-200?"mid":"bad";
           const mx=Math.max(e.gastoFin,e.tot.kcal,1)*1.1;
           return `<div class="bal">
-          <div class="lbl"><span>Balance energético${e.isToday?" · ahora":""}</span><em>${e.fuente==="Salud"?"reposo de Salud":"reposo estimado"}${e.t?" · "+new Date(e.t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}):""}</em></div>
+          <div class="lbl"><span>Balance energético${e.isToday?" · ahora":""}</span><em>${e.fuente==="Salud"?"reposo del reloj":"reposo calculado"}${e.t?" · "+new Date(e.t).toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"}):""}</em></div>
           <div class="bal-row"><div><span class="kpi-m bal-n" data-count="${Math.abs(e.balAhora)}">${pos(e.balAhora)}${fmt0(Math.abs(e.balAhora))}</span><small class="muted"> kcal ${e.balAhora<0?"de déficit":"de superávit"}</small></div>
             ${e.isToday?`<span class="delta ${cls}">al cerrar el día ${pos(e.balFin)}${fmt0(Math.abs(e.balFin))}</span>`:""}</div>
           <div class="bal-bars"><div class="bb"><span>Comido</span><div class="bar2"><i style="width:${e.tot.kcal/mx*100}%"></i></div><b>${fmt0(e.tot.kcal)}</b></div>
             <div class="bb"><span>Gastado</span><div class="bar2 g"><i style="width:${e.gastoAhora/mx*100}%"></i><span class="bd" style="left:${e.gastoFin/mx*100}%"></span></div><b>${fmt0(e.gastoAhora)}</b></div></div>
-          <div class="sub">Reposo ${fmt0(e.reposoAhora)}${e.isToday&&e.fuente!=="Salud"?" de "+fmt0(e.full):""} + activas ${e.tieneAct?fmt0(e.act):"—"} kcal.${e.isToday?(e.margen>0?` <b>Puedes comer ~${fmt0(e.margen)} kcal más</b> y cerrar con −${DEF_OBJ}.`:` Ya estás por encima del déficit objetivo (−${DEF_OBJ}): ${fmt0(-e.margen)} kcal de más.`):""}${!e.tieneAct?" Las kcal activas llegan con el atajo de Salud o escríbelas en Registro.":""}</div>
+          ${e.isToday?`<div class="row"><a class="btn" href="shortcuts://run-shortcut?name=RX27" style="text-decoration:none">↻ Actualizar desde Salud</a></div>`:""}
+          <div class="sub">Reposo ${fmt0(e.reposoAhora)}${e.isToday?" de "+fmt0(Math.max(e.full,e.reposoFin)):""} + activas ${e.tieneAct?fmt0(e.act):"—"} kcal.${e.isToday?(e.margen>0?` <b>Puedes comer ~${fmt0(e.margen)} kcal más</b> y cerrar con −${DEF_OBJ}.`:` Ya estás por encima del déficit objetivo (−${DEF_OBJ}): ${fmt0(-e.margen)} kcal de más.`):""}${!e.tieneAct?" Las kcal activas llegan con el atajo de Salud o escríbelas en Registro.":""}</div>
         </div>`})()}
         <div class="macros">
           ${macroBlock("Proteína",tot.p,tg.p,"g",true)}
@@ -1576,7 +1578,9 @@ function importFromURL(){
   if(!q.has("peso"))return;
   if(!raw){setTimeout(()=>toast("El atajo envió el peso vacío. Da permiso a Atajos en Ajustes → Salud → Acceso a datos y dispositivos → Atajos",true),400);return}
   if(kg==null||kg<30||kg>250){setTimeout(()=>toast('No he entendido el peso. Llegó: "'+raw.slice(0,40)+'"',true),400);return}
-  const d=getDay(s);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
+  const fp=q.get("fpeso"),sp=fp&&/^\d{4}-\d{2}-\d{2}$/.test(fp.trim())?fp.trim():s;
+  if(sp<s&&q.has("pasos")){/* pesaje antiguo: no lo copio a hoy */setTimeout(()=>toast("Hoy aún no te has pesado: el último pesaje es del "+short(sp)),400);return}
+  const d=getDay(sp);d.peso=Math.round(kg*10)/10;if(grasa!=null&&grasa>3&&grasa<70)d.grasa=grasa;touch(d);
   state.date=s;state.view="dia";
   setTimeout(()=>toast("Báscula guardada · "+fmt1(d.peso)+" kg"+(d.grasa!=null?" · "+fmt1(d.grasa)+" %":"")),400);
 }
