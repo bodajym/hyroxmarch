@@ -437,9 +437,13 @@ body.viewer .tama-view{padding-top:12px}
 .gm-wrap{display:grid;gap:18px}
 .live-w{display:grid;gap:14px}
 .live-frame{position:relative;padding:10px;border-radius:22px;background:linear-gradient(160deg,#2b3150,#151827);border:1px solid #3a4266;box-shadow:0 40px 80px -40px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08),0 0 60px -24px color-mix(in srgb,var(--accent) 50%,transparent)}
-.live-frame canvas{display:block;width:100%;height:auto;aspect-ratio:3/2;image-rendering:pixelated;border-radius:14px;background:#1a1c2c;cursor:pointer;touch-action:manipulation}
+.live-frame canvas{display:block;width:100%;height:auto;aspect-ratio:2/1;image-rendering:pixelated;border-radius:14px;background:#1a1c2c;cursor:pointer;touch-action:manipulation}
 .live-frame::after{content:"";position:absolute;inset:10px;border-radius:14px;pointer-events:none;box-shadow:inset 0 0 40px rgba(0,0,0,.45)}
 .live-demo{justify-content:center}
+.loc{display:grid;gap:12px}.loc-h{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.loc-now{font-size:14px}.loc-sites .btn{min-width:0}
+@media (max-width:560px){.live-frame{padding:6px;border-radius:16px}.live-frame canvas{border-radius:10px}.live-frame::after{inset:6px}}
+
 
 /* diario de pesajes y ficha del día */
 .wl-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
@@ -1393,7 +1397,7 @@ function renderPanel(){
 }
 /* =============== JAVI EN DIRECTO · mundo pixel art =============== */
 const Game=(()=>{
-  const VW=240,VH=160;
+  const VW=320,VH=160;
   const C={k:"#1a1c2c",pu:"#5d275d",r:"#b13e53",o:"#ef7d57",y:"#ffcd75",lg:"#a7f070",g:"#38b764",dg:"#257179",db:"#29366f",b:"#3b5dc9",lb:"#41a6f6",cy:"#73eff7",w:"#f4f4f4",l:"#94b0c2",gr:"#566c86",dk:"#333c57",sk:"#f2c39b",ss:"#d08f6a",hr:"#3b2a20",br:"#8b5a3c"};
   let cv,ctx,raf=0,on=false,frame=0;
   /* ---------- dibujo ---------- */
@@ -1484,17 +1488,19 @@ const Game=(()=>{
     gym:[{x:176,y:24,a:"lift",d:"down"},{x:209,y:35,a:"row",d:"left"},{x:144,y:36,a:"ski",d:"up"}],
     work:[{x:64,y:110,a:"type",d:"down"},{x:16,y:110,a:"coffee",d:"left"}],
     run:[{x:138,y:92,a:"run"}],
-    walk:[{x:30,y:ROADY,a:"walk"},{x:200,y:ROADY,a:"walk"},{x:110,y:ROADY,a:"walk"},{x:230,y:ROADY,a:"walk"}]};
-  const ZONE={sleep:"casa",eat:"casa",rest:"casa",gym:"gym",work:"ofi",run:"park",walk:"road"};
-  const DOOR={casa:{x:88,y:52},gym:{x:146,y:52},ofi:{x:88,y:100},park:{x:138,y:92},road:null};
+    eatout:[{x:270,y:30,a:"eatout",d:"down"}],
+    walk:[{x:30,y:ROADY,a:"walk"},{x:200,y:ROADY,a:"walk"},{x:262,y:118,a:"walk"},{x:296,y:140,a:"walk"},{x:250,y:ROADY,a:"walk"}]};
+  const ZONE={sleep:"casa",eat:"casa",rest:"casa",gym:"gym",work:"ofi",run:"park",walk:"road",eatout:"resto"};
+  const DOOR={casa:{x:88,y:52},gym:{x:146,y:52},ofi:{x:88,y:100},park:{x:138,y:92},resto:{x:252,y:52},road:null};
   const LOOP=[{x:138,y:92},{x:222,y:92},{x:222,y:138},{x:138,y:138}];
-  const BUB={sleep:"ZZZ",eat:"A COMER",rest:"CHILL",gym:"F45!",work:"CURRANDO",run:"RETIRO",walk:"PASEO"};
+  const BUB={sleep:"ZZZ",eat:"A COMER",rest:"CHILL",gym:"F45!",work:"AMAZON ADS",run:"RETIRO",walk:"PASEO",eatout:"NAM NAM"};
   const N={x:69,y:12,dir:"down",path:[],kind:null,spot:null,zone:"casa",t:0,loop:0,wave:0,run:false};
   let cars=[],getKind=()=>"rest",demo=null,kindT=0;
   function plan(k,instant){
     const sp=SPOTS[k],tgt=sp[(Math.random()*sp.length)|0];N.kind=k;
     if(instant){N.x=tgt.x;N.y=tgt.y;N.spot=tgt;N.zone=ZONE[k];N.path=[];N.dir=tgt.d||"down";N.t=0;return}
     const from=N.zone,to=ZONE[k],pts=[];
+    if(from==="road"&&Math.abs(N.y-ROADY)>1)pts.push({x:N.x,y:ROADY});
     if(from!==to){if(DOOR[from])pts.push({...DOOR[from]},{x:DOOR[from].x,y:ROADY});
       if(DOOR[to])pts.push({x:DOOR[to].x,y:ROADY},{...DOOR[to]})}
     pts.push({x:tgt.x,y:tgt.y});N.path=pts;N.goal=tgt;N.spot=null;N.run=k==="run";N.zone=to;
@@ -1509,7 +1515,7 @@ const Game=(()=>{
     if(N.path.length){if(moveTo(N.path[0],N.run?1.3:.75)){N.path.shift();if(!N.path.length){N.spot=N.goal;N.t=0;if(N.spot.d)N.dir=N.spot.d}}}
     else if(N.spot){N.t++;
       if(N.spot.a==="run"){if(moveTo(LOOP[N.loop],1.3))N.loop=(N.loop+1)%4}
-      else if(N.spot.a==="walk"&&N.t>120){plan("walk")}
+      else if(N.spot.a==="walk"&&N.t>150){plan("walk")}
       else if(SPOTS[N.kind].length>1&&N.kind!=="walk"&&N.t>60*9){const sp=SPOTS[N.kind],nx=sp[(sp.indexOf(N.spot)+1)%sp.length];N.path=[{x:nx.x,y:nx.y}];N.goal=nx;N.spot=null}}
     if(!cars.length||cars[cars.length-1].x>320&&Math.random()<.01){if(Math.random()<.012||!cars.length)cars.push({x:-30,c:[C.r,C.y,C.lb,C.w][(Math.random()*4)|0],v:1.2+Math.random()})}
     cars.forEach(c=>c.x+=c.v);cars=cars.filter(c=>c.x<280);
@@ -1553,11 +1559,26 @@ const Game=(()=>{
     R(140,100,96,58,"#c9a46a");R(152,112,72,34,C.g);R(160,118,56,22,C.k);R(161,119,54,20,C.lb);R(166,123,12,1,C.cy);R(190,131,14,1,C.cy);if(!night&&(frame>>5)%2)R(180,126,4,1,C.w);
     R(137,97,103,3,C.dg);R(144,97,16,3,"#c9a46a");
     [[226,102],[154,150],[230,150]].forEach(([tx,ty])=>{R(tx+3,ty+5,2,4,C.br);R(tx,ty-2,8,8,C.dg);R(tx+1,ty-3,6,2,C.g)});
+    // RESTAURANTE
+    R(244,0,76,72,"#f4f4f4");for(let x=244;x<320;x+=6)for(let y=12;y<72;y+=6)if(((x+y)/6|0)%2)R(x,y,6,6,"#e8d6c0");
+    R(244,0,76,12,C.r);R(244,11,76,1,C.k);for(let x=246;x<320;x+=8)R(x,9,4,3,C.w);R(256,2,52,7,C.k);text("RESTAURANTE",258,3,C.y,5);
+    [[250,22],[294,22],[294,46],[250,46]].forEach(([tx,ty])=>{R(tx,ty,18,10,C.k);R(tx+1,ty,16,8,C.w);R(tx+1,ty+7,16,1,C.l);R(tx+7,ty+2,4,3,C.o);R(tx-3,ty+2,3,5,C.br);R(tx+18,ty+2,3,5,C.br)});
+    R(306,14,10,8,C.g);R(308,12,6,3,C.lg);
+    const atResto=N.spot&&N.spot.a==="eatout";if(atResto)person(N.x,N.y,"down",0,JAVI);
+    R(262,42,28,10,C.k);R(263,42,26,8,C.w);R(263,49,26,1,C.l);R(266,52,2,8,C.gr);R(284,52,2,8,C.gr);
+    if(atResto){R(270,42,12,4,C.l);R(272,42,4,2,C.o);R(277,42,3,2,C.g);if(up){R(281,35,1,6,C.l);R(280,35,3,1,C.l)}R(286,40,3,6,C.k);R(287,41,1,4,"#b13e53")}
+    R(250,70,16,2,"#c9b49a");R(244,70,6,2,C.k);R(266,70,54,2,C.k);
+    // PLAZA
+    R(244,97,76,63,"#b9bfcc");for(let x=244;x<320;x+=8)for(let y=97;y<160;y+=8)R(x,y,8,1,"#a7aebd");
+    R(272,118,26,20,C.k);R(273,119,24,18,C.gr);R(275,121,20,14,C.lb);R(284,116-((frame>>3)%3),2,6,C.cy);R(279,122+((frame>>4)%2),2,1,C.w);R(290,128,2,1,C.w);
+    R(250,146,18,4,C.br);R(250,150,2,4,C.k);R(266,150,2,4,C.k);R(300,104,14,4,C.br);R(302,108,2,3,C.k);R(310,108,2,3,C.k);
+    [[248,102],[310,146]].forEach(([tx,ty])=>{R(tx+3,ty+5,2,4,C.br);R(tx,ty-2,8,8,C.dg);R(tx+1,ty-3,6,2,C.g)});
+    R(240,0,4,72,"#2b2f3d");R(240,97,4,63,"#2b2f3d");
     // coches
     cars.forEach(c=>{const x=Math.round(c.x);R(x,74,20,9,C.k);R(x+1,75,18,7,c.c);R(x+12,76,4,5,C.cy);R(x+2,82,4,2,C.k);R(x+14,82,4,2,C.k);if(night)R(x+19,77,3,3,C.y)});
     // Javi
     if(N.spot&&N.spot.a==="sleep"){}
-    else if(atSofa||atDesk){}
+    else if(atSofa||atDesk||atResto){}
     else{const walking=N.path.length||(N.spot&&(N.spot.a==="run"||N.spot.a==="walk"&&false));const ws=walking?((frame>>(N.run?2:3))%4):0;
       const a=N.spot&&!N.path.length?N.spot.a:null,x=Math.round(N.x),y=Math.round(N.y);
       if(N.wave&&!N.path.length){person(x,y,"down",0,JAVI);if(up){R(x+13,y,3,8,C.k);R(x+14,y,1,7,C.sk)}}
@@ -1572,13 +1593,13 @@ const Game=(()=>{
     R(36,42,30,12,C.k);R(37,42,28,10,"#8b5a3c");R(37,42,28,2,"#a8774f");R(38,52,3,8,"#6b452e");R(61,52,3,8,"#6b452e");
     if(N.spot&&N.spot.a==="eat"){R(44,43,14,4,C.w);R(46,43,4,2,C.o);R(51,43,4,2,C.g);if(up){R(52,36,1,6,C.l);R(51,36,3,1,C.l);R(52,35,2,1,C.o)}}
     // rótulos de zona
-    [["CASA",3,62],["OFICINA",3,150],["GYM",140,44],["RETIRO",140,150]].forEach(([t,x,y])=>{ctx.font='5px "Press Start 2P",monospace';const w=Math.ceil(ctx.measureText(t).width)+4;ctx.globalAlpha=.75;R(x,y,w,8,C.k);ctx.globalAlpha=1;text(t,x+2,y+2,C.w,5)});
+    [["CASA",3,62],["RETIRO",140,150],["PLAZA",247,150]].forEach(([t,x,y])=>{ctx.font='5px "Press Start 2P",monospace';const w=Math.ceil(ctx.measureText(t).width)+4;ctx.globalAlpha=.75;R(x,y,w,8,C.k);ctx.globalAlpha=1;text(t,x+2,y+2,C.w,5)});
     // noche
     if(night){ctx.globalAlpha=.38;R(0,0,VW,VH,"#0b1030");ctx.globalAlpha=1;R(41,3,20,6,C.db);if(N.zone==="casa")R(28,14,6,6,"rgba(255,205,117,.25)")}
     else if(nh>=19&&nh<20.5){ctx.globalAlpha=.16;R(0,0,VW,VH,C.o);ctx.globalAlpha=1}
     // bocadillo
     const bx=N.spot&&N.spot.a==="sleep"?13:N.x,byy=N.spot&&N.spot.a==="sleep"?20:N.y;
-    bubble(bx,byy,N.wave?"HOLA!":N.path.length?(N.kind==="walk"?BUB.walk:"VOY A "+({casa:"CASA",gym:"F45",ofi:"CURRAR",park:"CORRER",road:"PASEAR"})[N.zone]):BUB[N.kind]||"");
+    bubble(bx,byy,N.wave?"HOLA!":N.path.length?(N.kind==="walk"?BUB.walk:"VOY A "+({casa:"CASA",gym:"F45",ofi:"AMAZON",park:"RETIRO",road:"PASEAR",resto:"COMER FUERA"})[N.zone]):BUB[N.kind]||"");
     // reloj
     const d=new Date(),hh=pad(d.getHours())+":"+pad(d.getMinutes());ctx.font='6px "Press Start 2P",monospace';const cw=Math.ceil(ctx.measureText(hh).width)+6;R(VW-cw-3,VH-12,cw,10,C.k);text(hh,VW-cw,VH-10,C.y,6);
   }
@@ -1596,10 +1617,10 @@ const Game=(()=>{
     stop(){on=false;cancelAnimationFrame(raf)}
   };
 })();
-const LIVE_KINDS=[["","Ahora"],["gym","F45"],["run","Correr"],["eat","Comer"],["work","Oficina"],["rest","Sofá"],["sleep","Dormir"],["walk","Paseo"]];
+const LIVE_KINDS=[["","Ahora"],["gym","F45"],["run","Retiro"],["work","Amazon Ads"],["eat","Casa comiendo"],["eatout","Restaurante"],["rest","Sofá"],["sleep","Dormir"],["walk","Paseo"]];
 function liveBlock(viewer){
   return `<section class="live-w rv" aria-label="Javi en directo">
-    <div class="live-frame"><canvas width="240" height="160" role="img" aria-label="Mundo pixel art: Javi se mueve entre casa, oficina, F45 y el Retiro según lo que esté haciendo. Tócale para que salude."></canvas></div>
+    <div class="live-frame"><canvas width="320" height="160" role="img" aria-label="Mundo pixel art: Javi se mueve entre casa, Amazon Ads, F45, el Retiro, un restaurante y la plaza según lo que esté haciendo. Tócale para que salude."></canvas></div>
     ${viewer?"":`<div class="chips live-demo" role="group" aria-label="Probar animaciones">${LIVE_KINDS.map(([k,n])=>`<button type="button" class="chip" data-live="${k}" aria-pressed="${k===""}">${n}</button>`).join("")}</div>`}
   </section>`}
 function mountLive(){
@@ -1611,12 +1632,56 @@ function renderGame(){
   $("#view").innerHTML=`<div class="view gm-wrap">
     <div class="view-head rv"><div><div class="eyebrow">En directo · pixel art</div><h2>Javi ahora</h2></div></div>
     ${liveBlock(false)}
+    ${Loc.block()}
     ${Tama.block(false)}
   </div>`;
-  mountLive();Tama.mount();
+  mountLive();Tama.mount();Loc.mount();if(Sync.on()&&Sync.cfg.share)Tama.fetchRemote(Sync.cfg.share);
 }
 window.RX27Game=Game;
 
+/* =============== UBICACIÓN · sitios de Javi =============== */
+const Loc={
+  KEY:"rx27-lugares",ON:"rx27-loc",FILE:"rx27-lugar.json",last:null,busy:false,
+  NAMES:{casa:"Casa",f45:"F45",amazon:"Amazon Ads",retiro:"Retiro",restaurante:"Restaurante",fuera:"Fuera"},
+  get sites(){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}return Object.assign({retiro:{lat:40.4153,lon:-3.6845,r:700}},o)},
+  save(k,lat,lon){let o={};try{o=JSON.parse(LS.get(this.KEY)||"{}")}catch(e){}o[k]={lat,lon,r:k==="retiro"?700:160};LS.set(this.KEY,JSON.stringify(o))},
+  get on(){return LS.get(this.ON)==="1"},set on(v){LS.set(this.ON,v?"1":"0")},
+  mine(){try{const m=JSON.parse(LS.get("rx27-milugar")||"null");return m&&m.k?m:null}catch(e){return null}},
+  dist(a,b,c,d){const R=6371e3,r=Math.PI/180,x=(d-b)*r*Math.cos((a+c)/2*r),y=(c-a)*r;return Math.sqrt(x*x+y*y)*R},
+  pos(){return new Promise((ok,ko)=>{if(!navigator.geolocation)return ko(new Error("sin geo"));navigator.geolocation.getCurrentPosition(p=>ok(p.coords),ko,{enableHighAccuracy:true,maximumAge:60000,timeout:15000})})},
+  async classify(lat,lon){
+    const S=this.sites;let best=null;
+    for(const [k,v] of Object.entries(S)){const d=this.dist(lat,lon,v.lat,v.lon);if(d<=v.r&&(!best||d<best.d))best={k,d}}
+    if(best&&best.k!=="retiro")return {k:best.k};
+    try{const q=`[out:json][timeout:8];nwr(around:45,${lat.toFixed(5)},${lon.toFixed(5)})[amenity~"^(restaurant|cafe|fast_food|bar|food_court|pub)$"];out tags 5;`;
+      const r=await fetch("https://overpass-api.de/api/interpreter",{method:"POST",body:"data="+encodeURIComponent(q),headers:{"Content-Type":"application/x-www-form-urlencoded"}});
+      if(r.ok){const j=await r.json(),el=(j.elements||[]).find(e=>e.tags&&e.tags.name)||(j.elements||[])[0];if(el&&!best)return {k:"restaurante",n:el.tags&&el.tags.name?String(el.tags.name).slice(0,40):""}}}catch(e){}
+    return best?{k:best.k}:{k:"fuera"};
+  },
+  async update(silent){
+    if(!this.on||this.busy)return;this.busy=true;
+    try{const c=await this.pos(),L=await this.classify(c.latitude,c.longitude);L.t=Date.now();const prev=this.mine();
+      LS.set("rx27-milugar",JSON.stringify(L));this.last=L;if(!prev||prev.k!==L.k||prev.n!==L.n||Date.now()-prev.t>20*60e3)Tama.publish();
+      if(state.view==="juego")Tama.paintInfo();this.paintSites()}
+    catch(e){if(!silent)toast(e&&e.code===1?"El móvil no ha dado permiso de ubicación. Actívalo en Ajustes del iPhone → Privacidad → Localización":"No he podido leer tu ubicación",true)}
+    finally{this.busy=false}
+  },
+  async saveHere(k){try{const c=await this.pos();this.save(k,c.latitude,c.longitude);toast(this.NAMES[k]+" guardado en esta ubicación");if(this.on)this.update(true);else this.paintSites()}catch(e){toast(e&&e.code===1?"Necesito permiso de ubicación para guardar el sitio":"No he podido leer tu ubicación",true)}},
+  block(){return `<section class="panel loc rv" aria-label="Ubicación"><div class="loc-h"><div><h3 style="margin:0">Ubicación</h3><p class="sub" style="margin:4px 0 0">Javi aparece en el sitio del mapa donde estás. Solo se comparte el nombre del sitio, nunca tus coordenadas.</p></div>
+      <button class="btn ${this.on?"pri":""}" type="button" data-locon aria-pressed="${this.on}">${this.on?"✓ Ubicación activada":"Activar ubicación"}</button></div>
+      <div class="loc-now" id="locnow"></div>
+      <div class="lbl" style="margin-top:4px"><span>Guarda tus sitios estando en ellos</span></div>
+      <div class="row loc-sites">${["casa","f45","amazon","retiro"].map(k=>`<button class="btn" type="button" data-site="${k}">${this.NAMES[k]}</button>`).join("")}</div>
+      <p class="sub muted" style="margin:0">Restaurantes y bares se detectan solos con el mapa de OpenStreetMap. El Retiro ya viene guardado.</p>
+      ${typeof Sync!=="undefined"&&Sync.cfg&&Sync.cfg.share?`<p class="sub muted" style="margin:0">Para avisar al llegar sin abrir la app (atajo de iPhone): ID del enlace <span class="kbd" style="user-select:all">${esc(Sync.cfg.share)}</span></p>`:""}</section>`},
+  paintSites(){const S=this.sites,raw=(()=>{try{return JSON.parse(LS.get(this.KEY)||"{}")}catch(e){return {}}})();
+    document.querySelectorAll("[data-site]").forEach(b=>{const k=b.dataset.site,ok=!!raw[k]||k==="retiro";b.innerHTML=(ok?"✓ ":"+ ")+this.NAMES[k];b.classList.toggle("pri",ok&&!!raw[k])});
+    const n=$("#locnow");if(n){const m=this.mine();n.innerHTML=this.on?(m?`Ahora: <b>${esc(this.NAMES[m.k]||m.k)}${m.n?" · "+esc(m.n):""}</b> <span class="muted">· hace ${Math.max(0,Math.round((Date.now()-m.t)/60e3))} min</span>`:"Buscando…"):"Desactivada: Javi sigue tu plan del día."}},
+  mount(){const b=document.querySelector("[data-locon]");if(b)b.onclick=()=>{this.on=!this.on;b.classList.toggle("pri",this.on);b.setAttribute("aria-pressed",this.on);b.textContent=this.on?"✓ Ubicación activada":"Activar ubicación";if(this.on)this.update();else{LS.set("rx27-milugar","null");Tama.publish()}this.paintSites();if(state.view==="juego")Tama.paintInfo()};
+    document.querySelectorAll("[data-site]").forEach(x=>x.onclick=()=>this.saveHere(x.dataset.site));this.paintSites();if(this.on)this.update(true)}
+};
+setInterval(()=>{if(Loc.on&&document.visibilityState==="visible"&&!document.body.classList.contains("viewer"))Loc.update(true)},4*60e3);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&Loc.on&&!document.body.classList.contains("viewer"))Loc.update(true)});
 /* =============== JAVIGOTCHI · lo que está haciendo Javi =============== */
 const Tama={
   FILE:"rx27-estado.json",raf:0,f:0,kind:"rest",wave:0,info:null,prev:null,poll:0,
@@ -1640,6 +1705,12 @@ const Tama={
     const nx=ag.find(x=>x.m>min),next=nx?{txt:(nx.k==="eat"?nx.n:nx.k==="run"?"Correr · "+nx.n:nx.n)+" a las "+hh(nx.m)}:null;
     const fresh=info&&info.t&&Date.now()-info.t<25*60e3,moving=fresh&&this.prev&&info.pasos-(this.prev.pasos||0)>250&&info.t-this.prev.t<40*60e3;
     let k="rest",txt="En casa, tranquilo",sub="Recargando para el siguiente entreno";
+    const L=this.lugar(info),act0=ag.find(x=>x.k!=="eat"&&min>=x.m-10&&min<x.e),eat0=ag.find(x=>x.k==="eat"&&min>=x.m-20&&min<x.e+30),night=min<7*60||min>=23*60+30;
+    if(L){const P={f45:["gym","En el F45",act0&&act0.k==="gym"?act0.n:"Entrenando"],amazon:["work","En Amazon Ads","Currando"],retiro:["run","En el Retiro",act0&&act0.k==="run"?act0.n:"Corriendo o paseando"],
+        restaurante:["eatout","Comiendo fuera",L.n||"En un restaurante"],fuera:[moving?"walk":"walk","Por Madrid",L.n||"En movimiento"]}[L.k];
+      if(P){[k,txt,sub]=P}
+      else if(L.k==="casa"){if(night){k="sleep";txt="Durmiendo";sub="En casa"}else if(eat0){k="eat";txt="En casa comiendo";sub=eat0.n}else{k="rest";txt="En casa";sub="Recargando para el siguiente entreno"}}
+      return {k,txt,sub,next,ag,min,lugar:L}}
     if(min<7*60||min>=23*60+30){k="sleep";txt="Durmiendo";sub="La recuperación también entrena"}
     else{const act=ag.find(x=>x.k!=="eat"&&min>=x.m-10&&min<x.e),eat=ag.find(x=>x.k==="eat"&&min>=x.m-5&&min<x.e);
       if(act){k=act.k;txt=act.k==="run"?"Corriendo":"En el gimnasio";sub=act.n+(act.t?" · "+act.t.split(/[.:]/)[0]:"")}
@@ -1648,16 +1719,21 @@ const Tama={
       else if(dow>=1&&dow<=5&&min>=9*60&&min<18*60+30){k="work";txt="Trabajando";sub="Modo oficina"}}
     return {k,txt,sub,next,ag,min};
   },
+  lugarFile:null,
+  lugar(info){
+    const c=[info&&info.lugar,this.lugarFile,document.body.classList.contains("viewer")?null:Loc.mine()].filter(x=>x&&x.k&&x.t);
+    if(!c.length)return null;c.sort((a,b)=>b.t-a.t);const L=c[0],age=Date.now()-L.t;
+    return age<(L.k==="fuera"||L.k==="restaurante"?75:240)*60e3?L:null},
   payload(){
     const s=todayStr(),d=data.days[s]||blankDay(s),tt=totals(d);
-    return {v:1,t:Date.now(),fecha:s,pasos:d.pasos||0,activas:d.activas||0,prot:Math.round(tt.p),kcal:Math.round(tt.kcal),
+    return {v:1,t:Date.now(),fecha:s,lugar:Loc.mine(),pasos:d.pasos||0,activas:d.activas||0,prot:Math.round(tt.p),kcal:Math.round(tt.kcal),
       comidas:(d.comidas||[]).map(c=>String(c.nombre||"").split(" · ")[0]).slice(0,8),entrenos:(d.entrenos||[]).map(e=>e.tipo).slice(0,4),creatina:!!d.creatina,sueno:d.sueno||null};
   },
   pubT:0,
   publish(){if(!Sync.on()||!Sync.cfg.share)return;clearTimeout(this.pubT);this.pubT=setTimeout(()=>{
     fetch("https://api.github.com/gists/"+Sync.cfg.share,{method:"PATCH",headers:{...Sync.h(),"Content-Type":"application/json"},body:JSON.stringify({files:{[this.FILE]:{content:JSON.stringify(this.payload())}}})}).catch(()=>{})},2500)},
   async share(){
-    if(!Sync.on()){toast("Primero conecta la sincronización en Ajustes: el enlace de María lee de ahí",true);return}
+    if(!Sync.on()){toast("Primero conecta la sincronización en Ajustes: el enlace para compartir lee de ahí",true);return}
     try{
       if(!Sync.cfg.share){const r=await fetch("https://api.github.com/gists",{method:"POST",headers:{...Sync.h(),"Content-Type":"application/json"},
         body:JSON.stringify({description:"RX27 · estado de Javi (solo lectura)",public:false,files:{[this.FILE]:{content:JSON.stringify(this.payload())}}})});
@@ -1665,13 +1741,15 @@ const Tama={
       else this.publish();
       const url=location.origin+location.pathname+"?tama="+Sync.cfg.share+"#javi";
       if(navigator.share){try{await navigator.share({title:"Javigotchi",text:"Mira qué está haciendo Javi ahora mismo",url});return}catch(e){if(e&&e.name==="AbortError")return}}
-      await navigator.clipboard.writeText(url);toast("Enlace copiado. Mándaselo a María por WhatsApp");
+      await navigator.clipboard.writeText(url);toast("Enlace copiado. Mándalo por WhatsApp a quien quieras");
     }catch(e){toast("No he podido crear el enlace. Revisa el token en Ajustes",true)}
   },
   async fetchRemote(id){
     try{const r=await fetch("https://api.github.com/gists/"+id,{headers:{Accept:"application/vnd.github+json"},cache:"no-store"});if(!r.ok)return;
-      const j=await r.json(),f=j.files&&j.files[this.FILE];if(!f)return;const txt=f.truncated?await (await fetch(f.raw_url)).text():f.content;const p=JSON.parse(txt);
-      if(this.info&&this.info.t!==p.t)this.prev=this.info;this.info=p;if(state.view==="javi")this.paintInfo()}catch(e){}
+      const j=await r.json(),lf=j.files&&j.files[Loc.FILE];
+      if(lf&&lf.content){const [k,ts]=String(lf.content).trim().split("|"),t=Date.parse(ts||"")||Date.parse(j.updated_at);if(Loc.NAMES[k.trim().toLowerCase()]!==undefined)this.lugarFile={k:k.trim().toLowerCase(),t}}
+      const f=j.files&&j.files[this.FILE];if(!f){if(state.view==="javi"||state.view==="juego")this.paintInfo();return}const txt=f.truncated?await (await fetch(f.raw_url)).text():f.content;const p=JSON.parse(txt);
+      if(this.info&&this.info.t!==p.t)this.prev=this.info;if(document.body.classList.contains("viewer"))this.info=p;if(state.view==="javi"||state.view==="juego")this.paintInfo()}catch(e){}
   },
   block(viewer){
     return `<section class="tama-wrap rv" aria-label="Javigotchi">
@@ -1687,7 +1765,7 @@ const Tama={
     const box=$("#tamainfo");if(!box)return;const viewer=document.body.classList.contains("viewer"),info=viewer?this.info:this.payload(),E=this.estado(info);this.kind=E.k;
     const age=info&&info.t?Math.round((Date.now()-info.t)/60e3):null,today=info&&info.fecha===todayStr();
     const bar=(lbl,v,goal,u)=>{const pct=Math.max(0,Math.min(1,(v||0)/goal));return `<div class="tb"><div class="tb-h"><span>${lbl}</span><b>${fmt0(v||0)}<small>/${fmt0(goal)}${u}</small></b></div><div class="tb-b"><i style="width:${pct*100}%"></i>${[1,2,3,4].map(i=>`<span class="${pct>=i/4?"on":""}"></span>`).join("")}</div></div>`};
-    box.innerHTML=`<div class="eyebrow">${viewer?"Javi ahora mismo":"Así te ve María"} · ${pad(Math.floor(E.min/60))}:${pad(E.min%60)}</div>
+    box.innerHTML=`<div class="eyebrow">${viewer?"Javi ahora mismo":"Así te ven con tu enlace"} · ${pad(Math.floor(E.min/60))}:${pad(E.min%60)}</div>
       <h2 class="tama-now">${esc(E.txt)}</h2><p class="sub">${esc(E.sub)}</p>
       ${E.next?`<div class="delta">Después: ${esc(E.next.txt)}</div>`:""}
       ${today?`<div class="tb-grid">${bar("Pasos",info.pasos,10000,"")}${bar("Proteína",info.prot,190," g")}${bar("Kcal activas",info.activas,600,"")}</div>
@@ -1695,7 +1773,7 @@ const Tama={
         :`<div class="sub">${viewer?(info?"Hoy aún no ha mandado datos: el muñeco sigue su plan del día.":"Cargando…"):"Hoy aún no hay datos."}</div>`}
       <div class="tama-day" id="tamaday" hidden>${E.ag.map(x=>`<div class="${E.min>=x.e?"past":E.min>=x.m-10?"cur":""}"><span>${pad(Math.floor(x.m/60))}:${pad(x.m%60)}</span>${x.k==="eat"?"Comida":x.k==="run"?"Carrera":"Entreno"} · ${esc(x.n)}</div>`).join("")}</div>
       ${viewer?`<div class="sub muted">${age!=null?"Datos de hace "+(age<1?"un momento":age<60?age+" min":Math.round(age/60)+" h"):""} · Sin peso ni datos privados</div>`:
-        `<div class="row"><button class="btn pri" type="button" data-share>Enlace para María</button></div><div class="sub muted">Ella verá qué toca según tu plan, tus pasos, proteína y comidas de hoy. Nunca tu peso.</div>`}`;
+        `<div class="row"><button class="btn pri" type="button" data-share>Enlace para compartir</button></div><div class="sub muted">Quien lo abra verá dónde estás (solo el sitio: casa, F45, Amazon Ads, Retiro o un restaurante), qué toca en tu plan, tus pasos, proteína y comidas de hoy. Nunca tu peso ni tus coordenadas.</div>`}`;
     const sh=box.querySelector("[data-share]");if(sh)sh.onclick=()=>this.share();
   },
   mount(){
@@ -1704,7 +1782,7 @@ const Tama={
       if(k==="hola")this.wave=28;if(k==="luz")root.classList.toggle("dark");if(k==="hoy"){const d=$("#tamaday");if(d)d.hidden=!d.hidden}});
     cancelAnimationFrame(this.raf);let last=0;
     const loop=t=>{if(!document.body.contains(cv))return;this.raf=requestAnimationFrame(loop);if(t-last<(this.kind==="run"?110:220))return;last=t;this.f++;
-      if(this.wave>0)this.wave--;Game.scene(c,this.wave?"wave":this.kind,this.f)};
+      if(this.wave>0)this.wave--;Game.scene(c,this.wave?"wave":this.kind==="eatout"?"eat":this.kind,this.f)};
     this.raf=requestAnimationFrame(loop);
     clearInterval(this.tk);this.tk=setInterval(()=>{if(!document.body.contains(cv)){clearInterval(this.tk);return}this.paintInfo()},30000);
   },
