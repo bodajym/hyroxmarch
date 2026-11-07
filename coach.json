@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-07T20:10",
+ "actualizado": "2026-11-07T20:12",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -481,14 +481,14 @@
      "t": "El último táper de pollo con arroz y brócoli"
     },
     {
-     "h": "17:30",
-     "d": "Merienda",
-     "t": "Queso batido con plátano y miel"
-    },
-    {
      "h": "20:30",
      "d": "Cena",
      "t": "Joe & the Juice (Velázquez): Joe's Club (pollo, aguacate, tomate, rúcula) con poco pesto, y agua o té. Nada de zumos ni batidos con fruta. Si prefieres carne: The Steak. Mañana hay test: este pan te viene bien"
+    },
+    {
+     "h": "22:00",
+     "d": "Recena",
+     "t": "Te saltaste la merienda: al llegar a casa, 30 g de Evolate con agua y un plátano. Carga ligera para el test de mañana"
     },
     {
      "h": "23:00",
@@ -538,20 +538,20 @@
      "g": 20
     },
     {
-     "h": "17:30",
-     "n": "Merienda · 250 g queso batido, plátano, 10 g miel",
-     "kcal": 295,
-     "p": 29,
-     "c": 45,
-     "g": 1
-    },
-    {
      "h": "20:30",
      "n": "Cena · Joe & the Juice: Joe's Club (pollo, aguacate, tomate, pesto) + agua",
      "kcal": 460,
      "p": 31,
      "c": 42,
      "g": 20
+    },
+    {
+     "h": "22:00",
+     "n": "Recena · 30 g Evolate con agua + 1 plátano (en lugar de la merienda)",
+     "kcal": 220,
+     "p": 25,
+     "c": 30,
+     "g": 2
     }
    ]
   },
