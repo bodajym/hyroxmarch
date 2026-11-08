@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-07T23:12",
+ "actualizado": "2026-11-08T17:00",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -576,19 +576,19 @@
      "t": "Sándwich de pavo y queso + plátano, hacia el hoyo 9-10"
     },
     {
-     "h": "16:30",
-     "d": "Comida",
-     "t": "Al volver: táper de pollo con arroz y verdura"
+     "h": "16:00",
+     "d": "Al acabar",
+     "t": "Bocadillo de atún (solo media parte del pan). Ya cuenta como la comida"
     },
     {
      "h": "18:30",
      "d": "Casa · check-in",
-     "t": "Batch cooking de la semana, cintura y fotos. Luego en Semana pulsa 'Copiar mi semana para Claude' y pégamelo"
+     "t": "Merienda de skyr con plátano mientras haces el batch, cintura y fotos. Luego en Semana pulsa 'Copiar mi semana para Claude' y pégamelo"
     },
     {
      "h": "21:15",
      "d": "Cena",
-     "t": "Ensalada grande con 2 latas de atún al natural y 1 huevo"
+     "t": "Pollo del batch con verduras asadas y una patata pequeña: hoy has andado mucho y te faltan hidratos y proteína"
     },
     {
      "h": "22:30",
@@ -635,20 +635,28 @@
      "g": 0
     },
     {
-     "h": "16:30",
-     "n": "Comida A · 250 g pollo, 70 g arroz, verdura, 15 g AOVE",
-     "kcal": 735,
-     "p": 66,
-     "c": 67,
-     "g": 20
+     "h": "16:00",
+     "n": "Bocadillo de atún al terminar el golf (solo la mitad de arriba del pan)",
+     "kcal": 320,
+     "p": 22,
+     "c": 27,
+     "g": 13
+    },
+    {
+     "h": "18:30",
+     "n": "Merienda · skyr con plátano y miel (mientras haces el batch)",
+     "kcal": 295,
+     "p": 29,
+     "c": 40,
+     "g": 1
     },
     {
      "h": "21:15",
-     "n": "Cena · ensalada con 2 latas de atún al natural, 1 huevo, 5 g AOVE",
-     "kcal": 330,
-     "p": 50,
-     "c": 5,
-     "g": 12
+     "n": "Cena · 180 g pollo del batch, verduras asadas, 150 g patata",
+     "kcal": 450,
+     "p": 48,
+     "c": 45,
+     "g": 9
     },
     {
      "h": "22:30",
