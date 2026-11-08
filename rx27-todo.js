@@ -9,7 +9,7 @@
 const APP = "https://bodajym.github.io/hyroxmarch/#panel", SITE = "https://bodajym.github.io/hyroxmarch/";
 const START_W = 100, GOAL_W = 85, RACE = new Date(2027, 2, 17), KEY = "rx27-gist", ALTURA = 176, EDAD = 32, DEF_OBJ = 650;
 const THREAD = "rx27", ANTES_ENTRENO = 20;
-const KCAL = { descanso: [2100, 2250], z2: [2100, 2300], calidad: [2250, 2450], hyrox: [2350, 2550], doble: [2550, 2750], mant: [2850, 3050] };
+const KCAL = { descanso: [1700, 1850], z2: [1750, 1900], calidad: [1850, 2000], hyrox: [1950, 2100], doble: [2100, 2300], mant: [2850, 3050] };
 const C = {
   bg: new Color("#0C0F13"), bg2: new Color("#161B22"), line: new Color("#262D38"),
   ink: new Color("#EEF1F5"), mut: new Color("#8A94A6"), acc: new Color("#8FA8FF"),

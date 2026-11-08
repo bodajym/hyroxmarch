@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-08T17:00",
+ "actualizado": "2026-11-08T18:35",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -583,17 +583,12 @@
     {
      "h": "18:30",
      "d": "Casa · check-in",
-     "t": "Merienda de skyr con plátano mientras haces el batch, cintura y fotos. Luego en Semana pulsa 'Copiar mi semana para Claude' y pégamelo"
+     "t": "Merienda de skyr con canela mientras haces el batch, cintura y fotos. Luego en Semana pulsa 'Copiar mi semana para Claude' y pégamelo"
     },
     {
      "h": "21:15",
      "d": "Cena",
-     "t": "Pollo del batch con verduras asadas y una patata pequeña: hoy has andado mucho y te faltan hidratos y proteína"
-    },
-    {
-     "h": "22:30",
-     "d": "Recena",
-     "t": "Un vaso de leche proteica Dia (250 ml)"
+     "t": "Pollo del batch con verduras asadas. Sin patata"
     },
     {
      "h": "23:00",
@@ -644,27 +639,19 @@
     },
     {
      "h": "18:30",
-     "n": "Merienda · skyr con plátano y miel (mientras haces el batch)",
-     "kcal": 295,
-     "p": 29,
-     "c": 40,
-     "g": 1
+     "n": "Merienda · 170 g skyr con canela (sin miel ni plátano)",
+     "kcal": 105,
+     "p": 18,
+     "c": 7,
+     "g": 0
     },
     {
      "h": "21:15",
-     "n": "Cena · 180 g pollo del batch, verduras asadas, 150 g patata",
-     "kcal": 450,
-     "p": 48,
-     "c": 45,
-     "g": 9
-    },
-    {
-     "h": "22:30",
-     "n": "Recena · 250 ml leche proteica Dia",
-     "kcal": 160,
-     "p": 20,
+     "n": "Cena · 160 g pollo del batch con verduras asadas (sin patata)",
+     "kcal": 300,
+     "p": 40,
      "c": 12,
-     "g": 3
+     "g": 9
     }
    ]
   },
