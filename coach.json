@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-08T18:35",
+ "actualizado": "2026-11-09T11:00",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -687,6 +687,108 @@
     }
    ],
    "comidas": null
+  },
+  "2026-11-09": {
+   "titulo": "Festivo (Almudena) · cardio en UFC + sauna",
+   "tipo": "z2",
+   "nota": "F45 lleno: hoy cardio de Zona 2 con cambios de intensidad. Unas 450-550 kcal activas entre elíptica y cuesta. Día tipo Z2: 1.750-1.900 kcal y más de 190 g de proteína.",
+   "sesiones": [
+    {
+     "h": "10:50",
+     "d": "Antes",
+     "t": "Si aún no has desayunado: las tostadas con pavo ahora y vete. Si ya desayunaste, solo agua"
+    },
+    {
+     "h": "11:15",
+     "d": "UFC · elíptica 30 min",
+     "t": "5 min suave. Luego 10 bloques de 1 min con resistencia o inclinación alta (RPE 7) y 1 min suave. 5 min de vuelta a la calma. FC en los altos 150-160; en los suaves, por debajo de 135"
+    },
+    {
+     "h": "11:50",
+     "d": "UFC · cinta en cuesta 20 min",
+     "t": "Inclinación 10-12 %, 5-5,5 km/h, sin agarrarte. Zona 2: FC 125-145, que puedas hablar"
+    },
+    {
+     "h": "12:15",
+     "d": "Sauna 20 min",
+     "t": "Mejor 2 tandas de 10 min con 3-4 min fuera. Antes, durante y después: 750 ml de agua con una pizca de sal. Si te mareas, fuera"
+    },
+    {
+     "h": "12:45",
+     "d": "Post",
+     "t": "Batido de Evolate con leche proteica + creatina"
+    },
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "Lentejas con pollo y verduras"
+    },
+    {
+     "h": "18:00",
+     "d": "Merienda",
+     "t": "Skyr con canela y medio plátano"
+    },
+    {
+     "h": "21:00",
+     "d": "Cena",
+     "t": "Pollo a la plancha con verduras asadas"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "Mañana: test de 5 km a las 7:10 en el Retiro. Prepara la ropa esta noche"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "10:50",
+     "n": "Desayuno C · 3 tostadas Santiveri, 100 g pavo, queso batido untado, tomate, 200 ml leche proteica",
+     "kcal": 438,
+     "p": 55,
+     "c": 34,
+     "g": 9
+    },
+    {
+     "h": "12:45",
+     "n": "Post · 40 g Evolate con 250 ml leche proteica Dia",
+     "kcal": 261,
+     "p": 56,
+     "c": 12,
+     "g": 1
+    },
+    {
+     "h": "12:45",
+     "n": "Creatina · 5 g con el batido",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · lentejas con pollo y verduras (150 g lentejas, 180 g pollo, 7 g AOVE)",
+     "kcal": 535,
+     "p": 58,
+     "c": 47,
+     "g": 12
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 170 g skyr con canela y medio plátano",
+     "kcal": 155,
+     "p": 19,
+     "c": 20,
+     "g": 0
+    },
+    {
+     "h": "21:00",
+     "n": "Cena · 170 g pollo a la plancha con verduras asadas, 5 g AOVE",
+     "kcal": 330,
+     "p": 45,
+     "c": 15,
+     "g": 9
+    }
+   ]
   }
  },
  "diario": {
