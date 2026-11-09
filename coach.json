@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-09T11:00",
+ "actualizado": "2026-11-09T13:55",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -719,9 +719,9 @@
      "t": "Batido de Evolate con leche proteica + creatina"
     },
     {
-     "h": "14:30",
+     "h": "14:00",
      "d": "Comida",
-     "t": "Lentejas con pollo y verduras"
+     "t": "Alcaravea Castelló: pescado (bonito, merluza, lubina) o pollo/solomillo a la plancha con verduras o ensalada. Sin croquetas, cachopo, tortilla ni patatas fritas. Agua o una caña sin alcohol"
     },
     {
      "h": "18:00",
@@ -765,12 +765,12 @@
      "g": 0
     },
     {
-     "h": "14:30",
-     "n": "Comida · lentejas con pollo y verduras (150 g lentejas, 180 g pollo, 7 g AOVE)",
-     "kcal": 535,
-     "p": 58,
-     "c": 47,
-     "g": 12
+     "h": "14:00",
+     "n": "Comida · Alcaravea: bonito o pescado a la plancha + verduras/ensalada (aceite aparte), pan no",
+     "kcal": 560,
+     "p": 50,
+     "c": 20,
+     "g": 28
     },
     {
      "h": "18:00",
