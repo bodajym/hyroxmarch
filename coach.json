@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-09T13:55",
+ "actualizado": "2026-11-10T10:45",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -676,17 +676,94 @@
      "t": "5 km a tope sostenible en llano (Paseo de Coches o perimetral). Apunta el tiempo, la FC media y las sensaciones en Día → Entrenamientos (sesión Series, 5 km)"
     },
     {
-     "h": "08:00",
+     "h": "09:00",
      "d": "Desayuno",
-     "t": "Desayuno completo con proteína: 250 g de skyr con Evolate, avena y frutos rojos"
+     "t": "Queso batido con proteína, avena, nueces, piña, canela y un poco de miel (hecho)"
+    },
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "Filetes de ternera a la plancha (200 g) con patata cocida (150 g) y ensalada o verdura. 1 cucharada rasa de AOVE"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "Tostadas Santiveri con pavo y una mandarina, unas 1-2 h antes del F45"
     },
     {
      "h": "Tarde",
      "d": "F45 · RPE 6",
      "t": "Clase de F45 sin apretar: las piernas vienen del test"
+    },
+    {
+     "h": "20:45",
+     "d": "Post",
+     "t": "Batido de Evolate con leche proteica y medio plátano + creatina (si no la tomaste antes)"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena",
+     "t": "Merluza a la plancha con ensalada grande"
     }
    ],
-   "comidas": null
+   "comidas": [
+    {
+     "h": "06:15",
+     "n": "Antes del test · medio plátano con un poco de pan y miel",
+     "kcal": 150,
+     "p": 3,
+     "c": 33,
+     "g": 1
+    },
+    {
+     "h": "09:00",
+     "n": "Desayuno · queso batido 0 % (200 g) con Evolate, 30 g avena, 10 g nueces, piña, canela y miel",
+     "kcal": 436,
+     "p": 42,
+     "c": 46,
+     "g": 10
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 200 g filete de ternera, 150 g patata cocida, ensalada, 7 g AOVE",
+     "kcal": 490,
+     "p": 47,
+     "c": 30,
+     "g": 17
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 4 tostadas Santiveri con 100 g de pavo y 1 mandarina",
+     "kcal": 215,
+     "p": 24,
+     "c": 29,
+     "g": 1
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con 250 ml leche proteica y medio plátano",
+     "kcal": 316,
+     "p": 57,
+     "c": 26,
+     "g": 1
+    },
+    {
+     "h": "20:45",
+     "n": "Creatina · 5 g",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 220 g merluza con ensalada grande, 5 g AOVE",
+     "kcal": 280,
+     "p": 42,
+     "c": 8,
+     "g": 8
+    }
+   ]
   },
   "2026-11-09": {
    "titulo": "Festivo (Almudena) · cardio en UFC + sauna",
