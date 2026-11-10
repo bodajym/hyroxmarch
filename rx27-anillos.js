@@ -3,8 +3,8 @@
 // Usa el mismo ID del Gist que el widget RX27 (se guarda en el llavero, no hace falta volver a pegarlo).
 
 const APP = "https://bodajym.github.io/hyroxmarch/#panel";
-const START_W = 100, GOAL_W = 85, KEY = "rx27-gist", ALTURA = 176, EDAD = 32, DEF_OBJ = 650;
-const KCAL = { descanso: [1700, 1850], z2: [1750, 1900], calidad: [1850, 2000], hyrox: [1950, 2100], doble: [2100, 2300], mant: [2850, 3050] };
+const START_W = 100, GOAL_W = 85, KEY = "rx27-gist", ALTURA = 176, EDAD = 32, DEF_OBJ = 500;
+const KCAL = { descanso: [1850, 2000], z2: [2050, 2200], calidad: [2200, 2350], hyrox: [2300, 2450], doble: [2500, 2700], mant: [2850, 3050] };
 const BG = new Color("#0C0F13"), INK = new Color("#EEF1F5"), MUT = new Color("#8A94A6"), TRK = new Color("#232A36");
 
 async function gistId() {
@@ -40,7 +40,7 @@ function calc(data) {
     { k: "PESO", sub: "camino a 85", v: last ? (START_W - kg) / (START_W - GOAL_W) : 0, c: "#8FA8FF" },
     { k: "KCAL", sub: "comidas", v: tot.k / kObj, c: "#FFC86B", over: true },
     { k: "PROTEÍNA", sub: "de 190 g", v: tot.p / 190, c: "#5FE0B0" },
-    { k: "DÉFICIT", sub: "de 650", v: Math.max(0, deficit) / DEF_OBJ, c: "#FF7A95" },
+    { k: "DÉFICIT", sub: "de 500", v: Math.max(0, deficit) / DEF_OBJ, c: "#FF7A95" },
     { k: "ACTIVAS", sub: "de 600", v: act / 600, c: "#C792FF" },
     { k: "REPOSO", sub: "del día", v: reposo / full, c: "#73EFF7" }
   ];

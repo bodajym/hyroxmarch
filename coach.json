@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-10T10:45",
+ "actualizado": "2026-11-10T11:00",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -658,7 +658,7 @@
   "2026-11-10": {
    "titulo": "Test de 5 km (temprano) + F45 suave",
    "tipo": "calidad",
-   "nota": "El test que no hiciste el domingo. De este tiempo salen tus ritmos de series, Z2 y carrera HYROX. Hoy no hay Z2 en UFC: el test ocupa ese hueco.",
+   "nota": "El test que no hiciste el domingo. De este tiempo salen tus ritmos de series, Z2 y carrera HYROX. Hoy no hay Z2 en UFC: el test ocupa ese hueco. Objetivo de hoy: unas 2.200-2.350 kcal para quedarte en unas 500 de déficit.",
    "sesiones": [
     {
      "h": "06:15",
@@ -683,12 +683,12 @@
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "Filetes de ternera a la plancha (200 g) con patata cocida (150 g) y ensalada o verdura. 1 cucharada rasa de AOVE"
+     "t": "Filetes de ternera a la plancha (200 g) con 250 g de patata cocida y ensalada. 1 cucharada rasa de AOVE"
     },
     {
      "h": "17:30",
      "d": "Merienda",
-     "t": "Tostadas Santiveri con pavo y una mandarina, unas 1-2 h antes del F45"
+     "t": "Tostadas Santiveri con pavo, una mandarina y un plátano, 1-2 h antes del F45"
     },
     {
      "h": "Tarde",
@@ -703,7 +703,7 @@
     {
      "h": "21:30",
      "d": "Cena",
-     "t": "Merluza a la plancha con ensalada grande"
+     "t": "Merluza a la plancha con ensalada grande y una rebanada de pan integral"
     }
    ],
    "comidas": [
@@ -725,26 +725,26 @@
     },
     {
      "h": "14:30",
-     "n": "Comida · 200 g filete de ternera, 150 g patata cocida, ensalada, 7 g AOVE",
-     "kcal": 490,
-     "p": 47,
-     "c": 30,
+     "n": "Comida · 200 g filete de ternera, 250 g patata cocida, ensalada, 7 g AOVE",
+     "kcal": 567,
+     "p": 49,
+     "c": 47,
      "g": 17
     },
     {
      "h": "17:30",
-     "n": "Merienda · 4 tostadas Santiveri con 100 g de pavo y 1 mandarina",
-     "kcal": 215,
-     "p": 24,
-     "c": 29,
+     "n": "Merienda · 4 tostadas Santiveri con 100 g de pavo, 1 mandarina y 1 plátano",
+     "kcal": 320,
+     "p": 25,
+     "c": 56,
      "g": 1
     },
     {
      "h": "20:45",
-     "n": "Post · 40 g Evolate con 250 ml leche proteica y medio plátano",
-     "kcal": 316,
+     "n": "Post · 40 g Evolate con 250 ml leche proteica y 1 plátano",
+     "kcal": 366,
      "p": 57,
-     "c": 26,
+     "c": 39,
      "g": 1
     },
     {
@@ -757,10 +757,10 @@
     },
     {
      "h": "21:30",
-     "n": "Cena · 220 g merluza con ensalada grande, 5 g AOVE",
-     "kcal": 280,
-     "p": 42,
-     "c": 8,
+     "n": "Cena · 220 g merluza con ensalada grande y 40 g de pan integral, 5 g AOVE",
+     "kcal": 380,
+     "p": 46,
+     "c": 26,
      "g": 8
     }
    ]
