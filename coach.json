@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-11T07:40",
+ "actualizado": "2026-11-11T07:42",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -875,7 +875,7 @@
     {
      "h": "08:00",
      "d": "Desayuno",
-     "t": "Tortilla de 2 huevos y 200 g de claras, 30 g de pan integral y una fruta"
+     "t": "Bol de queso batido con Evolate, 30 g de avena, medio plátano y canela. Sin ruido y en 3 minutos"
     },
     {
      "h": "14:30",
@@ -911,11 +911,11 @@
    "comidas": [
     {
      "h": "08:00",
-     "n": "Desayuno · tortilla 2 huevos + 200 g claras, 30 g pan integral, 1 fruta",
-     "kcal": 431,
-     "p": 40,
-     "c": 37,
-     "g": 13
+     "n": "Desayuno · 200 g queso batido 0 %, 25 g Evolate, 30 g avena, medio plátano, canela",
+     "kcal": 414,
+     "p": 49,
+     "c": 43,
+     "g": 4
     },
     {
      "h": "14:30",
