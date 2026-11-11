@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-11T07:42",
+ "actualizado": "2026-11-11T13:32",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -880,7 +880,7 @@
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "Pollo al limón con 70 g de arroz y brócoli"
+     "t": "Bol de pollo a la plancha, arroz, 2 huevos duros, tomate, pimientos y cebolla (hecho)"
     },
     {
      "h": "17:30",
@@ -919,11 +919,11 @@
     },
     {
      "h": "14:30",
-     "n": "Comida · 200 g pollo al limón, 70 g arroz, 300 g brócoli, 8 g AOVE",
-     "kcal": 617,
-     "p": 56,
-     "c": 67,
-     "g": 12
+     "n": "Comida · bol: ~150 g pollo a la plancha, ~120 g arroz cocido, 2 huevos duros, tomate, pimiento, cebolla, aliño",
+     "kcal": 635,
+     "p": 52,
+     "c": 52,
+     "g": 24
     },
     {
      "h": "17:30",
