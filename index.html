@@ -759,11 +759,20 @@ let toastT;function toast(m,err){const el=$("#toast");el.textContent=m;el.classL
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 
 let COACH=null;
+function menuDia(s,type){
+  if(!FOOD||!FOOD.menu||!FOOD.recetas)return null;const DN=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],m=FOOD.menu.find(x=>x.dia===DN[pd(s).getDay()]);if(!m)return null;
+  const H={desayuno:"08:30",comida:"14:30",merienda:"18:00",post:"20:45",cena:"21:30"},L={desayuno:"Desayuno",comida:"Comida",merienda:"Merienda",post:"Post",cena:"Cena"};
+  const out=[];Object.keys(H).forEach(k=>{const r=m[k]&&FOOD.recetas.find(x=>x.id===m[k]);if(r)out.push({h:H[k],n:L[k]+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g})});
+  const T=TARGETS[type]||TARGETS.calidad,goal=(T.kcal[0]+T.kcal[1])/2;let tot=out.reduce((a,x)=>a+x.kcal,0);
+  const EX=[["14:30","Extra · 150 g de patata o 40 g de arroz más en la comida",120,3,26,0],["18:00","Extra · 1 plátano en la merienda",105,1,27,0],["21:30","Extra · 40 g de pan integral en la cena",100,4,19,1],["18:00","Extra · 15 g de nueces",98,2,2,10],["08:30","Extra · 1 fruta más en el desayuno",60,1,14,0]];
+  for(const e of EX){if(goal-tot<80)break;out.push({h:e[0],n:e[1],kcal:e[2],p:e[3],c:e[4],g:e[5]});tot+=e[2]}
+  out.sort((a,b)=>a.h<b.h?-1:1);return out.length?out:null}
 function dayPlan(s){
   const b=basePlan(s),c=COACH&&COACH.dias&&COACH.dias[s];
   const dia=COACH&&COACH.diario&&s>=(COACH.diario.desde||"")?COACH.diario.items.map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t,diario:1})):[];
-  if(!c)return {...b,items:b.items.concat(dia)};
-  return {...b,items:(c.sesiones||[]).map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})).concat(dia),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:c};
+  if(!c){const mm=menuDia(s,b.type);return {...b,items:b.items.concat(dia),coach:mm?{comidas:mm,auto:1}:undefined}}
+  const cc=c.comidas&&c.comidas.length?c:{...c,comidas:menuDia(s,c.tipo&&TARGETS[c.tipo]?c.tipo:b.type)||[]};
+  return {...b,items:(c.sesiones||[]).map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})).concat(dia),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:cc};
 }
 const Z2CORTO=[null,"30 min","35 min","35 min","40 min","30 min","40 min","45 min","40 min","45 min","45 min","45 min","35 min","45 min","45 min","45 min","35 min","30 min","40 min","30 min","20 min suaves"];
 const SIM={14:"Media simulación A en UFC: 4 × (1 km de cinta + estación completa): farmers 200 m, sandbag lunges 100 m, remo 1.000 m y 100 wall balls. Sin parar, con tiempos",15:"Media simulación B en UFC: 4 × (1 km de cinta + estación completa): SkiErg 1.000 m, sled push 50 m, sled pull 50 m y burpee broad jumps 80 m. Sin parar, con tiempos",17:"Simulación completa en UFC: 8 × (1 km + estación) con cargas Open y tiempos por tramo"};
@@ -979,7 +988,7 @@ function renderDay(){
         ${plan.coach&&plan.coach.compra?`<div class="note" style="align-items:center;justify-content:space-between;flex-wrap:wrap"><span style="display:flex;gap:10px;align-items:flex-start"><span class="tag" style="border-color:var(--ok);color:var(--ok)">Compra</span><span>Hoy toca compra en Mercadona: lista de la semana, unos 49 €.</span></span><button class="btn pri" type="button" id="goshop">Ver la lista</button></div>`:""}
         ${plan.coach&&plan.coach.nota?`<div class="note"><span class="tag" style="border-color:var(--accent);color:var(--accent)">Coach</span><span>${esc(plan.coach.nota)}</span></div>`:""}
         ${note&&!(plan.coach&&plan.coach.ocultarNotaSemana)?`<div class="note"><span class="tag">S${w}</span><span>${esc(note)}</span></div>`:""}
-        <div class="row" style="justify-content:space-between"><span class="eyebrow">${plan.coach?"Plan de tu coach"+(COACH.actualizado?" · actualizado "+esc(short(COACH.actualizado)):""):"Plan base"}</span><span class="row">${COACH&&COACH.diario&&s>=COACH.diario.desde?`<button class="btn ${day.creatina?"pri":""}" type="button" id="crea" aria-pressed="${!!day.creatina}">${day.creatina?"✓ Creatina tomada":"Creatina: marcar tomada"}</button>`:""}<button class="btn" type="button" id="copyday">Copiar mi día para Claude</button></span></div>
+        <div class="row" style="justify-content:space-between"><span class="eyebrow">${plan.coach&&!plan.coach.auto?"Plan de tu coach"+(COACH.actualizado?" · actualizado "+esc(short(COACH.actualizado)):""):"Plan base"}</span><span class="row">${COACH&&COACH.diario&&s>=COACH.diario.desde?`<button class="btn ${day.creatina?"pri":""}" type="button" id="crea" aria-pressed="${!!day.creatina}">${day.creatina?"✓ Creatina tomada":"Creatina: marcar tomada"}</button>`:""}<button class="btn" type="button" id="copyday">Copiar mi día para Claude</button></span></div>
       </section>
 
       <section class="panel rv" aria-labelledby="regt">
@@ -2850,7 +2859,7 @@ importFromURL();
 window.Dock=Dock;if(!document.body.classList.contains("viewer")){Dock.mount();const tb=document.querySelector("[data-tour-top]");if(tb)tb.onclick=()=>Tour.start();
   if(!LS.get("rx27-tour"))setTimeout(()=>{if(!document.querySelector(".tour"))Tour.start()},2200)}
 setTimeout(()=>{if(!document.body.classList.contains("viewer")&&Loc.on)Loc.update(true)},2500);
-fetch("alimentacion.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.recetas){FOOD=j;if(state.view==="comida"&&!editing())render()}}).catch(()=>{});
+fetch("alimentacion.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.recetas){FOOD=j;if((state.view==="comida"||state.view==="dia")&&!editing())render()}}).catch(()=>{});
 fetch("coach.json?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.dias){COACH=j;if(!editing())render()}}).catch(()=>{});
 const th=LS.get("rx27-theme");if(th)setTheme(th);
 {const h=location.hash.slice(1);if(VIEWS.includes(h))state.view=h}

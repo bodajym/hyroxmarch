@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-10T11:00",
+ "actualizado": "2026-11-11T07:40",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -864,6 +864,98 @@
      "p": 45,
      "c": 15,
      "g": 9
+    }
+   ]
+  },
+  "2026-11-11": {
+   "titulo": "Llueve: solo F45",
+   "tipo": "calidad",
+   "nota": "Con la lluvia, hoy no hay carrera fuera: solo la clase de F45, apretando de verdad (RPE 8). Día de F45: unas 2.200 kcal para quedarte en unas 500 de déficit.",
+   "sesiones": [
+    {
+     "h": "08:00",
+     "d": "Desayuno",
+     "t": "Tortilla de 2 huevos y 200 g de claras, 30 g de pan integral y una fruta"
+    },
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "Pollo al limón con 70 g de arroz y brócoli"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "Tostadas Santiveri con pavo, un plátano y un puñado pequeño de nueces, 1-2 h antes del F45"
+    },
+    {
+     "h": "Tarde",
+     "d": "F45",
+     "t": "Clase a tope (RPE 8). Si te cae una de cardio, mantén ritmo constante en vez de salir a muerte"
+    },
+    {
+     "h": "20:45",
+     "d": "Post",
+     "t": "Batido de Evolate con leche proteica y un plátano + creatina"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena",
+     "t": "Revuelto de claras con champiñones y pavo, con una rebanada de pan integral"
+    },
+    {
+     "h": "23:00",
+     "d": "Dormir",
+     "t": "Mañana jueves: clase HYROX"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "08:00",
+     "n": "Desayuno · tortilla 2 huevos + 200 g claras, 30 g pan integral, 1 fruta",
+     "kcal": 431,
+     "p": 40,
+     "c": 37,
+     "g": 13
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 200 g pollo al limón, 70 g arroz, 300 g brócoli, 8 g AOVE",
+     "kcal": 617,
+     "p": 56,
+     "c": 67,
+     "g": 12
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 4 tostadas Santiveri, 100 g pavo, 1 plátano, 15 g nueces",
+     "kcal": 418,
+     "p": 27,
+     "c": 59,
+     "g": 11
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con 250 ml leche proteica y 1 plátano",
+     "kcal": 366,
+     "p": 57,
+     "c": 39,
+     "g": 1
+    },
+    {
+     "h": "20:45",
+     "n": "Creatina · 5 g",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · revuelto de 250 g claras, champiñones y 60 g pavo + 40 g pan integral",
+     "kcal": 360,
+     "p": 45,
+     "c": 28,
+     "g": 6
     }
    ]
   }
