@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-11T13:32",
+ "actualizado": "2026-11-12T08:32",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -956,6 +956,111 @@
      "p": 45,
      "c": 28,
      "g": 6
+    }
+   ]
+  },
+  "2026-11-12": {
+   "titulo": "Jueves: clase HYROX 19:30",
+   "tipo": "hyrox",
+   "nota": "Día de HYROX: más hidratos en la comida y la merienda para rendir en la clase. Unas 2.350-2.400 kcal para mantener unas 500 de déficit.",
+   "sesiones": [
+    {
+     "h": "08:00",
+     "d": "Desayuno",
+     "t": "Queso batido con proteína, avena, arándanos, miel y canela (hecho)"
+    },
+    {
+     "h": "11:30",
+     "d": "Media mañana",
+     "t": "Una pieza de fruta y un puñado pequeño de nueces"
+    },
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "Pollo al curry con 80 g de arroz y verdura"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "Tostadas Santiveri con pavo y un plátano, 2 h antes de la clase. Agua de aquí a la clase"
+    },
+    {
+     "h": "19:30",
+     "d": "F45 · HYROX",
+     "t": "75 min. Ritmo de carrera, no de sprint: estaciones sin parar y transiciones rápidas. Apunta cómo te has sentido en las carreras"
+    },
+    {
+     "h": "21:00",
+     "d": "Post",
+     "t": "Batido de Evolate con leche proteica y un plátano + creatina"
+    },
+    {
+     "h": "21:45",
+     "d": "Cena",
+     "t": "Merluza a la plancha con ensalada, 150 g de patata cocida y una rebanada de pan"
+    },
+    {
+     "h": "23:15",
+     "d": "Dormir",
+     "t": "Mañana viernes: series a primera hora y F45 suave"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "08:00",
+     "n": "Desayuno · 200 g queso batido 0 %, 25 g Evolate, 30 g avena, arándanos, 10 g miel, canela",
+     "kcal": 376,
+     "p": 41,
+     "c": 50,
+     "g": 3
+    },
+    {
+     "h": "11:30",
+     "n": "Media mañana · 1 pieza de fruta y 15 g de nueces",
+     "kcal": 160,
+     "p": 3,
+     "c": 16,
+     "g": 10
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · pollo al curry (200 g) con 80 g de arroz y verdura",
+     "kcal": 670,
+     "p": 58,
+     "c": 77,
+     "g": 14
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 4 tostadas Santiveri, 100 g pavo y 1 plátano",
+     "kcal": 320,
+     "p": 25,
+     "c": 56,
+     "g": 1
+    },
+    {
+     "h": "21:00",
+     "n": "Post · 40 g Evolate con 250 ml leche proteica y 1 plátano",
+     "kcal": 366,
+     "p": 57,
+     "c": 39,
+     "g": 1
+    },
+    {
+     "h": "21:00",
+     "n": "Creatina · 5 g",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "21:45",
+     "n": "Cena · 220 g merluza, ensalada, 150 g patata cocida, 40 g pan integral, 5 g AOVE",
+     "kcal": 495,
+     "p": 49,
+     "c": 53,
+     "g": 9
     }
    ]
   }
