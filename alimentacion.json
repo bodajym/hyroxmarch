@@ -59,24 +59,25 @@
   {
    "id": "des-c",
    "momento": "Desayuno",
-   "nombre": "Huevos revueltos con salmón ahumado y aguacate",
+   "nombre": "Huevos revueltos con jamón serrano y aguacate",
    "min": 8,
-   "kcal": 550,
-   "p": 36,
-   "c": 24,
-   "g": 35,
+   "kcal": 535,
+   "p": 38,
+   "c": 22,
+   "g": 36,
    "ingredientes": [
     "3 huevos L",
-    "60 g de salmón ahumado",
+    "40 g de jamón serrano",
     "Medio aguacate",
-    "2 kiwis",
-    "Cebollino o pimienta"
+    "1 pieza de fruta (2 kiwis o una manzana)",
+    "Pimienta"
    ],
    "pasos": [
-    "Revuelve los huevos a fuego bajo, que queden cremosos.",
-    "Sirve con el salmón, el aguacate y los kiwis."
+    "Revuelve los huevos a fuego bajo, cremosos.",
+    "Al final, el jamón troceado.",
+    "Con el aguacate y la fruta."
    ],
-   "variantes": "Más barato: con 70 g de atún en lugar de salmón."
+   "variantes": ""
   },
   {
    "id": "des-d",
@@ -168,23 +169,24 @@
   {
    "id": "com-c",
    "momento": "Comida",
-   "nombre": "Salmón al horno con brócoli",
-   "min": 20,
-   "kcal": 555,
+   "nombre": "Contramuslos de pollo al horno con brócoli y almendras",
+   "min": 30,
+   "kcal": 595,
    "p": 48,
    "c": 15,
-   "g": 33,
+   "g": 38,
    "ingredientes": [
-    "200 g de lomo de salmón",
+    "200 g de contramuslo de pollo deshuesado sin piel",
     "300 g de brócoli",
+    "15 g de almendras laminadas",
     "5 g de AOVE",
-    "Limón, eneldo o pimienta"
+    "Ajo, pimentón, limón"
    ],
    "pasos": [
-    "Horno a 200 °C: salmón 12-14 min.",
-    "Brócoli al vapor o al microondas 5 min con un chorrito de aceite."
+    "Horno a 200 °C: contramuslos con especias 25 min.",
+    "Brócoli al vapor 5 min con el aceite y las almendras tostadas por encima."
    ],
-   "variantes": "Con caballa o sardinas, igual de bueno y más barato."
+   "variantes": "Más jugoso que la pechuga y con la grasa que pide la dieta."
   },
   {
    "id": "com-d",
@@ -235,21 +237,21 @@
   {
    "id": "com-f",
    "momento": "Comida",
-   "nombre": "Merluza con pisto casero",
+   "nombre": "Lomo de cerdo a la plancha con pisto",
    "min": 20,
-   "kcal": 450,
-   "p": 45,
+   "kcal": 510,
+   "p": 46,
    "c": 18,
-   "g": 20,
+   "g": 24,
    "ingredientes": [
-    "250 g de merluza",
-    "200 g de pisto (pimiento, calabacín, cebolla y tomate)",
-    "15 g de AOVE",
-    "Ajo y perejil"
+    "200 g de cinta de lomo de cerdo",
+    "200 g de pisto casero (pimiento, calabacín, cebolla, tomate)",
+    "10 g de AOVE",
+    "Ajo y orégano"
    ],
    "pasos": [
-    "Pisto: la verdura picada con el aceite 15 min y el tomate al final.",
-    "Merluza encima del pisto, tapada, 6-8 min."
+    "Pisto: verdura picada con el aceite 15 min, tomate al final.",
+    "Lomo a la plancha 2-3 min por lado."
    ],
    "variantes": ""
   },
@@ -278,14 +280,14 @@
   {
    "id": "com-h",
    "momento": "Comida",
-   "nombre": "Ensalada completa de atún, huevo, aguacate y aceitunas",
+   "nombre": "Ensalada completa de pollo, huevo, aguacate y aceitunas",
    "min": 10,
-   "kcal": 650,
-   "p": 62,
+   "kcal": 615,
+   "p": 55,
    "c": 10,
-   "g": 42,
+   "g": 40,
    "ingredientes": [
-    "2 latas de atún al natural",
+    "180 g de pollo a la plancha o del batch",
     "2 huevos cocidos",
     "Medio aguacate",
     "30 g de aceitunas",
@@ -293,7 +295,7 @@
     "10 g de AOVE"
    ],
    "pasos": [
-    "Todo en un bol grande y aliña con aceite, sal y vinagre."
+    "Todo en un bol grande y aliña."
    ],
    "variantes": "La comida de recurso cuando no hay nada hecho."
   },
@@ -482,14 +484,14 @@
   {
    "id": "cen-c",
    "momento": "Cena",
-   "nombre": "Ensalada de atún, huevo y aguacate",
+   "nombre": "Ensalada de pavo, huevo y aguacate",
    "min": 8,
-   "kcal": 405,
-   "p": 33,
+   "kcal": 420,
+   "p": 40,
    "c": 8,
-   "g": 28,
+   "g": 26,
    "ingredientes": [
-    "1 lata de atún al natural",
+    "120 g de pechuga de pavo a la plancha o en lonchas",
     "2 huevos cocidos",
     "Medio aguacate",
     "Ensalada grande",
@@ -524,21 +526,22 @@
   {
    "id": "cen-e",
    "momento": "Cena",
-   "nombre": "Merluza o salmón con ensalada",
+   "nombre": "Pechuga de pavo a la plancha con ensalada y aguacate",
    "min": 10,
-   "kcal": 330,
-   "p": 42,
-   "c": 8,
-   "g": 14,
+   "kcal": 405,
+   "p": 44,
+   "c": 10,
+   "g": 20,
    "ingredientes": [
-    "220 g de merluza (o 150 g de salmón)",
+    "180 g de filete de pechuga de pavo",
     "Ensalada grande con tomate",
-    "10 g de AOVE",
-    "Limón y sal"
+    "Medio aguacate",
+    "5 g de AOVE",
+    "Limón, sal y hierbas"
    ],
    "pasos": [
-    "Pescado a la plancha o al microondas 4 min tapado con limón.",
-    "Ensalada con el aceite."
+    "Pavo a la plancha 3 min por lado.",
+    "Ensalada con el aguacate y el aceite."
    ],
    "variantes": ""
   },
@@ -566,14 +569,14 @@
   {
    "id": "snk-a",
    "momento": "Snack",
-   "nombre": "Atún con aceitunas",
+   "nombre": "Jamón serrano y aceitunas",
    "min": 1,
-   "kcal": 180,
-   "p": 24,
+   "kcal": 190,
+   "p": 20,
    "c": 2,
-   "g": 9,
+   "g": 12,
    "ingredientes": [
-    "1 lata de atún al natural",
+    "60 g de jamón serrano",
     "30 g de aceitunas"
    ],
    "pasos": [
@@ -684,7 +687,7 @@
   }
  ],
  "batch": [
-  "Horno a 200 °C: 1,5 kg de pollo con pimentón y ajo, y 2 bandejas de verdura asada con 2 cucharadas de AOVE, 25 min. Comidas y cenas de lunes a miércoles.",
+  "Horno a 200 °C: 1,5 kg de pechuga y 1 kg de contramuslo con pimentón y ajo, y 2 bandejas de verdura asada con 2 cucharadas de AOVE, 25 min. Comidas y cenas de lunes a miércoles.",
   "Cuece 12 huevos (10 min): desayunos, meriendas y ensaladas.",
   "Lentejas con pollo (com-d) en doble ración: lunes y una cena de recurso.",
   "Boniato al horno en dados (1 kg) para los días de entreno fuerte.",
@@ -695,9 +698,24 @@
    "seccion": "Carne y pescado",
    "items": [
     [
-     "Pechuga o contramuslo de pollo",
+     "Pechuga de pollo",
      "1,5 kg",
      8.6
+    ],
+    [
+     "Contramuslos de pollo deshuesados",
+     "1 kg",
+     6.0
+    ],
+    [
+     "Filetes de pechuga de pavo",
+     "700 g",
+     5.6
+    ],
+    [
+     "Cinta de lomo de cerdo",
+     "500 g",
+     4.0
     ],
     [
      "Filetes de ternera",
@@ -710,24 +728,9 @@
      3.5
     ],
     [
-     "Merluza congelada (lomos)",
-     "500 g",
-     4.2
-    ],
-    [
-     "Atún al natural",
-     "pack de 6 latas",
-     4.8
-    ],
-    [
      "Jamón serrano en lonchas",
-     "100 g",
-     2.5
-    ],
-    [
-     "Caballa en aceite de oliva",
-     "pack de 3 latas",
-     3.0
+     "2 × 100 g",
+     5.0
     ]
    ]
   },
@@ -837,7 +840,7 @@
    ]
   }
  ],
- "compraNota": "Total aproximado: unos 83 € sin el Evolate. Es más que los 50 € de antes porque aguacate, frutos secos, ternera y queso cuestan más que el arroz y la pasta. El salmón de las recetas lo he cambiado por caballa en lata para ahorrar; si un día quieres salmón, suma unos 6 €. Precios orientativos: compruébalos en la app de Mercadona.",
+ "compraNota": "Total aproximado: unos 90 € sin el Evolate. Sin pescado: todo es pollo, pavo, cerdo, ternera, huevos y jamón. Más que los 50 € de antes porque aguacate, frutos secos, ternera y queso cuestan más que el arroz y la pasta. Precios orientativos: compruébalos en la app de Mercadona.",
  "reglas": [
   [
    "La regla",
@@ -849,7 +852,7 @@
   ],
   [
    "Grasas",
-   "Prioridad: aceite de oliva, aguacate, frutos secos, huevos enteros, salmón y queso. Unos 90-120 g al día. Ojo con las cantidades: la grasa tiene más del doble de calorías que el hidrato, así que se mide igual (aceite con cuchara, frutos secos con báscula)."
+   "Prioridad: aceite de oliva, aguacate, frutos secos, huevos enteros, jamón, carnes con algo de grasa (contramuslo, lomo) y queso. Unos 90-120 g al día. Ojo con las cantidades: la grasa tiene más del doble de calorías que el hidrato, así que se mide igual (aceite con cuchara, frutos secos con báscula)."
   ],
   [
    "Creatina",
