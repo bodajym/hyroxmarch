@@ -681,9 +681,9 @@
    "tipo": "Z2 largo / descanso",
    "desayuno": "des-a",
    "comida": "com-b",
-   "merienda": "mer-a",
-   "post": null,
-   "cena": "cen-b"
+   "merienda": "mer-b",
+   "post": "post-b",
+   "cena": "cen-f"
   }
  ],
  "batch": [
