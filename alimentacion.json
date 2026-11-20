@@ -36,7 +36,7 @@
   {
    "id": "des-b",
    "momento": "Desayuno",
-   "nombre": "Bol de queso batido con Evolate, frutos rojos, nueces y crema de cacahuete",
+   "nombre": "Bol de queso batido con Evolate, fruta, nueces y crema de cacahuete",
    "min": 3,
    "kcal": 450,
    "p": 44,
@@ -45,7 +45,7 @@
    "ingredientes": [
     "200 g de queso fresco batido 0 % o skyr",
     "25 g de HSN Evolate vainilla",
-    "100 g de frutos rojos (congelados valen)",
+    "1 pieza de fruta troceada (la de la oficina vale)",
     "20 g de nueces",
     "15 g de crema de cacahuete 100 %",
     "Canela"
@@ -146,14 +146,14 @@
   {
    "id": "com-b",
    "momento": "Comida",
-   "nombre": "Filete de ternera con ensalada y boniato asado",
+   "nombre": "Filete de ternera o pavo con ensalada y boniato asado",
    "min": 20,
    "kcal": 540,
    "p": 44,
    "c": 30,
    "g": 26,
    "ingredientes": [
-    "200 g de filete de ternera",
+    "200 g de filete de ternera o de pechuga de pavo",
     "120 g de boniato",
     "Ensalada grande con tomate",
     "15 g de AOVE",
@@ -348,7 +348,7 @@
   {
    "id": "mer-a",
    "momento": "Merienda",
-   "nombre": "Skyr con nueces y frutos rojos",
+   "nombre": "Skyr con nueces y fruta",
    "min": 2,
    "kcal": 270,
    "p": 22,
@@ -357,7 +357,7 @@
    "ingredientes": [
     "170 g de skyr o queso batido 0 %",
     "20 g de nueces",
-    "80 g de frutos rojos",
+    "1 pieza de fruta",
     "Canela",
     "5 g de creatina si es la hora"
    ],
@@ -619,6 +619,23 @@
     "Agitar y listo."
    ],
    "variantes": ""
+  },
+  {
+   "id": "snk-d",
+   "momento": "Snack",
+   "nombre": "Fruta de la oficina",
+   "min": 0,
+   "kcal": 75,
+   "p": 1,
+   "c": 18,
+   "g": 0,
+   "ingredientes": [
+    "1 pieza de fruta de la oficina (manzana, mandarina, plátano…)"
+   ],
+   "pasos": [
+    "Cógela a media mañana."
+   ],
+   "variantes": "Gratis de lunes a viernes."
   }
  ],
  "menu": [
@@ -629,7 +646,8 @@
    "comida": "com-d",
    "merienda": "mer-c",
    "post": "post-a",
-   "cena": "cen-d"
+   "cena": "cen-d",
+   "media": "snk-d"
   },
   {
    "dia": "Martes",
@@ -638,7 +656,8 @@
    "comida": "com-i",
    "merienda": "mer-a",
    "post": "post-a",
-   "cena": "cen-e"
+   "cena": "cen-e",
+   "media": "snk-d"
   },
   {
    "dia": "Miércoles",
@@ -647,7 +666,8 @@
    "comida": "com-a",
    "merienda": "mer-b",
    "post": "post-b",
-   "cena": "cen-f"
+   "cena": "cen-f",
+   "media": "snk-d"
   },
   {
    "dia": "Jueves",
@@ -656,7 +676,8 @@
    "comida": "com-g",
    "merienda": "mer-a",
    "post": "post-a",
-   "cena": "cen-c"
+   "cena": "cen-c",
+   "media": "snk-d"
   },
   {
    "dia": "Viernes",
@@ -665,7 +686,8 @@
    "comida": "com-c",
    "merienda": "mer-c",
    "post": "post-a",
-   "cena": "cen-a"
+   "cena": "cen-a",
+   "media": "snk-d"
   },
   {
    "dia": "Sábado",
@@ -678,7 +700,7 @@
   },
   {
    "dia": "Domingo",
-   "tipo": "Z2 largo / descanso",
+   "tipo": "Recuperación",
    "desayuno": "des-a",
    "comida": "com-b",
    "merienda": "mer-b",
@@ -687,7 +709,7 @@
   }
  ],
  "batch": [
-  "Horno a 200 °C: 1,5 kg de pechuga y 1 kg de contramuslo con pimentón y ajo, y 2 bandejas de verdura asada con 2 cucharadas de AOVE, 25 min. Comidas y cenas de lunes a miércoles.",
+  "Horno a 200 °C: 1,5 kg de pechuga y 1 kg de contramuslo con pimentón y ajo, y 2 bandejas de verdura asada con 2 cucharadas de AOVE, 25 min. Llénate 4 tápers para las comidas de la oficina (lunes a jueves) y deja pollo para cenas.",
   "Cuece 12 huevos (10 min): desayunos, meriendas y ensaladas.",
   "Lentejas con pollo (com-d) en doble ración: lunes y una cena de recurso.",
   "Boniato al horno en dados (1 kg) para los días de entreno fuerte.",
@@ -695,7 +717,7 @@
  ],
  "compra": [
   {
-   "seccion": "Carne y pescado",
+   "seccion": "Carne",
    "items": [
     [
      "Pechuga de pollo",
@@ -718,19 +740,14 @@
      4.0
     ],
     [
-     "Filetes de ternera",
-     "500 g",
-     6.5
-    ],
-    [
      "Picada de ternera 5 %",
      "400 g",
      3.5
     ],
     [
      "Jamón serrano en lonchas",
-     "2 × 100 g",
-     5.0
+     "100 g",
+     2.5
     ]
    ]
   },
@@ -759,8 +776,8 @@
     ],
     [
      "Queso curado o semicurado",
-     "cuña 250 g",
-     3.5
+     "cuña 150 g",
+     2.2
     ]
    ]
   },
@@ -778,11 +795,6 @@
      2.6
     ],
     [
-     "Almendras naturales",
-     "200 g",
-     2.4
-    ],
-    [
      "Crema de cacahuete 100 %",
      "1 bote",
      2.6
@@ -798,14 +810,9 @@
    "seccion": "Fruta, verdura y legumbre",
    "items": [
     [
-     "Frutos rojos congelados",
-     "500 g",
-     2.4
-    ],
-    [
-     "Plátanos y manzanas",
-     "1 kg + 1 kg",
-     3.5
+     "Plátanos y fruta para el fin de semana",
+     "1 kg",
+     1.8
     ],
     [
      "Brócoli y coliflor congelados",
@@ -820,12 +827,12 @@
     [
      "Pimiento, calabacín, cebolla y tomate",
      "para asar y ensalada",
-     4.0
+     3.0
     ],
     [
-     "Ensalada en bolsa",
-     "2",
-     2.0
+     "Ensalada en bolsa y una lechuga",
+     "1 + 1",
+     1.5
     ],
     [
      "Lentejas y garbanzos cocidos",
@@ -840,7 +847,7 @@
    ]
   }
  ],
- "compraNota": "Total aproximado: unos 90 € sin el Evolate. Sin pescado: todo es pollo, pavo, cerdo, ternera, huevos y jamón. Más que los 50 € de antes porque aguacate, frutos secos, ternera y queso cuestan más que el arroz y la pasta. Precios orientativos: compruébalos en la app de Mercadona.",
+ "compraNota": "Total aproximado: unos 71 € sin el Evolate. Sin pescado. La fruta de lunes a viernes es la de la oficina, así que solo compras la del fin de semana. Precios orientativos: compruébalos en la app de Mercadona.",
  "reglas": [
   [
    "La regla",
