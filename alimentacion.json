@@ -674,7 +674,8 @@
    "desayuno": "des-a",
    "comida": "com-b",
    "merienda": "mer-a",
-   "cena": "cen-f"
+   "cena": "cen-f",
+   "post": "snk-c"
   }
  ],
  "batch": [
