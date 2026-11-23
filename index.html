@@ -433,6 +433,18 @@ ol.steps-list{margin:0;padding-left:20px;display:grid;gap:8px;font-size:14px}
 body.viewer nav.tabs,body.viewer #sync,body.viewer .hero,body.viewer footer{display:none!important}
 body.viewer .tama-view{padding-top:12px}
 
+/* ---------- indicador keto ---------- */
+.keto{display:grid;gap:8px;padding:14px 16px;margin:6px 0 10px;border-radius:16px;border:1px solid color-mix(in srgb,var(--ok) 40%,var(--line));background:color-mix(in srgb,var(--ok) 7%,var(--bg2))}
+.keto.warn{border-color:color-mix(in srgb,var(--warn) 50%,var(--line));background:color-mix(in srgb,var(--warn) 8%,var(--bg2))}
+.keto.over{border-color:color-mix(in srgb,var(--bad) 55%,var(--line));background:color-mix(in srgb,var(--bad) 9%,var(--bg2))}
+.keto-h{display:flex;justify-content:space-between;align-items:baseline}
+.keto-h b{font-family:var(--display);font-weight:900;font-size:34px;line-height:1}.keto-h b small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted)}
+.keto-bar{position:relative;height:10px;border-radius:5px;background:var(--bg3);overflow:hidden}
+.keto-bar i{position:absolute;inset:0 auto 0 0;border-radius:5px;background:var(--ok);transition:width .8s var(--ease)}
+.keto.warn .keto-bar i{background:var(--warn)}.keto.over .keto-bar i{background:var(--bad)}
+.keto-bar u{position:absolute;top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--ink) 25%,transparent)}
+.keto p{margin:0;font-size:13.5px;line-height:1.45}.keto .muted{color:var(--muted)}
+
 /* ---------- viaje 3D ---------- */
 .jy{padding:0!important;overflow:hidden}
 .jy-stage{position:relative;height:clamp(440px,74vh,760px);background:linear-gradient(180deg,#1a1430,#734a73 60%,#ffb08a);touch-action:none;user-select:none;-webkit-user-select:none}
@@ -969,6 +981,18 @@ function reconcileMenu(s,day,plan){
   if(changed){touch(day,true);setTimeout(()=>toast("He actualizado tus comidas con el menú nuevo"),300)}
   return changed;
 }
+function ketoBox(tot,tg,plan){
+  const lim=tg&&tg.c?tg.c[1]:50,c=Math.round(tot.c||0),left=lim-c,pct=Math.min(100,c/lim*100);
+  const menu=plan.coach&&plan.coach.comidas||[],plannedC=Math.round(menu.reduce((a,m)=>a+(+m.c||0),0));
+  const st=c>lim?"over":c>=lim*.7?"warn":"ok";
+  const msg=c>lim?`Te has pasado ${fmt0(c-lim)} g. El resto del día, cero hidratos: proteína, grasa y verdura de hoja. Un día suelto no te saca de la cetosis más de 24-48 h.`
+    :c>=lim*.7?`Te quedan ${fmt0(left)} g. El resto del día, solo proteína, grasa y verdura de hoja.`
+    :c===0?`Límite de hoy: ${lim} g de hidratos netos. Cuantos menos, antes y más fuerte entras en cetosis.`
+    :`Te quedan ${fmt0(left)} g, pero no hace falta gastarlos: prioriza proteína y grasa.`;
+  return `<div class="keto ${st}" role="group" aria-label="Hidratos para seguir en cetosis">
+    <div class="keto-h"><span class="eyebrow">Hidratos · cetosis</span><b>${c}<small> / ${lim} g</small></b></div>
+    <div class="keto-bar" role="meter" aria-valuemin="0" aria-valuemax="${lim}" aria-valuenow="${c}" aria-label="Hidratos de hoy"><i style="width:${pct}%"></i>${[25,50,75].map(x=>`<u style="left:${x}%"></u>`).join("")}</div>
+    <p>${msg}${plannedC?` <span class="muted">Con el menú previsto acabarías en ${plannedC} g${plannedC>lim?": quita la fruta o la crema de verdura":""}.</span>`:""}</p></div>`}
 function renderDay(){
   const s0=state.date,d0=getDay(s0);reconcileMenu(s0,d0,dayPlan(s0));
   const s=state.date,day=getDay(s),plan=dayPlan(s),w=plan.w,tipo=day.tipo||plan.type,tg=TARGETS[tipo],tot=totals(day),note=WEEKNOTE[w];
@@ -1032,6 +1056,7 @@ function renderDay(){
           ${macroBlock("Proteína",tot.p,tg.p,"g",true)}
           <div class="mac-grid">${macroBlock("Kcal",tot.kcal,tg.kcal,"")}${macroBlock("Hidratos",tot.c,tg.c,"g")}${macroBlock("Grasa",tot.g,tg.g,"g")}</div>
         </div>
+        ${ketoBox(tot,tg,plan)}
         ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"|"+m.n);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" ${done?"disabled":""} aria-label="${done?"Ya apuntada":"Apuntar"} ${esc(m.n)}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
         <div class="row"><select id="preset" aria-label="Comida del plan" style="flex:1 1 220px">${PRESETS.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join("")}</select><button class="btn pri" type="button" id="addpreset">Añadir</button></div>
         <div class="items" id="comidas">${day.comidas.length?day.comidas.map(c=>`<div class="item"><span class="n">${esc(c.nombre)}</span><span class="m">${fmt0(c.kcal)} kcal · ${fmt0(c.p)} P · ${fmt0(c.c)} C · ${fmt0(c.g)} G</span><button class="btn ghost" type="button" data-delc="${c.id}" aria-label="Quitar ${esc(c.nombre)}">✕</button></div>`).join(""):`<div class="empty" style="margin-top:12px">Aún no has apuntado comidas. Elige una del plan o escribe la tuya.</div>`}</div>

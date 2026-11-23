@@ -1067,7 +1067,7 @@
   "2026-11-23": {
    "titulo": "Lunes keto · F45",
    "tipo": "calidad",
-   "nota": "Día hecho con lo que has comprado hoy. Lo de María (emperador, lubina, ñoquis, patata y sazonador de pasta) no cuenta. Dime qué has desayunado y lo sumo.",
+   "nota": "Hoy el plátano del desayuno ha gastado casi la mitad de los hidratos del día: el resto, solo proteína, grasa y verdura de hoja. Mañana, desayuno keto.",
    "sesiones": [
     {
      "h": "14:30",
@@ -1092,7 +1092,7 @@
     {
      "h": "21:30",
      "d": "Cena",
-     "t": "Filete extra-tierno de ternera a la plancha con champiñones y la ensalada cuatro estaciones con un poco de queso rallado. Antes, un tazón pequeño de crema de calabaza si te apetece"
+     "t": "Filete extra-tierno de ternera a la plancha con champiñones y la ensalada cuatro estaciones con un poco de queso rallado. Hoy sin crema de calabaza: el plátano del desayuno ya ha gastado casi todos los hidratos"
     },
     {
      "h": "22:30",
@@ -1101,6 +1101,14 @@
     }
    ],
    "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · 1 plátano",
+     "kcal": 105,
+     "p": 1,
+     "c": 24,
+     "g": 0
+    },
     {
      "h": "14:30",
      "n": "Comida · 220 g entrecot + 250 g champiñones salteados (sin ajo) + 7 g AOVE",
@@ -1140,14 +1148,6 @@
      "p": 49,
      "c": 6,
      "g": 26
-    },
-    {
-     "h": "21:30",
-     "n": "Cena · 250 ml crema de calabaza (opcional)",
-     "kcal": 90,
-     "p": 2,
-     "c": 12,
-     "g": 4
     },
     {
      "h": "22:30",
