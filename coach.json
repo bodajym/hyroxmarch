@@ -1072,7 +1072,7 @@
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "Entrecot con champiñones salteados, sin ajo. Receta en Comida → Recetas"
+     "t": "Entrecot con champiñones en dos sartenes a la vez: champiñones primero (6-7 min), carne a los 2-3 min (2-3 min por lado), reposo 3 min y el jugo de la sartén por encima. Receta en Comida → Recetas"
     },
     {
      "h": "17:30",
@@ -1103,11 +1103,11 @@
    "comidas": [
     {
      "h": "14:30",
-     "n": "Comida · entrecot (~220 g) con champiñones salteados sin ajo",
-     "kcal": 520,
-     "p": 49,
-     "c": 5,
-     "g": 34
+     "n": "Comida · 220 g entrecot + 250 g champiñones salteados (sin ajo) + 7 g AOVE",
+     "kcal": 540,
+     "p": 51,
+     "c": 6,
+     "g": 35
     },
     {
      "h": "17:30",
