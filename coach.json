@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-12T08:32",
+ "actualizado": "2026-11-23T14:25",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1061,6 +1061,101 @@
      "p": 49,
      "c": 53,
      "g": 9
+    }
+   ]
+  },
+  "2026-11-23": {
+   "titulo": "Lunes keto · F45",
+   "tipo": "calidad",
+   "nota": "Día hecho con lo que has comprado hoy. Lo de María (emperador, lubina, ñoquis, patata, sazonador de pasta y el entrecot) no cuenta. Dime qué has desayunado y lo sumo.",
+   "sesiones": [
+    {
+     "h": "14:30",
+     "d": "Comida",
+     "t": "2 filetes de pechuga de pollo a las finas hierbas a la plancha + ensalada gourmet con 6-8 cherrys, 30 g de feta y un huevo cocido + champiñones salteados. 1 cucharada de AOVE"
+    },
+    {
+     "h": "17:30",
+     "d": "Merienda",
+     "t": "2 huevos cocidos. Creatina con agua"
+    },
+    {
+     "h": "Tarde",
+     "d": "F45",
+     "t": "Clase normal (RPE 7-8). Primeros días de keto: si te notas flojo, baja un punto"
+    },
+    {
+     "h": "20:45",
+     "d": "Post",
+     "t": "Batido de Evolate (40 g) con agua"
+    },
+    {
+     "h": "21:30",
+     "d": "Cena",
+     "t": "Filete extra-tierno de ternera a la plancha con champiñones y la ensalada cuatro estaciones con un poco de queso rallado. Antes, un tazón pequeño de crema de calabaza si te apetece"
+    },
+    {
+     "h": "22:30",
+     "d": "Recena (si hay hambre)",
+     "t": "60 g de jamón serrano y 2 lonchas de queso"
+    }
+   ],
+   "comidas": [
+    {
+     "h": "14:30",
+     "n": "Comida · 220 g pechuga de pollo finas hierbas, ensalada gourmet, cherrys, 30 g feta, 1 huevo cocido, champiñones, 10 g AOVE",
+     "kcal": 560,
+     "p": 62,
+     "c": 9,
+     "g": 26
+    },
+    {
+     "h": "17:30",
+     "n": "Merienda · 2 huevos cocidos",
+     "kcal": 150,
+     "p": 12,
+     "c": 1,
+     "g": 10
+    },
+    {
+     "h": "17:30",
+     "n": "Creatina · 5 g",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 200 g filete de ternera, champiñones, ensalada IV estaciones, 15 g queso rallado, 10 g AOVE",
+     "kcal": 455,
+     "p": 49,
+     "c": 6,
+     "g": 26
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 250 ml crema de calabaza (opcional)",
+     "kcal": 90,
+     "p": 2,
+     "c": 12,
+     "g": 4
+    },
+    {
+     "h": "22:30",
+     "n": "Recena · 60 g jamón serrano y 2 lonchas de queso semicurado",
+     "kcal": 280,
+     "p": 27,
+     "c": 1,
+     "g": 19
     }
    ]
   }
