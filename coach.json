@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-23T14:35",
+ "actualizado": "2026-11-23T14:27",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1067,12 +1067,12 @@
   "2026-11-23": {
    "titulo": "Lunes keto · F45",
    "tipo": "calidad",
-   "nota": "Día hecho con lo que has comprado hoy. Lo de María (emperador, lubina, ñoquis, patata, sazonador de pasta y el entrecot) no cuenta. Dime qué has desayunado y lo sumo.",
+   "nota": "Día hecho con lo que has comprado hoy. Lo de María (emperador, lubina, ñoquis, patata y sazonador de pasta) no cuenta. Dime qué has desayunado y lo sumo.",
    "sesiones": [
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "2 filetes de pechuga de pollo a las finas hierbas a la plancha + ensalada gourmet con 6-8 cherrys, 30 g de feta y un huevo cocido + champiñones salteados. 1 cucharada de AOVE"
+     "t": "Entrecot con María (unos 220 g, como una mano abierta y un dedo de grosor) con ensalada gourmet, cherrys y champiñones. Sin patatas"
     },
     {
      "h": "17:30",
@@ -1103,11 +1103,11 @@
    "comidas": [
     {
      "h": "14:30",
-     "n": "Comida · 220 g pechuga de pollo finas hierbas, ensalada gourmet, cherrys, 30 g feta, 1 huevo cocido, champiñones, 10 g AOVE",
-     "kcal": 560,
-     "p": 62,
-     "c": 9,
-     "g": 26
+     "n": "Comida · entrecot con María (~220 g) con ensalada gourmet, cherrys, champiñones y 5 g AOVE",
+     "kcal": 510,
+     "p": 48,
+     "c": 6,
+     "g": 32
     },
     {
      "h": "17:30",
