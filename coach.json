@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-23T14:25",
+ "actualizado": "2026-11-23T14:35",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1156,6 +1156,418 @@
      "p": 27,
      "c": 1,
      "g": 19
+    }
+   ]
+  },
+  "2026-11-24": {
+   "tipo": "calidad",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · 250 g queso batido/fresco con 25 g Evolate, 30 g nueces y canela",
+     "kcal": 405,
+     "p": 46,
+     "c": 11,
+     "g": 20
+    },
+    {
+     "h": "11:30",
+     "n": "Media mañana · 20 g de nueces",
+     "kcal": 130,
+     "p": 3,
+     "c": 2,
+     "g": 12
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 2 burgers de vacuno (250 g) con ensalada, cherrys, 30 g feta y 5 g AOVE",
+     "kcal": 690,
+     "p": 50,
+     "c": 8,
+     "g": 46
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 2 huevos cocidos",
+     "kcal": 150,
+     "p": 12,
+     "c": 1,
+     "g": 10
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · revuelto de 2 huevos con champiñones y jamón",
+     "kcal": 330,
+     "p": 26,
+     "c": 3,
+     "g": 23
+    },
+    {
+     "h": "22:15",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    }
+   ]
+  },
+  "2026-11-25": {
+   "tipo": "calidad",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y 1 loncha de queso",
+     "kcal": 430,
+     "p": 37,
+     "c": 1,
+     "g": 30
+    },
+    {
+     "h": "11:30",
+     "n": "Media mañana · 20 g de nueces",
+     "kcal": 130,
+     "p": 3,
+     "c": 2,
+     "g": 12
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, queso rallado y 5 g AOVE",
+     "kcal": 530,
+     "p": 46,
+     "c": 7,
+     "g": 33
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 200 g queso fresco batido con 20 g nueces",
+     "kcal": 225,
+     "p": 22,
+     "c": 8,
+     "g": 13
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y queso rallado, 10 g AOVE",
+     "kcal": 400,
+     "p": 47,
+     "c": 6,
+     "g": 20
+    },
+    {
+     "h": "22:15",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    }
+   ]
+  },
+  "2026-11-26": {
+   "tipo": "hyrox",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · tortilla de 3 huevos con 60 g pavo, champiñones y medio aguacate",
+     "kcal": 490,
+     "p": 36,
+     "c": 5,
+     "g": 33
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 220 g pechuga de pollo a la plancha, brócoli y medio aguacate, 10 g AOVE",
+     "kcal": 560,
+     "p": 55,
+     "c": 10,
+     "g": 32
+    },
+    {
+     "h": "18:00",
+     "n": "Media mañana · fruta de la oficina (solo hoy, antes del HYROX)",
+     "kcal": 75,
+     "p": 1,
+     "c": 18,
+     "g": 0
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 2 hamburguesas de lomo con pimientos y ensalada",
+     "kcal": 440,
+     "p": 42,
+     "c": 6,
+     "g": 26
+    },
+    {
+     "h": "22:15",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    }
+   ]
+  },
+  "2026-11-27": {
+   "tipo": "calidad",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · 250 g queso batido/fresco con 25 g Evolate, 30 g nueces y canela",
+     "kcal": 405,
+     "p": 46,
+     "c": 11,
+     "g": 20
+    },
+    {
+     "h": "11:30",
+     "n": "Media mañana · 20 g de nueces",
+     "kcal": 130,
+     "p": 3,
+     "c": 2,
+     "g": 12
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 200 g filete de ternera extra-tierno, pimientos a la plancha, ensalada y 10 g AOVE",
+     "kcal": 470,
+     "p": 45,
+     "c": 7,
+     "g": 28
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 2 huevos cocidos",
+     "kcal": 150,
+     "p": 12,
+     "c": 1,
+     "g": 10
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 2 burgers de vacuno con champiñones y ensalada, 5 g AOVE",
+     "kcal": 560,
+     "p": 46,
+     "c": 5,
+     "g": 40
+    },
+    {
+     "h": "22:15",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    }
+   ]
+  },
+  "2026-11-28": {
+   "tipo": "calidad",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y 1 loncha de queso",
+     "kcal": 430,
+     "p": 37,
+     "c": 1,
+     "g": 30
+    },
+    {
+     "h": "11:30",
+     "n": "Media mañana · 20 g de nueces",
+     "kcal": 130,
+     "p": 3,
+     "c": 2,
+     "g": 12
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 220 g pechuga de pollo a la plancha, brócoli y medio aguacate, 10 g AOVE",
+     "kcal": 560,
+     "p": 55,
+     "c": 10,
+     "g": 32
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "20:45",
+     "n": "Post · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y queso rallado, 10 g AOVE",
+     "kcal": 400,
+     "p": 47,
+     "c": 6,
+     "g": 20
+    },
+    {
+     "h": "22:15",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
+    }
+   ]
+  },
+  "2026-11-29": {
+   "tipo": "descanso",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "comidas": [
+    {
+     "h": "08:30",
+     "n": "Desayuno · tortilla de 3 huevos con 60 g pavo, champiñones y medio aguacate",
+     "kcal": 490,
+     "p": 36,
+     "c": 5,
+     "g": 33
+    },
+    {
+     "h": "14:30",
+     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, queso rallado y 5 g AOVE",
+     "kcal": 530,
+     "p": 46,
+     "c": 7,
+     "g": 33
+    },
+    {
+     "h": "18:00",
+     "n": "Merienda · 200 g queso fresco batido con 20 g nueces",
+     "kcal": 225,
+     "p": 22,
+     "c": 8,
+     "g": 13
+    },
+    {
+     "h": "18:00",
+     "n": "Creatina · 5 g con agua",
+     "kcal": 0,
+     "p": 0,
+     "c": 0,
+     "g": 0
+    },
+    {
+     "h": "18:00",
+     "n": "Batido · 40 g Evolate con agua",
+     "kcal": 150,
+     "p": 32,
+     "c": 2,
+     "g": 1
+    },
+    {
+     "h": "21:30",
+     "n": "Cena · tortilla de 2 huevos con 60 g pavo, ensalada IV estaciones y 5 g AOVE",
+     "kcal": 310,
+     "p": 26,
+     "c": 3,
+     "g": 21
+    },
+    {
+     "h": "22:00",
+     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
+     "kcal": 250,
+     "p": 24,
+     "c": 1,
+     "g": 17
     }
    ]
   }

@@ -686,82 +686,27 @@
  ],
  "compra": [
   {
-   "seccion": "Carne",
-   "items": [
-    [
-     "Pechuga de pollo",
-     "1,5 kg",
-     8.6
-    ],
-    [
-     "Contramuslos de pollo deshuesados",
-     "1 kg",
-     6.0
-    ],
-    [
-     "Filetes de pechuga de pavo",
-     "700 g",
-     5.6
-    ],
-    [
-     "Cinta de lomo de cerdo",
-     "500 g",
-     4.0
-    ],
-    [
-     "Picada de ternera 5 %",
-     "400 g",
-     3.5
-    ],
-    [
-     "Jamón serrano en lonchas",
-     "100 g",
-     2.5
-    ]
-   ]
-  },
-  {
-   "seccion": "Huevos y lácteos",
+   "seccion": "Te falta para la semana",
    "items": [
     [
      "Huevos L",
-     "2,5 docenas",
-     7.0
+     "2 docenas",
+     5.6
     ],
     [
-     "Claras de huevo",
-     "500 g",
-     2.0
+     "Pechuga de pollo",
+     "1 kg",
+     5.8
     ],
     [
      "Queso fresco batido 0 %",
-     "2 × 1 kg",
-     4.6
+     "1 kg",
+     2.3
     ],
-    [
-     "Queso curado o semicurado",
-     "cuña 150 g",
-     2.2
-    ],
-    [
-     "Bebida de almendras sin azúcar",
-     "2 × 1 L",
-     2.0
-    ],
-    [
-     "Queso crema y parmesano rallado",
-     "1 de cada",
-     2.5
-    ]
-   ]
-  },
-  {
-   "seccion": "Grasas buenas",
-   "items": [
     [
      "Aguacates",
-     "malla y media (7-8)",
-     4.5
+     "malla",
+     3.0
     ],
     [
      "Nueces peladas",
@@ -769,44 +714,19 @@
      2.6
     ],
     [
-     "Crema de cacahuete 100 %",
-     "1 bote",
-     2.6
+     "Brócoli congelado",
+     "1 kg",
+     1.8
     ],
     [
-     "Aceitunas",
-     "1 bote grande",
-     1.0
-    ]
-   ]
-  },
-  {
-   "seccion": "Verdura",
-   "items": [
-    [
-     "Brócoli y coliflor congelados",
-     "2 × 1 kg",
-     3.6
-    ],
-    [
-     "Calabacín, berenjena, pimiento verde, champiñones",
-     "para asar y saltear",
-     4.0
-    ],
-    [
-     "Espinacas y ensalada en bolsa",
+     "Calabacín",
      "2",
-     2.4
-    ],
-    [
-     "Leche de coco light",
-     "1 lata",
-     1.3
+     1.2
     ]
    ]
   }
  ],
- "compraNota": "Total aproximado: unos 72 € sin el Evolate. Sin pan, arroz, pasta, legumbres, patata, boniato ni fruta (la del jueves antes del HYROX es la de la oficina). Precios orientativos: compruébalos en la app de Mercadona.",
+ "compraNota": "Unos 22 € más. Con la compra del lunes (76 €, de los que unos 12 € son de María) la semana sale por unos 86 €. Lo de María: emperador, lubina, ñoquis, patata, sazonador de pasta y el entrecot.",
  "reglas": [
   [
    "La regla keto",
@@ -845,6 +765,6 @@
    "Una comida libre a la semana, no un día libre."
   ]
  ],
- "compraTitulo": "Compra de la semana · keto",
+ "compraTitulo": "Refuerzo para esta semana (ya tienes la compra del lunes)",
  "casa": "Antes de salir mira si tienes en casa: aceite de oliva, sal, especias (pimentón, curry, orégano, canela), miel, vinagre y café. Si se te ha acabado algo, cómpralo, pero el aceite (8-9 €) se come casi todo el margen: esa semana compra 1 kg de pollo menos y tira de huevos."
 }

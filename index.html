@@ -772,7 +772,7 @@ function dayPlan(s){
   const dia=COACH&&COACH.diario&&s>=(COACH.diario.desde||"")?COACH.diario.items.map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t,diario:1})):[];
   if(!c){const mm=menuDia(s,b.type);return {...b,items:b.items.concat(dia),coach:mm?{comidas:mm,auto:1}:undefined}}
   const cc=c.comidas&&c.comidas.length?c:{...c,comidas:menuDia(s,c.tipo&&TARGETS[c.tipo]?c.tipo:b.type)||[]};
-  return {...b,items:(c.sesiones||[]).map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})).concat(dia),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:cc};
+  return {...b,items:(c.sesiones?c.sesiones.map(x=>({d:(x.h?x.h+" · ":"")+x.d,t:x.t})):b.items).concat(dia),type:c.tipo&&TARGETS[c.tipo]?c.tipo:b.type,coach:cc};
 }
 const Z2CORTO=[null,"30 min","35 min","35 min","40 min","30 min","40 min","45 min","40 min","45 min","45 min","45 min","35 min","45 min","45 min","45 min","35 min","30 min","40 min","30 min","20 min suaves"];
 const SIM={14:"Media simulación A en UFC: 4 × (1 km de cinta + estación completa): farmers 200 m, sandbag lunges 100 m, remo 1.000 m y 100 wall balls. Sin parar, con tiempos",15:"Media simulación B en UFC: 4 × (1 km de cinta + estación completa): SkiErg 1.000 m, sled push 50 m, sled pull 50 m y burpee broad jumps 80 m. Sin parar, con tiempos",17:"Simulación completa en UFC: 8 × (1 km + estación) con cargas Open y tiempos por tramo"};
