@@ -606,6 +606,33 @@
     "Solo antes de la clase HYROX o las series, 60-90 min antes."
    ],
    "variantes": "Keto con hidratos alrededor del entreno duro: no te saca de la dieta y te ayuda a rendir."
+  },
+  {
+   "id": "com-l",
+   "momento": "Comida",
+   "nombre": "Entrecot con champiñones al ajillo y pimientos",
+   "min": 20,
+   "kcal": 540,
+   "p": 50,
+   "c": 7,
+   "g": 34,
+   "ingredientes": [
+    "220 g de entrecot (sácalo de la nevera 20 min antes)",
+    "200 g de champiñón laminado",
+    "4-5 pimientos semipicantes",
+    "2 dientes de ajo en láminas",
+    "5 g de AOVE (1 cucharadita)",
+    "Perejil, sal gorda y pimienta"
+   ],
+   "pasos": [
+    "Seca el entrecot con papel de cocina y sálalo por los dos lados.",
+    "Sartén o plancha muy caliente con unas gotas de aceite: 2-3 min por lado al punto, 4 min si lo quieres hecho. Déjalo reposar 3 min en un plato tapado con papel de aluminio.",
+    "En la misma sartén, a fuego medio, el resto del aceite y el ajo 30 segundos sin que se queme.",
+    "Añade los champiñones y una pizca de sal: 5-6 min a fuego fuerte, removiendo, hasta que suelten el agua y se doren. Perejil al final.",
+    "Pimientos enteros a la plancha 4-5 min, dándoles la vuelta, hasta que se arruguen. Sal gorda.",
+    "Corta el entrecot en tiras y sírvelo con los champiñones, los pimientos y el jugo del reposo por encima."
+   ],
+   "variantes": "Con lomo de cerdo o filete de ternera, igual. Sin patatas ni pan."
   }
  ],
  "menu": [

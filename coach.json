@@ -1072,7 +1072,7 @@
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "Entrecot con María (unos 220 g, como una mano abierta y un dedo de grosor) con ensalada gourmet, cherrys y champiñones. Sin patatas"
+     "t": "Entrecot con champiñones al ajillo y pimientos semipicantes. Receta en Comida → Recetas"
     },
     {
      "h": "17:30",
@@ -1103,11 +1103,11 @@
    "comidas": [
     {
      "h": "14:30",
-     "n": "Comida · entrecot con María (~220 g) con ensalada gourmet, cherrys, champiñones y 5 g AOVE",
-     "kcal": 510,
-     "p": 48,
-     "c": 6,
-     "g": 32
+     "n": "Comida · entrecot con champiñones al ajillo y pimientos (receta com-l, ~220 g de entrecot)",
+     "kcal": 540,
+     "p": 50,
+     "c": 7,
+     "g": 34
     },
     {
      "h": "17:30",
