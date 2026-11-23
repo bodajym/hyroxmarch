@@ -1072,7 +1072,7 @@
     {
      "h": "14:30",
      "d": "Comida",
-     "t": "Entrecot con champiñones al ajillo y pimientos semipicantes. Receta en Comida → Recetas"
+     "t": "Entrecot con champiñones salteados, sin ajo. Receta en Comida → Recetas"
     },
     {
      "h": "17:30",
@@ -1103,10 +1103,10 @@
    "comidas": [
     {
      "h": "14:30",
-     "n": "Comida · entrecot con champiñones al ajillo y pimientos (receta com-l, ~220 g de entrecot)",
-     "kcal": 540,
-     "p": 50,
-     "c": 7,
+     "n": "Comida · entrecot (~220 g) con champiñones salteados sin ajo",
+     "kcal": 520,
+     "p": 49,
+     "c": 5,
      "g": 34
     },
     {
