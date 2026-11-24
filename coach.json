@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-23T16:18",
+ "actualizado": "2026-11-24T10:31",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1165,19 +1165,19 @@
    "comidas": [
     {
      "h": "08:30",
-     "n": "Desayuno · 250 g queso batido/fresco con 25 g Evolate, 30 g nueces y canela",
-     "kcal": 405,
-     "p": 46,
-     "c": 11,
-     "g": 20
+     "n": "Desayuno · 1 mandarina",
+     "kcal": 40,
+     "p": 1,
+     "c": 9,
+     "g": 0
     },
     {
      "h": "11:30",
-     "n": "Media mañana · 20 g de nueces",
-     "kcal": 130,
-     "p": 3,
+     "n": "Media mañana · 30 g de nueces",
+     "kcal": 195,
+     "p": 5,
      "c": 2,
-     "g": 12
+     "g": 20
     },
     {
      "h": "14:30",
@@ -1189,11 +1189,11 @@
     },
     {
      "h": "18:00",
-     "n": "Merienda · 2 huevos cocidos",
-     "kcal": 150,
-     "p": 12,
-     "c": 1,
-     "g": 10
+     "n": "Merienda · 250 g queso batido con 25 g Evolate y canela + 2 huevos cocidos",
+     "kcal": 360,
+     "p": 53,
+     "c": 10,
+     "g": 11
     },
     {
      "h": "18:00",
