@@ -30,7 +30,8 @@
     "Cuaja la tortilla con unas gotas de aceite.",
     "Con el aguacate en láminas y el pavo."
    ],
-   "variantes": "Con espinacas o champiñones dentro."
+   "variantes": "Con espinacas o champiñones dentro.",
+   "s": 7.1
   },
   {
    "id": "des-b",
@@ -52,7 +53,8 @@
     "Mezcla el Evolate con el queso y dos cucharadas de agua.",
     "Por encima, las nueces y la crema de cacahuete."
    ],
-   "variantes": "Sin fruta ni miel para mantener la cetosis."
+   "variantes": "Sin fruta ni miel para mantener la cetosis.",
+   "s": 3.8
   },
   {
    "id": "des-c",
@@ -74,7 +76,8 @@
     "Al final, el jamón troceado.",
     "Con el aguacate."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 8.8
   },
   {
    "id": "des-d",
@@ -96,7 +99,8 @@
     "Saltea las espinacas con el aceite.",
     "Huevos a la plancha y el jamón y el queso al lado."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 13.8
   },
   {
    "id": "des-e",
@@ -117,7 +121,8 @@
     "Tortilla con el queso dentro.",
     "Con el tomate y el aguacate."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 10.9
   },
   {
    "id": "com-a",
@@ -139,7 +144,8 @@
     "Horno a 200 °C: pollo y verduras con aceite y especias, 25 min.",
     "Con el aguacate en láminas."
    ],
-   "variantes": "Del batch del domingo: va bien en táper."
+   "variantes": "Del batch del domingo: va bien en táper.",
+   "s": 7.3
   },
   {
    "id": "com-b",
@@ -160,7 +166,8 @@
     "Filete a la plancha muy caliente.",
     "Ensalada con el feta y el aceite."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 13.1
   },
   {
    "id": "com-c",
@@ -182,7 +189,8 @@
     "Horno a 200 °C: contramuslos 25 min.",
     "Brócoli al vapor con el aceite y las almendras."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 5
   },
   {
    "id": "com-d",
@@ -205,7 +213,8 @@
     "Champiñones 5 min y espinacas al final.",
     "Parmesano por encima."
    ],
-   "variantes": "Va bien en táper."
+   "variantes": "Va bien en táper.",
+   "s": 8.6
   },
   {
    "id": "com-e",
@@ -227,7 +236,8 @@
     "Hamburguesas con sal y pimienta, 3-4 min por lado; el queso encima.",
     "Con la ensalada y el aguacate."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 9.6
   },
   {
    "id": "com-f",
@@ -249,7 +259,8 @@
     "Lomo 2-3 min por lado.",
     "Salsa: el queso crema y el rallado con un chorrito de agua caliente 1 min."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 14.6
   },
   {
    "id": "com-h",
@@ -271,7 +282,8 @@
    "pasos": [
     "Todo en un bol grande y aliña."
    ],
-   "variantes": "La comida de recurso."
+   "variantes": "La comida de recurso.",
+   "s": 8.7
   },
   {
    "id": "com-i",
@@ -293,7 +305,8 @@
     "Pavo en sartén muy caliente 5 min.",
     "Verdura 5 min, soja y nueces al final."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 3.2
   },
   {
    "id": "com-k",
@@ -317,7 +330,8 @@
     "Leche de coco 5 min.",
     "Coliflor al microondas 6 min como base."
    ],
-   "variantes": "La coliflor hace de arroz."
+   "variantes": "La coliflor hace de arroz.",
+   "s": 10.1
   },
   {
    "id": "mer-a",
@@ -337,7 +351,8 @@
    "pasos": [
     "Todo en un bol."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 2
   },
   {
    "id": "mer-b",
@@ -357,7 +372,8 @@
    "pasos": [
     "Tal cual."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 11.1
   },
   {
    "id": "mer-c",
@@ -375,7 +391,8 @@
    "pasos": [
     "Cuece una docena el domingo."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 4.1
   },
   {
    "id": "post-b",
@@ -393,7 +410,8 @@
    "pasos": [
     "Batido nada más acabar."
    ],
-   "variantes": "La leche proteica tiene unos 12 g de hidratos por vaso: en keto, mejor bebida de almendras o agua."
+   "variantes": "La leche proteica tiene unos 12 g de hidratos por vaso: en keto, mejor bebida de almendras o agua.",
+   "s": 0.6
   },
   {
    "id": "cen-a",
@@ -414,7 +432,8 @@
     "Tortilla francesa.",
     "Ensalada con el aguacate y el aceite."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 5.6
   },
   {
    "id": "cen-b",
@@ -433,7 +452,8 @@
    "pasos": [
     "Mezcla y listo."
    ],
-   "variantes": "Para noches de poca hambre."
+   "variantes": "Para noches de poca hambre.",
+   "s": 1.5
   },
   {
    "id": "cen-c",
@@ -454,7 +474,8 @@
    "pasos": [
     "Todo al bol y aliña."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 6
   },
   {
    "id": "cen-d",
@@ -475,7 +496,8 @@
     "Verdura al horno 20 min o salteada 8 min.",
     "Pollo a la plancha 4 min por lado."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 2.9
   },
   {
    "id": "cen-e",
@@ -496,7 +518,8 @@
     "Pavo a la plancha 3 min por lado.",
     "Ensalada con el aguacate y el aceite."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 2.9
   },
   {
    "id": "cen-f",
@@ -517,7 +540,8 @@
     "Champiñones con ajo 4 min.",
     "Pavo y huevos, remover hasta cuajar."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 2.6
   },
   {
    "id": "snk-a",
@@ -535,7 +559,8 @@
    "pasos": [
     "Tal cual."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 4.1
   },
   {
    "id": "snk-b",
@@ -553,7 +578,8 @@
    "pasos": [
     "Tal cual."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 3.8
   },
   {
    "id": "snk-c",
@@ -571,7 +597,8 @@
    "pasos": [
     "Agitar y listo."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 0.2
   },
   {
    "id": "snk-e",
@@ -588,7 +615,8 @@
    "pasos": [
     "A media mañana, en lugar de la fruta de la oficina."
    ],
-   "variantes": ""
+   "variantes": "",
+   "s": 1.5
   },
   {
    "id": "snk-f",
@@ -605,7 +633,8 @@
    "pasos": [
     "Solo antes de la clase HYROX o las series, 60-90 min antes."
    ],
-   "variantes": "Keto con hidratos alrededor del entreno duro: no te saca de la dieta y te ayuda a rendir."
+   "variantes": "Keto con hidratos alrededor del entreno duro: no te saca de la dieta y te ayuda a rendir.",
+   "s": 0
   },
   {
    "id": "com-l",
@@ -630,7 +659,8 @@
     "En la sartén de la carne, un chorrito de agua: rasca el fondo 30 segundos y echa ese jugo sobre los champiñones.",
     "Entrecot en tiras con los champiñones."
    ],
-   "variantes": "Cálculo: entrecot 220 g ≈ 418 kcal y 44 g de proteína; champiñones 250 g ≈ 55 kcal, 7 g de proteína y 6 g de hidratos; aceite 7 g ≈ 63 kcal. Sin ajo para que no repita."
+   "variantes": "Cálculo: entrecot 220 g ≈ 418 kcal y 44 g de proteína; champiñones 250 g ≈ 55 kcal, 7 g de proteína y 6 g de hidratos; aceite 7 g ≈ 63 kcal. Sin ajo para que no repita.",
+   "s": 14
   }
  ],
  "menu": [
@@ -788,7 +818,8 @@
   [
    "Fin de semana",
    "Una comida libre a la semana, no un día libre."
-  ]
+  ],
+  "Grasa buena primero: AOVE, aguacate, nueces, aceitunas y huevo. Saturada (queso curado, embutido, carne grasa, mantequilla, coco) por debajo del 10 % de las kcal, unos 20-22 g al día."
  ],
  "compraTitulo": "Refuerzo para esta semana (ya tienes la compra del lunes)",
  "casa": "Antes de salir mira si tienes en casa: aceite de oliva, sal, especias (pimentón, curry, orégano, canela), miel, vinagre y café. Si se te ha acabado algo, cómpralo, pero el aceite (8-9 €) se come casi todo el margen: esa semana compra 1 kg de pollo menos y tira de huevos."

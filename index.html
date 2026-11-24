@@ -444,6 +444,13 @@ body.viewer .tama-view{padding-top:12px}
 .keto.warn .keto-bar i{background:var(--warn)}.keto.over .keto-bar i{background:var(--bad)}
 .keto-bar u{position:absolute;top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--ink) 25%,transparent)}
 .keto p{margin:0;font-size:13.5px;line-height:1.45}.keto .muted{color:var(--muted)}
+.keto.fat.ok .keto-bar i{background:var(--ok)}
+.fat-split{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px}
+.fs-u{background:var(--ok)}.fs-s{background:var(--warn)}
+.fat-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted)}.fat-leg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}.fat-leg b{color:var(--ink);font-family:var(--mono);font-weight:500}
+.sat{font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:6px;margin-left:4px;white-space:nowrap}
+.sat.lo{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}.sat.mid{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}.sat.hi{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+
 
 /* ---------- viaje 3D ---------- */
 .jy{padding:0!important;overflow:hidden}
@@ -741,7 +748,7 @@ const Z2=[null,"35 min","40 min","45 min","50 min","35 min","50 min","55 min","4
 const WEEKNOTE={1:"Arranque: test de 5 km (martes) y de sentadilla (miércoles). El peso bajará rápido por la retención: no cuenta como grasa.",2:"Boda el fin de semana: sin F45 el sábado y domingo de descanso. Proteína en desayuno y comida, agua entre copas. El lunes vuelves al plan sin compensar.",3:"Partidos de fútbol: cada partido cuenta como un F45. El día del partido no hay F45, y si cae en viernes, no hay series.",5:"Descarga: F45 al 70 %, menos volumen. Viernes, series cortas.",8:"Navidad: mantenimiento flexible, proteína igual. Bioimpedancia.",9:"Navidad. Decidir división: Open individual o Doubles.",10:"Vuelta al déficit.",12:"Descarga y test de 5 km el viernes (compáralo con el de noviembre).",16:"Descarga antes de la simulación completa.",17:"Simulación completa el domingo 28 de febrero por la mañana en UFC (8 km + 8 estaciones, cargas Open). El sábado, F45 suave.",19:"Puesta a punto: F45 lunes, miércoles y jueves en suave, series cortas el viernes y fin de semana libre. Calorías a mantenimiento.",20:"Semana de competición. Nada nuevo: ni comida, ni gel, ni zapatillas."};
 const TESTS={1:["5 km (tiempo)","5 km (FC media)","Sentadilla 5 reps RPE 8 (kg)"],5:["1 km a tope","SkiErg 1.000 m","Remo 1.000 m"],12:["5 km (tiempo)","Sled push 50 m","Sled pull 50 m","100 wall balls","Sentadilla 5 reps (kg)"],14:["Media simulación A (total)"],15:["Media simulación B (total)"],17:["Simulación completa (total)"]};
 const TARGETS={descanso:{n:"Descanso",kcal:[1850,2000],p:[180,200],c:[20,35],g:[110,125]},z2:{n:"Carrera Z2",kcal:[2050,2200],p:[185,205],c:[25,40],g:[125,145]},calidad:{n:"F45 · series · UFC",kcal:[2200,2350],p:[190,210],c:[30,50],g:[135,155]},hyrox:{n:"Jueves HYROX",kcal:[2300,2450],p:[190,210],c:[35,55],g:[145,165]},doble:{n:"Doble o simulación",kcal:[2500,2700],p:[190,210],c:[40,60],g:[165,185]},mant:{n:"Mantenimiento",kcal:[2850,3050],p:[180,200],c:[300,380],g:[70,90]}};
-const PRESETS=[["Desayuno · Tortilla de huevos con aguacate y pavo", 470, 42, 6, 31], ["Desayuno · Bol de queso batido con Evolate, nueces y crema de cacahuete", 440, 45, 14, 28], ["Desayuno · Huevos revueltos con jamón serrano y aguacate", 465, 38, 5, 33], ["Desayuno · Huevos a la plancha con jamón, queso y espinacas", 500, 39, 3, 37], ["Desayuno · Tortilla francesa con queso, tomate y aguacate", 480, 41, 7, 34], ["Comida · Pollo al horno con verduras asadas y aguacate", 580, 53, 14, 34], ["Comida · Filete de ternera o pavo con ensalada, aguacate y queso", 515, 47, 6, 34], ["Comida · Contramuslos de pollo al horno con brócoli y nueces", 595, 48, 10, 38], ["Comida · Pollo al ajillo con champiñones, espinacas y parmesano", 555, 62, 6, 27], ["Comida · Hamburguesas de ternera sin pan con queso, aguacate y ensalada", 550, 45, 8, 36], ["Comida · Lomo de cerdo a la plancha con calabacín y salsa de queso", 535, 52, 8, 32], ["Comida · Ensalada completa de pollo, huevo, aguacate y aceitunas", 615, 55, 8, 40], ["Comida · Pavo salteado con verduras y nueces", 520, 56, 12, 26], ["Comida · Pollo al curry con leche de coco y coliflor", 505, 50, 14, 24], ["Merienda · Skyr o queso batido con nueces", 260, 22, 8, 19], ["Merienda · Jamón serrano, queso curado y aceitunas", 295, 26, 2, 20], ["Merienda · 2 huevos cocidos y un puñado de nueces", 245, 15, 3, 19], ["Post-entreno · Batido de Evolate con bebida de almendras", 190, 33, 3, 4], ["Cena · Tortilla de huevos y claras con ensalada y aguacate", 440, 34, 6, 28], ["Cena · Queso batido con nueces", 265, 24, 9, 15], ["Cena · Ensalada de pavo, huevo y aguacate", 420, 40, 6, 26], ["Cena · Pollo a la plancha con verduras asadas", 375, 45, 10, 16], ["Cena · Pechuga de pavo a la plancha con ensalada y aguacate", 405, 44, 6, 20], ["Cena · Revuelto de huevo, claras, champiñones y pavo", 360, 48, 6, 14], ["Snack · Jamón serrano y aceitunas", 190, 20, 2, 12], ["Snack · 2 huevos cocidos con aceitunas", 200, 14, 2, 15], ["Snack · Batido rápido de Evolate", 112, 27, 1, 0], ["Snack · Puñado de nueces", 160, 4, 2, 15], ["Snack · Pre-HYROX: una pieza de fruta", 75, 1, 18, 0], ["Comida · Entrecot con champiñones salteados (sin ajo, en dos sartenes)", 540, 51, 6, 35]];
+const PRESETS=[["Desayuno · Tortilla de huevos con aguacate y pavo", 470, 42, 6, 31, 7.1], ["Desayuno · Bol de queso batido con Evolate, nueces y crema de cacahuete", 440, 45, 14, 28, 3.8], ["Desayuno · Huevos revueltos con jamón serrano y aguacate", 465, 38, 5, 33, 8.8], ["Desayuno · Huevos a la plancha con jamón, queso y espinacas", 500, 39, 3, 37, 13.8], ["Desayuno · Tortilla francesa con queso, tomate y aguacate", 480, 41, 7, 34, 10.9], ["Comida · Pollo al horno con verduras asadas y aguacate", 580, 53, 14, 34, 7.3], ["Comida · Filete de ternera o pavo con ensalada, aguacate y queso", 515, 47, 6, 34, 13.1], ["Comida · Contramuslos de pollo al horno con brócoli y nueces", 595, 48, 10, 38, 5], ["Comida · Pollo al ajillo con champiñones, espinacas y parmesano", 555, 62, 6, 27, 8.6], ["Comida · Hamburguesas de ternera sin pan con queso, aguacate y ensalada", 550, 45, 8, 36, 9.6], ["Comida · Lomo de cerdo a la plancha con calabacín y salsa de queso", 535, 52, 8, 32, 14.6], ["Comida · Ensalada completa de pollo, huevo, aguacate y aceitunas", 615, 55, 8, 40, 8.7], ["Comida · Pavo salteado con verduras y nueces", 520, 56, 12, 26, 3.2], ["Comida · Pollo al curry con leche de coco y coliflor", 505, 50, 14, 24, 10.1], ["Merienda · Skyr o queso batido con nueces", 260, 22, 8, 19, 2], ["Merienda · Jamón serrano, queso curado y aceitunas", 295, 26, 2, 20, 11.1], ["Merienda · 2 huevos cocidos y un puñado de nueces", 245, 15, 3, 19, 4.1], ["Post-entreno · Batido de Evolate con bebida de almendras", 190, 33, 3, 4, 0.6], ["Cena · Tortilla de huevos y claras con ensalada y aguacate", 440, 34, 6, 28, 5.6], ["Cena · Queso batido con nueces", 265, 24, 9, 15, 1.5], ["Cena · Ensalada de pavo, huevo y aguacate", 420, 40, 6, 26, 6], ["Cena · Pollo a la plancha con verduras asadas", 375, 45, 10, 16, 2.9], ["Cena · Pechuga de pavo a la plancha con ensalada y aguacate", 405, 44, 6, 20, 2.9], ["Cena · Revuelto de huevo, claras, champiñones y pavo", 360, 48, 6, 14, 2.6], ["Snack · Jamón serrano y aceitunas", 190, 20, 2, 12, 4.1], ["Snack · 2 huevos cocidos con aceitunas", 200, 14, 2, 15, 3.8], ["Snack · Batido rápido de Evolate", 112, 27, 1, 0, 0.2], ["Snack · Puñado de nueces", 160, 4, 2, 15, 1.5], ["Snack · Pre-HYROX: una pieza de fruta", 75, 1, 18, 0, 0], ["Comida · Entrecot con champiñones salteados (sin ajo, en dos sartenes)", 540, 51, 6, 35, 14]];
 const CENTROS=["F45 Barrio Salamanca","UFC Gym","Retiro","Fuente del Berro","Otro"];
 const TIPOS=["F45 clase","F45 HYROX","Series","Z2","Progresivo","Fuerza + estaciones","Simulación","Fútbol","Paseo / movilidad","Otro"];
 const QUESTIONS=["¿Qué sesión faltó y por qué?","Ritmos y pulso de series y Z2","Cargas de sentadilla y tiempos de estaciones","¿Algún dolor que dure más de 48 h?","¿Qué tienes la semana que viene (viajes, cenas, partidos, trabajo)?","Lo que mejor y peor ha ido"];
@@ -774,10 +781,10 @@ let COACH=null;
 function menuDia(s,type){
   if(!FOOD||!FOOD.menu||!FOOD.recetas)return null;const DN=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],m=FOOD.menu.find(x=>x.dia===DN[pd(s).getDay()]);if(!m)return null;
   const H={desayuno:"08:30",media:"11:30",comida:"14:30",merienda:"18:00",post:"20:45",cena:"21:30"},L={desayuno:"Desayuno",media:"Media mañana",comida:"Comida",merienda:"Merienda",post:"Post",cena:"Cena"};
-  const out=[];Object.keys(H).forEach(k=>{const r=m[k]&&FOOD.recetas.find(x=>x.id===m[k]);if(r)out.push({h:H[k],n:L[k]+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g})});
+  const out=[];Object.keys(H).forEach(k=>{const r=m[k]&&FOOD.recetas.find(x=>x.id===m[k]);if(r)out.push({h:H[k],n:L[k]+" · "+r.nombre,kcal:r.kcal,p:r.p,c:r.c,g:r.g,s:r.s})});
   const T=TARGETS[type]||TARGETS.calidad,goal=(T.kcal[0]+T.kcal[1])/2;let tot=out.reduce((a,x)=>a+x.kcal,0);
-  const EX=[["11:30","Extra · 20 g de nueces",130,3,2,12],["21:30","Extra · 1 huevo más en la cena",75,6,0,5],["21:30","Extra · medio aguacate en la cena",130,2,2,12],["18:00","Extra · 30 g de queso curado",120,8,0,10],["14:30","Extra · 10 g más de AOVE en la comida",90,0,0,10]];
-  for(const e of EX){if(goal-tot<80)break;out.push({h:e[0],n:e[1],kcal:e[2],p:e[3],c:e[4],g:e[5]});tot+=e[2]}
+  const EX=[["11:30","Extra · 20 g de nueces",130,3,2,12,1.2],["21:30","Extra · medio aguacate en la cena",130,2,2,12,1.7],["14:30","Extra · 10 g más de AOVE en la comida",90,0,0,10,1.4],["21:30","Extra · 1 huevo más en la cena",75,6,0,5,1.6],["18:00","Extra · 10 aceitunas",40,0,0,4,0.6]];
+  for(const e of EX){if(goal-tot<80)break;out.push({h:e[0],n:e[1],kcal:e[2],p:e[3],c:e[4],g:e[5],s:e[6]});tot+=e[2]}
   out.sort((a,b)=>a.h<b.h?-1:1);return out.length?out:null}
 function dayPlan(s){
   const b=basePlan(s),c=COACH&&COACH.dias&&COACH.dias[s];
@@ -958,7 +965,7 @@ function energia(s){
     margen:Math.round(gastoFin-DEF_OBJ-tot.kcal),fuente:usaSalud?"Salud":"estimado",tieneAct:d.activas!=null,t:d.energiaT};
 }
 /* =============== DÍA =============== */
-function totals(d){return (d.comidas||[]).reduce((a,c)=>({kcal:a.kcal+(+c.kcal||0),p:a.p+(+c.p||0),c:a.c+(+c.c||0),g:a.g+(+c.g||0)}),{kcal:0,p:0,c:0,g:0})}
+function totals(d){return (d.comidas||[]).reduce((a,c)=>({kcal:a.kcal+(+c.kcal||0),p:a.p+(+c.p||0),c:a.c+(+c.c||0),g:a.g+(+c.g||0),s:a.s+(+c.s||0),ns:a.ns+((c.s==null&&(+c.g||0)>0)?1:0)}),{kcal:0,p:0,c:0,g:0,s:0,ns:0})}
 function meter(val,rng,noHigh){
   const max=rng[1]*1.35,pct=Math.min(100,val/max*100),lo=rng[0]/max*100,hi=rng[1]/max*100;
   const cls=val===0?"":val<rng[0]?"low":(!noHigh&&val>rng[1]*1.05)?"high":"ok";
@@ -973,14 +980,30 @@ function reconcileMenu(s,day,plan){
   const names=new Set(menu.map(m=>s+"|"+m.n));let changed=false;
   const tag=n=>String(n).split(" · ")[0].replace(/^Comida tardía$/,"Comida").trim();
   day.comidas.forEach(c=>{
+    if(c.menu&&names.has(c.menu)&&c.s==null){const mm=menu.find(x=>s+"|"+x.n===c.menu);if(mm&&mm.s!=null){c.s=+mm.s;changed=true}}
     if(!c.menu||!String(c.menu).startsWith(s)||names.has(c.menu))return;
     const m=menu.find(x=>tag(x.n)===tag(c.nombre)&&!day.comidas.some(o=>o.menu===s+"|"+x.n));
     if(!m)return;
-    Object.assign(c,{menu:s+"|"+m.n,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});changed=true;
+    Object.assign(c,{menu:s+"|"+m.n,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0,s:m.s!=null?+m.s:null});changed=true;
   });
   if(changed){touch(day,true);setTimeout(()=>toast("He actualizado tus comidas con el menú nuevo"),300)}
   return changed;
 }
+function satCls(v){return v>=8?"hi":v>=4?"mid":"lo"}
+function fatBox(tot,tg,plan){
+  const kc=tg&&tg.kcal?(tg.kcal[0]+tg.kcal[1])/2:2100,lim=Math.round(kc*.10/9),g=tot.g||0,s=tot.s||0,u=Math.max(0,g-s);
+  const menu=plan.coach&&plan.coach.comidas||[],ps=menu.reduce((a,m)=>a+(+m.s||0),0),pg=menu.reduce((a,m)=>a+(+m.g||0),0);
+  const st=s>lim?"over":s>=lim*.8?"warn":"ok",pS=g?Math.min(100,s/Math.max(g,1)*100):0;
+  const msg=!g?`Límite de grasa saturada: ${lim} g al día (10 % de las kcal). La grasa buena (aceite de oliva, aguacate, nueces, aceitunas y huevo) no tiene límite propio: entra en tus kcal.`
+    :s>lim?`Te has pasado ${fmt1(s-lim)} g de saturada. El resto del día, grasa buena: aceite de oliva, aguacate, nueces o aceitunas. Nada de queso curado, embutido ni carne grasa.`
+    :s>=lim*.8?`Te quedan ${fmt1(lim-s)} g de saturada. Si añades grasa, que sea buena: aceite de oliva, aguacate o nueces.`
+    :`Vas bien: ${Math.round(u/Math.max(g,1)*100)} % de tu grasa es buena. Mantén el queso curado y el embutido en porciones pequeñas.`;
+  return `<div class="keto fat ${st}" role="group" aria-label="Grasa buena y saturada">
+    <div class="keto-h"><span class="eyebrow">Grasa saturada</span><b>${fmt1(s)}<small> / ${lim} g</small></b></div>
+    <div class="keto-bar" role="meter" aria-valuemin="0" aria-valuemax="${lim}" aria-valuenow="${fmt1(s)}" aria-label="Grasa saturada de hoy"><i style="width:${Math.min(100,s/lim*100)}%"></i></div>
+    <div class="fat-split" aria-label="Reparto de la grasa de hoy"><span class="fs-u" style="flex:${u||0.0001}"></span><span class="fs-s" style="flex:${s||0.0001}"></span></div>
+    <div class="fat-leg"><span><i class="fs-u"></i>Buena (insaturada) <b>${fmt0(u)} g</b></span><span><i class="fs-s"></i>Saturada <b>${fmt1(s)} g</b></span></div>
+    <p>${msg}${ps?` <span class="muted">Con el menú previsto acabarías en ${fmt1(ps)} g de saturada sobre ${fmt0(pg)} g de grasa.</span>`:""}${tot.ns?` <span class="muted">${tot.ns} comida${tot.ns>1?"s":""} sin dato de saturada: no cuenta${tot.ns>1?"n":""}.</span>`:""}</p></div>`}
 function ketoBox(tot,tg,plan){
   const lim=tg&&tg.c?tg.c[1]:50,c=Math.round(tot.c||0),left=lim-c,pct=Math.min(100,c/lim*100);
   const menu=plan.coach&&plan.coach.comidas||[],plannedC=Math.round(menu.reduce((a,m)=>a+(+m.c||0),0));
@@ -1057,9 +1080,10 @@ function renderDay(){
           <div class="mac-grid">${macroBlock("Kcal",tot.kcal,tg.kcal,"")}${macroBlock("Hidratos",tot.c,tg.c,"g")}${macroBlock("Grasa",tot.g,tg.g,"g")}</div>
         </div>
         ${ketoBox(tot,tg,plan)}
-        ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"|"+m.n);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" ${done?"disabled":""} aria-label="${done?"Ya apuntada":"Apuntar"} ${esc(m.n)}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
+        ${fatBox(tot,tg,plan)}
+        ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"|"+m.n);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G${m.s!=null?` <span class="sat ${satCls(m.s)}">${fmt1(m.s)} sat</span>`:""}</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" ${done?"disabled":""} aria-label="${done?"Ya apuntada":"Apuntar"} ${esc(m.n)}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
         <div class="row"><select id="preset" aria-label="Comida del plan" style="flex:1 1 220px">${PRESETS.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join("")}</select><button class="btn pri" type="button" id="addpreset">Añadir</button></div>
-        <div class="items" id="comidas">${day.comidas.length?day.comidas.map(c=>`<div class="item"><span class="n">${esc(c.nombre)}</span><span class="m">${fmt0(c.kcal)} kcal · ${fmt0(c.p)} P · ${fmt0(c.c)} C · ${fmt0(c.g)} G</span><button class="btn ghost" type="button" data-delc="${c.id}" aria-label="Quitar ${esc(c.nombre)}">✕</button></div>`).join(""):`<div class="empty" style="margin-top:12px">Aún no has apuntado comidas. Elige una del plan o escribe la tuya.</div>`}</div>
+        <div class="items" id="comidas">${day.comidas.length?day.comidas.map(c=>`<div class="item"><span class="n">${esc(c.nombre)}</span><span class="m">${fmt0(c.kcal)} kcal · ${fmt0(c.p)} P · ${fmt0(c.c)} C · ${fmt0(c.g)} G${c.s!=null?` <span class="sat ${satCls(c.s)}">${fmt1(c.s)} sat</span>`:""}</span><button class="btn ghost" type="button" data-delc="${c.id}" aria-label="Quitar ${esc(c.nombre)}">✕</button></div>`).join(""):`<div class="empty" style="margin-top:12px">Aún no has apuntado comidas. Elige una del plan o escribe la tuya.</div>`}</div>
         <details><summary>Otra comida con tus cantidades</summary>
           <div class="fields" style="margin-top:12px">
             <label class="f" style="grid-column:1/-1">Qué has comido<input id="cn" placeholder="Menú del día: lentejas y pollo"></label>
@@ -1067,6 +1091,7 @@ function renderDay(){
             <label class="f">Proteína · g<input id="cp" type="number" inputmode="numeric"></label>
             <label class="f">Hidratos · g<input id="cc" type="number" inputmode="numeric"></label>
             <label class="f">Grasa · g<input id="cg" type="number" inputmode="numeric"></label>
+            <label class="f">De ella saturada · g<input id="cs" type="number" inputmode="decimal" placeholder="opcional"></label>
           </div><div class="row" style="margin-top:10px"><button class="btn" type="button" id="addcustom">Añadir comida</button></div>
         </details>
       </section>
@@ -1111,11 +1136,11 @@ function bindDay(s){
   ["peso","grasa","activas","reposo","pasos","sueno","agua","energia","hambre"].forEach(k=>$("#"+k).addEventListener("input",e=>{const n=num(e.target.value);e.target.setAttribute("aria-invalid",e.target.value!==""&&n==null?"true":"false");day[k]=n;touch(day)}));
   $("#notas").addEventListener("input",e=>{day.notas=e.target.value;touch(day)});
   $("#tipo").onchange=e=>{day.tipo=e.target.value===dayPlan(s).type?null:e.target.value;touch(day,true);render()};
-  $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4]});touch(day,true);render();toast("Añadido · "+p[0].split(" · ")[0])};
+  $("#addpreset").onclick=()=>{const p=PRESETS[+$("#preset").value];day.comidas.push({id:uid(),nombre:p[0],kcal:p[1],p:p[2],c:p[3],g:p[4],s:p[5]??null});touch(day,true);render();toast("Añadido · "+p[0].split(" · ")[0])};
   $("#addcustom").onclick=()=>{const n=$("#cn").value.trim();if(!n){$("#cn").setAttribute("aria-invalid","true");$("#cn").focus();toast("Escribe qué has comido",true);return}
-    day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0});touch(day,true);render();toast("Comida añadida")};
+    day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0,s:num($("#cs").value)});touch(day,true);render();toast("Comida añadida")};
   const menu=$("#menu");
-  const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"|"+m.n;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0});return true};
+  const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"|"+m.n;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0,s:m.s!=null?+m.s:null});return true};
   if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day,true);render();toast("Apuntado")}};
     $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day,true);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
   const gs=$("#goshop");if(gs)gs.onclick=()=>{state.scrollTo="f-compra";go("comida")};

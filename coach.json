@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-24T21:26",
+ "actualizado": "2026-11-24T21:40",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1107,7 +1107,8 @@
      "kcal": 105,
      "p": 1,
      "c": 24,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "14:30",
@@ -1115,7 +1116,8 @@
      "kcal": 540,
      "p": 51,
      "c": 6,
-     "g": 35
+     "g": 35,
+     "s": 14
     },
     {
      "h": "17:30",
@@ -1123,7 +1125,8 @@
      "kcal": 150,
      "p": 12,
      "c": 1,
-     "g": 10
+     "g": 10,
+     "s": 3.2
     },
     {
      "h": "17:30",
@@ -1131,7 +1134,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1139,7 +1143,8 @@
      "kcal": 240,
      "p": 43,
      "c": 12,
-     "g": 1
+     "g": 1,
+     "s": 0.5
     },
     {
      "h": "21:30",
@@ -1147,7 +1152,8 @@
      "kcal": 455,
      "p": 49,
      "c": 6,
-     "g": 26
+     "g": 26,
+     "s": 9
     },
     {
      "h": "22:30",
@@ -1155,7 +1161,8 @@
      "kcal": 280,
      "p": 27,
      "c": 1,
-     "g": 19
+     "g": 19,
+     "s": 9.5
     }
    ]
   },
@@ -1169,7 +1176,8 @@
      "kcal": 40,
      "p": 1,
      "c": 9,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "11:30",
@@ -1177,7 +1185,8 @@
      "kcal": 195,
      "p": 5,
      "c": 2,
-     "g": 20
+     "g": 20,
+     "s": 1.8
     },
     {
      "h": "14:30",
@@ -1185,7 +1194,8 @@
      "kcal": 595,
      "p": 71,
      "c": 7,
-     "g": 29
+     "g": 29,
+     "s": 9.5
     },
     {
      "h": "18:00",
@@ -1193,7 +1203,8 @@
      "kcal": 360,
      "p": 53,
      "c": 10,
-     "g": 11
+     "g": 11,
+     "s": 3.8
     },
     {
      "h": "18:00",
@@ -1201,7 +1212,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1209,23 +1221,17 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
-     "n": "Cena ligera · 250 g queso batido con 25 g Evolate, 20 g nueces y canela",
-     "kcal": 340,
-     "p": 44,
-     "c": 11,
-     "g": 14
-    },
-    {
-     "h": "22:15",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Cena ligera · ~300 g queso batido, ½ cazo de Evolate, ~35 g arándanos, un hilo de miel, 5 g cacahuete en polvo desgrasado, ~18 g nueces y canela",
+     "kcal": 375,
+     "p": 41,
+     "c": 24,
+     "g": 13,
+     "s": 1.6
     }
    ]
   },
@@ -1235,11 +1241,12 @@
    "comidas": [
     {
      "h": "08:30",
-     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y 1 loncha de queso",
-     "kcal": 430,
-     "p": 37,
-     "c": 1,
-     "g": 30
+     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y medio aguacate",
+     "kcal": 465,
+     "p": 38,
+     "c": 5,
+     "g": 33,
+     "s": 8.8
     },
     {
      "h": "11:30",
@@ -1247,15 +1254,17 @@
      "kcal": 130,
      "p": 3,
      "c": 2,
-     "g": 12
+     "g": 12,
+     "s": 1.2
     },
     {
      "h": "14:30",
-     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, queso rallado y 5 g AOVE",
-     "kcal": 530,
-     "p": 46,
-     "c": 7,
-     "g": 33
+     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, medio aguacate y 5 g AOVE",
+     "kcal": 600,
+     "p": 42,
+     "c": 9,
+     "g": 40,
+     "s": 9.2
     },
     {
      "h": "18:00",
@@ -1263,7 +1272,8 @@
      "kcal": 225,
      "p": 22,
      "c": 8,
-     "g": 13
+     "g": 13,
+     "s": 1.4
     },
     {
      "h": "18:00",
@@ -1271,7 +1281,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1279,23 +1290,26 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
-     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y queso rallado, 10 g AOVE",
-     "kcal": 400,
-     "p": 47,
+     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y 15 g AOVE",
+     "kcal": 385,
+     "p": 43,
      "c": 6,
-     "g": 20
+     "g": 20,
+     "s": 3.9
     },
     {
      "h": "22:15",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
+     "kcal": 210,
+     "p": 15,
+     "c": 2,
+     "g": 15,
+     "s": 1.8
     }
    ]
   },
@@ -1309,7 +1323,8 @@
      "kcal": 490,
      "p": 36,
      "c": 5,
-     "g": 33
+     "g": 33,
+     "s": 6.8
     },
     {
      "h": "14:30",
@@ -1317,7 +1332,8 @@
      "kcal": 560,
      "p": 55,
      "c": 10,
-     "g": 32
+     "g": 32,
+     "s": 5.1
     },
     {
      "h": "18:00",
@@ -1325,15 +1341,17 @@
      "kcal": 75,
      "p": 1,
      "c": 18,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "18:00",
-     "n": "Merienda · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Merienda · 2 huevos cocidos y 15 g de nueces",
+     "kcal": 245,
+     "p": 15,
+     "c": 3,
+     "g": 19,
+     "s": 4.1
     },
     {
      "h": "18:00",
@@ -1341,7 +1359,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1349,7 +1368,8 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
@@ -1357,15 +1377,17 @@
      "kcal": 440,
      "p": 42,
      "c": 6,
-     "g": 26
+     "g": 26,
+     "s": 9
     },
     {
      "h": "22:15",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
+     "kcal": 210,
+     "p": 15,
+     "c": 2,
+     "g": 15,
+     "s": 1.8
     }
    ]
   },
@@ -1379,7 +1401,8 @@
      "kcal": 405,
      "p": 46,
      "c": 11,
-     "g": 20
+     "g": 20,
+     "s": 2.3
     },
     {
      "h": "11:30",
@@ -1387,7 +1410,8 @@
      "kcal": 130,
      "p": 3,
      "c": 2,
-     "g": 12
+     "g": 12,
+     "s": 1.2
     },
     {
      "h": "14:30",
@@ -1395,7 +1419,8 @@
      "kcal": 470,
      "p": 45,
      "c": 7,
-     "g": 28
+     "g": 28,
+     "s": 9
     },
     {
      "h": "18:00",
@@ -1403,7 +1428,8 @@
      "kcal": 150,
      "p": 12,
      "c": 1,
-     "g": 10
+     "g": 10,
+     "s": 3.2
     },
     {
      "h": "18:00",
@@ -1411,7 +1437,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1419,7 +1446,8 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
@@ -1427,15 +1455,17 @@
      "kcal": 560,
      "p": 46,
      "c": 5,
-     "g": 40
+     "g": 40,
+     "s": 16
     },
     {
      "h": "22:15",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
+     "kcal": 210,
+     "p": 15,
+     "c": 2,
+     "g": 15,
+     "s": 1.8
     }
    ]
   },
@@ -1445,11 +1475,12 @@
    "comidas": [
     {
      "h": "08:30",
-     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y 1 loncha de queso",
-     "kcal": 430,
-     "p": 37,
-     "c": 1,
-     "g": 30
+     "n": "Desayuno · revuelto de 3 huevos con 40 g de jamón y medio aguacate",
+     "kcal": 465,
+     "p": 38,
+     "c": 5,
+     "g": 33,
+     "s": 8.8
     },
     {
      "h": "11:30",
@@ -1457,7 +1488,8 @@
      "kcal": 130,
      "p": 3,
      "c": 2,
-     "g": 12
+     "g": 12,
+     "s": 1.2
     },
     {
      "h": "14:30",
@@ -1465,15 +1497,17 @@
      "kcal": 560,
      "p": 55,
      "c": 10,
-     "g": 32
+     "g": 32,
+     "s": 5.1
     },
     {
      "h": "18:00",
-     "n": "Merienda · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Merienda · 2 huevos cocidos y 15 g de nueces",
+     "kcal": 245,
+     "p": 15,
+     "c": 3,
+     "g": 19,
+     "s": 4.1
     },
     {
      "h": "18:00",
@@ -1481,7 +1515,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "20:45",
@@ -1489,23 +1524,26 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
-     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y queso rallado, 10 g AOVE",
-     "kcal": 400,
-     "p": 47,
+     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y 15 g AOVE",
+     "kcal": 385,
+     "p": 43,
      "c": 6,
-     "g": 20
+     "g": 20,
+     "s": 3.9
     },
     {
      "h": "22:15",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
+     "kcal": 210,
+     "p": 15,
+     "c": 2,
+     "g": 15,
+     "s": 1.8
     }
    ]
   },
@@ -1519,15 +1557,17 @@
      "kcal": 490,
      "p": 36,
      "c": 5,
-     "g": 33
+     "g": 33,
+     "s": 6.8
     },
     {
      "h": "14:30",
-     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, queso rallado y 5 g AOVE",
-     "kcal": 530,
-     "p": 46,
-     "c": 7,
-     "g": 33
+     "n": "Comida · 2 hamburguesas de lomo con champiñones, ensalada, medio aguacate y 5 g AOVE",
+     "kcal": 600,
+     "p": 42,
+     "c": 9,
+     "g": 40,
+     "s": 9.2
     },
     {
      "h": "18:00",
@@ -1535,7 +1575,8 @@
      "kcal": 225,
      "p": 22,
      "c": 8,
-     "g": 13
+     "g": 13,
+     "s": 1.4
     },
     {
      "h": "18:00",
@@ -1543,7 +1584,8 @@
      "kcal": 0,
      "p": 0,
      "c": 0,
-     "g": 0
+     "g": 0,
+     "s": 0
     },
     {
      "h": "18:00",
@@ -1551,7 +1593,8 @@
      "kcal": 150,
      "p": 32,
      "c": 2,
-     "g": 1
+     "g": 1,
+     "s": 0.3
     },
     {
      "h": "21:30",
@@ -1559,15 +1602,17 @@
      "kcal": 310,
      "p": 26,
      "c": 3,
-     "g": 21
+     "g": 21,
+     "s": 4.2
     },
     {
      "h": "22:00",
-     "n": "Recena · 50 g jamón serrano y 2 lonchas de queso",
-     "kcal": 250,
-     "p": 24,
-     "c": 1,
-     "g": 17
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
+     "kcal": 210,
+     "p": 15,
+     "c": 2,
+     "g": 15,
+     "s": 1.8
     }
    ]
   }
