@@ -9,6 +9,7 @@
 const APP = "https://bodajym.github.io/hyroxmarch/#panel", SITE = "https://bodajym.github.io/hyroxmarch/";
 const START_W = 100, GOAL_W = 85, RACE = new Date(2027, 2, 17), KEY = "rx27-gist", ALTURA = 176, EDAD = 32, DEF_OBJ = 500;
 const THREAD = "rx27", ANTES_ENTRENO = 20;
+const HC = { descanso: 35, z2: 40, calidad: 50, hyrox: 55, doble: 60, mant: 80 };
 const KCAL = { descanso: [1850, 2000], z2: [2050, 2200], calidad: [2200, 2350], hyrox: [2300, 2450], doble: [2500, 2700], mant: [2850, 3050] };
 const C = {
   bg: new Color("#0C0F13"), bg2: new Color("#161B22"), line: new Color("#262D38"),
@@ -190,9 +191,9 @@ function calc(data) {
   const now = new Date(), t = ds(now), days = data.days || {}, d = days[t] || {};
   const w = Object.values(days).filter(x => x && x.peso != null).sort((a, b) => a.date < b.date ? -1 : 1), last = w[w.length - 1];
   const kg = last ? last.peso : 97.5;
-  const tot = (d.comidas || []).reduce((a, c) => ({ k: a.k + (+c.kcal || 0), p: a.p + (+c.p || 0) }), { k: 0, p: 0 });
+  const tot = (d.comidas || []).reduce((a, c) => ({ k: a.k + (+c.kcal || 0), p: a.p + (+c.p || 0), c: a.c + (+c.c || 0), s: a.s + (+c.s || 0) }), { k: 0, p: 0, c: 0, s: 0 });
   const tipo = d.tipo && KCAL[d.tipo] ? d.tipo : ((d.entrenos || []).length > 1 ? "doble" : "calidad");
-  const kObj = Math.round((KCAL[tipo][0] + KCAL[tipo][1]) / 2);
+  const kObj = Math.round((KCAL[tipo][0] + KCAL[tipo][1]) / 2), hcLim = HC[tipo] || 50, satLim = Math.round(kObj * 0.10 / 9);
   const full = Math.round(10 * kg + 6.25 * ALTURA - 5 * EDAD + 5), frac = Math.min(1, (now.getHours() * 60 + now.getMinutes()) / 1440);
   const reposo = Math.max(d.reposo || 0, Math.round(full * frac)), act = d.activas || 0;
   const deficit = reposo + act - tot.k;
@@ -201,6 +202,8 @@ function calc(data) {
     { k: "KCAL", sub: "comidas", v: tot.k / kObj, c: "#FFC86B", over: true },
     { k: "PROTEÍNA", sub: "de 190 g", v: tot.p / 190, c: "#5FE0B0" },
     { k: "DÉFICIT", sub: "de 500", v: Math.max(0, deficit) / DEF_OBJ, c: "#FF7A95" },
+    { k: "HIDRATOS", sub: "límite " + hcLim + " g", v: tot.c / hcLim, g: tot.c, c: "#7FE07A", lim: true },
+    { k: "SATURADA", sub: "límite " + satLim + " g", v: tot.s / satLim, g: tot.s, c: "#F7D774", lim: true },
     { k: "ACTIVAS", sub: "de 600", v: act / 600, c: "#C792FF" },
     { k: "REPOSO", sub: "del día", v: reposo / full, c: "#73EFF7" }
   ];
@@ -209,7 +212,8 @@ function calc(data) {
 // anillo con el % dentro
 function ring(m, size, big) {
   const dc = new DrawContext(); dc.size = new Size(size, size); dc.opaque = false; dc.respectScreenScale = true;
-  const lw = Math.max(5, size * (big ? 0.1 : 0.11)), r = size / 2 - lw / 2 - 1, cx = size / 2, cy = size / 2, col = new Color(m.c);
+  const lw = Math.max(5, size * (big ? 0.1 : 0.11)), r = size / 2 - lw / 2 - 1, cx = size / 2, cy = size / 2;
+  const hex = m.lim ? (m.v > 1 ? "#FF5A5A" : m.v >= 0.8 ? "#FFB547" : m.c) : m.c, col = new Color(hex);
   const arc = (a0, a1, color, width) => {
     const p = new Path(), n = Math.max(2, Math.ceil((a1 - a0) / 0.06)), pts = [];
     for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; pts.push(new Point(cx + r * Math.cos(a), cy + r * Math.sin(a))); }
@@ -218,9 +222,9 @@ function ring(m, size, big) {
   };
   const p = new Path(); p.addEllipse(new Rect(cx - r, cy - r, 2 * r, 2 * r)); dc.addPath(p); dc.setStrokeColor(TRK); dc.setLineWidth(lw); dc.strokePath();
   const v = Math.max(0, m.v), a0 = -Math.PI / 2;
-  if (v > 0.003) { const e = a0 + 2 * Math.PI * Math.min(1, v) - (v >= 1 ? 0.001 : 0); arc(a0, e, new Color(m.c, 0.18), lw * 1.9); arc(a0, e, col, lw); }
-  if (v > 1) arc(a0, a0 + 2 * Math.PI * Math.min(1, v - 1), m.over && v > 1.08 ? new Color("#FF5A5A") : new Color("#FFFFFF", 0.85), lw * 0.45);
-  const pct = Math.round(v * 100) + "%";
+  if (v > 0.003) { const e = a0 + 2 * Math.PI * Math.min(1, v) - (v >= 1 ? 0.001 : 0); arc(a0, e, new Color(hex, 0.18), lw * 1.9); arc(a0, e, col, lw); }
+  if (v > 1) arc(a0, a0 + 2 * Math.PI * Math.min(1, v - 1), (m.over && v > 1.08) || m.lim ? new Color("#FF5A5A") : new Color("#FFFFFF", 0.85), lw * 0.45);
+  const pct = m.lim ? Math.round(m.g) + "g" : Math.round(v * 100) + "%";
   dc.setFont(Font.heavyRoundedSystemFont(size * (pct.length > 4 ? 0.2 : 0.24))); dc.setTextColor(INK); dc.setTextAlignedCenter();
   dc.drawTextInRect(pct, new Rect(0, cy - size * 0.15, size, size * 0.32));
   return dc.getImage();
@@ -229,7 +233,7 @@ function cell(st, m, size, big) {
   const s = st.addStack(); s.layoutVertically(); s.centerAlignContent();
   const ih = s.addStack(); ih.addSpacer(); ih.addImage(ring(m, size, big)).imageSize = new Size(size, size); ih.addSpacer();
   s.addSpacer(3);
-  const lh = s.addStack(); lh.addSpacer(); const t = lh.addText(m.k); t.font = Font.semiboldMonospacedSystemFont(big ? 10 : 8); t.textColor = new Color(m.c); t.lineLimit = 1; t.minimumScaleFactor = .6; lh.addSpacer();
+  const lh = s.addStack(); lh.addSpacer(); const t = lh.addText(m.k); t.font = Font.semiboldMonospacedSystemFont(big ? 10 : 8); t.textColor = new Color(m.lim && m.v >= 0.8 ? (m.v > 1 ? "#FF5A5A" : "#FFB547") : m.c); t.lineLimit = 1; t.minimumScaleFactor = .6; lh.addSpacer();
   if (big) { const sh = s.addStack(); sh.addSpacer(); const u = sh.addText(m.sub); u.font = Font.systemFont(9); u.textColor = MUT; sh.addSpacer(); }
 }
 
@@ -240,7 +244,7 @@ async function buildAnillos(res) {
   w.setPadding(12, 10, 12, 10);
   const M = calc(res.d);
   if (fam === "small") {
-    const pick = [M[0], M[2], M[3], M[1]];
+    const pick = [M[2], M[3], M[4], M[5]];
     for (let r = 0; r < 2; r++) { const row = w.addStack(); row.spacing = 6; for (let c = 0; c < 2; c++) cell(row, pick[r * 2 + c], 52, false); if (!r) w.addSpacer(6); }
   } else if (fam === "large") {
     const h = w.addStack(); h.centerAlignContent(); h.spacing = 8;
@@ -251,7 +255,7 @@ async function buildAnillos(res) {
     h.addSpacer();
     const t2 = h.addText(new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })); t2.font = Font.mediumMonospacedSystemFont(11); t2.textColor = MUT;
     w.addSpacer();
-    for (let r = 0; r < 2; r++) { const row = w.addStack(); row.spacing = 10; for (let c = 0; c < 3; c++) { cell(row, M[r * 3 + c], 88, true); } if (!r) w.addSpacer(14); }
+    for (let r = 0; r < 2; r++) { const row = w.addStack(); row.spacing = 8; for (let c = 0; c < 4; c++) { cell(row, M[r * 4 + c], 66, true); } if (!r) w.addSpacer(14); }
     w.addSpacer();
   } else {
     const h = w.addStack(); h.centerAlignContent(); h.spacing = 6;
@@ -260,7 +264,7 @@ async function buildAnillos(res) {
     const t2 = h.addText(new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })); t2.font = Font.mediumMonospacedSystemFont(9); t2.textColor = MUT;
     w.addSpacer(6);
     const row = w.addStack(); row.spacing = 4; row.centerAlignContent();
-    M.forEach(m => cell(row, m, 46, false));
+    M.slice(0, 6).forEach(m => cell(row, m, 46, false));
   }
   if (!res.live) { w.addSpacer(2); const t = w.addText("sin conexión"); t.font = Font.systemFont(8); t.textColor = MUT; }
   return w;
