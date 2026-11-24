@@ -333,6 +333,26 @@ async function avisos(force) {
   try { const r = await run(); fm.writeString(stamp, String(Date.now())); return r; } catch (e) { return null; }
 }
 
+
+// ---------- aviso de grasa saturada (una vez por nivel y día) ----------
+async function satAviso(data) {
+  try {
+    if (Keychain.contains("rx27-avisos") && Keychain.get("rx27-avisos") === "no") return;
+    const t = ds(new Date()), d = (data.days || {})[t]; if (!d || !d.comidas) return;
+    const tipo = d.tipo && KCAL[d.tipo] ? d.tipo : "calidad", lim = Math.round((KCAL[tipo][0] + KCAL[tipo][1]) / 2 * 0.10 / 9);
+    const s = d.comidas.reduce((a, c) => a + (+c.s || 0), 0), lvl = s > lim ? 2 : s >= lim * 0.8 ? 1 : 0;
+    const K = "rx27-sat", prev = Keychain.contains(K) ? Keychain.get(K) : "", prevLvl = prev.startsWith(t) ? +prev.split("|")[1] : 0;
+    if (lvl <= prevLvl) return;
+    Keychain.set(K, t + "|" + lvl);
+    const top = d.comidas.filter(c => (+c.s || 0) >= 4).sort((a, b) => b.s - a.s)[0];
+    const n = new Notification(); n.identifier = "rx27-sat-" + t + "-" + lvl; n.threadIdentifier = THREAD; n.sound = "default"; n.openURL = SITE + "#dia";
+    n.title = lvl === 2 ? "🔴 Te has pasado de grasa saturada" : "🟠 Cerca del límite de grasa saturada";
+    n.body = f1(s) + " / " + lim + " g hoy." + (top ? " Lo que más suma: " + String(top.nombre).split(" · ").slice(-1)[0].slice(0, 60) + " (" + f1(top.s) + " g)." : "") +
+      (lvl === 2 ? " El resto del día, solo grasa buena: aceite de oliva, aguacate, nueces o aceitunas." : " Si añades grasa, que sea buena: aceite de oliva, aguacate o nueces.");
+    await n.schedule();
+  } catch (e) {}
+}
+
 // ---------- arranque ----------
 const param = String(args.widgetParameter || "").trim().toLowerCase();
 if (config.runsInWidget) {
@@ -341,6 +361,7 @@ if (config.runsInWidget) {
   if (!res) { wd = new ListWidget(); wd.backgroundColor = BG; const t = wd.addText(id ? "RX/27 · sin conexión" : "Abre Scriptable y ejecuta RX27 con ▶︎"); t.font = Font.boldSystemFont(12); t.textColor = INK; }
   else { res.place = await where(res.d); wd = param.startsWith("peso") ? await buildPeso(res) : await buildAnillos(res); }
   await avisos(false);
+  if (res) await satAviso(res.d);
   Script.setWidget(wd);
 } else {
   const id = await gistId();
@@ -350,11 +371,12 @@ if (config.runsInWidget) {
     m.addAction(Keychain.contains("rx27-avisos") && Keychain.get("rx27-avisos") === "no" ? "Activar avisos" : "Desactivar avisos");
     m.addCancelAction("Cerrar");
     const i = await m.presentSheet();
-    const res = id ? await load(id) : null; if (res) res.place = await where(res.d);
+    const res = id ? await load(id) : null; if (res) res.place = await where(res.d); if (res) await satAviso(res.d);
     if ((i === 0 || i === 1) && res) { const wd = i === 0 ? await buildAnillos(res) : await buildPeso(res); if (i === 0) await wd.presentLarge(); else await wd.presentMedium(); }
     else if (i === 2) { if (Keychain.contains("rx27-avisos")) Keychain.remove("rx27-avisos"); const r = await avisos(true); const a = new Alert(); a.title = "Avisos"; a.message = r ? r.n + " avisos programados para hoy y mañana." + (r.next ? "\nPróximo: " + r.next.title.replace(/^\S+\s/, "") + " a las " + pad(r.next.t.getHours()) + ":" + pad(r.next.t.getMinutes()) : "") : "No se han podido programar."; a.addAction("OK"); await a.present(); }
     else if (i === 3) { const off = Keychain.contains("rx27-avisos") && Keychain.get("rx27-avisos") === "no"; if (off) { Keychain.remove("rx27-avisos"); await avisos(true) } else { Keychain.set("rx27-avisos", "no"); const p = await Notification.allPending(); const ids = p.filter(n => n.threadIdentifier === THREAD).map(n => n.identifier); if (ids.length) await Notification.removePending(ids) } }
   } else {
+    const res = id ? await load(id) : null; if (res) await satAviso(res.d);
     const r = await avisos(true); Script.setShortcutOutput(r ? r.n + " avisos programados" : "Avisos desactivados");
   }
 }

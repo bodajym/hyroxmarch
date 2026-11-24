@@ -445,6 +445,32 @@ body.viewer .tama-view{padding-top:12px}
 .keto-bar u{position:absolute;top:0;bottom:0;width:1px;background:color-mix(in srgb,var(--ink) 25%,transparent)}
 .keto p{margin:0;font-size:13.5px;line-height:1.45}.keto .muted{color:var(--muted)}
 .keto.fat.ok .keto-bar i{background:var(--ok)}
+
+/* Aviso de grasa saturada */
+.satx{position:fixed;z-index:80;left:12px;right:12px;bottom:calc(86px + env(safe-area-inset-bottom));display:flex;justify-content:center;pointer-events:none}
+@media (min-width:900px){.satx{left:auto;right:28px;bottom:28px;width:400px}}
+.satx-card{pointer-events:auto;width:100%;max-width:440px;display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 18px 16px;border-radius:22px;background:var(--bg2);border:1px solid color-mix(in srgb,var(--warn) 55%,var(--line));
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.55);opacity:0;transform:translateY(24px) scale(.98);transition:opacity .32s var(--ease),transform .55s cubic-bezier(.34,1.4,.64,1)}
+.satx.over .satx-card{border-color:color-mix(in srgb,var(--bad) 60%,var(--line))}
+.satx.on .satx-card{opacity:1;transform:none}
+.satx-ic{width:40px;height:40px}.satx-ic .d{fill:color-mix(in srgb,var(--warn) 22%,transparent);stroke:var(--warn);stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:70;stroke-dashoffset:70}
+.satx.over .satx-ic .d{fill:color-mix(in srgb,var(--bad) 22%,transparent);stroke:var(--bad)}
+.satx-ic .m{stroke:var(--ink);stroke-width:2;stroke-linecap:round;fill:none}.satx-ic circle.m{fill:var(--ink);stroke:none}
+.satx.on .satx-ic .d{animation:satDraw .7s .1s var(--ease) forwards}
+@keyframes satDraw{to{stroke-dashoffset:0}}
+.satx-b{display:grid;gap:8px;min-width:0}
+.satx-n{font-family:var(--display);font-weight:900;font-size:40px;line-height:.95;letter-spacing:-.02em}.satx-n small{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0}
+.satx-mk{display:inline-block;overflow:hidden;vertical-align:bottom}.satx-mk span{display:inline-block;transform:translateY(105%)}
+.satx.on .satx-mk span{transform:none;transition:transform .6s .15s cubic-bezier(.22,1,.36,1)}
+.satx-bar{height:6px;border-radius:3px;background:var(--bg3);overflow:hidden}.satx-bar i{display:block;height:100%;width:0;background:var(--warn);border-radius:3px;transition:width .9s .25s cubic-bezier(.22,1,.36,1)}
+.satx.over .satx-bar i{background:var(--bad)}.satx.on .satx-bar i{width:var(--w)}
+.satx p{margin:0;font-size:13.5px;line-height:1.45}
+.satx-top{display:flex;flex-wrap:wrap;gap:6px;color:var(--muted);font-size:12.5px!important}.satx-top span{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:6px;background:var(--bg3);color:var(--ink)}
+.satx-sw summary{cursor:pointer;font-size:13px;color:var(--muted);min-height:32px;display:flex;align-items:center}.satx-sw ul{margin:4px 0 0;padding-left:18px;font-size:13px;line-height:1.6}.satx-sw s{color:var(--muted)}
+.satx-act{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}.satx-act .btn{min-height:44px}
+.keto.fat.pulse{animation:satPulse 1.2s var(--ease)}
+@keyframes satPulse{0%,100%{box-shadow:0 0 0 0 transparent}30%{box-shadow:0 0 0 6px color-mix(in srgb,var(--warn) 35%,transparent)}}
+@media (prefers-reduced-motion: reduce){.satx-card{transform:none!important;transition:opacity .2s linear}.satx-mk span{transform:none!important}.satx-ic .d{stroke-dashoffset:0!important;animation:none!important}.satx-bar i{transition:none}.keto.fat.pulse{animation:none}}
 .fat-split{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px}
 .fs-u{background:var(--ok)}.fs-s{background:var(--warn)}
 .fat-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted)}.fat-leg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}.fat-leg b{color:var(--ink);font-family:var(--mono);font-weight:500}
@@ -729,6 +755,7 @@ footer .shell{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap
 
 <footer class="g"><div class="shell"><span>RX/27 · Objetivo 85-88 kg · 190-210 g de proteína al día</span><span id="lastsave">Sin cambios todavía</span></div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="satx" id="satx" role="alert" aria-live="assertive" hidden></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -990,8 +1017,37 @@ function reconcileMenu(s,day,plan){
   return changed;
 }
 function satCls(v){return v>=8?"hi":v>=4?"mid":"lo"}
+function satLim(tg){const kc=tg&&tg.kcal?(tg.kcal[0]+tg.kcal[1])/2:2100;return Math.round(kc*.10/9)}
+// Aviso cuando la grasa saturada del día cruza el 80 % o el 100 % del límite (una vez por nivel y día)
+function satAlert(s,day,tot,tg){
+  const lim=satLim(tg),v=tot.s||0,lvl=v>lim?2:v>=lim*.8?1:0,K="rx27-sat-"+s,prev=+(LS.get(K)||0);
+  if(lvl<prev){LS.set(K,String(lvl));return}
+  if(lvl<=prev||!lvl)return;
+  LS.set(K,String(lvl));
+  const top=(day.comidas||[]).filter(c=>(+c.s||0)>=4).sort((a,b)=>b.s-a.s).slice(0,2);
+  const box=$("#satx"),over=lvl===2,pct=Math.min(100,v/lim*100);
+  const swap=[["Queso curado o semicurado","queso batido, feta en poca cantidad o aguacate"],["Jamón o embutido","pavo o pollo en lonchas"],["Carne grasa (entrecot, burger)","pollo, pavo o lomo magro"],["Mantequilla o nata","aceite de oliva"]];
+  box.className="satx "+(over?"over":"warn");
+  box.innerHTML=`<div class="satx-card">
+    <svg class="satx-ic" viewBox="0 0 32 32" aria-hidden="true"><path class="d" d="M16 3c5 7 9 11.5 9 16a9 9 0 0 1-18 0c0-4.5 4-9 9-16Z"/><path class="m" d="M16 12v7"/><circle class="m" cx="16" cy="23.2" r="1.3"/></svg>
+    <div class="satx-b">
+      <span class="eyebrow">${over?"Te has pasado de grasa saturada":"Cerca del límite de grasa saturada"}</span>
+      <b class="satx-n"><span class="satx-mk"><span>${fmt1(v)}</span></span><small> / ${lim} g</small></b>
+      <div class="satx-bar"><i style="--w:${pct}%"></i></div>
+      <p>${over?`Llevas ${fmt1(v-lim)} g de más.`:`Te quedan ${fmt1(lim-v)} g.`} ${over?"El resto del día, solo grasa buena: aceite de oliva, aguacate, nueces o aceitunas.":"Si añades grasa hoy, que sea buena: aceite de oliva, aguacate o nueces."}</p>
+      ${top.length?`<p class="satx-top">Lo que más ha sumado hoy: ${top.map(c=>`<span>${esc(String(c.nombre).split(" · ").slice(-1)[0].slice(0,48))} · ${fmt1(c.s)} g</span>`).join("")}</p>`:""}
+      <details class="satx-sw"><summary>Cambios fáciles para mañana</summary><ul>${swap.map(([a,b])=>`<li><s>${a}</s> → ${b}</li>`).join("")}</ul></details>
+      <div class="satx-act"><button class="btn" type="button" data-satx="ver">Ver mi grasa de hoy</button><button class="btn pri" type="button" data-satx="ok">Entendido</button></div>
+    </div></div>`;
+  box.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>box.classList.add("on")));
+  try{navigator.vibrate&&navigator.vibrate(over?[18,60,18,60,30]:[14,50,14])}catch(e){}
+  const close=()=>{box.classList.remove("on");document.removeEventListener("keydown",esc_);setTimeout(()=>{box.hidden=true},380)};
+  const esc_=e=>{if(e.key==="Escape")close()};document.addEventListener("keydown",esc_);
+  box.querySelector('[data-satx="ok"]').onclick=close;
+  box.querySelector('[data-satx="ver"]').onclick=()=>{close();const f=document.querySelector(".keto.fat");if(f){f.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});f.classList.remove("pulse");void f.offsetWidth;f.classList.add("pulse")}};
+}
 function fatBox(tot,tg,plan){
-  const kc=tg&&tg.kcal?(tg.kcal[0]+tg.kcal[1])/2:2100,lim=Math.round(kc*.10/9),g=tot.g||0,s=tot.s||0,u=Math.max(0,g-s);
+  const lim=satLim(tg),g=tot.g||0,s=tot.s||0,u=Math.max(0,g-s);
   const menu=plan.coach&&plan.coach.comidas||[],ps=menu.reduce((a,m)=>a+(+m.s||0),0),pg=menu.reduce((a,m)=>a+(+m.g||0),0);
   const st=s>lim?"over":s>=lim*.8?"warn":"ok",pS=g?Math.min(100,s/Math.max(g,1)*100):0;
   const msg=!g?`Límite de grasa saturada: ${lim} g al día (10 % de las kcal). La grasa buena (aceite de oliva, aguacate, nueces, aceitunas y huevo) no tiene límite propio: entra en tus kcal.`
@@ -1098,6 +1154,7 @@ function renderDay(){
     </aside>
   </div></div>`;
   bindDay(s);
+  satAlert(s,day,tot,tg);
 }
 function entHTML(e){
   const p=pace(num(e.km),e.tiempo);
