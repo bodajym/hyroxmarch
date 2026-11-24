@@ -846,7 +846,8 @@ main::before{opacity:.35}
 .btn.sq{border-radius:var(--r-s);min-width:44px;justify-content:center}
 .btn.ghost{min-height:44px;min-width:44px;justify-content:center;border-color:transparent}
 .btn[disabled]{opacity:.45}
-.item .btn[disabled]{opacity:1;color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent);cursor:default}
+.item .btn[data-done="1"]{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,transparent);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+@media (hover:hover){.item .btn[data-done="1"]:hover{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 45%,transparent);background:color-mix(in srgb,var(--bad) 10%,transparent)}.item .btn[data-done="1"]:hover::before{content:"✕";position:absolute;inset:0;display:grid;place-items:center;background:inherit}}
 .item .btn{min-width:44px;justify-content:center;padding:10px 0;width:44px}
 .chip{border-radius:var(--r-pill);min-height:40px;padding:8px 15px;font-size:13px;border:var(--hair2);transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),transform .3s var(--spring-pop)}
 .chip:active{transform:scale(.95)}
@@ -1393,7 +1394,7 @@ function renderDay(){
         </div>
         ${ketoBox(tot,tg,plan)}
         ${fatBox(tot,tg,plan)}
-        ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"|"+m.n);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G${m.s!=null?` <span class="sat ${satCls(m.s)}">${fmt1(m.s)} sat</span>`:""}</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" ${done?"disabled":""} aria-label="${done?"Ya apuntada":"Apuntar"} ${esc(m.n)}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
+        ${plan.coach&&plan.coach.comidas&&plan.coach.comidas.length?`<div class="items" id="menu" style="border-top:none"><div class="row" style="justify-content:space-between;padding-bottom:8px"><span class="eyebrow">Menú de hoy · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.kcal||0),0))} kcal · ${fmt0(plan.coach.comidas.reduce((a,m)=>a+(+m.p||0),0))} g proteína</span><button class="btn" type="button" id="addall">Añadir todo</button></div>${plan.coach.comidas.map((m,i)=>{const done=day.comidas.some(c=>c.menu===s+"|"+m.n);return `<div class="item"><span class="n"><span class="num muted" style="font-size:12px">${esc(m.h||"")}</span> ${esc(m.n)}</span><span class="m">${fmt0(m.kcal)} kcal · ${fmt0(m.p)} P · ${fmt0(m.c)} C · ${fmt0(m.g)} G${m.s!=null?` <span class="sat ${satCls(m.s)}">${fmt1(m.s)} sat</span>`:""}</span><button class="btn ${done?"":"pri"}" type="button" data-menu="${i}" data-done="${done?1:0}" aria-pressed="${done}" aria-label="${done?"Quitar":"Apuntar"} ${esc(m.n)}" title="${done?"Apuntada · toca para quitarla":"Apuntar"}">${done?"✓":"+"}</button></div>`}).join("")}</div>`:""}
         <div class="row"><select id="preset" aria-label="Comida del plan" style="flex:1 1 220px">${PRESETS.map((p,i)=>`<option value="${i}">${esc(p[0])}</option>`).join("")}</select><button class="btn pri" type="button" id="addpreset">Añadir</button></div>
         <div class="items" id="comidas">${day.comidas.length?day.comidas.map(c=>`<div class="item"><span class="n">${esc(c.nombre)}</span><span class="m">${fmt0(c.kcal)} kcal · ${fmt0(c.p)} P · ${fmt0(c.c)} C · ${fmt0(c.g)} G${c.s!=null?` <span class="sat ${satCls(c.s)}">${fmt1(c.s)} sat</span>`:""}</span><button class="btn ghost" type="button" data-delc="${c.id}" aria-label="Quitar ${esc(c.nombre)}">✕</button></div>`).join(""):`<div class="empty" style="margin-top:12px">Aún no has apuntado comidas. Elige una del plan o escribe la tuya.</div>`}</div>
         <details><summary>Otra comida con tus cantidades</summary>
@@ -1454,7 +1455,10 @@ function bindDay(s){
     day.comidas.push({id:uid(),nombre:n,kcal:num($("#ck").value)||0,p:num($("#cp").value)||0,c:num($("#cc").value)||0,g:num($("#cg").value)||0,s:num($("#cs").value)});touch(day,true);render();toast("Comida añadida")};
   const menu=$("#menu");
   const addMenu=i=>{const m=plan0.coach.comidas[i],k=s+"|"+m.n;if(day.comidas.some(c=>c.menu===k))return false;day.comidas.push({id:uid(),menu:k,nombre:m.n,kcal:+m.kcal||0,p:+m.p||0,c:+m.c||0,g:+m.g||0,s:m.s!=null?+m.s:null});return true};
-  if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(b){addMenu(+b.dataset.menu);touch(day,true);render();toast("Apuntado")}};
+  if(menu){menu.onclick=e=>{const b=e.target.closest("[data-menu]");if(!b)return;const i=+b.dataset.menu,m=plan0.coach.comidas[i],k=s+"|"+m.n;
+    if(day.comidas.some(c=>c.menu===k)){day.comidas=day.comidas.filter(c=>c.menu!==k);touch(day,true);render();toast("Quitada · "+String(m.n).split(" · ")[0])}
+    else{addMenu(i);touch(day,true);render();toast("Apuntado")}
+    const nb=document.querySelector(`[data-menu="${i}"]`);if(nb&&e.detail===0)nb.focus()};
     $("#addall").onclick=()=>{let n=0;plan0.coach.comidas.forEach((_,i)=>{if(addMenu(i))n++});touch(day,true);render();toast(n?n+" comidas apuntadas":"Ya estaba todo apuntado")}}
   const gs=$("#goshop");if(gs)gs.onclick=()=>{state.scrollTo="f-compra";go("comida")};
   const cr=$("#crea");if(cr)cr.onclick=()=>{day.creatina=!day.creatina;touch(day,true);render();toast(day.creatina?"Creatina apuntada":"Creatina desmarcada")};
@@ -3301,11 +3305,11 @@ const FX={
   // ---------- enganches sin tocar la lógica ----------
   hook(){
     document.addEventListener("click",e=>{
-      const b=e.target.closest("[data-menu],#addall,#addpreset,#addcustom");if(!b||b.disabled)return;
+      const b=e.target.closest("[data-menu],#addall,#addpreset,#addcustom");if(!b||b.disabled||b.dataset.done==="1")return;
       const r=b.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,isAll=b.id==="addall";
       setTimeout(()=>{const nm=document.querySelectorAll("#comidas .item");if(nm.length){const last=nm[nm.length-1];last.classList.add("just")}
         this.done(x,y);this.update();
-        const pend=document.querySelectorAll("[data-menu]:not([disabled])").length,tot=document.querySelectorAll("[data-menu]").length;
+        const pend=document.querySelectorAll('[data-menu]:not([data-done="1"])').length,tot=document.querySelectorAll("[data-menu]").length;
         if(tot&&!pend&&state.date===todayStr())setTimeout(()=>this.celebrate(),isAll?250:500)},60)},true);
   },
   after(){this.update()}
