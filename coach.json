@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-25T12:26",
+ "actualizado": "2026-11-25T21:40",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1295,21 +1295,12 @@
     },
     {
      "h": "21:30",
-     "n": "Cena · 180 g pollo a la plancha con calabacín salteado y 15 g AOVE",
-     "kcal": 385,
-     "p": 43,
-     "c": 6,
-     "g": 20,
-     "s": 3.9
-    },
-    {
-     "h": "22:15",
-     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
-     "kcal": 210,
-     "p": 15,
-     "c": 2,
-     "g": 15,
-     "s": 1.8
+     "n": "Cena · Amazonia Açaí, bowl 350 ml: açaí sin azúcar + yogur griego + semillas de lino (sin granola, fruta ni miel)",
+     "kcal": 380,
+     "p": 10,
+     "c": 16,
+     "g": 28,
+     "s": 7.5
     }
    ]
   },
