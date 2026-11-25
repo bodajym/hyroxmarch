@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-25T21:41",
+ "actualizado": "2026-11-25T21:43",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1236,8 +1236,8 @@
    ]
   },
   "2026-11-25": {
-   "tipo": "calidad",
-   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "tipo": "doble",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura. Día doble: entreno + pádel. Sube kcal con grasa buena y algo más de fruta roja.",
    "comidas": [
     {
      "h": "08:30",
@@ -1295,12 +1295,21 @@
     },
     {
      "h": "21:30",
-     "n": "Cena · Amazonia Açaí, Protein Bowl sin granola, plátano, kiwi ni pudín de chía: açaí + proteína vegetal + yogur griego + crema de cacahuete + ~80 g fresas",
-     "kcal": 460,
-     "p": 31,
-     "c": 18,
+     "n": "Cena · Amazonia Açaí, Protein Bowl sin granola, plátano, kiwi ni pudín de chía: açaí + proteína vegetal + yogur griego + crema de cacahuete + ~150 g fresas y frutos rojos",
+     "kcal": 485,
+     "p": 32,
+     "c": 23,
      "g": 29,
      "s": 10
+    },
+    {
+     "h": "22:30",
+     "n": "Recena · 30 g nueces y medio aguacate con sal",
+     "kcal": 325,
+     "p": 6,
+     "c": 4,
+     "g": 32,
+     "s": 3.5
     }
    ]
   },
