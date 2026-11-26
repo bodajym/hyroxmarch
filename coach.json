@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-25T22:00",
+ "actualizado": "2026-11-26T16:10",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1315,43 +1315,34 @@
   },
   "2026-11-26": {
    "tipo": "hyrox",
-   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura.",
+   "nota": "Día real: la fruta ha ido en el desayuno (unos 33 g de hidratos), así que fuera la fruta pre-HYROX y el resto del día casi sin hidratos para cerrar en unos 50 g. Las hamburguesas de lomo han ido a la comida; la cena pasa a ser el pollo con brócoli. Ojo con la saturada: hoy va alta por la carne y el feta.",
    "comidas": [
     {
      "h": "08:30",
-     "n": "Desayuno · tortilla de 3 huevos con 60 g pavo, champiñones y medio aguacate",
-     "kcal": 490,
-     "p": 36,
-     "c": 5,
-     "g": 33,
-     "s": 6.8
-    },
-    {
-     "h": "14:30",
-     "n": "Comida · 220 g pechuga de pollo a la plancha, brócoli y medio aguacate, 10 g AOVE",
-     "kcal": 560,
-     "p": 55,
-     "c": 10,
-     "g": 32,
-     "s": 5.1
-    },
-    {
-     "h": "18:00",
-     "n": "Media mañana · fruta de la oficina (solo hoy, antes del HYROX)",
-     "kcal": 75,
-     "p": 1,
-     "c": 18,
+     "n": "Desayuno · 1 mandarina y 1 plátano",
+     "kcal": 145,
+     "p": 2,
+     "c": 33,
      "g": 0,
-     "s": 0
+     "s": 0.1
+    },
+    {
+     "h": "15:45",
+     "n": "Comida · 2 hamburguesas de lomo (240 g), pimientos a la sartén, tomate cherry con 40 g de feta y orégano, 10 g AOVE",
+     "kcal": 820,
+     "p": 54,
+     "c": 9,
+     "g": 63,
+     "s": 27.7
     },
     {
      "h": "18:00",
-     "n": "Merienda · 2 huevos cocidos y 15 g de nueces",
-     "kcal": 245,
-     "p": 15,
-     "c": 3,
-     "g": 19,
-     "s": 4.1
+     "n": "Merienda · 2 huevos cocidos",
+     "kcal": 150,
+     "p": 12,
+     "c": 1,
+     "g": 10,
+     "s": 3.2
     },
     {
      "h": "18:00",
@@ -1373,21 +1364,21 @@
     },
     {
      "h": "21:30",
-     "n": "Cena · 2 hamburguesas de lomo con pimientos y ensalada",
-     "kcal": 440,
-     "p": 42,
-     "c": 6,
-     "g": 26,
-     "s": 9
+     "n": "Cena · 220 g pechuga de pollo a la plancha con 200 g de brócoli y 15 g AOVE",
+     "kcal": 445,
+     "p": 57,
+     "c": 5,
+     "g": 19,
+     "s": 3.1
     },
     {
      "h": "22:15",
-     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
-     "kcal": 210,
-     "p": 15,
-     "c": 2,
-     "g": 15,
-     "s": 1.8
+     "n": "Recena (si hay hambre) · 60 g pavo en lonchas y 10 aceitunas",
+     "kcal": 115,
+     "p": 13,
+     "c": 1,
+     "g": 6,
+     "s": 1
     }
    ]
   },
