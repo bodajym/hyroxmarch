@@ -1102,6 +1102,9 @@ function basePlan(s){
 
 /* =============== DATOS =============== */
 const KEY="rx27-data-v1", CFG="rx27-sync-v1", FILE="rx27-datos.json", SALUD="rx27-salud.txt";
+// Datos del atajo que llegan por URL a Safari: se aplican después de sincronizar, para no pisar lo apuntado en la app
+let PENDING_Q=null;
+const standalone=()=>navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;
 let data={days:{},weeks:{}};
 try{const r=LS.get(KEY);if(r){const p=JSON.parse(r);if(p&&p.days)data=p}}catch(e){}
 if(!data.lugares)data.lugares={};
@@ -1165,9 +1168,11 @@ const Sync={
       const {changedLocal,localNewer}=this.merge(remote);
       if(changedLocal){LS.set(KEY,JSON.stringify(data));if(!editing())render()}
       await this.salud();
+      const handoff=this.pending();
       if(localNewer)await this.push(true);else this.idle();
-      if(!silent)toast("Datos sincronizados");
-    }catch(e){this.err(e);if(!silent)toast("No se ha podido sincronizar. Revisa el token y la conexión",true)}
+      if(handoff)await this.handoff();
+      else if(!silent)toast("Datos sincronizados");
+    }catch(e){this.err(e);if(PENDING_Q){this.pending()}if(!silent)toast("No se ha podido sincronizar. Revisa el token y la conexión",true)}
   },
   // El atajo RX27 deja en el Gist los datos de Salud (mismo formato que la URL: peso=…&pasos=…) y abre la app
   async salud(){
@@ -1179,6 +1184,21 @@ const Sync={
       importQuery(new URLSearchParams(txt),false);
       if(!editing())render();
     }catch(e){}
+  },
+  // Aplica los datos del atajo que esperaban a la sincronización
+  pending(){
+    if(!PENDING_Q)return false;const q=PENDING_Q;PENDING_Q=null;
+    importQuery(q,false);if(!editing())render();return true;
+  },
+  // Abierto en Safari por el atajo: sube los datos y salta a la app instalada
+  async handoff(){
+    if(standalone())return;
+    clearTimeout(this.t);this.t=null;
+    for(let i=0;i<40&&this.busy;i++)await new Promise(r=>setTimeout(r,250));
+    await this.push(true);
+    if(!/\bok\b/.test(($("#sync")||{}).className||""))return;
+    setTimeout(()=>toast("Datos enviados · abriendo la app"),1200);
+    setTimeout(()=>{location.href="webapp://"+location.host+location.pathname},2200);
   },
   schedule(){if(!this.on())return;clearTimeout(this.t);this.status("busy","Cambios pendientes…");this.t=setTimeout(()=>this.push(),1800)},
   async push(inner){
@@ -3105,7 +3125,11 @@ function importEnergy(q,s){
   if(got.length){d.energiaT=Date.now();touch(d,true);state.date=s;state.view="dia";setTimeout(()=>toast("Salud guardada · "+got.join(" · ")),q.has("peso")?2900:400)}
   if(bad.length)setTimeout(()=>toast("No he entendido: "+bad.join(", "),true),q.has("peso")?5600:3000);
 }
-function importFromURL(){importQuery(new URLSearchParams(location.search),true)}
+function importFromURL(){
+  const q=new URLSearchParams(location.search);if(!["peso","pasos","activas","reposo"].some(k=>q.has(k)))return;
+  if(Sync.on()){history.replaceState(null,"",location.pathname+(location.hash||"#dia"));PENDING_Q=q;return}
+  importQuery(q,true);
+}
 // Datos de Salud y báscula: llegan en la URL (web) o en el Gist rx27-salud.txt (atajo en segundo plano)
 function importQuery(q,fromURL){
   if(!["peso","pasos","activas","reposo"].some(k=>q.has(k)))return;
