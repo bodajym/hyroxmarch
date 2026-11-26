@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-26T16:10",
+ "actualizado": "2026-11-26T21:15",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1315,7 +1315,7 @@
   },
   "2026-11-26": {
    "tipo": "hyrox",
-   "nota": "Día real: la fruta ha ido en el desayuno (unos 33 g de hidratos), así que fuera la fruta pre-HYROX y el resto del día casi sin hidratos para cerrar en unos 50 g. Las hamburguesas de lomo han ido a la comida; la cena pasa a ser el pollo con brócoli. Ojo con la saturada: hoy va alta por la carne y el feta.",
+   "nota": "Día real: la fruta fue en el desayuno y la comida fueron las hamburguesas de lomo. Cena ligera (steak tartar) y post con yogur, Evolate y arándanos. Queda corto de proteína y de kcal para un día de HYROX, y se pasa un poco de los 50 g de hidratos.",
    "comidas": [
     {
      "h": "08:30",
@@ -1354,31 +1354,22 @@
      "s": 0
     },
     {
-     "h": "20:45",
-     "n": "Post · 40 g Evolate con agua",
-     "kcal": 150,
-     "p": 32,
+     "h": "21:00",
+     "n": "Cena · 100 g de steak tartar",
+     "kcal": 170,
+     "p": 19,
      "c": 2,
-     "g": 1,
-     "s": 0.3
+     "g": 10,
+     "s": 4
     },
     {
-     "h": "21:30",
-     "n": "Cena · 220 g pechuga de pollo a la plancha con 200 g de brócoli y 15 g AOVE",
-     "kcal": 445,
-     "p": 57,
-     "c": 5,
-     "g": 19,
-     "s": 3.1
-    },
-    {
-     "h": "22:15",
-     "n": "Recena (si hay hambre) · 60 g pavo en lonchas y 10 aceitunas",
-     "kcal": 115,
-     "p": 13,
-     "c": 1,
-     "g": 6,
-     "s": 1
+     "h": "21:15",
+     "n": "Post · yogur natural con medio cacito de Evolate (15 g) y arándanos",
+     "kcal": 155,
+     "p": 17,
+     "c": 12,
+     "g": 4,
+     "s": 2.2
     }
    ]
   },
