@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-27T14:05",
+ "actualizado": "2026-11-27T22:10",
  "semanas": {
   "S01": "F45 de lunes a sábado. Esta semana: martes HIIT de cardio y fuerza, miércoles Special Ops (pliometría y core), jueves HYROX Signature de 75 min. Viernes, Z2 de 30 min en la cinta de UFC. El test de 5 km pasa al domingo por la mañana."
  },
@@ -1375,7 +1375,7 @@
   },
   "2026-11-27": {
    "tipo": "calidad",
-   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura. Comida real fuera de casa: bowl de pollo a la parrilla con verduras.",
+   "nota": "Menú keto hecho con la compra de esta semana (sin lo de María) + el pequeño refuerzo de huevos, pollo, queso batido, aguacate, nueces y verdura. Comida real: bowl de pollo a la parrilla con verduras. Cena en Tanteo: presa ibérica sin patatas.",
    "comidas": [
     {
      "h": "08:30",
@@ -1432,22 +1432,13 @@
      "s": 0.3
     },
     {
-     "h": "21:30",
-     "n": "Cena · 2 burgers de vacuno con champiñones y ensalada, 5 g AOVE",
-     "kcal": 560,
-     "p": 46,
-     "c": 5,
-     "g": 40,
-     "s": 16
-    },
-    {
-     "h": "22:15",
-     "n": "Recena (si hay hambre) · 60 g pavo en lonchas, 10 aceitunas y 15 g de nueces",
-     "kcal": 210,
-     "p": 15,
-     "c": 2,
-     "g": 15,
-     "s": 1.8
+     "h": "21:00",
+     "n": "Cena fuera (Tanteo) · presa ibérica a la plancha (unos 200 g), sin patatas",
+     "kcal": 540,
+     "p": 40,
+     "c": 0,
+     "g": 42,
+     "s": 14
     }
    ]
   },
