@@ -1190,15 +1190,15 @@ const Sync={
     if(!PENDING_Q)return false;const q=PENDING_Q;PENDING_Q=null;
     importQuery(q,false);if(!editing())render();return true;
   },
-  // Abierto en Safari por el atajo: sube los datos y salta a la app instalada
+  // Abierto en Safari por el atajo: sube los datos para que la app los recoja al abrirse
   async handoff(){
     if(standalone())return;
     clearTimeout(this.t);this.t=null;
     for(let i=0;i<40&&this.busy;i++)await new Promise(r=>setTimeout(r,250));
     await this.push(true);
     if(!/\bok\b/.test(($("#sync")||{}).className||""))return;
-    setTimeout(()=>toast("Datos enviados · abriendo la app"),1200);
-    setTimeout(()=>{location.href="webapp://"+location.host+location.pathname},2200);
+    // iOS no deja abrir la app instalada desde Safari (webapp:// falla): solo avisamos
+    setTimeout(()=>toast("Datos enviados · ya puedes abrir la app"),1200);
   },
   schedule(){if(!this.on())return;clearTimeout(this.t);this.status("busy","Cambios pendientes…");this.t=setTimeout(()=>this.push(),1800)},
   async push(inner){
